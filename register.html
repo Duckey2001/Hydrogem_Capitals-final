@@ -3,521 +3,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Update</title>
     <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/frontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/global/css/lucide.min.css">
-    <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/frontend/css/main.css">
-    <style>
-        .site-head-tag {
-            margin: 0;
-            padding: 0;
-        }
-        .recaptcha {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 15px;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background: #f1f1f1;
-        }
-        .recaptcha input {
-            margin-right: 10px;
-        }
-        .wrap-custom-file {
-            position: relative;
-            display: inline-block;
-            width: 100%;
-            height: 200px;
-        }
-        .wrap-custom-file input[type="file"] {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            opacity: 0;
-            cursor: pointer;
-        }
-        .wrap-custom-file label {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            height: 100%;
-            border: 2px dashed #ddd;
-            border-radius: 5px;
-            background-size: cover;
-            background-position: center;
-            text-align: center;
-            cursor: pointer;
-        }
-        .upload-icon {
-            width: 50px;
-            margin-bottom: 10px;
-        }
-    </style>
-    <title>Hydrogem Capitals Settings</title>
+    <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/global/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/frontend/css/style.css">
 </head>
-<body class="dark-theme">
-<script>
-    var notify = {
-        timeout: "5000",
-    }
-</script>
-<!--Full Layout-->
-<div class="panel-layout">
-    <!--Header-->
-    <div class="panel-header">
-        <div class="logo">
-            <a href="https://hydrogemcapitals.com">
-                <img class="logo-unfold" src="https://hydrogemcapitals.com/assets/global/images/1vMSsawnPG6Tl4dPtYEZ.png" alt="Logo"/>
-                <img class="logo-fold" src="https://hydrogemcapitals.com/assets/global/images/1vMSsawnPG6Tl4dPtYEZ.png" alt="Logo"/>
-            </a>
-        </div>
-        <div class="nav-wrap">
-            <div class="nav-left">
-                <button class="sidebar-toggle">
-                    <i class="anticon anticon-arrow-left"></i>
-                </button>
-                <div class="mob-logo">
-                    <a href="https://hydrogemcapitals.com">
-                        <img src="https://hydrogemcapitals.com/assets/global/images/1vMSsawnPG6Tl4dPtYEZ.png" alt="Site Name"/>
-                    </a>
-                </div>
-            </div>
-            <div class="nav-right">
-                <div class="single-nav-right">
-                    <div class="single-right">
-                        <div class="color-switcher">
-                            <i icon-name="moon" class="dark-icon" data-mode="dark"></i>
-                            <i icon-name="sun" class="light-icon" data-mode="light"></i>
-                        </div>
-                    </div>
-                    <div class="single-nav-right user-notifications111">
-                        <button type="button" class="item notification-dot" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i icon-name="bell-ring" class=""></i>
-                            <div class="number">0</div>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end notification-pop">
-                            <div class="noti-head">Notifications <span>0</span></div>
-                            <div class="all-noti">
-                                <p>Notification Not Found</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="single-right">
-                        <select name="language" id="" class="site-nice-select"
-                                onchange="window.location.href=this.options[this.selectedIndex].value;">
-                            <option value="https://hydrogemcapitals.com/language-update?name=en" selected>English</option>
-                        </select>
-                    </div>
-                    <div class="single-right">
-                        <button type="button" class="item" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="anticon anticon-user"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a href="https://hydrogemcapitals.com/user/settings" class="dropdown-item" type="button"><i class="anticon anticon-setting"></i>Settings</a>
-                            </li>
-                            <li>
-                                <a href="https://hydrogemcapitals.com/user/change-password" class="dropdown-item" type="button">
-                                    <i class="anticon anticon-lock"></i>Change Password
-                                </a>
-                            </li>
-                            <li>
-                                <a href="https://hydrogemcapitals.com/user/support-ticket/index" class="dropdown-item" type="button">
-                                    <i class="anticon anticon-customer-service"></i>Support Tickets
-                                </a>
-                            </li>
-                            <li class="logout">
-                                <form method="POST" action="https://hydrogemcapitals.com/logout" id="logout-form">
-                                    <input type="hidden" name="_token" value="twiCoRvoDYcyK0WwXhTzwFkaHM3vKq2S7py5ezAS">
-                                    <a href="https://hydrogemcapitals.com/logout" class="dropdown-item"
-                                       onclick="event.preventDefault(); localStorage.clear();  $('#logout-form').submit();"><i class="anticon anticon-logout"></i>Logout</a>
-                                </form>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!--/Header-->
+<body>
 
-    <div class="desktop-screen-show">
-        <div class="side-nav ">
-            <div class="side-wallet-box default-wallet mb-0">
-                <div class="user-balance-card">
-                    <div class="wallet-name">
-                        <div class="name">Account Balance</div>
-                        <div class="default">Wallet</div>
-                    </div>
-                    <div class="wallet-info">
-                        <div class="wallet-id"><i icon-name="wallet"></i>Main Wallet</div>
-                        <div class="balance">USDT0</div>
-                    </div>
-                    <div class="wallet-info">
-                        <div class="wallet-id"><i icon-name="landmark"></i>Profit Wallet</div>
-                        <div class="balance">USDT0</div>
-                    </div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <div class="site-card">
+                <div class="site-card-header">
+                    <h3 class="title">Profile Update</h3>
                 </div>
-                <div class="actions">
-                    <a href="https://hydrogemcapitals.com/user/deposit" class="user-sidebar-btn"><i class="anticon anticon-file-add"></i>Deposit</a>
-                    <a href="https://hydrogemcapitals.com/user/schemas" class="user-sidebar-btn red-btn"><i class="anticon anticon-export"></i>Invest Now</a>
-                </div>
-            </div>
-            <div class="side-nav-inside">
-                <ul class="side-nav-menu">
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/dashboard"><i class="anticon anticon-appstore"></i><span>Dashboard</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/schemas"><i class="anticon anticon-check-square"></i><span>All Investment  Plans</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/invest-logs"><i class="anticon anticon-copy"></i><span>Investment  Logs</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/transactions"><i class="anticon anticon-inbox"></i><span>All Transactions</span></a>
-                    </li>
-                    <li class="side-nav-item   ">
-                        <a href="https://hydrogemcapitals.com/user/deposit"><i class="anticon anticon-file-add"></i><span>Add Money</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/deposit/log"><i class="anticon anticon-folder-add"></i><span>Add Money Log</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/wallet-exchange"><i class="anticon anticon-transaction"></i><span>Wallet Exchange</span></a>
-                    </li>
-                    <li class="side-nav-item   ">
-                        <a href="https://hydrogemcapitals.com/user/withdraw"><i class="anticon anticon-bank"></i><span>Withdraw</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/withdraw/log"><i class="anticon anticon-credit-card"></i><span>Withdraw Log</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/ranking-badge"><i class="anticon anticon-star"></i><span>Ranking Badge</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/referral"><i class="anticon anticon-usergroup-add"></i><span>Referral</span></a>
-                    </li>
-                    <li class="side-nav-item active">
-                        <a href="https://hydrogemcapitals.com/user/settings"><i class="anticon anticon-setting"></i><span>Settings</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/support-ticket/index"><i class="anticon anticon-tool"></i><span>Support Tickets</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/notification/all"><i class="anticon anticon-notification"></i><span>Notifications</span></a>
-                    </li>
-                    <li class="side-nav-item">
-                        <form method="POST" action="https://hydrogemcapitals.com/logout">
-                            <input type="hidden" name="_token" value="twiCoRvoDYcyK0WwXhTzwFkaHM3vKq2S7py5ezAS">
-                            <button type="submit" class="site-btn grad-btn w-100">
-                                <i class="anticon anticon-logout"></i><span>Logout</span>
-                            </button>
-                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="page-container">
-        <div class="main-content">
-            <div class="section-gap">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
-                            <div class="site-card">
-                                <div class="site-card-header">
-                                    <h3 class="title">Profile Settings</h3>
-                                </div>
-                                <div class="site-card-body">
-                                    <form onsubmit="updateProfile(event)">
-                                        <div class="row">
-                                            <div class="col-xl-3">
-                                                <div class="mb-3">
-                                                    <div class="body-title">Avatar:</div>
-                                                    <div class="wrap-custom-file">
-                                                        <input type="file" name="avatar" id="avatar" accept=".gif, .jpg, .png"/>
-                                                        <label for="avatar" class="file-ok" style="background-image: url(https://hydrogemcapitals.com/assets/frontend/images/user.png)">
-                                                            <img class="upload-icon" src="https://hydrogemcapitals.com/assets/global/materials/upload.svg" alt=""/>
-                                                            <span>Update Avatar</span>
-                                                        </label>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="progress-steps-form">
-                                            <div class="row">
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="first_name" class="form-label">First Name</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="first_name" name="first_name" value="Letsapo" placeholder="First Name" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="last_name" class="form-label">Last Name</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="last_name" name="last_name" value="Bokang" placeholder="Last Name" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="username" class="form-label">Username</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="username" name="username" value="57620256" placeholder="Username" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="gender" class="form-label">Gender</label>
-                                                    <div class="input-group">
-                                                        <select name="gender" id="gender" class="nice-select site-nice-select" required>
-                                                            <option value="male" selected>Male</option>
-                                                            <option value="female">Female</option>
-                                                            <option value="other">Other</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="date_of_birth" class="form-label">Date of Birth</label>
-                                                    <div class="input-group">
-                                                        <input type="date" id="date_of_birth" name="date_of_birth" class="form-control" placeholder="Date of Birth"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="email" class="form-label">Email Address</label>
-                                                    <div class="input-group">
-                                                        <input type="email" disabled class="form-control disabled" id="email" value="letsapobokang39@gmail.com" placeholder="Email Address"/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="phone" class="form-label">Phone</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="phone" name="phone" value="+26657620256" placeholder="Phone" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="country" class="form-label">Country</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control disabled" id="country" value="Lesotho" placeholder="Country" disabled/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="city" class="form-label">City</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="city" name="city" placeholder="City" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="zip_code" class="form-label">Zip</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="zip_code" name="zip_code" placeholder="Zip" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="address" class="form-label">Address</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control" id="address" name="address" placeholder="Address" required/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <label for="joining_date" class="form-label">Joining Date</label>
-                                                    <div class="input-group">
-                                                        <input type="text" class="form-control disabled" id="joining_date" value="Sat, Feb 15, 2025 11:43 PM" placeholder="Joining Date" disabled/>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <div class="recaptcha">
-                                                        <input type="checkbox" id="recaptcha" name="recaptcha" required> I'm not a robot
-                                                    </div>
-                                                </div>
-                                                <div class="col-xl-6 col-md-12">
-                                                    <button type="submit" class="site-btn blue-btn">Save Changes</button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
+                <div class="site-card-body">
+                    <form id="profile-form" onsubmit="updateProfile(event)">
+                        <div class="form-group">
+                            <label for="first_name">First Name</label>
+                            <input type="text" id="first_name" name="first_name" class="form-control" required>
                         </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <div class="site-card">
-                                <div class="site-card-header">
-                                    <h3 class="title">2FA Security</h3>
-                                </div>
-                                <div class="site-card-body">
-                                    <a href="https://hydrogemcapitals.com/user/settings/2fa" class="site-btn blue-btn">Obtaining a Secret Key for Two-Factor Authentication</a>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="last_name">Last Name</label>
+                            <input type="text" id="last_name" name="last_name" class="form-control" required>
                         </div>
-                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12">
-                            <div class="site-card">
-                                <div class="site-card-header">
-                                    <h3 class="title">Change Password</h3>
-                                </div>
-                                <div class="site-card-body">
-                                    <a href="https://hydrogemcapitals.com/user/change-password" class="site-btn blue-btn">Change Password</a>
-                                </div>
-                            </div>
+                        <div class="form-group">
+                            <label for="username">Username</label>
+                            <input type="text" id="username" name="username" class="form-control" required>
                         </div>
-                    </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="text" id="phone" name="phone" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="zip_code">Zip Code</label>
+                            <input type="text" id="zip_code" name="zip_code" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Address</label>
+                            <input type="text" id="address" name="address" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="country">Country</label>
+                            <input type="text" id="country" name="country" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="avatar">Profile Picture</label>
+                            <input type="file" id="avatar" name="avatar" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="mobile-screen-show">
-        <div class="bottom-appbar">
-            <a href="https://hydrogemcapitals.com/user/dashboard" class="">
-                <i icon-name="layout-dashboard"></i>
-            </a>
-            <a href="https://hydrogemcapitals.com/user/deposit" class="">
-                <i icon-name="download"></i>
-            </a>
-            <a href="https://hydrogemcapitals.com/user/schemas" class="">
-                <i icon-name="box"></i>
-            </a>
-            <a href="https://hydrogemcapitals.com/user/referral" class="">
-                <i icon-name="gift"></i>
-            </a>
-            <a href="https://hydrogemcapitals.com/user/settings" class="active">
-                <i icon-name="settings"></i>
-            </a>
         </div>
     </div>
 </div>
 
 <script src="https://hydrogemcapitals.com/assets/global/js/jquery.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/global/js/jquery-migrate.js"></script>
 <script src="https://hydrogemcapitals.com/assets/frontend/js/bootstrap.bundle.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/frontend/js/scrollUp.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/frontend/js/owl.carousel.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/global/js/waypoints.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/frontend/js/jquery.counterup.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/global/js/jquery.nice-select.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/global/js/lucide.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/frontend/js/magnific-popup.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/frontend/js/aos.js"></script>
-<script src="https://hydrogemcapitals.com/assets/global/js/datatables.min.js" type="text/javascript" charset="utf8"></script>
-<script src="https://hydrogemcapitals.com/assets/global/js/simple-notify.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/frontend/js/main.js?var=5"></script>
-<script src="https://hydrogemcapitals.com/assets/global/js/custom.js?var=5"></script>
-<script src="https://hydrogemcapitals.com/assets/global/js/pusher.min.js"></script>
-<script>
-    // Initialize Lucide icons
-    lucide.createIcons();
-</script>
-<script>
-    (function ($) {
-        'use strict';
-        let pusherAppKey = "be09ea9de9775e90aa1b";
-        let pusherAppCluster = "us2";
-        var notification = new Pusher(pusherAppKey, {
-            encrypted: true,
-            cluster: pusherAppCluster,
-        });
-        var channel = notification.subscribe('user-notification111');
-        channel.bind('notification-event', function (result) {
-            playSound();
-            latestNotification();
-            notifyToast(result);
-        });
-        function latestNotification() {
-            $.get('https://hydrogemcapitals.com/user/latest-notification', function (data) {
-                $('.user-notifications111').html(data);
-            })
-        }
-        function notifyToast(data) {
-            new Notify({
-                status: 'info',
-                title: data.data.title,
-                text: data.data.notice,
-                effect: 'slide',
-                speed: 300,
-                customClass: '',
-                customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>',
-                showIcon: true,
-                showCloseButton: true,
-                autoclose: true,
-                autotimeout: 9000,
-                gap: 20,
-                distance: 20,
-                type: 1,
-                position: 'right bottom',
-                customWrapper: '<div><a href="' + data.data.action_url + '" class="learn-more-link">Explore<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="external-link" class="lucide lucide-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg></a></div>',
-            })
-        }
-        function playSound() {
-            var audio = new Audio("https://hydrogemcapitals.com/assets/global/tune/sticky.mp3");
-            audio.play();
-        }
-    })(jQuery);
-</script>
-<script>
-    (function ($) {
-        'use strict';
-        AOS.init();
-    })(jQuery);
-</script>
-<script>
-    (function ($) {
-        'use strict';
-        $.scrollUp({
-            scrollText: '<i class="fas fa-caret-up"></i>',
-            easingType: 'linear',
-            scrollSpeed: 500,
-            animation: 'fade'
-        });
-    })(jQuery);
-</script>
-<script type="text/javascript" src="https://hydrogemcapitals.com/assets/vendor/mckenziearts/laravel-notify/js/notify.js"></script>
-<script>
-    // Initialize nice select
-    $(document).ready(function() {
-        $('.site-nice-select').niceSelect();
-    });
-    
-    // Theme switcher
-    $(".color-switcher").on('click', function () {
-        "use strict"
-        $("body").toggleClass("dark-theme");
-        var url = 'https://hydrogemcapitals.com/theme-mode';
-        $.get(url)
-    });
-</script>
-<script>
-    // File upload preview
-    document.getElementById('avatar').addEventListener('change', function(e) {
-        var file = e.target.files[0];
-        if (file) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                document.querySelector('.wrap-custom-file label').style.backgroundImage = 'url(' + e.target.result + ')';
-            }
-            reader.readAsDataURL(file);
-        }
-    });
+<script src="https://hydrogemcapitals.com/assets/frontend/js/notify.min.js"></script>
 
+<script>
     function updateProfile(event) {
         event.preventDefault();
-        
+
         // Get form values
         const formData = new FormData(event.target);
         const username = formData.get('username');
-        
+
         // Create user object
         const user = {
             firstName: formData.get('first_name'),
             lastName: formData.get('last_name'),
             username: username,
-            gender: formData.get('gender'),
-            dateOfBirth: formData.get('date_of_birth'),
             phone: formData.get('phone'),
             city: formData.get('city'),
             zipCode: formData.get('zip_code'),
@@ -525,7 +91,7 @@
             email: document.getElementById('email').value,
             country: document.getElementById('country').value
         };
-        
+
         // Handle file upload
         const avatarFile = formData.get('avatar');
         if (avatarFile && avatarFile.size > 0) {
@@ -539,11 +105,11 @@
             saveUserData(user, username);
         }
     }
-    
+
     function saveUserData(user, username) {
         // Save to localStorage
         localStorage.setItem(username, JSON.stringify(user));
-        
+
         // Show success message
         new Notify({
             status: 'success',
@@ -552,7 +118,6 @@
             effect: 'fade',
             speed: 300,
             customClass: '',
-            customIcon: '',
             showIcon: true,
             showCloseButton: true,
             autoclose: true,
@@ -564,5 +129,6 @@
         });
     }
 </script>
+
 </body>
 </html>
