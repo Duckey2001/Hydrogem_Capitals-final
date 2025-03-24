@@ -3,275 +3,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Profile Update</title>
+    <title>Register</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: #f7f7f7;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+        * {
             margin: 0;
-        }
-
-        .card {
-            background-color: #ffffff;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 500px;
-            padding: 30px;
+            padding: 0;
             box-sizing: border-box;
         }
 
-        .card-header {
-            text-align: center;
-            margin-bottom: 30px;
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #111c44;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            padding: 20px;
         }
 
-        .card-header h3 {
-            font-size: 28px;
-            color: #4e73df;
-            font-weight: 600;
-            margin: 0;
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .container h2 {
+            margin-bottom: 20px;
+            color: #111c44;
         }
 
         .form-group {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            text-align: left;
         }
 
         .form-group label {
-            font-size: 14px;
-            color: #555;
-            font-weight: 500;
-            margin-bottom: 8px;
             display: block;
-        }
-
-        .form-group input,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            background-color: #fafafa;
-            font-size: 16px;
+            font-weight: 600;
             color: #333;
-            transition: all 0.3s ease;
+            margin-bottom: 5px;
         }
 
-        .form-group input:focus,
-        .form-group select:focus {
-            border-color: #4e73df;
-            box-shadow: 0 0 8px rgba(78, 115, 223, 0.4);
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
         }
 
         .btn {
             width: 100%;
-            padding: 15px;
-            background-color: #4e73df;
+            padding: 10px;
+            background: #2e59d9;
+            color: #fff;
             border: none;
-            color: white;
-            font-size: 18px;
-            font-weight: 600;
-            border-radius: 10px;
+            border-radius: 5px;
+            font-size: 16px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: 0.3s;
         }
 
         .btn:hover {
-            background-color: #2e59d9;
+            background: #1a4bb8;
         }
 
-        .form-group .file-input-label {
-            font-size: 16px;
-            font-weight: 500;
-            color: #555;
-            display: block;
-            margin-bottom: 8px;
-        }
-
-        .form-group input[type="file"] {
-            border: none;
-            padding: 8px;
-            background-color: #fafafa;
-            border-radius: 10px;
-            font-size: 16px;
-            color: #333;
-        }
-
-        .form-group input[type="file"]:hover {
-            cursor: pointer;
-            background-color: #f2f2f2;
-        }
-
-        .notify {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-        }
-
-        .profile-image {
-            border-radius: 50%;
-            width: 150px;
-            height: 150px;
-            margin: 0 auto;
-            border: 5px solid #ddd;
-            object-fit: cover;
-        }
-
-        .file-input {
-            display: none;
-        }
-
-        .file-input-btn {
-            margin-top: 10px;
-            padding: 10px;
-            background-color: #4e73df;
-            color: white;
-            border-radius: 8px;
-            text-align: center;
-            cursor: pointer;
+        .login-link {
+            margin-top: 15px;
             font-size: 14px;
-            font-weight: 600;
+            color: #555;
         }
 
-        .file-input-btn:hover {
-            background-color: #2e59d9;
+        .login-link a {
+            color: #2e59d9;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .login-link a:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                max-width: 100%;
+                padding: 15px;
+            }
         }
     </style>
 </head>
 <body>
 
-<div class="card">
-    <div class="card-header">
-        <h3>Update Your Profile</h3>
+    <div class="container">
+        <h2>Create an Account</h2>
+        <form>
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" placeholder="Enter your full name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email">
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Create a password">
+            </div>
+
+            <button type="submit" class="btn">Register</button>
+
+            <p class="login-link">Already have an account? <a href="login.html">Login here</a></p>
+        </form>
     </div>
-    <form id="profile-form" onsubmit="updateProfile(event)">
-        <div class="form-group">
-            <label for="first_name">First Name</label>
-            <input type="text" id="first_name" name="first_name" placeholder="John" required>
-        </div>
 
-        <div class="form-group">
-            <label for="last_name">Last Name</label>
-            <input type="text" id="last_name" name="last_name" placeholder="Doe" required>
-        </div>
-
-        <div class="form-group">
-            <label for="username">Username</label>
-            <input type="text" id="username" name="username" placeholder="johndoe" required>
-        </div>
-
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" placeholder="johndoe@example.com" required>
-        </div>
-
-        <div class="form-group">
-            <label for="phone">Phone</label>
-            <input type="text" id="phone" name="phone" placeholder="+1234567890" required>
-        </div>
-
-        <div class="form-group">
-            <label for="city">City</label>
-            <input type="text" id="city" name="city" placeholder="New York" required>
-        </div>
-
-        <div class="form-group">
-            <label for="zip_code">Zip Code</label>
-            <input type="text" id="zip_code" name="zip_code" placeholder="10001" required>
-        </div>
-
-        <div class="form-group">
-            <label for="address">Address</label>
-            <input type="text" id="address" name="address" placeholder="123 Main St" required>
-        </div>
-
-        <div class="form-group">
-            <label for="country">Country</label>
-            <input type="text" id="country" name="country" placeholder="USA" required>
-        </div>
-
-        <div class="form-group">
-            <label for="avatar" class="file-input-label">Profile Picture</label>
-            <input type="file" id="avatar" name="avatar" accept="image/*" onchange="previewAvatar(event)">
-            <div class="file-input-btn" onclick="document.getElementById('avatar').click()">Choose Image</div>
-        </div>
-
-        <button type="submit" class="btn">Save Changes</button>
-    </form>
-</div>
-
-<script>
-    function updateProfile(event) {
-        event.preventDefault();
-
-        const formData = new FormData(event.target);
-        const username = formData.get('username');
-
-        const user = {
-            firstName: formData.get('first_name'),
-            lastName: formData.get('last_name'),
-            username: username,
-            phone: formData.get('phone'),
-            city: formData.get('city'),
-            zipCode: formData.get('zip_code'),
-            address: formData.get('address'),
-            email: formData.get('email'),
-            country: formData.get('country'),
-        };
-
-        const avatarFile = formData.get('avatar');
-        if (avatarFile && avatarFile.size > 0) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                user.avatar = e.target.result;
-                saveUserData(user, username);
-            };
-            reader.readAsDataURL(avatarFile);
-        } else {
-            saveUserData(user, username);
-        }
-    }
-
-    function saveUserData(user, username) {
-        localStorage.setItem(username, JSON.stringify(user));
-
-        new Notify({
-            status: 'success',
-            title: 'Success',
-            text: 'Profile updated successfully!',
-            effect: 'fade',
-            speed: 300,
-            position: 'right top',
-            type: 1,
-            autoclose: true,
-            autotimeout: 3000,
-        });
-    }
-
-    function previewAvatar(event) {
-        const file = event.target.files[0];
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const image = new Image();
-            image.src = e.target.result;
-            image.onload = function() {
-                const avatar = document.createElement('img');
-                avatar.src = e.target.result;
-                avatar.classList.add('profile-image');
-                document.querySelector('.card').insertBefore(avatar, document.querySelector('.card-header'));
-            }
-        };
-        reader.readAsDataURL(file);
-    }
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 </body>
 </html>
