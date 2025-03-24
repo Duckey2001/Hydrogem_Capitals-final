@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" data-nav-layout="vertical" data-theme-mode="dark" data-header-styles="dark" data-menu-styles="color" loader="disable">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Payout Request - Cloud Bit</title>
+    <link rel="icon" href="/assets/images/favicon.png" type="image/x-icon">
+    <link id="style" href="assets/libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="assets/css/icons.css" rel="stylesheet">
+    
+    <style>
+        body {
+            background-color: #121212; /* Dark background for the body */
+            color: #ffffff; /* White text color */
+        }
+        .app-header {
+            background-color: #1e1e1e; /* Darker header background */
+            border-bottom: 1px solid #444; /* Subtle border for separation */
+        }
+        .breadcrumb {
+            background-color: transparent; /* Transparent background for breadcrumb */
+        }
+        .card {
+            background-color: #1e1e1e; /* Dark card background */
+            border: 1px solid #444; /* Subtle border for card */
+        }
+        .form-label {
+            color: #ffffff; /* White color for form labels */
+        }
+        .form-control {
+            background-color: #2a2a2a; /* Dark background for input fields */
+            color: #ffffff; /* White text color for input fields */
+            border: 1px solid #444; /* Subtle border for input fields */
+        }
+        .form-control:focus {
+            border-color: #007bff; /* Blue border on focus */
+            background-color: #2a2a2a; /* Keep the same background on focus */
+            color: #ffffff; /* Keep the same text color on focus */
+        }
+        .btn-primary2 {
+            background-color: #007bff; /* Primary button color */
+            border: none; /* Remove border */
+        }
+        .btn-primary2:disabled {
+            background-color: #555; /* Darker color for disabled button */
+        }
+        .text-warning {
+            color: #ffc107; /* Warning text color */
+        }
+        #ushnt {
+            background-color: #2a2a2a; /* Dark background for fee/net amount section */
+        }
+        .icon-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .icon-container img {
+            width: 30px; /* Set a fixed width for icons */
+            height: 30px; /* Set a fixed height for icons */
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <header class="app-header sticky" id="header">
+            <div class="main-header-container container-fluid">
+                <div class="header-content-left">
+                    <div class="header-element mx-lg-0 mx-2">
+                        <a aria-label="Hide Sidebar" class="sidemenu-toggle header-link animated-arrow hor-toggle horizontal-navtoggle" data-bs-toggle="sidebar" href="javascript:void(0);"><span></span></a>
+                    </div>
+                </div>
+                <ul class="header-content-right">
+                    <li class="header-element dropdown">
+                        <a href="javascript:void(0);" class="header-link dropdown-toggle" id="mainHeaderProfile" data-bs-toggle="dropdown" aria-expanded="false">
+                            <div class="d-flex align-items-center">
+                                <div>
+                                    <img src="assets/images/faces/15.jpg" alt="img" class="avatar avatar-sm">
+                                </div>
+                            </div>
+                        </a>
+                    </li>  
+                </ul>
+            </div>
+        </header>
+        
+        <div class="main-content app-content">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between page-header-breadcrumb flex-wrap gap-2">
+                    <div>
+                        <nav>
+                            <ol class="breadcrumb mb-1">
+                                <li class="breadcrumb-item"><a href="javascript:void(0);">Financial</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Payout Request</li>
+                            </ol>
+                        </nav>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-xl-5">
+                        <div class="card custom-card">
+                            <div class="card-header">
+                                <div class="card-title">Payout Request</div>
+                            </div>
+                            <form class="card-body" method="post">
+                                <div class="icon-container">
+                                    <img src="assets/images/icons/bitcoin.png" alt="Bitcoin Icon">
+                                    <span class="fw-medium">Bitcoin</span>
+                                    <img src="assets/images/icons/forex.png" alt="Forex Icon">
+                                    <span class="fw-medium">Forex</span>
+                                </div>
+                                <div class="mb-3">
+                                    <span class="form-label">Wallet Balance :</span>
+                                    <div class="position-relative">
+                                        <div class="p-2 border rounded d-flex align-items-center justify-content-between gap-3 mt-1 flex-wrap">
+                                            <div class="gap-2 d-flex align-items-center">
+                                                <div class="fw-medium">USDT Balance</div>
+                                            </div>
+                                            <div class="text-end ms-auto">
+                                                <span class="fw-medium d-block fs-18">$0</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="withdrawal_amount" class="form-label fs-14 text-dark">Amount</label>
+                                    <input type="number" step="1" min="5" class="form-control" placeholder="Enter Amount" id="withdrawal_amount" name="withdrawal_amount" required>
+                                </div>
+                                
+                                <div class="p-3 rounded mb-3 fs-14" id="ushnt">
+                                    <div class="pb-1">
+                                        <div class="d-inline-flex"><span class="fw-medium text-dark">Fee:</span></div>
+                                        <span id="service_charge" class="text-dark fw-medium float-end">0</span>
+                                    </div>
+                                    <div class="pt-2">
+                                        <div class="d-inline-flex"><span class="fw-medium text-dark">Net Amount:</span></div>
+                                        <span id="net_amount" class="text-dark fw-medium float-end">0</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="mb-3">
+                                    <label for="trn_password" class="form-label fs-14 text-dark">Transaction Code</label>
+                                    <input type="password" class="form-control" placeholder="Enter Transaction Code" id="trn_password" name="trn_password" required autocomplete="new-password">
+                                </div>
+                                
+                                <div class="d-grid mt-3">
+                                    <button type="button" disabled class="btn btn-primary2 btn-wave waves-effect waves-light">Withdrawal Closed<i class="fa-solid fa-arrow-right ms-2"></i></button>
+                                    <p class="text-warning mt-3">Withdrawal Available: Wednesday and Friday</p>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Get the amount from the URL
+            function getQueryParams() {
+                const params = {};
+                const queryString = window.location.search.substring(1);
+                const regex = /([^&=]+)=([^&]*)/g;
+                let m;
+
+                while (m = regex.exec(queryString)) {
+                    params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
+                }
+                return params;
+            }
+
+            const params = getQueryParams();
+            const withdrawalAmount = params['amount'];
+            if (withdrawalAmount) {
+                document.getElementById('withdrawal_amount').value = withdrawalAmount; // Set the value in the input field
+            }
+        </script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Hydrogem Capitals</title>
+    
+    <link href="https://cdn.prod.website-files.com/67b43a3acb5dc9dcfb21410d/css/hydrogem-capitals.webflow.435a132e6.css" rel="stylesheet" type="text/css"/>
+    <link rel="shortcut icon" href="https://cdn.prod.website-files.com/66fad496e2674af9c6f8f4ef/6703811303c6b24bdb4b2877_torch-favicon.png" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #3b2b58dd;
+            color: #faf7f7dd;
+            margin: 0;
+            padding: 0;
+            text-align: left;
+        }
+        
+        
+        .nav a {
+            color: #f9f8f4;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .nav a:hover {
+            text-decoration: underline;
+        }
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #140c2edd 50%, #c3b9de 50%);
+            border-radius: 10px;
+            box-shadow: 0 4px 20px #140938dd(43, 40, 102, 0.5);
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+        .hero p {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+        .button-group {
+            margin-top: 20px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #140938dd;
+            color: #f6f4ed;
+        }
+        .investment-plans {
+            padding: 50px 20px;
+            text-align: center;
+        }
+        .investment-plan {
+            border: 1px solid #d7dbe9;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            background-color: #b6a7e6dd;
+            color: #0b0b0bdd;
+        }
+        .cta {
+            background: #140938dd;
+            padding: 50px 20px;
+            color: #140938dd;
+            text-align: center;
+        }
+        .cta h2 {
+            margin: 0;
+        }
+
+        /* Currency Ticker Styles */
+        .ticker-container {
+            width: 100%;
+            overflow: hidden;
+            background: #14293f; /* Deep blue background */
+            color: #fff;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            white-space: nowrap;
+            animation: tickerMove 25s linear infinite;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            margin-right: 50px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .flag {
+            width: 20px;
+            height: 15px;
+            margin-right: 8px;
+            border-radius: 3px;
+        }
+
+        @keyframes tickerMove {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+
+        /* Logo Styles */
+        .logo {
+            text-align: left;
+            margin-bottom: 0;
+        }
+
+        .logo img {
+            max-width: 150px; /* Adjust the size of the logo */
+            height: auto;
+           
+        }
+        
+        .panel-layout {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .panel-header {
+    background-color: white; /* Blue header */
+    padding: 20px;
+    text-align: center;
+    color: rgb(36, 20, 86); /* White text for header */
+    display: flex; /* Use flexbox for layout */
+    align-items: center; /* Vertically center items */
+    justify-content: space-between; /* Space between logo and nav-links */
+}
+
+.logo {
+    text-align: left;
+    margin-bottom: 0;
+}
+
+.logo img {
+    max-width: 150px; /* Adjust the size of the logo */
+    height: auto;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between logo and heading */
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center; /* Center the links */
+    list-style: none; /* Remove bullet points */
+    padding: 0;
+    margin: 0;
+}
+
+.nav-links li {
+    margin: 0 15px; /* Space between links */
+}
+
+.nav-links a {
+    color: #3a2a6b; /* White text for links */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text */
+    transition: color 0.3s; /* Smooth color transition */
+    text-align: center;
+}
+
+.nav-links a:hover {
+    color: #000; /* Change to black on hover */
+}
+
+
+        .panel-layout {
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+        }
+
+        .panel-header {
+            background-color: #f8f4f4; /* Blue header */
+            padding: 20px;
+            text-align: center;
+            color: rgb(53, 37, 86); /* White text for header */
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center; /* Center the links */
+            list-style: none; /* Remove bullet points */
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin: 0 15px; /* Space between links */
+        }
+
+        .nav-links a {
+            color: #3f295e; /* White text for links */
+            text-decoration: none; /* Remove underline */
+            font-weight: bold; /* Bold text */
+            transition: color 0.3s; /* Smooth color transition */
+        }
+
+        .nav-links a:hover {
+            color: #752b82; /* Change to black on hover */
+        }
+
+        .page-container {
+            flex: 1;
+            padding: 20px;
+            background-color: #1e1948cd; /* White background for content */
+            text-align: center; /* Center align text */
+        }
+
+        .section-gap {
+            margin: 20px 0;
+        }
+
+        h2 {
+            color: #060606; /* Blue heading */
+            border-bottom: 2px solid #0c0c0c; /* Blue underline */
+            padding-bottom: 10px;
+            text-align: center; /* Center heading */
+        }
+
+    </style>
+</head>
+<body class="dark-theme">
+    <!-- Currency Ticker -->
+    <div class="ticker-container">
+        <div class="ticker-wrapper" id="currencyTicker">
+            Loading currency rates...
+        </div>
+    </div>
+
+           
+            <body class="dark-theme">
+                <div class="panel-layout">
+                    
+                    <div class="panel-header">
+                        <div class="logo"><br>
+                            <img src="WhatsApp Image 2025-02-20 at 17.49.30_65046ac8.jpg" alt="Hydrogem Capitals Logo">
+                        </div>
+                        <h1 style="color: rgb(39, 39, 111);">Hydrogem Capitals</h1>
+                        <ul class="nav-links"> 
+                           
+                            <li><a href="index.html">Home</a></li>
+                            <li><a href="aboutUs.html">About Us</a></li>
+                            <li><a href="mission.html">Mission</a></li>
+                            <li><a href="contactUs.html">Contact Us</a></li>
+                           
+                        </ul>
+                    </div>
+
+        
+</head>
+
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section-gap">
+                    <h2>About Us</h2>
+                    <div class="about-content">
+                        <p style="text-align: left;">
+                            We believe that every person, every business, and every aspiration is unique -<br> and the same goes for investment needs. That's why our approach begins by<br> understanding your goals, using AI.
+                            Navigating the <br>complex world of investments can be daunting, but you've already taken the first<br> step toward achieving your financial objectives. At Hydrogem, we embrace the <br>opportunity to guide individuals, entrepreneurs, and corporations towards financial<br> success through thoughtful and strategic investing.
+                        </p>
+                        <p>
+                            Our unmatched dedication, coupled with our expertise in the market's intricacies,<br> equips us to pave the way for an investment journey that delivers optimal returns.<br>
+                            We believe that every person, every business, and every aspiration is unique - and <br>the same goes for investment needs. That's why our approach begins by<br> understanding the market using AI and other algorithms.
+                        </p>
+                        <p style="text-align: right;">
+                            The relationships we create are founded on trust, honesty, and transparency. We believe <br>in having open conversations to ensure that you feel informed and confident <br>about the strategies we implement.
+                            Secure a <br>prosperous future by investing intelligently today. With us by your side, making<br> smart and secure investment choices will become second nature.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        async function fetchCurrencyRates() {
+            try {
+                const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD'); // Replace with a premium API if needed
+                const data = await response.json();
+                
+                // List of currencies with their respective flag codes
+                const currencies = {
+                    'EUR': 'eu', 'ZAR': 'za', 'LSL': 'ls', 'MZN': 'mz', 
+                    'GBP': 'gb', 'JPY': 'jp', 'CAD': 'ca', 'AUD': 'au', 'BTC': 'btc'
+                }; 
+
+                let tickerHTML = '';
+                for (let currency in currencies) {
+                    if (data.rates[currency]) {
+                        tickerHTML += `
+                            <span class="ticker-item">
+                                <img class="flag" src="https://flagcdn.com/w40/${currencies[currency]}.png" alt="${currency} Flag">
+                                ${currency}: ${data.rates[currency].toFixed(2)}
+                            </span>`;
+                    }
+                }
+
+                document.getElementById('currencyTicker').innerHTML = tickerHTML;
+            } catch (error) {
+                document.getElementById('currencyTicker').innerHTML = 'Failed to load currency rates.';
+            }
+        }
+
+        fetchCurrencyRates();
+        setInterval(fetchCurrencyRates, 21600000); // Update every 6 hours
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</div>
+</body>
+</html>

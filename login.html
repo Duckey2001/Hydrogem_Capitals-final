@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydrogem Capitals - Login</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #161b4b;
+            margin: 0;
+            padding: 20px; /* Add padding to prevent form from touching edges on small screens */
+        }
+
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 150px;
+            height: auto;
+            align-items: center;
+           
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .title h3 {
+            font-size: 24px;
+            color: #161b4b;
+            margin: 0;
+        }
+
+        .site-auth-form {
+            margin-top: 20px;
+        }
+
+        .single-field {
+            margin-bottom: 15px;
+        }
+
+        .box-label {
+            display: block;
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .box-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .box-input:focus {
+            border-color: #161b4b;
+            outline: none;
+        }
+
+        .password {
+            position: relative;
+        }
+
+        .form-check-input {
+            margin-right: 10px;
+        }
+
+        .form-check-label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .forget-pass-text {
+            float: right;
+            font-size: 14px;
+            color: #161b4b;
+            text-decoration: none;
+        }
+
+        .forget-pass-text:hover {
+            text-decoration: underline;
+        }
+
+        .button-group {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .button {
+            background-color: #161b4b;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+        }
+
+        .button:hover {
+            background-color: #007bff;
+        }
+
+        .singnup-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .singnup-text a {
+            color: #161b4b;
+            text-decoration: none;
+        }
+
+        .singnup-text a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .title h3 {
+                font-size: 20px;
+            }
+
+            .button {
+                padding: 8px 16px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Section -->
+    <section class="section-style site-auth">
+        <div class="container">
+            <div class="auth-content">
+                <div class="con_img">
+                    <figure><img class="img_responsive" src="images/WhatsApp Image 2025-02-20 at 17.49.30_65046ac8.jpg" alt="#" height="100" width="100" /></figure>
+                </div>
+                <div class="title">
+                    <h3>Welcome Back to Hydrogem Capitals</h3>
+                </div>
+                <div class="site-auth-form">
+                    <form method="POST" action=" ">
+                        <input type="hidden" name="_token" value="IEXAC5pRA2xEfUWbZme41UPCPgUnYilhluZDl38K"> 
+                        <div class="single-field">
+                            <label class="box-label" for="email">Email Or Username</label>
+                            <input class="box-input" type="text" name="email" placeholder="Enter your email address or username" required />
+                        </div>
+                        <div class="single-field">
+                            <label class="box-label" for="password">Password</label>
+                            <div class="password">
+                                <input class="box-input" type="password" name="password" placeholder="Enter your password" required />
+                            </div>
+                        </div>
+                        <div class="g-recaptcha mb-3" id="feedback-recaptcha" data-sitekey="6LcE4UgqAAAAAANEqVwdQv1JBVCLEnD05nUTw5Uj"></div>
+                        <div class="single-field">
+                            <input class="form-check-input check-input" type="checkbox" name="remember" id="flexCheckDefault" />
+                            <label class="form-check-label" for="flexCheckDefault">Remember me</label>
+                            <span class="forget-pass-text"><a href=" ">Forget Password</a></span>
+                        </div>
+                        <div class="button-group">
+                            <a href="deshboard.html" class="button">Login</a>
+                        </div>
+                    </form>
+                    <div class="singnup-text">
+                        <p>Don&#039;t have an account? <a href="register.html">Signup for free</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Login Section End -->
+
+    <script>
+        (function ($) {
+            'use strict';
+            // AOS initialization
+            AOS.init();
+        })(jQuery);
+    </script>
+    <script>
+        (function ($) {
+            'use strict';
+            // To top
+            $.scrollUp({
+                scrollText: '<i class="fas fa-caret-up"></i>',
+                easingType: 'linear',
+                scrollSpeed: 500,
+                animation: 'fade'
+            });
+        })(jQuery);
+    </script>
+    <script type="text/javascript" src="https://cnxcapital.net/assets/vendor/mckenziearts/laravel-notify/js/notify.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+</body>
+</html>

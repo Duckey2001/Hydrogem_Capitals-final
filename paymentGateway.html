@@ -1,0 +1,237 @@
+
+<!DOCTYPE html>
+<html data-wf-site="57021cb4cc9cea590abc0d5b" data-wf-page="5772005e492606915714731e">
+<head>
+  <meta charset="utf-8">
+  <title>CoinPayments Checkout</title>
+  <meta property="og:title" content="CoinPayments Checkout">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="generator" content="Webflow">
+	<META NAME="OWNER" CONTENT="webmaster@coinpayments.net">
+	<META NAME="AUTHOR" CONTENT="CoinPayments.net">
+	<META NAME="KEYWORDS" CONTENT="bitcoin payments, litecoin payments, bitcoin payment gateway, litecoin payment gateway, accept litecoin, altcoin payments, dogecoin payments, peercoin, peercoin payments, accept altcoins, accept bitcoin, feathercoin, quarkcoin, ppcoin, starcoin, dogecoin, earthcoin, infinitecoin, novacoin, BottleCaps, Namecoin, FTC, STR, IFC, NVC, ethereum, ether, accept ethereum, accept ether, ethere payments, convert coins, convert bitcoin, convert altcoins, cointopay, coin pay, cointopay.com, coin pay co, coinpay">
+	<meta property="og:image" content="https://www.coinpayments.net/images/logo.png" />		
+  <link rel="stylesheet" type="text/css" href="css/normalize.css">
+  <link rel="stylesheet" type="text/css" href="css/webflow.css">
+  <link rel="stylesheet" type="text/css" href="css/cpmain.webflow.css?v=2">
+	<link href="deps/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+	<link href='deps/fonts/css/fonts.css' rel='stylesheet' type='text/css'>
+  <script type="text/javascript" src="js/modernizr.js"></script>
+<!-- Piwik -->
+<script type="text/javascript">
+  var _paq = _paq || [];
+  // tracker methods like "setCustomDimension" should be called before "trackPageView"
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="//stats.coinpayments.net/piwik/";
+    _paq.push(['setTrackerUrl', u+'piwik.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'piwik.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Piwik Code -->
+</head>
+<body class="second-checkout-background">  <div class="navbar w-nav" data-animation="default" data-collapse="medium" data-duration="400">
+    <a class="brand w-nav-brand" href="/" target="_blank"><img class="logo" src="images/new2/logo.png" width="140">
+    </a>
+    <nav class="nav-menu w-nav-menu" role="navigation">
+    	      <a class="nav-link w-nav-link" href="login" target="_blank">Log In</a>
+      <a class="nav-button nav-link w-nav-link" href="register" target="_blank">Sign Up</a>
+          	<a class="nav-link w-nav-link" href="help">Help</a>
+    </nav>
+    <div class="mnb w-nav-button">
+      <div class="w-icon-nav-menu"></div>
+    </div>
+  </div>
+<script type="text/javascript">
+	function toggleOpen(elname) {
+		var el = document.getElementById(elname+'1');
+		if (el != null) {
+			if (el.style.display == "none" || el.style.display == "") {
+				el.style.display = "block";
+			} else {
+				el.style.display = "none";
+			}
+		}
+		el = document.getElementById(elname+'2');
+		if (el != null) {
+			if (el.style.display == "none" || el.style.display == "") {
+				el.style.display = "block";
+			} else {
+				el.style.display = "none";
+			}
+		}
+		return false;
+	}
+	var left = 10781;
+	function pad(n) {
+	    return (n < 10) ? ("0" + n) : n;
+	}
+	function duration2(secs) {
+				if (secs <= 0) {
+					return "Too Late";
+				}
+				var vHour = Math.floor(secs / 3600);
+				secs -= (vHour * 3600);
+				var vMin = Math.floor(secs / 60);
+				secs -= (vMin * 60);
+			
+				var sout = '';
+				if (vHour > 0) { sout = vHour+':'; }
+				sout = sout+pad(vMin)+':';
+				sout = sout+pad(secs);
+				return sout.trim();
+	}
+			
+	function updCountdown() {
+		var el = document.getElementsByClassName('timer-b');
+		var i = 0;
+		for (i=0; i < el.length; i++) {
+			el[i].innerHTML = duration2(left);
+		}
+		left--;
+	}
+</script>
+  <div class="sc2-mobile">
+    <div class="mob-v second-step-checkout w-form">
+      <form class="w-clearfix" data-name="Email Form" id="email-form" name="email-form">
+        <div class="qr-field">
+        	<img src="qrgen.php?id=CPJB1XKJTTF5WPJOPT2EYBLVDX&amp;key=b2adada4d30d5f99c9680c56fef9ebe1" width="221"><script type="text/javascript">var trackGoal = function() { if (window.AB_TEST_ENABLED && window._paq) { window._paq.push(["trackGoal", 22]); /*window.CHECKOUT_SET_CURRENCY_GOAL_ID*/ } }; if (document.readyState === "complete") { trackGoal(); } else { window.addEventListener("load", trackGoal); }</script>          <div>
+            <div class="_2nd-c checkout-grey"><a class="merchant-link" href="feedback-5958c0427e20cbb400f5d323cd62e2a9" target="_blank">Cprk1</a> - <span style="color: #5cb85c;"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></span> <span style="color: #5cb85c;">(100% with 80 ratings)</span></div>
+          </div>
+        </div>
+     	        <div class="pay-block">
+          <div class="w-row">
+            <div class="w-col w-col-3">
+              <div class="sc2-label">Amount Remaining</div>
+              <div><a href="bitcoin:3QoAWJH3UKdf2j7TTDQBKhDBvUJK43nC1G?amount=0.00024000">0.00024 BTC</a></div>
+            </div>
+            <div class="w-col w-col-1">
+              <div class="invis sc2-label">To</div>
+              <div class="send-icon"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+            </div>
+            <div class="w-col w-col-6">
+              <div class="sc2-label">Address</div>
+              <div class="address" style="word-wrap: break-word;">3QoAWJH3UKdf2j7TTDQBKhDBvUJK43nC1G</div>
+            </div>
+            <div class="w-col w-col-2">
+              <div class="algnlft sc2-label">Time Left</div>
+              <div class="timer-b" id="timer1"></div>
+            </div>
+          </div>
+          <div class="checkout-grey sct" style="color: #000;">
+            Make sure to send enough to cover any coin transaction fees!          </div>
+          <div class="checkout-grey sct">
+            Payment ID: CPJB1XKJTTF5WPJOPT2EYBLVDX          </div>
+            <div class="checkout-grey">
+              Verification Code: b2adada4d30d5f99c9680c56fef9ebe1 (save in case there are any issues with your payment)            </div>
+        </div>
+        <div class="spoiler-block">
+          <a class="spoiler-link w-inline-block" href="#" onClick="return toggleOpen('helpa');">
+            <div class="instructions-t w-clearfix">What to do next? <strong class="spoiler-icon">+</strong></div>
+          </a>
+          <div class="instructions-t spoiler-t" id="helpa1">
+						1) Please send <strong>0.00024000 BTC</strong> to address <strong>3QoAWJH3UKdf2j7TTDQBKhDBvUJK43nC1G</strong>. (Make sure to send enough to cover any coin transaction fees!)					
+							 You will need to initiate the payment using your software or online wallet and copy/paste the address and payment amount into it. We will email you when all funds have been received.							 You have 2 hours, 59 minutes, 41 seconds for us to receive confirmed funds. If you send funds that don't confirm by the timeout or don't send enough coins you will receive an automatic email to claim your funds within 8 hours. If you don't receive the email contact us with the information below and CoinPayments.net will send you a refund:<br />
+							 &nbsp;&nbsp;&nbsp;&nbsp;i) The transaction ID: CPJB1XKJTTF5WPJOPT2EYBLVDX<br />
+							 &nbsp;&nbsp;&nbsp;&nbsp;ii) A payment address to send the funds to.<br />
+							 &nbsp;&nbsp;&nbsp;&nbsp;iii) This verification code: b2adada4d30d5f99c9680c56fef9ebe1 (to verify that you are the transaction sender.)<br /><br />
+
+						2) After sending payment, review the status of your transaction <a href="index.php?cmd=status&amp;id=CPJB1XKJTTF5WPJOPT2EYBLVDX&amp;key=b2adada4d30d5f99c9680c56fef9ebe1" target="_blank">on this page</a>. Once the payment is confirmed several times in the block chain, the payment will be completed and the merchant will be notified. <b>The confirmation process usually takes 10-45 minutes but varies based on the coin's target block time and number of block confirms required.</b> The status page is available for the next 30 days.					</div>
+        </div>
+        <div class="spoiler-block">
+          <a class="spoiler-link w-inline-block" href="#" onClick="return toggleOpen('helpb');">
+            <div class="instructions-t w-clearfix">What if I accidentally don't send enough? <strong class="spoiler-icon">+</strong>
+            </div>
+          </a>
+          <div class="instructions-t spoiler-t" id="helpb1">If you don't send enough, that is OK. Just send the remainder and we will combine them for you. You can also send from multiple wallets/accounts.</div>
+        </div>
+     	      </form>
+    </div>
+    <div class="align-right mob-v sc2"><a class="footer-link scft2" href="https://www.coinpayments.net/help-terms">User Agreement</a> | <a class="footer-link scft2" href="https://www.coinpayments.net/help-privacy">Privacy Policy</a>
+    </div>
+  </div>
+  <div class="container-checkout w-container">
+    <div class="cover">
+      <div class="second-step-checkout w-form">
+        <form class="w-clearfix" data-name="Email Form" id="email-form" name="email-form">
+          <div class="qr-field">
+        	<img src="qrgen.php?id=CPJB1XKJTTF5WPJOPT2EYBLVDX&amp;key=b2adada4d30d5f99c9680c56fef9ebe1" width="221">            <div>
+              <div class="_2nd-c checkout-grey"><a class="merchant-link" href="feedback-5958c0427e20cbb400f5d323cd62e2a9" target="_blank">Cprk1</a> - <span style="color: #5cb85c;"><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i><i class="fa fa-star" aria-hidden="true"></i></span> <span style="color: #5cb85c;">(100% with 80 ratings)</span></div>
+            </div>
+          </div>
+        	          
+        	<div class="pay-block">
+            <div class="w-row">
+              <div class="w-col w-col-3">
+                <div class="sc2-label">Amount Remaining</div>
+                <div><a href="bitcoin:3QoAWJH3UKdf2j7TTDQBKhDBvUJK43nC1G?amount=0.00024000">0.00024 BTC</a></div>
+              </div>
+              <div class="w-col w-col-1">
+                <div class="invis sc2-label">>To</div>
+                <div class="send-icon"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+              </div>
+              <div class="w-col w-col-6">
+                <div class="sc2-label">Address</div>
+                <div class="address" style="word-wrap: break-word;">3QoAWJH3UKdf2j7TTDQBKhDBvUJK43nC1G</div>
+              </div>
+              <div class="w-col w-col-2">
+                <div class="algnlft sc2-label">Time Left</div>
+                <div class="timer-b" id="timer2"></div>
+              </div>
+            </div>
+            <div class="checkout-grey sct" style="color: #000;">
+              Make sure to send enough to cover any coin transaction fees!            </div>
+            <div class="checkout-grey sct">
+              Payment ID: CPJB1XKJTTF5WPJOPT2EYBLVDX            </div>
+            <div class="checkout-grey">
+              Verification Code: b2adada4d30d5f99c9680c56fef9ebe1 (save in case there are any issues with your payment)            </div>
+          </div>
+          <div class="spoiler-block">
+            <a class="spoiler-link w-inline-block" href="#" onClick="return toggleOpen('helpa');">
+              <div class="instructions-t w-clearfix">What to do next? <strong class="spoiler-icon">+</strong>
+              </div>
+            </a>
+            <div class="instructions-t spoiler-t" id="helpa2">
+							1) Please send <strong>0.00024000 BTC</strong> to address <strong>3QoAWJH3UKdf2j7TTDQBKhDBvUJK43nC1G</strong>. (Make sure to send enough to cover any coin transaction fees!)					
+								 You will need to initiate the payment using your software or online wallet and copy/paste the address and payment amount into it. We will email you when all funds have been received.								 You have 2 hours, 59 minutes, 41 seconds for us to receive confirmed funds. If you send funds that don't confirm by the timeout or don't send enough coins you will receive an automatic email to claim your funds within 8 hours. If you don't receive the email contact us with the information below and CoinPayments.net will send you a refund:<br />
+								 &nbsp;&nbsp;&nbsp;&nbsp;i) The transaction ID: CPJB1XKJTTF5WPJOPT2EYBLVDX<br />
+								 &nbsp;&nbsp;&nbsp;&nbsp;ii) A payment address to send the funds to.<br />
+								 &nbsp;&nbsp;&nbsp;&nbsp;iii) This verification code: b2adada4d30d5f99c9680c56fef9ebe1 (to verify that you are the transaction sender.)<br /><br />
+	
+							2) After sending payment, review the status of your transaction <a href="index.php?cmd=status&amp;id=CPJB1XKJTTF5WPJOPT2EYBLVDX&amp;key=b2adada4d30d5f99c9680c56fef9ebe1" target="_blank">on this page</a>. Once the payment is confirmed several times in the block chain, the payment will be completed and the merchant will be notified. <b>The confirmation process usually takes 10-45 minutes but varies based on the coin's target block time and number of block confirms required.</b> The status page is available for the next 30 days.						</div>
+          </div>
+          <div class="spoiler-block">
+            <a class="spoiler-link w-inline-block" href="#" onClick="return toggleOpen('helpb');">
+              <div class="instructions-t w-clearfix">What if I accidentally don't send enough? <strong class="spoiler-icon">+</strong>
+              </div>
+            </a>
+            <div class="instructions-t spoiler-t" id="helpb2">If you don't send enough, that is OK. Just send the remainder and we will combine them for you. You can also send from multiple wallets/accounts.</div>
+          </div>
+	     	        </form>
+      </div>
+      <div>
+        <div class="align-right sc2"><a class="footer-link scft2" href="help-terms" target="_blank">User Agreement</a> | <a class="footer-link scft2" href="help-privacy" target="_blank">Privacy Policy</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript" src="deps/jquery/jquery.min.js"></script>
+  <script type="text/javascript" src="js/webflow.js"></script>
+  <!--[if lte IE 9]><script src="deps/js/placeholders.min.js"></script><![endif]-->
+  <script type="text/javascript" src="js/sres.js"></script>
+  <script type="text/javascript" src="js/warning.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+	function update_page() {
+		$.getScript("ajax.php?cmd=checkout&id=CPJB1XKJTTF5WPJOPT2EYBLVDX&key=b2adada4d30d5f99c9680c56fef9ebe1&status=b62a8587a1b2d9a36f14e610b48117425b56c319");
+	}
+	$(function () {
+		updCountdown();
+		setInterval(updCountdown, 1000);
+		setInterval(update_page, 30000);
+	});
+</script>

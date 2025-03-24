@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bronze Plan</title>
+    <!-- Link to Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <!-- Link to Google Fonts for better typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+            color: #333;
+        }
+
+        h1 {
+            text-align: center;
+            color: #cd7f32; /* Bronze color */
+            font-size: 2.5em;
+            margin-top: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .plan {
+            background: rgb(99, 42, 178);
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            margin: 40px auto;
+            padding: 30px;
+            max-width: 600px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .plan:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .icon {
+            font-size: 3em;
+            color: #cd7f32; /* Bronze color */
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .plan p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .plan strong {
+            color: #cd7f32; /* Bronze color */
+        }
+
+        .cta {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .cta a {
+            background-color: #cd7f32; /* Bronze color */
+            color: rgb(67, 12, 122);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1em;
+            font-weight: 600;
+            margin: 10px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            display: inline-block;
+        }
+
+        .cta a:hover {
+            background-color: #b56a28; /* Darker bronze color */
+            transform: scale(1.05);
+        }
+
+        .cta a i {
+            margin-right: 8px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .plan {
+                padding: 20px;
+                margin: 20px;
+            }
+
+            .icon {
+                font-size: 2.5em;
+            }
+
+            .cta a {
+                padding: 10px 20px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Bronze Investment Plan</h1>
+
+    <div class="plan">
+        <!-- Bronze Coin Icon with Animation -->
+        <div class="icon">
+            <i class="fas fa-coins"></i>
+        </div>
+        <p><strong>Daily Return:</strong> 1.5%</p>
+        <p><strong>Investment Range:</strong> USDT 50 - USDT 499</p>
+        <p><strong>Total Return:</strong> 300%</p>
+        <p>The Bronze Plan is perfect for new investors looking to dip their toes into the world of investments. With a daily return of 1.5%, you can watch your investment grow steadily.</p>
+    </div>
+
+    <div class="cta">
+        <a href="index.html"><i class="fas fa-arrow-left"></i> Back to Plans</a>
+        <a href="login.html"><i class="fas fa-hand-holding-usd"></i> Invest Now</a>
+    </div>
+</body>
+</html>

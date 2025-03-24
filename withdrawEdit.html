@@ -1,0 +1,854 @@
+
+
+<!DOCTYPE html>
+<html>
+
+
+<head><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0" /><meta http-equiv="X-UA-Compatible" content="IE=edge" /><meta name="Description" content="Xino - Laravel Admin &amp; Dashboard Template" /><meta name="Author" content="Spruko Technologies Private Limited" /><meta name="Keywords" content="cryptocurrency, dashboard, admin, crypto, ico, bootstrap admin template, admin template, bootstrap dashboard template, crypto dashboard, cryptocurrency dashboard, ico dashboard, crypto admin, dashboard cryptocurrency, cryptocurrency trading dashboard, crypto dashboard template " />
+
+    <!-- Title -->
+    <title>
+	AAA Finity - A Forex Trading Platform 
+</title>
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/brand/favicon.png" type="image/x-icon" />
+
+    <!-- Icons css -->
+    <link href="assets/plugins/icons/icons.css" rel="stylesheet" />
+
+    <!--  Right-sidemenu css -->
+    <link href="assets/plugins/sidebar/sidebar.css" rel="stylesheet" />
+
+    <!--- Animations css-->
+    <link href="assets/css/animate.css" rel="stylesheet" />
+
+    <!--  Custom Scroll bar-->
+    <link href="assets/plugins/custom-scroll/jquery.mCustomScrollbar.css" rel="stylesheet" />
+
+    <!--  Left-Sidebar css -->
+    <link href="assets/css/sidemenu.css?ver=3" rel="stylesheet" />
+
+
+    <!-- Internal Chart-Morris css-->
+    <link href="assets/plugins/morris.js/morris.css" rel="stylesheet" />
+
+    <!-- Internal Nice-select css  -->
+    <link href="assets/plugins/jquery-nice-select/css/nice-select.css" rel="stylesheet" />
+
+    <!-- Internal News-Ticker css-->
+    <link href="assets/plugins/flag-icon-css/css/flag-icon.min.css" rel="stylesheet" />
+
+    <!-- Jquery-countdown css-->
+    <link href="assets/plugins/jquery-countdown/countdown.css" rel="stylesheet" />
+
+    <!-- Internal News-Ticker css-->
+    <link href="assets/plugins/newsticker/jquery.jConveyorTicker.css" rel="stylesheet" />
+
+
+    <!-- style css-->
+    <link href="assets/css/style.css?ver=3" rel="stylesheet" />
+
+    <!-- skin css-->
+    <link href="assets/css/skin-modes.css" rel="stylesheet" />
+
+    <!-- dark-theme css-->
+    <link href="assets/css/style-dark.css" rel="stylesheet" />
+
+    <!-- Switcher css -->
+    <link href="assets/switcher/css/switcher.css" rel="stylesheet" /><link rel="stylesheet" href="assets/switcher/demo.css" />
+    <style>
+        body {
+            background-image: url(assets/images/dash_bg.jpg) !important;
+            background-size: cover;
+            height: 100%;
+            background-position: center center;
+            position: relative;
+        }
+
+            body::after {
+                content: "";
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(45deg, #000000db, #000000bd);
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                z-index: -1;
+            }
+
+        .content-title {
+            color: #fff;
+        }
+
+        .bg_home span a {
+            color: #ffcc6a;
+        }
+
+        @media(max-width:600px) {
+            .referral_link {
+                width: 68%;
+                overflow: hidden;
+            }
+
+            .main-header {
+              background: linear-gradient(302deg, #060606, #795103);
+            }
+
+            .bt1 .btn {
+                margin-top: -50px;
+            }
+
+            .header-icons {
+                filter: invert(1);
+            }
+
+            .fe-more-vertical {
+                filter: invert(1);
+            }
+
+            .main-header-right {
+                display: none;
+            }
+
+            .main-header-center {
+                justify-content: end;
+            }
+        }
+        .counter {
+    color: #e9b144;
+}
+    </style>
+
+</head>
+
+<body class="main-body app sidebar-mini Light-mode">
+    <form method="post" action="./fg?page=withdrawal" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
+<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
+<input type="hidden" name="__LASTFOCUS" id="__LASTFOCUS" value="" />
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="RbZVZWHZqauk0JaBpzg7B8Mmrd4DfWs7H7JZn/0eWQYmLIhePAaYA3yg7CBgAD02AQ3Qpnc4U2/gjhC7qTSR8SIGhPPf6aTQOIQ+1baCKEQJ5l0GmSXKiiKCnCjEXGptpX9vRya3pJkjV4UsGGVYEojZgAKwOmduZYQgNVqNv70aeC5rsJJlP+QGLk1j3kK0GpTScSZhqEASjlSbpCeXIYTrTtesGHMwZvKP6Wlm8d0UfLtjFuKdavlDBdBqDcWGP1ehWo2fIbIvKMcYb9bhK11mF2okW23cCaV1rBNx0RwuctYkD3gBItm1M4aWSdFGdCbFqj4DKFWoljs2uwBSRU3gYVcGUMAZwGl4oZe/TBbKFKBFLbNyrSQctLVImkVAIMz708GejlREosdb+pTJcBMX+93DqcBCqz29qFW7YlGoE3Nb3xcHyD6fKUKCFMBp" />
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+var theForm = document.forms['form1'];
+if (!theForm) {
+    theForm = document.form1;
+}
+function __doPostBack(eventTarget, eventArgument) {
+    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+        theForm.__EVENTTARGET.value = eventTarget;
+        theForm.__EVENTARGUMENT.value = eventArgument;
+        theForm.submit();
+    }
+}
+//]]>
+</script>
+
+
+<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZMixKkCar4TIlKJYgPCcd73clpCRb2w1FYCXseUea0AgYMrsG-mqeVocIDsSSF4rUw2&amp;t=638628207619783110" type="text/javascript"></script>
+
+
+<script src="/ScriptResource.axd?d=nv7asgRUU0tRmHNR2D6t1CPynCcgSQVqyWsAShJYeI0MOfdA2g3H6KrOdByKyyW1A1SGxElcjAM9MDqC6n9cvwUaqn-xle6WBKeUROQ7nOPREOCz68EzjSZoErWm-Cpv1kMgeSBAw0cMCO2DNoDVuw2&amp;t=ffffffffc7a8e318" type="text/javascript"></script>
+<script src="../Scripts/WebForms/MsAjax/MicrosoftAjax.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="../Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js" type="text/javascript"></script>
+<script src="../Scripts/jquery-3.4.1.js" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+function WebForm_OnSubmit() {
+if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
+return true;
+}
+//]]>
+</script>
+
+<div class="aspNetHidden">
+
+	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="6737D1DB" />
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="a+H6YC3F8Zhn0k0PMFRelPgLbQE9q95rPHTBsU/c5UuKFRxfNRvCpwGke0O48415iLvJjdIaui0PGsgQfL03U/3YKr+fUTl0UYJecyGSE0eowvTNzgN44P8XU7LkILCt0q/tEmI8D6GniGVU7gd2dfSgSYV0k224GnM6eSXCGFFRzG1/LKwXc/GBs2H9Cy94nuAdIxsIBLlMfW0qr5/R9VkbFcm5zarYeEeW0sAm30F9qxBW8MVa6AEUYCbTJdEXbEJtGmXZKGbiZtqAlT59eg==" />
+</div>
+
+
+        <script type="text/javascript">
+//<![CDATA[
+Sys.WebForms.PageRequestManager._initialize('ctl00$scriptmanager2', 'form1', ['tctl00$ContentPlaceHolder1$ctl00$updatepanel1','ContentPlaceHolder1_ctl00_updatepanel1'], [], [], 90, 'ctl00');
+//]]>
+</script>
+
+        <!-- Loader -->
+
+        <script src="wz_tooltip.js"></script>
+        <div id="global-loader" class="light-loader">
+            <img src="assets/img/loaders/loader.svg" class="loader-img" alt="Loader">
+        </div>
+        <!-- /Loader -->
+
+        <!-- End Switcher -->
+
+        <!-- Page -->
+        <div class="page">
+
+            <!-- main-sidebar opened -->
+            <div class="app-sidebar__overlay" data-toggle="sidebar"></div>
+            <aside class="app-sidebar sidebar-scroll ">
+                <div class="main-sidebar-header">
+                    <a class=" desktop-logo logo-light" href="fg">
+                        <img src="../assets/images/logo.png" class="main-logo" alt="logo"></a>
+                    <a class=" desktop-logo logo-dark" href="fg">
+                        <img src="../assets/images/logo.png" class="main-logo dark-theme" alt="logo"></a>
+                    <a class="logo-icon mobile-logo icon-light" href="fg">
+                        <img src="../assets/images/favicon.png" class="logo-icon" alt="logo"></a>
+                    <a class="logo-icon mobile-logo icon-dark" href="fg">
+                        <img src="../assets/images/favicon.png" class="logo-icon dark-theme" alt="logo"></a>
+                </div>
+                <div class="main-sidebar-body circle-animation ">
+
+                    
+<ul class="side-menu circle">
+    <li>
+        <h3 class="">Dashboard</h3>
+    </li>
+    <li class="slide">
+        <a class="side-menu__item" href="fg"><i class="side-menu__icon ti-desktop"></i><span class="side-menu__label">Dashboard</span></a>
+    </li>
+    <li class="slide">
+        <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-server"></i><span class="side-menu__label">Profile</span><i class="angle fe fe-chevron-down"></i></a>
+        <ul class="slide-menu">
+            <li><a class="slide-item" href="fg?page=myprofile">Edit Profile</a></li>
+            <li><a class="slide-item" href="fg?page=cryptoaddress">USDT Address</a></li>
+            
+            <li><a class="slide-item" href="fg?page=password">Change Password</a></li>
+        </ul>
+    </li>
+    <li class="slide">
+        <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-user"></i><span class="side-menu__label">Team</span><i class="angle fe fe-chevron-down"></i></a>
+        <ul class="slide-menu">
+            <li><a class="slide-item" href="fg?page=referral-view">Referral Team</a></li>
+            <li><a class="slide-item" href="fg?page=binary-view">Binary Structure</a></li>
+            <li><a class="slide-item" href="fg?page=tree-view">Binary Team</a></li>
+
+            
+            
+        </ul>
+        </li> 
+    <li class="slide">
+        <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-layout menu-icon"></i><span class="side-menu__label">Deposit</span><i class="angle fe fe-chevron-down"></i></a>
+        <ul class="slide-menu">
+            <li><a class="slide-item" href="fg?page=deposit">New Deposit</a></li>
+            <li><a class="slide-item" href="fg?page=depositreport">Report</a></li>
+        </ul>
+    </li>
+
+        <li class="slide">
+            <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-user"></i><span class="side-menu__label">Upgrade</span><i class="angle fe fe-chevron-down"></i></a>
+            <ul class="slide-menu">
+                <li><a class="slide-item" href="fg?page=purchase-package">New Upgrade</a></li>
+                <li><a class="slide-item" href="fg?page=purchase-report">Report</a></li>
+            </ul>
+        </li>
+        <li class="slide">
+            <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-email  menu-icons"></i><span class="side-menu__label">Wallet</span><span class="badge badge-warning side-badge">5</span><i class="angle fe fe-chevron-down"></i></a>
+            <ul class="slide-menu">
+                <li><a class="slide-item" href="fg?page=transaction&p=3">Capital Wallet</a></li>
+                <li><a class="slide-item" href="fg?page=transaction&p=1">Bounty Wallet</a></li>
+                <li><a class="slide-item" href="fg?page=transaction&p=2">Income Wallet</a></li>
+                <li><a class="slide-item" href="fg?page=transaction&p=4">AAA Wallet</a></li>
+                <li><a class="slide-item" href="fg?page=transaction&p=5">Reward Wallet</a></li>
+            </ul>
+        </li>
+        <li class="slide">
+            <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-briefcase"></i><span class="side-menu__label">Income Report</span><span class="badge badge-pink side-badge">4</span><i class="angle fe fe-chevron-down"></i></a>
+            <ul class="slide-menu">
+                <li><a class="slide-item" href="fg?page=earning&p=1">Referral Income</a></li>
+                <li><a class="slide-item" href="fg?page=earning&p=2">ROI Income</a></li>
+                <li><a class="slide-item" href="fg?page=earning&p=3">Binary Income</a></li>
+              
+                
+                <li><a class="slide-item" href="fg?page=reward">Reward Income</a></li>
+                
+            </ul>
+    </li>
+
+    <li class="slide">
+        <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-map-alt menu-icon"></i><span class="side-menu__label">Transfer</span><i class="angle fe fe-chevron-down"></i></a>
+        <ul class="slide-menu">
+            <li><a class="slide-item" href="fg?page=internal-transfer">Internal</a></li>
+            <li><a class="slide-item" href="fg?page=external-transfer">External</a></li>
+        </ul>
+    </li>
+
+    <li class="slide">
+        <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-layout menu-icon"></i><span class="side-menu__label">Withdrawal</span><i class="angle fe fe-chevron-down"></i></a>
+        <ul class="slide-menu">
+            <li><a class="slide-item" href="fg?page=withdrawal">New Withdrawal</a></li>
+            <li><a class="slide-item" href="fg?page=withdrawal-report">Report</a></li>
+        </ul>
+    </li>
+
+
+    <li class="slide">
+        <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-palette "></i><span class="side-menu__label">Support</span><i class="angle fe fe-chevron-down"></i></a>
+        <ul class="slide-menu">
+            <li><a class="slide-item" href="fg?page=ticket&type=1">Create Ticket</a></li>
+            <li><a class="slide-item" href="fg?page=vticket&type=1">View Ticket</a></li>
+        </ul>
+    </li>
+
+    <li class="slide">
+        <a class="side-menu__item" href="fg?page=signoff"><i class="side-menu__icon ti-package"></i><span class="side-menu__label">Sign Off</span></a>
+    </li>
+
+
+</ul>
+
+                </div>
+            </aside>
+            <!-- main-sidebar -->
+
+            <!-- main-content -->
+            <div class="main-content app-content">
+
+                <!-- main-header -->
+                <div class="main-header sticky side-header nav nav-item">
+                    <div class="container-fluid">
+                        <div class="main-header-left ">
+                            <div class="app-sidebar__toggle mobile-toggle" data-toggle="sidebar">
+                                <a class="open-toggle" href="#"><i class="header-icons text-white" data-eva="menu-outline"></i></a>
+                                <a class="close-toggle" href="#"><i class="header-icons text-white" data-eva="close-outline"></i></a>
+                            </div>
+
+                        </div>
+                        <div class="main-header-center">
+                            <div class="responsive-logo">
+                                <a href="fg">
+                                    <img src="assets/img/brand/aaa-logo.png" class="mobile-logo" alt="logo">
+                                    <img src="assets/img/brand/aaa-logo.png" class="dark-mobile-logo" alt="logo">
+                                </a>
+                            </div>
+
+                        </div>
+                        <div class="main-header-right">
+                            <div class="nav nav-item  navbar-nav-right ml-auto">
+
+                                <div class="nav-item full-screen fullscreen-button">
+                                    <a class="new nav-link full-screen-link" href="#"><i class="ti-fullscreen"></i></a>
+                                </div>
+                                
+                                
+                                <div class="dropdown main-profile-menu nav nav-item nav-link">
+                                    <a class="profile-user" href="#">
+                                        <img alt="" src="assets/img/faces/user-profile.jpg"></a>
+                                    <div class="dropdown-menu dropdown-menu-arrow animated fadeInUp">
+                                        <div class="main-header-profile header-img">
+                                            <div class="main-img-user">
+                                                <img alt="" src="assets/img/faces/user-profile.jpg">
+                                            </div>
+
+                                            <h6> Letsapo </h6>
+                                            <span>3A245459</span>
+                                        </div>
+                                        <a class="dropdown-item" href="fg?page=myprofile"><i class="far fa-user"></i>My Profile</a>
+                                        <a class="dropdown-item" href="fg?page=cryptoaddress"><i class="far fa-edit"></i>Crypto Setting</a>
+                                        <a class="dropdown-item" href="fg?page=transaction&p=3"><i class="far fa-clock"></i>Deposit Wallet</a>
+                                        <a class="dropdown-item" href="fg?page=withdrawal"><i class="fas fa-sliders-h"></i>New Withdrawal</a>
+                                        <a class="dropdown-item" href="fg?page=signoff"><i class="fas fa-sign-out-alt"></i>Sign Out</a>
+                                    </div>
+                                </div>
+                               
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- /main-header -->
+                <div>
+                    <!-- mobile-header -->
+                    <div class="responsive main-header collapse" id="navbarSupportedContent-4">
+                        <div class="mb-1 navbar navbar-expand-lg  nav nav-item  navbar-nav-right responsive-navbar navbar-dark d-sm-none ">
+                            <div class="navbar-collapse">
+                                <div class="d-flex order-lg-2 ml-auto">
+                                    <form class="navbar-form nav-item my-auto d-lg-none" role="search">
+                                        <div class="input-group nav-item my-auto">
+                                            <input type="text" class="form-control" placeholder="Search">
+                                            <span class="input-group-btn">
+                                                <button type="reset" class="btn btn-default">
+                                                    <i class="ti-close"></i>
+                                                </button>
+                                                <button type="submit" class="btn btn-default nav-link">
+                                                    <i class="ti-search"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </form>
+                                    <div class="d-md-flex">
+                                        <div class="nav-item full-screen fullscreen-button">
+                                            <a class="new nav-link full-screen-link" href="#"><i class="ti-fullscreen"></i></span></a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown  nav-item main-header-message header-contact">
+                                        <a class="new nav-link" href="#"><i class="ti-email"></i><span class=" pulse-danger"></span></a>
+                                        <div class="dropdown-menu dropdown-menu-arrow animated fadeInUp">
+                                            <div class="main-dropdown-header d-sm-none">
+                                                <a class="main-header-arrow" href="#"><i class="icon ion-md-arrow-back"></i></a>
+                                            </div>
+                                            <div class="menu-header-content text-left d-flex">
+                                                <div class="">
+                                                    <h6 class="menu-header-title text-white mb-0">5 new Messages</h6>
+                                                </div>
+                                                <div class="my-auto ml-auto">
+                                                    <span class="badge badge-pill badge-warning float-right">Mark All Read</span>
+                                                </div>
+                                            </div>
+                                            <div class="main-message-list text-scroll">
+                                                <a href="#" class="p-3 d-flex border-bottom">
+                                                    <div class="  drop-img  cover-image  " data-image-src="assets/img/faces/3.jpg">
+                                                        <span class="avatar-status bg-teal"></span>
+                                                    </div>
+
+                                                    <div class="wd-90p">
+                                                        <div class="d-flex">
+                                                            <h5 class="mb-1 name">Paul Molive</h5>
+                                                            <p class="time mb-0 text-right ml-auto float-right">10 min ago</p>
+                                                        </div>
+                                                        <p class="mb-0 desc">I'm sorry but i'm not sure how...</p>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-3 d-flex border-bottom">
+                                                    <div class="drop-img cover-image" data-image-src="assets/img/faces/2.jpg">
+                                                        <span class="avatar-status bg-teal"></span>
+                                                    </div>
+                                                    <div class="wd-90p">
+                                                        <div class="d-flex">
+                                                            <h5 class="mb-1 name">Sahar Dary</h5>
+                                                            <p class="time mb-0 text-right ml-auto float-right">13 min ago</p>
+                                                        </div>
+                                                        <p class="mb-0 desc">All set ! Now, time to get to you now......</p>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-3 d-flex border-bottom">
+                                                    <div class="drop-img cover-image" data-image-src="assets/img/faces/9.jpg">
+                                                        <span class="avatar-status bg-teal"></span>
+                                                    </div>
+                                                    <div class="wd-90p">
+                                                        <div class="d-flex">
+                                                            <h5 class="mb-1 name">Khadija Mehr</h5>
+                                                            <p class="time mb-0 text-right ml-auto float-right">20 min ago</p>
+                                                        </div>
+                                                        <p class="mb-0 desc">Are you ready to pickup your Delivery...</p>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-3 d-flex border-bottom">
+                                                    <div class="drop-img cover-image" data-image-src="assets/img/faces/12.jpg">
+                                                        <span class="avatar-status bg-danger"></span>
+                                                    </div>
+                                                    <div class="wd-90p">
+                                                        <div class="d-flex">
+                                                            <h5 class="mb-1 name">Barney Cull</h5>
+                                                            <p class="time mb-0 text-right ml-auto float-right">30 min ago</p>
+                                                        </div>
+                                                        <p class="mb-0 desc">Here are some products ...</p>
+                                                    </div>
+                                                </a>
+                                                <a href="#" class="p-3 d-flex border-bottom">
+                                                    <div class="drop-img cover-image" data-image-src="assets/img/faces/5.jpg">
+                                                        <span class="avatar-status bg-teal"></span>
+                                                    </div>
+                                                    <div class="wd-90p">
+                                                        <div class="d-flex">
+                                                            <h5 class="mb-1 name">Petey Cruiser</h5>
+                                                            <p class="time mb-0 text-right ml-auto float-right">35 min ago</p>
+                                                        </div>
+                                                        <p class="mb-0 desc">I'm sorry but i'm not sure how...</p>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="text-center dropdown-footer">
+                                                <a href="text-center.html">VIEW ALL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown nav-item main-header-notification">
+                                        <a class="new nav-link" href="#"><i class="ti-bell "></i><span class=" pulse"></span></a>
+                                        <div class="dropdown-menu dropdown-menu-arrow animated fadeInUp">
+                                            <div class="menu-header-content text-left d-flex">
+                                                <div class="">
+                                                    <h6 class="menu-header-title text-white mb-0">7 new Notifications</h6>
+                                                </div>
+                                                <div class="my-auto ml-auto">
+                                                    <span class="badge badge-pill badge-warning float-right">Mark All Read</span>
+                                                </div>
+                                            </div>
+                                            <div class="main-notification-list notify-scroll">
+                                                <a class="d-flex p-3 border-bottom" href="#">
+                                                    <div class="notifyimg bg-success-transparent">
+                                                        <i class="la la-shopping-basket text-success"></i>
+                                                    </div>
+                                                    <div class="ml-3">
+                                                        <h5 class="notification-label mb-1">New Order Received</h5>
+                                                        <div class="notification-subtext">1 hour ago</div>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <i class="las la-angle-right text-right text-muted"></i>
+                                                    </div>
+                                                </a>
+                                                <a class="d-flex p-3 border-bottom" href="#">
+                                                    <div class="notifyimg bg-danger-transparent">
+                                                        <i class="la la-user-check text-danger"></i>
+                                                    </div>
+                                                    <div class="ml-3">
+                                                        <h5 class="notification-label mb-1">22 verified registrations</h5>
+                                                        <div class="notification-subtext">2 hour ago</div>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <i class="las la-angle-right text-right text-muted"></i>
+                                                    </div>
+                                                </a>
+                                                <a class="d-flex p-3 border-bottom" href="#">
+                                                    <div class="notifyimg bg-primary-transparent">
+                                                        <i class="la la-check-circle text-primary"></i>
+                                                    </div>
+                                                    <div class="ml-3">
+                                                        <h5 class="notification-label mb-1">Project has been approved</h5>
+                                                        <div class="notification-subtext">4 hour ago</div>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <i class="las la-angle-right text-right text-muted"></i>
+                                                    </div>
+                                                </a>
+                                                <a class="d-flex p-3 border-bottom" href="#">
+                                                    <div class="notifyimg bg-pink-transparent">
+                                                        <i class="la la-file-alt text-pink"></i>
+                                                    </div>
+                                                    <div class="ml-3">
+                                                        <h5 class="notification-label mb-1">New files available</h5>
+                                                        <div class="notification-subtext">10 hour ago</div>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <i class="las la-angle-right text-right text-muted"></i>
+                                                    </div>
+                                                </a>
+                                                <a class="d-flex p-3 border-bottom" href="#">
+                                                    <div class="notifyimg bg-warning-transparent">
+                                                        <i class="la la-envelope-open text-warning"></i>
+                                                    </div>
+                                                    <div class="ml-3">
+                                                        <h5 class="notification-label mb-1">New review received</h5>
+                                                        <div class="notification-subtext">1 day ago</div>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <i class="las la-angle-right text-right text-muted"></i>
+                                                    </div>
+                                                </a>
+                                                <a class="d-flex p-3" href="#">
+                                                    <div class="notifyimg bg-purple-transparent">
+                                                        <i class="la la-gem text-purple"></i>
+                                                    </div>
+                                                    <div class="ml-3">
+                                                        <h5 class="notification-label mb-1">Updates Available</h5>
+                                                        <div class="notification-subtext">2 days ago</div>
+                                                    </div>
+                                                    <div class="ml-auto">
+                                                        <i class="las la-angle-right text-right text-muted"></i>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="dropdown-footer">
+                                                <a href="#">VIEW ALL</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown main-profile-menu nav nav-item nav-link">
+                                        <a class="profile-user" href="#">
+                                            <img alt="" src="assets/img/faces/5.jpg"></a>
+                                        <div class="dropdown-menu dropdown-menu-arrow animated fadeInUp">
+                                            <div class="main-header-profile header-img">
+                                                <div class="main-img-user">
+                                                    <img alt="" src="assets/img/faces/5.jpg">
+                                                </div>
+                                                <h6>Elizabeth Jane</h6>
+                                                <span>Premium Member</span>
+                                            </div>
+                                            <a class="dropdown-item" href="#"><i class="far fa-user"></i>My Profile</a>
+                                            <a class="dropdown-item" href="#"><i class="far fa-edit"></i>Edit Profile</a>
+                                            <a class="dropdown-item" href="#"><i class="far fa-clock"></i>Activity Logs</a>
+                                            <a class="dropdown-item" href="#"><i class="fas fa-sliders-h"></i>Account Settings</a>
+                                            <a class="dropdown-item" href="page-signin.html"><i class="fas fa-sign-out-alt"></i>Sign Out</a>
+                                        </div>
+                                    </div>
+                                    <div class="dropdown main-header-message right-toggle">
+                                        <a class="nav-link " data-toggle="sidebar-right" data-target=".sidebar-right">
+                                            <i class="ti-menu tx-20 bg-transparent"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- mobile-header -->
+
+                    <!-- container -->
+                    
+             
+
+
+
+
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="d-md-flex d-block align-items-center justify-content-between my-4 page-header-breadcrumb">
+        <nav>
+            <ol class="breadcrumb mb-0 align-items-center">
+                <li class="breadcrumb-item"><a href="javascript:void(0);" class="h4">Withdrawal</a></li>
+                <li class="breadcrumb-item active text-muted fs-13 fw-normal" aria-current="page">New Withdrawal</li>
+            </ol>
+        </nav>
+        
+    </div>
+    <!-- Page Header Close -->
+    <!-- Start:: row-1 -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card custom-card">
+                <div class="card-header justify-content-between">
+                    <div class="card-title">New Withdrawal</div>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+
+                        <div class="row">
+                            <div class="col-md-6 mb-2">
+
+
+                                <div>
+                                    <div id="ContentPlaceHolder1_ctl00_updatepanel1">
+	
+                                            <div class="row g-1">
+                                                <div class="col-md-12">
+                                                    <div id="ContentPlaceHolder1_ctl00_LabelDiv">
+                                                        <span id="ContentPlaceHolder1_ctl00_lblMsg1"></span>
+                                                    </div>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    
+                                                </div>
+                                            </div>
+
+                                            <div class="row g-1">
+
+
+                                                <div class="col-md-12">
+                                                    <label class="form-label">Select Wallet</label>
+                                                    <select name="ctl00$ContentPlaceHolder1$ctl00$DDWallet" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ctl00$ContentPlaceHolder1$ctl00$DDWallet\&#39;,\&#39;\&#39;)&#39;, 0)" id="ContentPlaceHolder1_ctl00_DDWallet" class="form-control form-select form-control-sm">
+		<option selected="selected" value="0">Select Wallet</option>
+		<option value="1">Bounty-Wallet</option>
+		<option value="2">Income-Wallet</option>
+
+	</select>
+                                                </div>
+                                                
+                                                <div class="col-md-12">
+                                                    <label for="Package" class="form-label">Amount</label>
+                                                    <input name="ctl00$ContentPlaceHolder1$ctl00$txtAmount" type="number" id="ContentPlaceHolder1_ctl00_txtAmount" class="form-control" placeholder="Enter the amount you want to withdraw" onkeypress="return onlyNumberKey(event);" />
+                                                    <span data-val-controltovalidate="ContentPlaceHolder1_ctl00_txtAmount" data-val-errormessage="Enter Amount" data-val-display="Dynamic" data-val-validationGroup="withd" id="ContentPlaceHolder1_ctl00_RequiredFieldvaall" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="color:Red;display:none;">Enter Amount</span>
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <label for="Package" class="form-label">Select Mode</label>
+                                                    <select name="ctl00$ContentPlaceHolder1$ctl00$ddWith" id="ContentPlaceHolder1_ctl00_ddWith" class="form-control form-control-sm">
+		<option selected="selected" value="0">Select Mode</option>
+		<option value="3">USDT (TRC-20)</option>
+
+	</select>
+                                                </div>
+                                            </div>
+
+
+                                        
+</div>
+
+
+
+
+
+                                    <div class="clearfix"></div>
+                                    <div class="row ">
+                                        <div class="col-md-12">
+                                            <div class="mt-10 mt-2">
+
+                                                <input type="submit" name="ctl00$ContentPlaceHolder1$ctl00$btnSubmit" value="Withdraw Now" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ContentPlaceHolder1$ctl00$btnSubmit&quot;, &quot;&quot;, true, &quot;withd&quot;, &quot;&quot;, false, false))" id="ContentPlaceHolder1_ctl00_btnSubmit" class="btn btn btn-primary" />
+                                                <br />
+                                                <span id="ContentPlaceHolder1_ctl00_LblMsg"></span>
+                                                <label class="form-label mt-2">Important Note:</label>
+                                                <br />
+                                                <label class="form-label">
+                                                    1. USDT (TRC-20):
+                                                    <span id="ContentPlaceHolder1_ctl00_txtaddress" style="color:Red;">Update Your USDT TRC-20 Address.</span></label>
+                                                <br />
+
+                                                <label class="form-label">2. 10% of withdrawal deductions are applicable.</label>
+                                                <label class="form-label">3. Bonus Wallet Open on Every Day from 11 AM to 5 PM.</label>
+                                                <label class="form-label">4. ROI Wallet Open on Every Saturday from 11 AM to 5 PM.</label>
+                                                <label class="form-label">5. Server Timing are UK Based</label>
+                                                <label class="form-label">6. Minimum withdrawal is $15.</label>
+                                                <label class="form-label">7. Withdrawal will be processed in 0 to 4 hours.</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    function onlyNumberKey(evt) {
+
+        // Only ASCII character in that range allowed
+        let ASCIICode = (evt.which) ? evt.which : evt.keyCode
+
+
+        if (ASCIICode > 31 && (ASCIICode < 48 || ASCIICode > 57))
+            return false;
+        else if (evt.key == ".")
+            return false;
+        return true;
+    }
+
+    function isnumber(txt, evt) {
+        var pattern = /^\d+[,]?\d{0,0}$/;
+        var flag = false;
+        if (pattern.test(txt.value)) {
+            flag = true;
+            l = txt.value;
+            if (flag && txt.value.length > 1) return txt.value;
+            else flag = false;
+        } else if (!pattern.test(txt.value) && flag == true) {
+            return (txt.value = l);
+        } else if (!pattern.test(txt.value) && flag == false) {
+            return (txt.value = "");
+        }
+    }
+
+</script>
+
+
+                    <!-- Container closed -->
+
+                </div>
+                <!-- main-content closed -->
+
+                <!-- Right-sidebar-->
+
+                <!-- Right-sidebar-closed -->
+
+                <!-- Footer opened -->
+                <div class="main-footer ht-40">
+                    <div class="container-fluid pd-t-0-f ht-100p bg_home">
+                        <span>Copyright © 2024 <a href="#">AAA Finity</a> All rights reserved.</span>
+                    </div>
+                </div>
+                <!-- Footer closed -->
+            </div>
+            <!--End Page -->
+        </div>
+        <!-- Back-to-top -->
+        <a href="#top" id="back-to-top"><i class="la la-chevron-up"></i></a>
+
+        <!-- Jquery js-->
+        <script src="assets/plugins/jquery/jquery.min.js"></script>
+
+        <!-- Bootstrap js-->
+        <script src="assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+        <!-- Ionicons js-->
+        <script src="assets/plugins/ionicons/ionicons.js"></script>
+
+        <!-- Moment js -->
+        <script src="assets/plugins/moment/moment.js"></script>
+
+        <!-- P-scroll js -->
+        <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+
+        <!-- Rating js-->
+        <script src="assets/plugins/rating/jquery.rating-stars.js"></script>
+        <script src="assets/plugins/rating/jquery.barrating.js"></script>
+
+        <!-- Custom Scroll bar Js-->
+        <script src="assets/plugins/mscrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+
+        <!-- eva-icons js -->
+        <script src="assets/js/eva-icons.min.js"></script>
+
+        <!-- Sidebar js -->
+        <script src="assets/plugins/side-menu/sidemenu.js"></script>
+
+        <!-- Right-sidebar js -->
+        <script src="assets/plugins/sidebar/sidebar.js"></script>
+        <script src="assets/plugins/sidebar/sidebar-custom.js"></script>
+
+        <!-- Sticky js-->
+        <script src="assets/js/sticky.js"></script>
+
+
+        <!-- Datepicker js -->
+        <script src="assets/plugins/jquery-ui/ui/widgets/datepicker.js"></script>
+
+        <!--Chart bundle min js -->
+        <script src="assets/plugins/chart.js/Chart.bundle.min.js"></script>
+        <script src="assets/plugins/raphael/raphael.min.js"></script>
+        <script src="assets/plugins/peity/jquery.peity.min.js"></script>
+
+        <!-- JQuery sparkline js -->
+        <script src="assets/plugins/jquery-sparkline/jquery.sparkline.min.js"></script>
+
+        <!-- Sampledata js -->
+        <script src="assets/js/chart.flot.sampledata.js"></script>
+
+        <!-- Perfect-scrollbar js -->
+        <script src="assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+        <script src="assets/plugins/perfect-scrollbar/p-scroll.js"></script>
+
+        <!-- Internal  Flot js-->
+        <script src="assets/plugins/jquery.flot/jquery.flot.js"></script>
+        <script src="assets/plugins/jquery.flot/jquery.flot.pie.js"></script>
+        <script src="assets/plugins/jquery.flot/jquery.flot.categories.js"></script>
+        <script src="assets/js/dashboard.sampledata.js"></script>
+        <script src="assets/js/chart.flot.sampledata.js"></script>
+
+        <!-- Internal Newsticker js-->
+        <script src="assets/plugins/newsticker/jquery.jConveyorTicker.js"></script>
+        <script src="assets/js/newsticker.js"></script>
+
+        <!-- Internal Nice-select js-->
+        <script src="assets/plugins/jquery-nice-select/js/jquery.nice-select.js"></script>
+        <script src="assets/plugins/jquery-nice-select/js/nice-select.js"></script>
+
+        <!-- index js -->
+        <script src="assets/js/dashboard.js"></script>
+
+
+        <!-- Custom js-->
+        <script src="assets/js/custom.js"></script>
+
+        <!-- Switcher js -->
+        <script src="assets/switcher/js/switcher.js"></script>
+
+        <script src="assets/js/sweetalert2.js"></script>
+
+    </form>
+    <script src="//code.tidio.co/japzmbc0puxz0wzm4nrndxxvjr1ca5xk.js" async></script>
+</body>
+</html>

@@ -1,0 +1,322 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="csrf-token" content="L3OjUxq6CueXJsGgzB5nQ7yw8tonIwVgVSto9Sur">
+    
+    <link rel="stylesheet" href="styling.css"/>
+    
+    <link rel="stylesheet" href="style3.css"/>
+  
+    <style>
+        .site-head-tag {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+
+    <title>Hydrogem Capitals - All Transactions</title>
+</head>
+<body class="dark-theme">
+<script>
+    var notify = {
+        timeout: "5000",
+    }
+</script>
+<!--Full Layout-->
+<div class="panel-layout">
+    <!--Header-->
+    <div class="panel-header">
+        <div class="logo">
+            <a href="https://hydrogemcapitals.com"></a>
+        </div>
+        <div class="nav-wrap">
+            <div class="nav-left">
+                <button class="sidebar-toggle">
+                    <i class="anticon anticon-arrow-left"></i>
+                </button>
+                <div class="mob-logo">
+                    <a href="https://hydrogemcapitals.com">
+                        <img src="https://hydrogemcapitals.com/assets/global/images/1vMSsawnPG6Tl4dPtYEZ.png" alt="Site Name"/>
+                    </a>
+                </div>
+            </div>
+            <div class="nav-right">
+                <div class="single-nav-right">
+                    <div class="single-right">
+                        <div class="color-switcher">
+                            <i icon-name="moon" class="dark-icon" data-mode="dark"></i>
+                            <i icon-name="sun" class="light-icon" data-mode="light"></i>
+                        </div>
+                    </div>
+                    <div class="single-nav-right user-notifications111">
+                        <button type="button" class="item notification-dot" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i icon-name="bell-ring" class=""></i>
+                            <div class="number">0</div>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end notification-pop">
+                            <div class="noti-head">Notifications <span>0</span></div>
+                            <div class="all-noti">
+                                <p>Notification Not Found</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="single-right">
+                        <select name="language" id="" class="site-nice-select"
+                                onchange="window.location.href=this.options[this.selectedIndex].value;">
+                            <option value="https://hydrogemcapitals.com/language-update?name=en" selected>English</option>
+                        </select>
+                    </div>
+                    <div class="single-right">
+                        <button type="button" class="item" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="anticon anticon-user"></i>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li>
+                                <a href="https://hydrogemcapitals.com/user/settings" class="dropdown-item" type="button"><i class="anticon anticon-setting"></i>Settings</a>
+                            </li>
+                            <li>
+                                <a href="https://hydrogemcapitals.com/user/change-password" class="dropdown-item" type="button">
+                                    <i class="anticon anticon-lock"></i>Change Password
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://hydrogemcapitals.com/user/support-ticket/index" class="dropdown-item" type="button">
+                                    <i class="anticon anticon-customer-service"></i>Support Tickets
+                                </a>
+                            </li>
+                            <li class="logout">
+                                <form method="POST" action="https://hydrogemcapitals.com/logout" id="logout-form">
+                                    <input type="hidden" name="_token" value="L3OjUxq6CueXJsGgzB5nQ7yw8tonIwVgVSto9Sur">
+                                    <a href="https://hydrogemcapitals.com/logout" class="dropdown-item"
+                                       onclick="event.preventDefault(); localStorage.clear();  $('#logout-form').submit();"><i
+                                        class="anticon anticon-logout"></i>Logout</a>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--/Header-->
+
+    <div class="desktop-screen-show">
+        <div class="side-nav ">
+            <div class="side-wallet-box default-wallet mb-0">
+                <div class="user-balance-card">
+                    <div class="wallet-name">
+                        <div class="name"></div>
+                        <div class="default"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-200v-560 560Zm0 80q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v100h-80v-100H200v560h560v-100h80v100q0 33-23.5 56.5T760-120H200Zm320-160q-33 0-56.5-23.5T440-360v-240q0-33 23.5-56.5T520-680h280q33 0 56.5 23.5T880-600v240q0 33-23.5 56.5T800-280H520Zm280-80v-240H520v240h280Zm-160-60q25 0 42.5-17.5T700-480q0-25-17.5-42.5T640-540q-25 0-42.5 17.5T580-480q0 25 17.5 42.5T640-420Z"/></svg><span>Wallet</div>
+                    </div>
+                    <div class="wallet-info">
+                        <div class="wallet-id"><i icon-name="wallet"><span><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-200v-560 560Zm0 80q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v100h-80v-100H200v560h560v-100h80v100q0 33-23.5 56.5T760-120H200Zm320-160q-33 0-56.5-23.5T440-360v-240q0-33 23.5-56.5T520-680h280q33 0 56.5 23.5T880-600v240q0 33-23.5 56.5T800-280H520Zm280-80v-240H520v240h280Zm-160-60q25 0 42.5-17.5T700-480q0-25-17.5-42.5T640-540q-25 0-42.5 17.5T580-480q0 25 17.5 42.5T640-420Z"/></svg></i>Main Wallet</div>
+                        <div class="balance">USDT0</div>
+                    </div>
+                    <div class="wallet-info">
+                        <div class="wallet-id"><i icon-name="landmark"></i>Profit Wallet</div><div class="balance">USDT0</div>
+                        
+                    </div>
+                </div>
+                <div class="actions">
+                    <a href="deposit.html" class="user-sidebar-btn"><i
+                            class="anticon anticon-file-add"></i>Deposit</a>
+                    <a href="investmentPlan.html" class="user-sidebar-btn red-btn"><i
+                            class="anticon anticon-export"></i>Start to Invest</a>
+                </div>
+            </div>
+            <div class="side-nav-inside">
+                <ul class="side-nav-menu"> 
+                    <li class="side-nav-item active">
+                        <a href="deshboard.html"><i
+                                class="anticon anticon-appstore"><span><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/></svg></i><span><span>Dashboard</span> <span></span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="investmentPlan.html"><i
+                                class="anticon anticon-check-square"></i><span>All Investment Plans</span></a>
+                    </li>
+                   
+                    <li class="side-nav-item ">
+                        <a href="depositAndwithdrew.html"><i
+                                class="anticon anticon-inbox"></i><span>All Transactions</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="money.html"><i
+                                class="anticon anticon-file-add"></i><span>Add Money</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="trackInvestment.html"><i
+                                class="anticon anticon-folder-add"></i><span>Track Investment</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="walletExchange.html"><i
+                                class="anticon anticon-transaction"></i><span>Wallet Exchange</span></a>
+                    </li>
+                   <!-- <li class="side-nav-item ">
+                        <a href="https://hydrogemcapitals.com/user/send-money"><i
+                                class="anticon anticon-export"></i><span>Send Money</span></a>
+                    </li>
+                 -->
+                 <li class="side-nav-item ">
+                    <a href="withdraw.html"><i
+                            class="anticon anticon-bank"></i><span>Withdraw</span></a>
+                    </li>
+                    <li class="side-nav-item">
+                        <!-- Authentication -->
+                        <form method="POST" action="index.html">
+                            <input type="hidden" name="_token" value="L3OjUxq6CueXJsGgzB5nQ7yw8tonIwVgVSto9Sur">
+                            <button type="submit" class="site-btn grad-btn w-100">
+                                <i class="anticon anticon-logout"></i><span>Logout</span>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!--/Header-->
+
+    <div class="desktop-screen-show">
+        <div class="side-nav ">
+            <div class="side-wallet-box default-wallet mb-0">
+                <div class="user-balance-card">
+                    <div class="wallet-name">
+                        <div class="name"></div>
+                        <div class="default"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-200v-560 560Zm0 80q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v100h-80v-100H200v560h560v-100h80v100q0 33-23.5 56.5T760-120H200Zm320-160q-33 0-56.5-23.5T440-360v-240q0-33 23.5-56.5T520-680h280q33 0 56.5 23.5T880-600v240q0 33-23.5 56.5T800-280H520Zm280-80v-240H520v240h280Zm-160-60q25 0 42.5-17.5T700-480q0-25-17.5-42.5T640-540q-25 0-42.5 17.5T580-480q0 25 17.5 42.5T640-420Z"/></svg><span>Wallet</div>
+                    </div>
+                    <div class="wallet-info">
+                        <div class="wallet-id"><i icon-name="wallet"><span><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M200-200v-560 560Zm0 80q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v100h-80v-100H200v560h560v-100h80v100q0 33-23.5 56.5T760-120H200Zm320-160q-33 0-56.5-23.5T440-360v-240q0-33 23.5-56.5T520-680h280q33 0 56.5 23.5T880-600v240q0 33-23.5 56.5T800-280H520Zm280-80v-240H520v240h280Zm-160-60q25 0 42.5-17.5T700-480q0-25-17.5-42.5T640-540q-25 0-42.5 17.5T580-480q0 25 17.5 42.5T640-420Z"/></svg></i>Main Wallet</div>
+                        <div class="balance">USDT0</div>
+                    </div>
+                    <div class="wallet-info">
+                        <div class="wallet-id"><i icon-name="landmark"></i>Profit Wallet</div><div class="balance">USDT0</div>
+                        
+                    </div>
+                </div>
+                <div class="actions">
+                    <a href="deposit.html" class="user-sidebar-btn"><i
+                            class="anticon anticon-file-add"></i>Deposit</a>
+                    <a href="investmentPlan.html" class="user-sidebar-btn red-btn"><i
+                            class="anticon anticon-export"></i>Start to Invest</a>
+                </div>
+            </div>
+            <div class="side-nav-inside">
+                <ul class="side-nav-menu"> 
+                    <li class="side-nav-item active">
+                        <a href="deshboard.html"><i
+                                class="anticon anticon-appstore"><span><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/></svg></i><span><span>Dashboard</span> <span></span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="investmentPlan.html"><i
+                                class="anticon anticon-check-square"></i><span>All Investment Plans</span></a>
+                    </li>
+                   
+                    <li class="side-nav-item ">
+                        <a href="depositAndwithdrew.html"><i
+                                class="anticon anticon-inbox"></i><span>All Transactions</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="money.html"><i
+                                class="anticon anticon-file-add"></i><span>Add Money</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="trackInvestment.html"><i
+                                class="anticon anticon-folder-add"></i><span>Track Investment</span></a>
+                    </li>
+                    <li class="side-nav-item ">
+                        <a href="walletExchange.html"><i
+                                class="anticon anticon-transaction"></i><span>Wallet Exchange</span></a>
+                    </li>
+
+                 
+                    <li class="side-nav-item ">
+                        <a href="withdraw.html"><i
+                                class="anticon anticon-bank"></i><span>Withdraw</span></a>
+                    </li>
+                    <li class="side-nav-item">
+                        <!-- Authentication -->
+                        <form method="POST" action="https://hydrogemcapitals.com/logout">
+                            <input type="hidden" name="_token" value="L3OjUxq6CueXJsGgzB5nQ7yw8tonIwVgVSto9Sur">
+                            <button type="submit" class="site-btn grad-btn w-100">
+                                <i class="anticon anticon-logout"></i><span>Logout</span>
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-container">
+        <div class="main-content">
+            <div class="section-gap">
+                <div class="container-fluid">
+                    <!--Page Content-->
+                    <title>All Transactions</title>
+                    <style>
+                        body {
+                            font-family: Arial, sans-serif;
+                            background-color: #111162;
+                            margin: 0;
+                            padding: 0;
+                        }
+                        .container {
+                            padding: 20px;
+                        }
+                        .header {
+                            font-size: 24px;
+                            font-weight: bold;
+                            margin-bottom: 20px;
+                            text-align: center;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            background-color: #251848;
+                            box-shadow: 0 2px 4px rgba(160, 9, 107, 0.1);
+                        }
+                        th, td {
+                            padding: 12px;
+                            text-align: left;
+                            border-bottom: 1px solid #9a7ecd;
+                        }
+                        th {
+                            background-color: #010101;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">All Transactions</div>
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Type</th>
+                                    <th>Amount</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Deposit</td>
+                                    <td>$500</td>
+                                    <td>2023-10-01</td>
+                                    <td>Completed</td>
+                                </tr>
+                                <tr>
+                                    <td>Withdrawal</td>
+                                    <td>$200</td>
+                                    <td>2023-10-05</td>
+                                    <td>Pending</td>
+                                </tr>
+                                <!-- Add more transactions dynamically -->
+                            </tbody>
+                        </table>
+                    </div>
+                </body>
+                </html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hydrogem Capitals Checkout</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f9;
+      color: #333;
+      margin: 0;
+      padding: 0;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* Navbar Styles */
+    .navbar {
+      background-color: #0056b3;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .navbar a {
+      color: white;
+      margin: 0 15px;
+      font-size: 16px;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .navbar img {
+      height: 40px; /* Adjust the height as needed */
+      width: auto; /* Maintain aspect ratio */
+    }
+
+    /* Container Styles */
+    .container-checkout {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+    }
+
+    /* QR Code Section */
+    .qr-field {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .qr-field img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    ._2nd-c {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    /* Payment Block Styles */
+    .pay-block {
+      background: #e9ecef;
+      padding: 15px;
+      border-radius: 5px;
+      margin-top: 20px;
+    }
+
+    .w-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .w-col {
+      flex: 1;
+      min-width: 150px;
+    }
+
+    .sc2-label {
+      font-weight: bold;
+      font-size: 14px;
+      color: #333;
+    }
+
+    .address {
+      word-wrap: break-word;
+      font-family: monospace;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .timer-b {
+      font-size: 16px;
+      font-weight: bold;
+      color: #0056b3;
+    }
+
+    .checkout-grey {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+    }
+
+    /* Spoiler Block Styles */
+    .spoiler-block {
+      margin-top: 20px;
+    }
+
+    .spoiler-link {
+      color: #0056b3;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .spoiler-link:hover {
+      text-decoration: underline;
+    }
+
+    .spoiler-t {
+      display: none;
+      margin-top: 10px;
+      padding: 10px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 14px;
+      color: #333;
+    }
+
+    /* Footer Styles */
+    .align-right {
+      text-align: right;
+      margin-top: 20px;
+    }
+
+    .footer-link {
+      color: #0056b3;
+      font-size: 14px;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .navbar a {
+        margin: 5px 0;
+      }
+
+      .w-row {
+        flex-direction: column;
+      }
+
+      .w-col {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .container-checkout {
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <a href="/">
+      <img src="WhatsApp Image 2025-02-20 at 17.49.30_65046ac8.jpg" alt="Hydrogem Capitals Logo"> <!-- Add your logo here -->
+    </a>
+    <nav>
+      <a href="login.html"><i class="fas fa-sign-in-alt"></i> Log In</a>
+      <a href="register.html"><i class="fas fa-user-plus"></i> Sign Up</a>
+
+    </nav>
+  </div>
+
+  <!-- Main Content -->
+  <div class="container-checkout">
+    <!-- QR Code Section -->
+    <div class="qr-field">
+      <img src="WhatsApp Image 2025-02-20 at 17.49.30_65046ac8.jpg" width="221">
+      <div class="_2nd-c checkout-grey">Hydrogem Capitals - <span style="color: #5cb85c;">★★★★★</span> (100% with 16 ratings)</div>
+    </div>
+
+    <!-- Payment Block -->
+    <div class="pay-block">
+      <div class="w-row">
+        <div class="w-col">
+          <div class="sc2-label">Amount Remaining</div>
+          <div>234.10948 USDT.TRC20</div>
+        </div>
+        <div class="w-col">
+          <div class="invis sc2-label">To</div>
+          <div class="send-icon">→</div>
+        </div>
+        <div class="w-col">
+          <div class="sc2-label">Address</div>
+          <div class="address">THMcti6toR4KEcrZCYamtoYqe638dkbVD1</div>
+        </div>
+        <div class="w-col">
+          <div class="algnlft sc2-label">Time Left</div>
+          <div class="timer-b" id="timer1"></div>
+        </div>
+      </div>
+      <div class="checkout-grey sct">Make sure to send enough to cover any coin transaction fees! Only use regular sends not via any special functions or types of contract!</div>
+      <div class="checkout-grey sct">Payment ID: CPJC0SJ5AROLIUZFXQQQIOJXCV</div>
+      <div class="checkout-grey">Verification Code: 2e223d97c399eff26246029335040e0c (save in case there are any issues with your payment)</div>
+    </div>
+
+    <!-- Spoiler Blocks -->
+    <div class="spoiler-block">
+      <a class="spoiler-link" href="#" onclick="return toggleOpen('helpa');">
+        <div class="instructions-t">What to do next? <strong class="spoiler-icon">+</strong></div>
+      </a>
+      <div class="instructions-t spoiler-t" id="helpa1">
+        1) Please send <strong>234.10948000 USDT.TRC20</strong> to address <strong>TPFmrY1rWKhmzYSK2ysS4VbFAEU2axffew</strong>. (Make sure to send enough to cover any coin transaction fees!)
+        You will need to initiate the payment using your software or online wallet and copy/paste the address and payment amount into it. We will email you when all funds have been received.
+        You have 1 hour, 59 minutes, 50 seconds for us to receive confirmed funds. If you send funds that don't confirm by the timeout or don't send enough coins you will receive an automatic email to claim your funds within 8 hours. If you don't receive the email contact us with the information below and Hydrogem Capitals will send you a refund:
+        <br>&nbsp;&nbsp;&nbsp;&nbsp;i) The transaction ID: CPJC0SJ5AROLIUZFXQQQIOJXCV<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;ii) A payment address to send the funds to.<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;iii) This verification code: 2e223d97c399eff26246029335040e0c (to verify that you are the transaction sender.)<br><br>
+        2) After sending payment, review the status of your transaction <a href="index.php?cmd=status&id=CPJC0SJ5AROLIUZFXQQQIOJXCV&key=2e223d97c399eff26246029335040e0c" target="_blank">on this page</a>. Once the payment is confirmed several times in the block chain, the payment will be completed and the merchant will be notified. <b>The confirmation process usually takes 10-45 minutes but varies based on the coin's target block time and number of block confirms required.</b> The status page is available for the next 30 days.
+      </div>
+    </div>
+
+    <div class="spoiler-block">
+      <a class="spoiler-link" href="#" onclick="return toggleOpen('helpb');">
+        <div class="instructions-t">What if I accidentally don't send enough? <strong class="spoiler-icon">+</strong></div>
+      </a>
+      <div class="instructions-t spoiler-t" id="helpb1">If you don't send enough, that is OK. Just send the remainder and we will combine them for you. You can also send from multiple wallets/accounts.</div>
+    </div>
+
+    <!-- Footer -->
+    <div class="align-right sc2">
+      <a class="footer-link" href="help-terms" target="_blank"><i class="fas fa-file-contract"></i> User Agreement</a> | 
+      <a class="footer-link" href="help-privacy" target="_blank"><i class="fas fa-shield-alt"></i> Privacy Policy</a>
+    </div>
+  </div>
+
+  <script>
+    function toggleOpen(elname) {
+      var el = document.getElementById(elname + '1');
+      if (el != null) {
+        el.style.display = (el.style.display === "none" || el.style.display === "") ? "block" : "none";
+      }
+      return false;
+    }
+
+    var left = 7190;
+    function pad(n) {
+      return (n < 10) ? ("0" + n) : n;
+    }
+    function duration2(secs) {
+      if (secs <= 0) return "Too Late";
+      var vHour = Math.floor(secs / 3600);
+      secs -= (vHour * 3600);
+      var vMin = Math.floor(secs / 60);
+      secs -= (vMin * 60);
+      var sout = '';
+      if (vHour > 0) { sout = vHour + ':'; }
+      sout = sout + pad(vMin) + ':';
+      sout = sout + pad(secs);
+      return sout.trim();
+    }
+    function updCountdown() {
+      var el = document.getElementsByClassName('timer-b');
+      for (var i = 0; i < el.length; i++) {
+        el[i].innerHTML = duration2(left);
+      }
+      left--;
+    }
+    setInterval(updCountdown, 1000);
+  </script>
+</body>
+</html>

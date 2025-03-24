@@ -1,0 +1,120 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+/* Dark Theme */
+body.dark-theme {
+    background-color: #121212;
+    color: #fff;
+}
+
+/* Mobile Bottom Navigation Bar */
+.mobile-screen-show {
+    display: none;
+}
+
+@media (max-width: 575px) {
+    .mobile-screen-show {
+        display: block;
+    }
+    .bottom-appbar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: #fff;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-around;
+        padding: 10px 0;
+    }
+    .bottom-appbar a {
+        text-decoration: none;
+        color: #333;
+        font-size: 20px;
+    }
+    .bottom-appbar a.active {
+        color: #007bff;
+    }
+}
+
+/* Notifications */
+.notify-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+.notify {
+    background: #007bff;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Copy Button */
+#copy {
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.3s;
+}
+
+#copy:hover {
+    background: #0056b3;
+}
+
+/* Load More Button */
+.moreless-button, .moreless-button-2 {
+    cursor: pointer;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.moreless-button:hover, .moreless-button-2:hover {
+    text-decoration: underline;
+}
+
+/* Color Switcher */
+.color-switcher {
+    cursor: pointer;
+    background: #007bff;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s;
+}
+
+.color-switcher:hover {
+    background: #0056b3;
+}

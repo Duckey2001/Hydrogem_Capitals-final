@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="styling.css"/>    
+    <link rel="stylesheet" href="style3.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Currency Ticker with Flags</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .ticker-container {
+            width: 100%;
+            overflow: hidden;
+            background: #004085; /* Deep blue background */
+            color: #fff;
+            padding: 10px 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+        }
+
+        .ticker-wrapper {
+            display: flex;
+            white-space: nowrap;
+            animation: tickerMove 25s linear infinite;
+        }
+
+        .ticker-item {
+            display: flex;
+            align-items: center;
+            margin-right: 50px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .flag {
+            width: 20px;
+            height: 15px;
+            margin-right: 8px;
+            border-radius: 3px;
+        }
+
+        @keyframes tickerMove {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-100%);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="ticker-container">
+        <div class="ticker-wrapper" id="currencyTicker">
+            Loading currency rates...
+        </div>
+    </div>
+
+    <script>
+        async function fetchCurrencyRates() {
+            try {
+                const response = await fetch('https://api.exchangerate-api.com/v4/latest/USD'); // Replace with a premium API if needed
+                const data = await response.json();
+                
+                // List of currencies with their respective flag codes
+                const currencies = {
+                    'EUR': 'eu', 'ZAR': 'za', 'LSL': 'ls', 'MZN': 'mz', 
+                    'GBP': 'gb', 'JPY': 'jp', 'CAD': 'ca', 'AUD': 'au', 'BTC': 'btc'
+                }; 
+
+                let tickerHTML = '';
+                for (let currency in currencies) {
+                    if (data.rates[currency]) {
+                        tickerHTML += `
+                            <span class="ticker-item">
+                                <img class="flag" src="https://flagcdn.com/w40/${currencies[currency]}.png" alt="${currency} Flag">
+                                ${currency}: ${data.rates[currency].toFixed(2)}
+                            </span>`;
+                    }
+                }
+
+                document.getElementById('currencyTicker').innerHTML = tickerHTML;
+            } catch (error) {
+                document.getElementById('currencyTicker').innerHTML = 'Failed to load currency rates.';
+            }
+        }
+
+        fetchCurrencyRates();
+        setInterval(fetchCurrencyRates, 21600000); // Update every 6 hours
+    </script>
+
+</body>
+</html>
+
+
+
+
+

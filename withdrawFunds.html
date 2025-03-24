@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../css/styling.css"/>
+    <link rel="stylesheet" href="../css/style3.css"/>
+    <title>Withdraw Funds - Hydrogem Capitals</title>
+</head>
+<body class="dark-theme">
+    <div class="panel-layout">
+        <!-- Include the same header and sidebar as in dashboard.html -->
+        <div class="panel-header">
+            <!-- Header content -->
+        </div>
+        <div class="side-nav">
+            <!-- Sidebar content -->
+        </div>
+
+        <!-- Page Content -->
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section-gap">
+                    <div class="container-fluid">
+                        <h2>Withdraw Funds</h2>
+                        <form id="withdrawForm">
+                            <div class="form-group">
+                                <label for="amount">Amount (USDT)</label>
+                                <input type="number" id="amount" name="amount" placeholder="Enter amount to withdraw" required>
+                            </div>
+                            <button type="submit" class="withdraw-btn">Withdraw</button>
+                        </form>
+                        <div id="message" class="message"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
