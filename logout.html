@@ -1,10 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <link rel="stylesheet" href="../css/styling.css"/>
     <link rel="stylesheet" href="../css/style3.css"/>
     <title>Logout - Hydrogem Capitals</title>
+    <script>
+        // Function to redirect user to the dashboard after logout
+        function redirectToDashboard() {
+            // Replace the URL with the actual URL of your dashboard page
+            window.location.href = "../dashboard.html"; 
+        }
+
+        // Redirect user after 3 seconds
+        setTimeout(redirectToDashboard, 3000);
+    </script>
 </head>
 <body class="dark-theme">
     <div class="panel-layout">
@@ -22,7 +31,7 @@
                 <div class="section-gap">
                     <div class="container-fluid">
                         <h2>Logout</h2>
-                        <p>You have been logged out successfully.</p>
+                        <p>You have been logged out successfully. You will be redirected to the dashboard shortly.</p>
                         <a href="../index.html" class="login-btn">Login Again</a>
                     </div>
                 </div>
