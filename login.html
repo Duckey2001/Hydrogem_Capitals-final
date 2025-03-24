@@ -6,45 +6,67 @@
     <title>Hydrogem Capitals - Login</title>
     <style>
         /* General Styles */
+        :root {
+            --primary-color: #161b4b;
+            --primary-hover: #007bff;
+            --text-color: #333;
+            --light-gray: #f1f1f1;
+            --border-color: #ccc;
+            --error-color: #e74c3c;
+        }
+
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             display: flex;
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background-color: #161b4b;
+            background-color: var(--primary-color);
             margin: 0;
             padding: 20px;
+            background-image: linear-gradient(135deg, #161b4b 0%, #0d1033 100%);
         }
 
         .container {
             background: white;
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 400px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         .logo {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .logo img {
-            width: 150px;
+            width: 180px;
             height: auto;
+            transition: transform 0.3s;
+        }
+
+        .logo img:hover {
+            transform: scale(1.05);
         }
 
         .title {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
 
         .title h3 {
             font-size: 24px;
-            color: #161b4b;
+            color: var(--primary-color);
             margin: 0;
+            font-weight: 600;
         }
 
         .site-auth-form {
@@ -52,88 +74,125 @@
         }
 
         .single-field {
-            margin-bottom: 15px;
+            margin-bottom: 20px;
+            position: relative;
         }
 
         .box-label {
             display: block;
             font-size: 14px;
-            color: #555;
-            margin-bottom: 5px;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            font-weight: 500;
         }
 
         .box-input {
             width: 100%;
-            padding: 10px;
-            border: 1px solid #ccc;
+            padding: 12px 15px;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
             font-size: 14px;
-            color: #333;
+            color: var(--text-color);
+            transition: all 0.3s;
         }
 
         .box-input:focus {
-            border-color: #161b4b;
+            border-color: var(--primary-color);
             outline: none;
+            box-shadow: 0 0 0 3px rgba(22, 27, 75, 0.1);
         }
 
         .password {
             position: relative;
         }
 
+        .password-toggle {
+            position: absolute;
+            right: 10px;
+            top: 35px;
+            cursor: pointer;
+            color: var(--text-color);
+        }
+
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
         .form-check-input {
             margin-right: 10px;
+            cursor: pointer;
         }
 
         .form-check-label {
             font-size: 14px;
-            color: #555;
+            color: var(--text-color);
+            cursor: pointer;
         }
 
         .forget-pass-text {
             float: right;
             font-size: 14px;
-            color: #161b4b;
-            text-decoration: none;
         }
 
-        .forget-pass-text:hover {
+        .forget-pass-text a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .forget-pass-text a:hover {
+            color: var(--primary-hover);
             text-decoration: underline;
         }
 
         .button-group {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 25px;
         }
 
         .button {
-            background-color: #161b4b;
+            background-color: var(--primary-color);
             color: #fff;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border: none;
             border-radius: 5px;
             font-size: 16px;
+            font-weight: 500;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s;
             width: 100%;
+            letter-spacing: 0.5px;
         }
 
         .button:hover {
-            background-color: #007bff;
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .button:active {
+            transform: translateY(0);
         }
 
         .singnup-text {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 25px;
             font-size: 14px;
-            color: #555;
+            color: var(--text-color);
         }
 
         .singnup-text a {
-            color: #161b4b;
+            color: var(--primary-color);
             text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
         }
 
         .singnup-text a:hover {
+            color: var(--primary-hover);
             text-decoration: underline;
         }
 
@@ -141,21 +200,44 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-top: 15px;
-            padding: 10px;
-            border: 1px solid #ccc;
+            margin: 20px 0;
+            padding: 12px;
+            border: 1px solid var(--border-color);
             border-radius: 5px;
-            background: #f1f1f1;
+            background: var(--light-gray);
         }
 
         .recaptcha input {
             margin-right: 10px;
+            cursor: pointer;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 13px;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Responsive Styles */
         @media (max-width: 480px) {
             .container {
-                padding: 15px;
+                padding: 20px;
             }
 
             .title h3 {
@@ -163,8 +245,8 @@
             }
 
             .button {
-                padding: 8px 16px;
-                font-size: 14px;
+                padding: 10px 16px;
+                font-size: 15px;
             }
         }
     </style>
@@ -174,38 +256,46 @@
     <section class="section-style site-auth">
         <div class="container">
             <div class="auth-content">
-                <div class="con_img">
-                    <figure><img class="img_responsive" src="images/WhatsApp Image 2025-02-20 at 17.49.30_65046ac8.jpg" alt="#" height="100" width="100" /></figure>
+                <div class="logo">
+                    <img src="https://hydrogemcapitals.com/assets/global/images/logo.png" alt="Hydrogem Capitals Logo">
                 </div>
                 <div class="title">
                     <h3>Welcome Back to Hydrogem Capitals</h3>
                 </div>
                 <div class="site-auth-form">
-                    <form onsubmit="loginUser(event)">
+                    <form id="loginForm" onsubmit="loginUser(event)">
                         <div class="single-field">
                             <label class="box-label" for="email">Email Or Username</label>
-                            <input class="box-input" type="text" name="email" placeholder="Enter your email address or username" required />
+                            <input class="box-input" type="text" name="email" id="email" placeholder="Enter your email address or username" required />
+                            <div class="error-message" id="email-error"></div>
                         </div>
                         <div class="single-field">
                             <label class="box-label" for="password">Password</label>
                             <div class="password">
-                                <input class="box-input" type="password" name="password" placeholder="Enter your password" required />
+                                <input class="box-input" type="password" name="password" id="password" placeholder="Enter your password" required />
+                                <span class="password-toggle" onclick="togglePasswordVisibility()">
+                                    <i class="fas fa-eye"></i>
+                                </span>
                             </div>
+                            <div class="error-message" id="password-error"></div>
                         </div>
                         <div class="recaptcha">
-                            <input type="checkbox" required> I'm not a robot
+                            <input type="checkbox" id="recaptcha" required> 
+                            <label for="recaptcha">I'm not a robot</label>
                         </div>
-                        <div class="single-field">
-                            <input class="form-check-input check-input" type="checkbox" name="remember" id="flexCheckDefault" />
-                            <label class="form-check-label" for="flexCheckDefault">Remember me</label>
-                            <span class="forget-pass-text"><a href=" ">Forget Password</a></span>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remember" id="remember" />
+                            <label class="form-check-label" for="remember">Remember me</label>
+                            <span class="forget-pass-text"><a href="forgot-password.html">Forgot Password?</a></span>
                         </div>
                         <div class="button-group">
-                            <button type="submit" class="button">Login</button>
+                            <button type="submit" class="button" id="loginButton">
+                                <span id="buttonText">Login</span>
+                            </button>
                         </div>
                     </form>
                     <div class="singnup-text">
-                        <p>Don't have an account? <a href="register.html">Signup for free</a></p>
+                        <p>Don't have an account? <a href="register.html">Sign up for free</a></p>
                     </div>
                 </div>
             </div>
@@ -213,21 +303,142 @@
     </section>
     <!-- Login Section End -->
 
-    <script>
-        function loginUser(event) {
-            event.preventDefault();
-            const username = document.querySelector('input[name="email"]').value;
-            const password = document.querySelector('input[name="password"]').value;
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
-            const user = JSON.parse(localStorage.getItem(username));
-            if (user && user.password === password) {
-                alert("Login successful!");
-                // Redirect to dashboard or another page
-                window.location.href = "dashboard.html";
+    <script>
+        // Sample user data (in a real app, this would be server-side)
+        const users = {
+            "admin@hydrogem.com": {
+                username: "admin",
+                password: "Hydrogem123",
+                name: "Admin User"
+            },
+            "user@example.com": {
+                username: "user1",
+                password: "Password123",
+                name: "Demo User"
+            }
+        };
+
+        // Store users in localStorage if not already present
+        if (!localStorage.getItem('users')) {
+            localStorage.setItem('users', JSON.stringify(users));
+        }
+
+        // Toggle password visibility
+        function togglePasswordVisibility() {
+            const passwordInput = document.getElementById('password');
+            const toggleIcon = document.querySelector('.password-toggle i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
             } else {
-                alert("Invalid username or password.");
+                passwordInput.type = 'password';
+                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
             }
         }
+
+        // Login function
+        function loginUser(event) {
+            event.preventDefault();
+            
+            // Get form elements
+            const form = document.getElementById('loginForm');
+            const emailInput = document.getElementById('email');
+            const passwordInput = document.getElementById('password');
+            const rememberCheckbox = document.getElementById('remember');
+            const loginButton = document.getElementById('loginButton');
+            const buttonText = document.getElementById('buttonText');
+            const emailError = document.getElementById('email-error');
+            const passwordError = document.getElementById('password-error');
+            
+            // Reset error messages
+            emailError.style.display = 'none';
+            passwordError.style.display = 'none';
+            
+            // Get input values
+            const email = emailInput.value.trim();
+            const password = passwordInput.value;
+            const remember = rememberCheckbox.checked;
+            
+            // Show loading state
+            loginButton.disabled = true;
+            buttonText.innerHTML = '<span class="loading"></span> Authenticating...';
+            
+            // Simulate API call delay
+            setTimeout(() => {
+                // Get users from localStorage
+                const storedUsers = JSON.parse(localStorage.getItem('users'));
+                
+                // Check if user exists
+                let user = null;
+                if (storedUsers[email]) {
+                    user = storedUsers[email];
+                } else {
+                    // Check by username
+                    for (const key in storedUsers) {
+                        if (storedUsers[key].username === email) {
+                            user = storedUsers[key];
+                            break;
+                        }
+                    }
+                }
+                
+                // Validate credentials
+                if (user && user.password === password) {
+                    // Successful login
+                    if (remember) {
+                        // Store user session in localStorage (in a real app, use more secure methods)
+                        localStorage.setItem('currentUser', JSON.stringify(user));
+                    } else {
+                        // Store in sessionStorage (cleared when browser closes)
+                        sessionStorage.setItem('currentUser', JSON.stringify(user));
+                    }
+                    
+                    // Redirect to dashboard
+                    window.location.href = "dashboard.html";
+                } else {
+                    // Failed login
+                    if (!user) {
+                        emailError.textContent = "User not found";
+                        emailError.style.display = 'block';
+                    } else {
+                        passwordError.textContent = "Incorrect password";
+                        passwordError.style.display = 'block';
+                    }
+                    
+                    // Shake animation for error feedback
+                    form.classList.add('shake');
+                    setTimeout(() => {
+                        form.classList.remove('shake');
+                    }, 500);
+                }
+                
+                // Reset button state
+                loginButton.disabled = false;
+                buttonText.textContent = 'Login';
+            }, 1500); // Simulate network delay
+        }
+
+        // Check for remembered user
+        document.addEventListener('DOMContentLoaded', function() {
+            const rememberedUser = localStorage.getItem('currentUser');
+            const sessionUser = sessionStorage.getItem('currentUser');
+            
+            if (rememberedUser || sessionUser) {
+                // Auto-redirect if already logged in
+                window.location.href = "dashboard.html";
+            }
+            
+            // Populate email if remembered
+            if (rememberedUser) {
+                const user = JSON.parse(rememberedUser);
+                document.getElementById('email').value = user.username;
+                document.getElementById('remember').checked = true;
+            }
+        });
     </script>
 </body>
 </html>
