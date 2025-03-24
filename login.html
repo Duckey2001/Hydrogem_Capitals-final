@@ -34,12 +34,6 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 400px;
-            animation: fadeIn 0.5s ease-out;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .logo {
@@ -50,11 +44,6 @@
         .logo img {
             width: 180px;
             height: auto;
-            transition: transform 0.3s;
-        }
-
-        .logo img:hover {
-            transform: scale(1.05);
         }
 
         .title {
@@ -93,59 +82,6 @@
             border-radius: 5px;
             font-size: 14px;
             color: var(--text-color);
-            transition: all 0.3s;
-        }
-
-        .box-input:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(22, 27, 75, 0.1);
-        }
-
-        .password {
-            position: relative;
-        }
-
-        .password-toggle {
-            position: absolute;
-            right: 10px;
-            top: 35px;
-            cursor: pointer;
-            color: var(--text-color);
-        }
-
-        .form-check {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .form-check-input {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
-        .form-check-label {
-            font-size: 14px;
-            color: var(--text-color);
-            cursor: pointer;
-        }
-
-        .forget-pass-text {
-            float: right;
-            font-size: 14px;
-        }
-
-        .forget-pass-text a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .forget-pass-text a:hover {
-            color: var(--primary-hover);
-            text-decoration: underline;
         }
 
         .button-group {
@@ -162,19 +98,11 @@
             font-size: 16px;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s;
             width: 100%;
-            letter-spacing: 0.5px;
         }
 
         .button:hover {
             background-color: var(--primary-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .button:active {
-            transform: translateY(0);
         }
 
         .singnup-text {
@@ -188,12 +116,6 @@
             color: var(--primary-color);
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        .singnup-text a:hover {
-            color: var(--primary-hover);
-            text-decoration: underline;
         }
 
         .recaptcha {
@@ -207,47 +129,11 @@
             background: var(--light-gray);
         }
 
-        .recaptcha input {
-            margin-right: 10px;
-            cursor: pointer;
-        }
-
         .error-message {
             color: var(--error-color);
             font-size: 13px;
             margin-top: 5px;
             display: none;
-        }
-
-        .loading {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: #fff;
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 10px;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* Responsive Styles */
-        @media (max-width: 480px) {
-            .container {
-                padding: 20px;
-            }
-
-            .title h3 {
-                font-size: 20px;
-            }
-
-            .button {
-                padding: 10px 16px;
-                font-size: 15px;
-            }
         }
     </style>
 </head>
@@ -271,22 +157,12 @@
                         </div>
                         <div class="single-field">
                             <label class="box-label" for="password">Password</label>
-                            <div class="password">
-                                <input class="box-input" type="password" name="password" id="password" placeholder="Enter your password" required />
-                                <span class="password-toggle" onclick="togglePasswordVisibility()">
-                                    <i class="fas fa-eye"></i>
-                                </span>
-                            </div>
+                            <input class="box-input" type="password" name="password" id="password" placeholder="Enter your password" required />
                             <div class="error-message" id="password-error"></div>
                         </div>
                         <div class="recaptcha">
                             <input type="checkbox" id="recaptcha" required> 
                             <label for="recaptcha">I'm not a robot</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" name="remember" id="remember" />
-                            <label class="form-check-label" for="remember">Remember me</label>
-                            <span class="forget-pass-text"><a href="forgot-password.html">Forgot Password?</a></span>
                         </div>
                         <div class="button-group">
                             <button type="submit" class="button" id="loginButton">
@@ -302,9 +178,6 @@
         </div>
     </section>
     <!-- Login Section End -->
-
-    <!-- Include Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 
     <script>
         // Sample user data (in a real app, this would be server-side)
@@ -326,20 +199,6 @@
             localStorage.setItem('users', JSON.stringify(users));
         }
 
-        // Toggle password visibility
-        function togglePasswordVisibility() {
-            const passwordInput = document.getElementById('password');
-            const toggleIcon = document.querySelector('.password-toggle i');
-            
-            if (passwordInput.type === 'password') {
-                passwordInput.type = 'text';
-                toggleIcon.classList.replace('fa-eye', 'fa-eye-slash');
-            } else {
-                passwordInput.type = 'password';
-                toggleIcon.classList.replace('fa-eye-slash', 'fa-eye');
-            }
-        }
-
         // Login function
         function loginUser(event) {
             event.preventDefault();
@@ -348,7 +207,6 @@
             const form = document.getElementById('loginForm');
             const emailInput = document.getElementById('email');
             const passwordInput = document.getElementById('password');
-            const rememberCheckbox = document.getElementById('remember');
             const loginButton = document.getElementById('loginButton');
             const buttonText = document.getElementById('buttonText');
             const emailError = document.getElementById('email-error');
@@ -361,11 +219,10 @@
             // Get input values
             const email = emailInput.value.trim();
             const password = passwordInput.value;
-            const remember = rememberCheckbox.checked;
             
             // Show loading state
             loginButton.disabled = true;
-            buttonText.innerHTML = '<span class="loading"></span> Authenticating...';
+            buttonText.innerHTML = 'Authenticating...';
             
             // Simulate API call delay
             setTimeout(() => {
@@ -389,13 +246,8 @@
                 // Validate credentials
                 if (user && user.password === password) {
                     // Successful login
-                    if (remember) {
-                        // Store user session in localStorage (in a real app, use more secure methods)
-                        localStorage.setItem('currentUser', JSON.stringify(user));
-                    } else {
-                        // Store in sessionStorage (cleared when browser closes)
-                        sessionStorage.setItem('currentUser', JSON.stringify(user));
-                    }
+                    // Store user session in localStorage (in a real app, use more secure methods)
+                    localStorage.setItem('currentUser', JSON.stringify(user));
                     
                     // Redirect to dashboard
                     window.location.href = "dashboard.html";
@@ -408,12 +260,6 @@
                         passwordError.textContent = "Incorrect password";
                         passwordError.style.display = 'block';
                     }
-                    
-                    // Shake animation for error feedback
-                    form.classList.add('shake');
-                    setTimeout(() => {
-                        form.classList.remove('shake');
-                    }, 500);
                 }
                 
                 // Reset button state
@@ -425,18 +271,10 @@
         // Check for remembered user
         document.addEventListener('DOMContentLoaded', function() {
             const rememberedUser = localStorage.getItem('currentUser');
-            const sessionUser = sessionStorage.getItem('currentUser');
             
-            if (rememberedUser || sessionUser) {
+            if (rememberedUser) {
                 // Auto-redirect if already logged in
                 window.location.href = "dashboard.html";
-            }
-            
-            // Populate email if remembered
-            if (rememberedUser) {
-                const user = JSON.parse(rememberedUser);
-                document.getElementById('email').value = user.username;
-                document.getElementById('remember').checked = true;
             }
         });
     </script>
