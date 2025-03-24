@@ -4,139 +4,216 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile Update</title>
-    <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/frontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/global/css/fontawesome.min.css">
-    <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/frontend/css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            background-color: #f4f7fc;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
-        .container {
-            max-width: 800px;
-            margin-top: 50px;
-        }
-        .site-card {
-            background-color: white;
+
+        .card {
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 500px;
             padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
         }
-        .site-card-header h3 {
-            font-size: 24px;
-            font-weight: bold;
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-header h3 {
+            font-size: 28px;
+            color: #4e73df;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .form-group {
             margin-bottom: 20px;
         }
+
         .form-group label {
-            font-weight: bold;
-            color: #333;
+            font-size: 14px;
+            color: #555;
+            font-weight: 500;
+            margin-bottom: 8px;
+            display: block;
         }
-        .form-control {
-            border-radius: 4px;
-            box-shadow: none;
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
             border: 1px solid #ddd;
-            padding: 10px;
+            background-color: #fafafa;
+            font-size: 16px;
+            color: #333;
+            transition: all 0.3s ease;
         }
-        .form-control:focus {
+
+        .form-group input:focus,
+        .form-group select:focus {
             border-color: #4e73df;
-            box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+            box-shadow: 0 0 8px rgba(78, 115, 223, 0.4);
         }
-        .btn-primary {
+
+        .btn {
+            width: 100%;
+            padding: 15px;
             background-color: #4e73df;
             border: none;
-            padding: 10px 20px;
-            font-size: 16px;
-            width: 100%;
-            border-radius: 4px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
         }
-        .btn-primary:hover {
+
+        .btn:hover {
             background-color: #2e59d9;
         }
-        .form-group .custom-file-label {
-            overflow: hidden;
+
+        .form-group .file-input-label {
+            font-size: 16px;
+            font-weight: 500;
+            color: #555;
+            display: block;
+            margin-bottom: 8px;
         }
-        .site-card-body {
-            margin-top: 30px;
+
+        .form-group input[type="file"] {
+            border: none;
+            padding: 8px;
+            background-color: #fafafa;
+            border-radius: 10px;
+            font-size: 16px;
+            color: #333;
         }
+
+        .form-group input[type="file"]:hover {
+            cursor: pointer;
+            background-color: #f2f2f2;
+        }
+
         .notify {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 9999;
         }
+
+        .profile-image {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            margin: 0 auto;
+            border: 5px solid #ddd;
+            object-fit: cover;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .file-input-btn {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #4e73df;
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .file-input-btn:hover {
+            background-color: #2e59d9;
+        }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="site-card">
-                <div class="site-card-header">
-                    <h3 class="title">Profile Update</h3>
-                </div>
-                <div class="site-card-body">
-                    <form id="profile-form" onsubmit="updateProfile(event)">
-                        <div class="form-group">
-                            <label for="first_name">First Name</label>
-                            <input type="text" id="first_name" name="first_name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name">Last Name</label>
-                            <input type="text" id="last_name" name="last_name" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="username">Username</label>
-                            <input type="text" id="username" name="username" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" id="email" name="email" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" id="phone" name="phone" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="city">City</label>
-                            <input type="text" id="city" name="city" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="zip_code">Zip Code</label>
-                            <input type="text" id="zip_code" name="zip_code" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <input type="text" id="address" name="address" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="country">Country</label>
-                            <input type="text" id="country" name="country" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="avatar">Profile Picture</label>
-                            <input type="file" id="avatar" name="avatar" class="form-control">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Save Changes</button>
-                    </form>
-                </div>
-            </div>
-        </div>
+<div class="card">
+    <div class="card-header">
+        <h3>Update Your Profile</h3>
     </div>
-</div>
+    <form id="profile-form" onsubmit="updateProfile(event)">
+        <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" placeholder="John" required>
+        </div>
 
-<script src="https://hydrogemcapitals.com/assets/global/js/jquery.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/frontend/js/bootstrap.bundle.min.js"></script>
-<script src="https://hydrogemcapitals.com/assets/frontend/js/notify.min.js"></script>
+        <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Doe" required>
+        </div>
+
+        <div class="form-group">
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="johndoe" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="johndoe@example.com" required>
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone</label>
+            <input type="text" id="phone" name="phone" placeholder="+1234567890" required>
+        </div>
+
+        <div class="form-group">
+            <label for="city">City</label>
+            <input type="text" id="city" name="city" placeholder="New York" required>
+        </div>
+
+        <div class="form-group">
+            <label for="zip_code">Zip Code</label>
+            <input type="text" id="zip_code" name="zip_code" placeholder="10001" required>
+        </div>
+
+        <div class="form-group">
+            <label for="address">Address</label>
+            <input type="text" id="address" name="address" placeholder="123 Main St" required>
+        </div>
+
+        <div class="form-group">
+            <label for="country">Country</label>
+            <input type="text" id="country" name="country" placeholder="USA" required>
+        </div>
+
+        <div class="form-group">
+            <label for="avatar" class="file-input-label">Profile Picture</label>
+            <input type="file" id="avatar" name="avatar" accept="image/*" onchange="previewAvatar(event)">
+            <div class="file-input-btn" onclick="document.getElementById('avatar').click()">Choose Image</div>
+        </div>
+
+        <button type="submit" class="btn">Save Changes</button>
+    </form>
+</div>
 
 <script>
     function updateProfile(event) {
         event.preventDefault();
 
-        // Get form values
         const formData = new FormData(event.target);
         const username = formData.get('username');
 
-        // Create user object
         const user = {
             firstName: formData.get('first_name'),
             lastName: formData.get('last_name'),
@@ -145,11 +222,10 @@
             city: formData.get('city'),
             zipCode: formData.get('zip_code'),
             address: formData.get('address'),
-            email: document.getElementById('email').value,
-            country: document.getElementById('country').value
+            email: formData.get('email'),
+            country: formData.get('country'),
         };
 
-        // Handle file upload
         const avatarFile = formData.get('avatar');
         if (avatarFile && avatarFile.size > 0) {
             const reader = new FileReader();
@@ -164,28 +240,38 @@
     }
 
     function saveUserData(user, username) {
-        // Save to localStorage
         localStorage.setItem(username, JSON.stringify(user));
 
-        // Show success message
         new Notify({
             status: 'success',
             title: 'Success',
             text: 'Profile updated successfully!',
             effect: 'fade',
             speed: 300,
-            customClass: '',
-            showIcon: true,
-            showCloseButton: true,
+            position: 'right top',
+            type: 1,
             autoclose: true,
             autotimeout: 3000,
-            gap: 20,
-            distance: 20,
-            type: 1,
-            position: 'right top'
         });
+    }
+
+    function previewAvatar(event) {
+        const file = event.target.files[0];
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const image = new Image();
+            image.src = e.target.result;
+            image.onload = function() {
+                const avatar = document.createElement('img');
+                avatar.src = e.target.result;
+                avatar.classList.add('profile-image');
+                document.querySelector('.card').insertBefore(avatar, document.querySelector('.card-header'));
+            }
+        };
+        reader.readAsDataURL(file);
     }
 </script>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/notify/0.4.2/notify.min.js"></script>
 </body>
 </html>
