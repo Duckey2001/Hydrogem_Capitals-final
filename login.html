@@ -3,280 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hydrogem Capitals - Login</title>
+    <title>Login</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* General Styles */
-        :root {
-            --primary-color: #161b4b;
-            --primary-hover: #007bff;
-            --text-color: #333;
-            --light-gray: #f1f1f1;
-            --border-color: #ccc;
-            --error-color: #e74c3c;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: var(--primary-color);
-            margin: 0;
-            padding: 20px;
-            background-image: linear-gradient(135deg, #161b4b 0%, #0d1033 100%);
-        }
-
-        .container {
-            background: white;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
-        }
-
-        .logo {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .logo img {
-            width: 180px;
-            height: auto;
-        }
-
-        .title {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-
-        .title h3 {
-            font-size: 24px;
-            color: var(--primary-color);
-            margin: 0;
-            font-weight: 600;
-        }
-
-        .site-auth-form {
-            margin-top: 20px;
-        }
-
-        .single-field {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .box-label {
-            display: block;
-            font-size: 14px;
-            color: var(--text-color);
-            margin-bottom: 8px;
-            font-weight: 500;
-        }
-
-        .box-input {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            font-size: 14px;
-            color: var(--text-color);
-        }
-
-        .button-group {
-            text-align: center;
-            margin-top: 25px;
-        }
-
-        .button {
-            background-color: var(--primary-color);
-            color: #fff;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 5px;
-            font-size: 16px;
-            font-weight: 500;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        .button:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .singnup-text {
-            text-align: center;
-            margin-top: 25px;
-            font-size: 14px;
-            color: var(--text-color);
-        }
-
-        .singnup-text a {
-            color: var(--primary-color);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .recaptcha {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 20px 0;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 5px;
-            background: var(--light-gray);
-        }
-
-        .error-message {
-            color: var(--error-color);
-            font-size: 13px;
-            margin-top: 5px;
-            display: none;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #111c44; display: flex; justify-content: center; align-items: center; height: 100vh; padding: 20px; }
+        .container { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2); max-width: 400px; width: 100%; text-align: center; }
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; color: #333; margin-bottom: 5px; }
+        .form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+        .btn { width: 100%; padding: 10px; background: #2e59d9; color: #fff; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: #1a4bb8; }
+        .login-link { margin-top: 15px; font-size: 14px; color: #555; }
+        .login-link a { color: #2e59d9; text-decoration: none; font-weight: bold; }
+        .login-link a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <!-- Login Section -->
-    <section class="section-style site-auth">
-        <div class="container">
-            <div class="auth-content">
-                <div class="logo">
-                    <img src="https://github.com/Duckey2001/Hydrogem_Capitals-final/blob/main/images/WhatsApp%20Image%202025-02-20%20at%2017.49.30_65046ac8.jpg" alt="Hydrogem Capitals Logo">
-                </div>
-                <div class="title">
-                    <h3>Welcome Back to Hydrogem Capitals</h3>
-                </div>
-                <div class="site-auth-form">
-                    <form id="loginForm" onsubmit="loginUser(event)">
-                        <div class="single-field">
-                            <label class="box-label" for="email">Email Or Username</label>
-                            <input class="box-input" type="text" name="email" id="email" placeholder="Enter your email address or username" required />
-                            <div class="error-message" id="email-error"></div>
-                        </div>
-                        <div class="single-field">
-                            <label class="box-label" for="password">Password</label>
-                            <input class="box-input" type="password" name="password" id="password" placeholder="Enter your password" required />
-                            <div class="error-message" id="password-error"></div>
-                        </div>
-                        <div class="recaptcha">
-                            <input type="checkbox" id="recaptcha" required> 
-                            <label for="recaptcha">I'm not a robot</label>
-                        </div>
-                        <div class="button-group">
-                            <button type="submit" class="button" id="loginButton">
-                                <span id="buttonText">Login</span>
-                            </button>
-                        </div>
-                    </form>
-                    <div class="singnup-text">
-                        <p>Don't have an account? <a href="register.html">Sign up for free</a></p>
-                    </div>
-                </div>
+
+    <div class="container">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
             </div>
-        </div>
-    </section>
-    <!-- Login Section End -->
+
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+            </div>
+
+            <button type="submit" class="btn">Login</button>
+
+            <p class="login-link">Don't have an account? <a href="register.html">Register here</a></p>
+        </form>
+    </div>
 
     <script>
-        // Sample user data (in a real app, this would be server-side)
-        const users = {
-            "admin@hydrogem.com": {
-                username: "admin",
-                password: "Hydrogem123",
-                name: "Admin User"
-            },
-            "user@example.com": {
-                username: "user1",
-                password: "Password123",
-                name: "Demo User"
-            }
-        };
-
-        // Store users in localStorage if not already present
-        if (!localStorage.getItem('users')) {
-            localStorage.setItem('users', JSON.stringify(users));
-        }
-
-        // Login function
-        function loginUser(event) {
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
             event.preventDefault();
-            
-            // Get form elements
-            const form = document.getElementById('loginForm');
-            const emailInput = document.getElementById('email');
-            const passwordInput = document.getElementById('password');
-            const loginButton = document.getElementById('loginButton');
-            const buttonText = document.getElementById('buttonText');
-            const emailError = document.getElementById('email-error');
-            const passwordError = document.getElementById('password-error');
-            
-            // Reset error messages
-            emailError.style.display = 'none';
-            passwordError.style.display = 'none';
-            
-            // Get input values
-            const email = emailInput.value.trim();
-            const password = passwordInput.value;
-            
-            // Show loading state
-            loginButton.disabled = true;
-            buttonText.innerHTML = 'Authenticating...';
-            
-            // Simulate API call delay
-            setTimeout(() => {
-                // Get users from localStorage
-                const storedUsers = JSON.parse(localStorage.getItem('users'));
-                
-                // Check if user exists
-                let user = null;
-                if (storedUsers[email]) {
-                    user = storedUsers[email];
-                } else {
-                    // Check by username
-                    for (const key in storedUsers) {
-                        if (storedUsers[key].username === email) {
-                            user = storedUsers[key];
-                            break;
-                        }
-                    }
-                }
-                
-                // Validate credentials
-                if (user && user.password === password) {
-                    // Successful login
-                    // Store user session in localStorage (in a real app, use more secure methods)
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    
-                    // Redirect to dashboard
-                    window.location.href = "dashboard.html";
-                } else {
-                    // Failed login
-                    if (!user) {
-                        emailError.textContent = "User not found";
-                        emailError.style.display = 'block';
-                    } else {
-                        passwordError.textContent = "Incorrect password";
-                        passwordError.style.display = 'block';
-                    }
-                }
-                
-                // Reset button state
-                loginButton.disabled = false;
-                buttonText.textContent = 'Login';
-            }, 1500); // Simulate network delay
-        }
 
-        // Check for remembered user
-        document.addEventListener('DOMContentLoaded', function() {
-            const rememberedUser = localStorage.getItem('currentUser');
-            
-            if (rememberedUser) {
-                // Auto-redirect if already logged in
-                window.location.href = "dashboard.html";
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            let users = JSON.parse(localStorage.getItem("users")) || {};
+
+            if (users[email] && users[email].password === password) {
+                alert("Login successful! Welcome, " + users[email].name);
+                window.location.href = "dashboard.html"; // Redirect to a dashboard or homepage
+            } else {
+                alert("Invalid email or password!");
             }
         });
     </script>
+
 </body>
 </html>
