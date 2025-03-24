@@ -7,21 +7,32 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <script>
         const countryData = {
-            "South Africa": { code: "+27", cities: ["Cape Town", "Johannesburg", "Durban"] },
-            "Lesotho": { code: "+266", cities: ["Maseru", "Maputsoe", "Hlotse"] },
-            "Botswana": { code: "+267", cities: ["Gaborone", "Francistown", "Maun"] },
-            "United States": { code: "+1", cities: ["New York", "Los Angeles", "Chicago"] },
-            "United Kingdom": { code: "+44", cities: ["London", "Manchester", "Birmingham"] }
+            "South Africa": { "code": "+27", "cities": ["Cape Town", "Johannesburg", "Durban"] },
+            "Lesotho": { "code": "+266", "cities": ["Maseru", "Maputsoe", "Hlotse"] },
+            "Botswana": { "code": "+267", "cities": ["Gaborone", "Francistown", "Maun"] },
+            "United States": { "code": "+1", "cities": ["New York", "Los Angeles", "Chicago"] },
+            "United Kingdom": { "code": "+44", "cities": ["London", "Manchester", "Birmingham"] },
+            "Canada": { "code": "+1", "cities": ["Toronto", "Vancouver", "Montreal"] },
+            "Australia": { "code": "+61", "cities": ["Sydney", "Melbourne", "Brisbane"] },
+            "India": { "code": "+91", "cities": ["New Delhi", "Mumbai", "Bangalore"] },
+            "Japan": { "code": "+81", "cities": ["Tokyo", "Osaka", "Kyoto"] },
+            "France": { "code": "+33", "cities": ["Paris", "Marseille", "Lyon"] },
+            "Germany": { "code": "+49", "cities": ["Berlin", "Hamburg", "Munich"] },
+            "Brazil": { "code": "+55", "cities": ["São Paulo", "Rio de Janeiro", "Brasília"] },
+            "China": { "code": "+86", "cities": ["Beijing", "Shanghai", "Guangzhou"] },
+            "Russia": { "code": "+7", "cities": ["Moscow", "Saint Petersburg", "Novosibirsk"] },
+            "Mexico": { "code": "+52", "cities": ["Mexico City", "Guadalajara", "Monterrey"] },
+            "Egypt": { "code": "+20", "cities": ["Cairo", "Alexandria", "Giza"] }
         };
 
         function updateCountryInfo() {
             const countrySelect = document.getElementById("country");
             const phoneCode = document.getElementById("phone-code");
             const citySelect = document.getElementById("city");
-            
+
             const selectedCountry = countrySelect.value;
             phoneCode.textContent = countryData[selectedCountry].code;
-            
+
             citySelect.innerHTML = "";
             countryData[selectedCountry].cities.forEach(city => {
                 let option = document.createElement("option");
@@ -29,6 +40,56 @@
                 option.textContent = city;
                 citySelect.appendChild(option);
             });
+        }
+
+        function validatePassword(password) {
+            const minLength = 8;
+            const hasUpperCase = /[A-Z]/.test(password);
+            const hasLowerCase = /[a-z]/.test(password);
+            const hasNumbers = /[0-9]/.test(password);
+            const hasSpecialChars = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+            return password.length >= minLength && hasUpperCase && hasLowerCase && hasNumbers && hasSpecialChars;
+        }
+
+        function registerUser(event) {
+            event.preventDefault();
+            const firstName = document.querySelector('input[placeholder="First Name"]').value;
+            const lastName = document.querySelector('input[placeholder="Last Name"]').value;
+            const email = document.querySelector('input[placeholder="Email Address"]').value;
+            const username = document.querySelector('input[placeholder="Username"]').value;
+            const country = document.getElementById('country').value;
+            const city = document.getElementById('city').value;
+            const phoneNumber = document.querySelector('input[placeholder="Phone Number"]').value;
+            const password = document.querySelector('input[placeholder="Password"]').value;
+            const confirmPassword = document.querySelector('input[placeholder="Confirm Password"]').value;
+
+            if (!validatePassword(password)) {
+                alert("Password must be at least 8 characters long and include uppercase, lowercase, numbers, and special characters.");
+                return;
+            }
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match.");
+                return;
+            }
+
+            const user = { firstName, lastName, email, username, country, city, phoneNumber, password };
+            localStorage.setItem(username, JSON.stringify(user));
+            alert("Registration successful!");
+        }
+
+        function loginUser(event) {
+            event.preventDefault();
+            const username = document.querySelector('input[placeholder="Username"]').value;
+            const password = document.querySelector('input[placeholder="Password"]').value;
+
+            const user = JSON.parse(localStorage.getItem(username));
+            if (user && user.password === password) {
+                alert("Login successful!");
+            } else {
+                alert("Invalid username or password.");
+            }
         }
     </script>
     <style>
@@ -55,7 +116,6 @@
         .logo img {
             width: 150px;
             align-items: center;
-            
         }
         h2 {
             text-align: center;
@@ -89,7 +149,6 @@
         .phone-group input {
             flex: 1;
             border-radius: 0 5px 5px 0;
-           
         }
         .recaptcha {
             display: flex;
@@ -119,10 +178,10 @@
 <body>
     <div class="container">
         <div class="con_img">
-                    <figure><img class="img_responsive" src="images/WhatsApp Image 2025-02-20 at 17.49.30_65046ac8.jpg" alt="#" height="100" width="100" /></figure>
-                </div>
+            <figure><img class="img_responsive" src="images/WhatsApp Image 2025-02-20 at 17.49.30_65046ac8.jpg" alt="#" height="100" width="100" /></figure>
+        </div>
         <h2>Create an Account</h2>
-        <form>
+        <form onsubmit="registerUser(event)">
             <input type="text" placeholder="First Name" required>
             <input type="text" placeholder="Last Name" required>
             <input type="email" placeholder="Email Address" required>
@@ -147,6 +206,14 @@
                 <input type="checkbox" required> I'm not a robot
             </div>
             <button type="submit">Register</button>
+        </form>
+    </div>
+    <div class="container">
+        <h2>Login</h2>
+        <form onsubmit="loginUser(event)">
+            <input type="text" placeholder="Username" required>
+            <input type="password" placeholder="Password" required>
+            <button type="submit">Login</button>
         </form>
     </div>
     <script>
