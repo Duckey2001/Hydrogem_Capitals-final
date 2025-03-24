@@ -7,12 +7,69 @@
     <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/frontend/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/global/css/fontawesome.min.css">
     <link rel="stylesheet" href="https://hydrogemcapitals.com/assets/frontend/css/style.css">
+    <style>
+        body {
+            background-color: #f4f7fc;
+        }
+        .container {
+            max-width: 800px;
+            margin-top: 50px;
+        }
+        .site-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .site-card-header h3 {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #333;
+        }
+        .form-control {
+            border-radius: 4px;
+            box-shadow: none;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .form-control:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 5px rgba(78, 115, 223, 0.5);
+        }
+        .btn-primary {
+            background-color: #4e73df;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 4px;
+        }
+        .btn-primary:hover {
+            background-color: #2e59d9;
+        }
+        .form-group .custom-file-label {
+            overflow: hidden;
+        }
+        .site-card-body {
+            margin-top: 30px;
+        }
+        .notify {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+    </style>
 </head>
 <body>
 
 <div class="container">
     <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-12">
             <div class="site-card">
                 <div class="site-card-header">
                     <h3 class="title">Profile Update</h3>
