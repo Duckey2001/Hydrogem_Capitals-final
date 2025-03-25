@@ -3,15 +3,473 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styling.css"/>    
-    <link rel="stylesheet" href="style3.css"/>
-    <title>Total Deposit</title>
+    <title>Transactions - Hydrogem Capitals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2b1c4a;
+            --secondary: #6c5ce7;
+            --accent: #00cec9;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f6fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .dashboard-container {
+            display: flex;
+            min-height: 100vh;
+        }
+        
+        /* Sidebar Styles (same as dashboard) */
+        .sidebar {
+            width: 250px;
+            background-color: var(--primary);
+            color: white;
+            padding: 20px 0;
+            transition: all 0.3s ease;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 30px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .header h2 {
+            color: var(--primary);
+        }
+        
+        /* Transactions Section */
+        .transactions-section {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            margin-bottom: 20px;
+        }
+        
+        .section-title h3 {
+            font-size: 22px;
+            color: var(--primary);
+        }
+        
+        .section-title p {
+            color: #777;
+        }
+        
+        .transaction-filters {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-group {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .filter-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .filter-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .btn-filter {
+            padding: 10px 20px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-end;
+        }
+        
+        .btn-filter:hover {
+            background-color: #00b8a9;
+        }
+        
+        .transactions-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .transactions-table th, .transactions-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .transactions-table th {
+            background-color: #f9f9f9;
+            color: #555;
+            font-weight: 600;
+        }
+        
+        .transactions-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .transaction-type {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .type-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .type-icon.deposit {
+            background-color: rgba(0,184,148,0.1);
+            color: var(--success);
+        }
+        
+        .type-icon.withdrawal {
+            background-color: rgba(214,48,49,0.1);
+            color: var(--danger);
+        }
+        
+        .type-icon.investment {
+            background-color: rgba(108,92,231,0.1);
+            color: var(--secondary);
+        }
+        
+        .type-icon.profit {
+            background-color: rgba(253,203,110,0.1);
+            color: var(--warning);
+        }
+        
+        .type-icon.referral {
+            background-color: rgba(0,206,201,0.1);
+            color: var(--accent);
+        }
+        
+        .transaction-amount.positive {
+            color: var(--success);
+            font-weight: 500;
+        }
+        
+        .transaction-amount.negative {
+            color: var(--danger);
+            font-weight: 500;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-badge.completed {
+            background-color: rgba(0,184,148,0.1);
+            color: var(--success);
+        }
+        
+        .status-badge.pending {
+            background-color: rgba(253,203,110,0.1);
+            color: var(--warning);
+        }
+        
+        .status-badge.failed {
+            background-color: rgba(214,48,49,0.1);
+            color: var(--danger);
+        }
+        
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+            gap: 5px;
+        }
+        
+        .page-item {
+            display: inline-block;
+        }
+        
+        .page-link {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            color: #555;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        
+        .page-link:hover {
+            background-color: #f5f5f5;
+        }
+        
+        .page-link.active {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .transactions-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Total Deposit</h1>
-        <p>Your total deposit is <strong>USDT 0</strong>.</p>
-        <a href="dashboard.html">Back to Dashboard</a>
+    <div class="dashboard-container">
+        <!-- Sidebar (same as dashboard) -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-wallet"></i> Hydrogem Capitals</h3>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="invest.html"><i class="fas fa-chart-line"></i> Invest</a></li>
+                <li><a href="deposit.html"><i class="fas fa-plus-circle"></i> Deposit</a></li>
+                <li><a href="withdraw.html"><i class="fas fa-minus-circle"></i> Withdraw</a></li>
+                <li><a href="transactions.html" class="active"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                <li><a href="referral.html"><i class="fas fa-users"></i> Referral</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="support.html"><i class="fas fa-headset"></i> Support</a></li>
+                <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            </ul>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h2>Transaction History</h2>
+                <div class="export-btn">
+                    <button class="btn-export">
+                        <i class="fas fa-download"></i> Export CSV
+                    </button>
+                </div>
+            </div>
+            
+            <div class="transactions-section">
+                <div class="section-title">
+                    <h3>All Transactions</h3>
+                    <p>View your complete transaction history</p>
+                </div>
+                
+                <div class="transaction-filters">
+                    <div class="filter-group">
+                        <label for="transaction-type">Transaction Type</label>
+                        <select id="transaction-type" class="filter-control">
+                            <option value="all">All Transactions</option>
+                            <option value="deposit">Deposits</option>
+                            <option value="withdrawal">Withdrawals</option>
+                            <option value="investment">Investments</option>
+                            <option value="profit">Profits</option>
+                            <option value="referral">Referrals</option>
+                        </select>
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="date-from">From Date</label>
+                        <input type="date" id="date-from" class="filter-control">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="date-to">To Date</label>
+                        <input type="date" id="date-to" class="filter-control">
+                    </div>
+                    
+                    <div class="filter-group">
+                        <label for="status">Status</label>
+                        <select id="status" class="filter-control">
+                            <option value="all">All Statuses</option>
+                            <option value="completed">Completed</option>
+                            <option value="pending">Pending</option>
+                            <option value="failed">Failed</option>
+                        </select>
+                    </div>
+                    
+                    <button class="btn-filter">Apply Filters</button>
+                </div>
+                
+                <div class="table-responsive">
+                    <table class="transactions-table">
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Transaction</th>
+                                <th>Amount</th>
+                                <th>Method</th>
+                                <th>Status</th>
+                                <th>Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>15 Jul 2023, 10:45 AM</td>
+                                <td>
+                                    <div class="transaction-type">
+                                        <div class="type-icon deposit">
+                                            <i class="fas fa-arrow-down"></i>
+                                        </div>
+                                        <span>Deposit</span>
+                                    </div>
+                                </td>
+                                <td class="transaction-amount positive">+$1,000.00</td>
+                                <td>USDT (TRC20)</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                                <td><a href="#" class="details-link">View</a></td>
+                            </tr>
+                            <tr>
+                                <td>14 Jul 2023, 03:30 PM</td>
+                                <td>
+                                    <div class="transaction-type">
+                                        <div class="type-icon withdrawal">
+                                            <i class="fas fa-arrow-up"></i>
+                                        </div>
+                                        <span>Withdrawal</span>
+                                    </div>
+                                </td>
+                                <td class="transaction-amount negative">-$500.00</td>
+                                <td>Bitcoin</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                                <td><a href="#" class="details-link">View</a></td>
+                            </tr>
+                            <tr>
+                                <td>14 Jul 2023, 12:00 PM</td>
+                                <td>
+                                    <div class="transaction-type">
+                                        <div class="type-icon profit">
+                                            <i class="fas fa-coins"></i>
+                                        </div>
+                                        <span>Daily Profit</span>
+                                    </div>
+                                </td>
+                                <td class="transaction-amount positive">+$245.30</td>
+                                <td>Silver Plan</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                                <td><a href="#" class="details-link">View</a></td>
+                            </tr>
+                            <tr>
+                                <td>13 Jul 2023, 09:15 AM</td>
+                                <td>
+                                    <div class="transaction-type">
+                                        <div class="type-icon investment">
+                                            <i class="fas fa-chart-line"></i>
+                                        </div>
+                                        <span>Investment</span>
+                                    </div>
+                                </td>
+                                <td class="transaction-amount negative">-$1,000.00</td>
+                                <td>Silver Plan</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                                <td><a href="#" class="details-link">View</a></td>
+                            </tr>
+                            <tr>
+                                <td>12 Jul 2023, 02:45 PM</td>
+                                <td>
+                                    <div class="transaction-type">
+                                        <div class="type-icon referral">
+                                            <i class="fas fa-user-plus"></i>
+                                        </div>
+                                        <span>Referral Bonus</span>
+                                    </div>
+                                </td>
+                                <td class="transaction-amount positive">+$50.00</td>
+                                <td>Referral Program</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                                <td><a href="#" class="details-link">View</a></td>
+                            </tr>
+                            <tr>
+                                <td>10 Jul 2023, 11:30 AM</td>
+                                <td>
+                                    <div class="transaction-type">
+                                        <div class="type-icon deposit">
+                                            <i class="fas fa-arrow-down"></i>
+                                        </div>
+                                        <span>Deposit</span>
+                                    </div>
+                                </td>
+                                <td class="transaction-amount positive">+$500.00</td>
+                                <td>Bitcoin</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                                <td><a href="#" class="details-link">View</a></td>
+                            </tr>
+                            <tr>
+                                <td>05 Jul 2023, 04:20 PM</td>
+                                <td>
+                                    <div class="transaction-type">
+                                        <div class="type-icon withdrawal">
+                                            <i class="fas fa-arrow-up"></i>
+                                        </div>
+                                        <span>Withdrawal</span>
+                                    </div>
+                                </td>
+                                <td class="transaction-amount negative">-$300.00</td>
+                                <td>USDT (TRC20)</td>
+                                <td><span class="status-badge completed">Completed</span></td>
+                                <td><a href="#" class="details-link">View</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="pagination">
+                    <li class="page-item"><a href="#" class="page-link">Previous</a></li>
+                    <li class="page-item"><a href="#" class="page-link active">1</a></li>
+                    <li class="page-item"><a href="#" class="page-link">2</a></li>
+                    <li class="page-item"><a href="#" class="page-link">3</a></li>
+                    <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>
