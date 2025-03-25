@@ -3,838 +3,482 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hydrogem Capitals - Deposit Now</title>
+    <title>Deposit Funds - Hydrogem Capitals</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/pusher-js@7.0.3/dist/web/pusher.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
-        /* Global Styles */
         :root {
-            --primary-color: #3498db;
-            --secondary-color: #2ecc71;
-            --dark-color: #2c3e50;
-            --light-color: #ecf0f1;
-            --danger-color: #e74c3c;
-            --warning-color: #f39c12;
-            --success-color: #27ae60;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            --border-radius: 8px;
-            --transition: all 0.3s ease;
-            --sidebar-width: 280px;
+            --primary: #2b1c4a;
+            --secondary: #6c5ce7;
+            --accent: #00cec9;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
         }
-
+        
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
+        
         body {
-            background-color: #f5f7fa;
-            color: #333;
+            background-color: #f5f6fa;
+            color: var(--dark);
             line-height: 1.6;
         }
-
-        .dark-theme {
-            background-color: #1a1a1a;
-            color: #ffffff;
-        }
-
-        .dark-theme .site-card,
-        .dark-theme .side-nav,
-        .dark-theme .dropdown-menu {
-            background-color: #2d2d2d;
-            color: #ffffff;
-            border-color: #444;
-        }
-
-        .dark-theme .table {
-            color: #ffffff;
-        }
-
-        .dark-theme .form-control,
-        .dark-theme .site-nice-select,
-        .dark-theme .input-group-text {
-            background-color: #333;
-            color: #ffffff;
-            border-color: #444;
-        }
-
-        /* Layout */
-        .panel-layout {
+        
+        .dashboard-container {
             display: flex;
             min-height: 100vh;
         }
-
-        .side-nav {
-            width: var(--sidebar-width);
-            background-color: #2c3e50;
-            position: fixed;
-            height: 100vh;
-            overflow-y: auto;
-            z-index: 100;
+        
+        /* Sidebar Styles (same as dashboard) */
+        .sidebar {
+            width: 250px;
+            background-color: var(--primary);
             color: white;
-        }
-
-        .page-container {
-            flex: 1;
-            margin-left: var(--sidebar-width);
-            padding: 20px;
-            background-color: #f5f7fa;
-        }
-
-        .dark-theme .page-container {
-            background-color: #121212;
-        }
-
-        /* Header */
-        .panel-header {
-            background-color: white;
-            padding: 15px 20px;
-            box-shadow: var(--shadow);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-        }
-
-        .dark-theme .panel-header {
-            background-color: #2d2d2d;
-            color: white;
-        }
-
-        .logo img {
-            height: 40px;
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        /* Side Navigation */
-        .side-nav-menu {
-            list-style: none;
             padding: 20px 0;
+            transition: all 0.3s ease;
         }
-
-        .side-nav-item {
-            margin-bottom: 5px;
-            position: relative;
+        
+        /* Main Content Styles */
+        .main-content {
+            flex: 1;
+            padding: 30px;
         }
-
-        .side-nav-item a {
-            display: flex;
-            align-items: center;
-            padding: 12px 25px;
-            color: rgba(255, 255, 255, 0.9);
-            text-decoration: none;
-            transition: var(--transition);
-            font-size: 15px;
-        }
-
-        .side-nav-item a:hover {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: white;
-        }
-
-        .side-nav-item.active a {
-            background-color: rgba(255, 255, 255, 0.2);
-            border-left: 3px solid var(--secondary-color);
-            color: white;
-            font-weight: 500;
-        }
-
-        .side-nav-item i {
-            margin-right: 12px;
-            width: 20px;
-            text-align: center;
-            font-size: 18px;
-            color: var(--secondary-color);
-        }
-
-        /* Wallet Box */
-        .side-wallet-box {
-            padding: 25px;
-            background: linear-gradient(135deg, #3498db, #2ecc71);
-            color: white;
-        }
-
-        .wallet-info {
+        
+        .header {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 12px;
-            font-size: 14px;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
         }
-
-        .wallet-name {
+        
+        .header h2 {
+            color: var(--primary);
+        }
+        
+        /* Deposit Section */
+        .deposit-container {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .deposit-methods {
+            flex: 1;
+        }
+        
+        .deposit-form-container {
+            flex: 1;
+        }
+        
+        .deposit-card {
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
             margin-bottom: 20px;
         }
-
-        .wallet-name .name {
-            font-weight: bold;
-            font-size: 18px;
+        
+        .section-title h3 {
+            font-size: 22px;
+            color: var(--primary);
         }
-
-        .wallet-name .default {
-            font-size: 12px;
-            opacity: 0.9;
+        
+        .section-title p {
+            color: #777;
         }
-
-        .actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 20px;
+        
+        .payment-methods {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 15px;
         }
-
-        .user-sidebar-btn {
-            flex: 1;
+        
+        .payment-method {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
             text-align: center;
-            padding: 10px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border-radius: var(--border-radius);
-            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .payment-method:hover, .payment-method.active {
+            border-color: var(--accent);
+            background-color: rgba(0,206,201,0.05);
+        }
+        
+        .payment-method img {
+            width: 50px;
+            height: 50px;
+            object-fit: contain;
+            margin-bottom: 10px;
+        }
+        
+        .payment-method p {
             font-size: 14px;
             font-weight: 500;
-            transition: var(--transition);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
         }
-
-        .user-sidebar-btn:hover {
-            background-color: rgba(255, 255, 255, 0.3);
-            color: white;
+        
+        .form-group {
+            margin-bottom: 20px;
         }
-
-        .user-sidebar-btn.red-btn {
-            background-color: rgba(231, 76, 60, 0.8);
-        }
-
-        .user-sidebar-btn.red-btn:hover {
-            background-color: rgba(231, 76, 60, 1);
-        }
-
-        /* Logo Section */
-        .logo-section {
-            padding: 20px;
-            text-align: center;
-            background-color: rgba(0, 0, 0, 0.2);
-        }
-
-        .logo-section img {
-            max-width: 180px;
-            height: auto;
-            filter: brightness(0) invert(1);
-        }
-
-        /* Form Validation */
-        .is-invalid {
-            border-color: var(--danger-color) !important;
-        }
-
-        .invalid-feedback {
-            color: var(--danger-color);
-            font-size: 13px;
-            margin-top: 5px;
-        }
-
-        /* Payment Method Selection */
-        .payment-method-option {
-            display: flex;
-            align-items: center;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: var(--border-radius);
-            margin-bottom: 10px;
-            cursor: pointer;
-            transition: var(--transition);
-            background-color: white;
-        }
-
-        .dark-theme .payment-method-option {
-            background-color: #333;
-            border-color: #444;
-        }
-
-        .payment-method-option:hover {
-            border-color: var(--primary-color);
-        }
-
-        .payment-method-option.selected {
-            border-color: var(--primary-color);
-            background-color: rgba(52, 152, 219, 0.1);
-        }
-
-        .payment-method-option img {
-            width: 40px;
-            margin-right: 15px;
-        }
-
-        /* Disabled Button */
-        .btn-disabled {
-            opacity: 0.6;
-            cursor: not-allowed !important;
-        }
-
-        /* Progress Steps */
-        .progress-steps {
-            display: flex;
-            margin-bottom: 30px;
-            justify-content: space-between;
-        }
-
-        .single-step {
-            flex: 1;
-            position: relative;
-            text-align: center;
-            padding: 0 10px;
-        }
-
-        .single-step:not(:last-child):after {
-            content: '';
-            position: absolute;
-            top: 15px;
-            left: 50%;
-            right: -50%;
-            height: 2px;
-            background-color: #ddd;
-            z-index: 1;
-        }
-
-        .single-step.current:after {
-            background-color: var(--primary-color);
-        }
-
-        .single-step .number {
-            width: 30px;
-            height: 30px;
-            background-color: #ddd;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 10px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .single-step.current .number {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        /* Form Steps */
-        .form-step {
-            padding: 20px 0;
-        }
-
-        /* Buttons */
-        .site-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            transition: var(--transition);
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
             font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
         }
-
-        .grad-btn {
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0,206,201,0.2);
+        }
+        
+        .input-group {
+            position: relative;
+        }
+        
+        .input-group .currency {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-weight: 500;
+            color: #777;
+        }
+        
+        .input-group input {
+            padding-left: 40px;
+        }
+        
+        .btn-deposit {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent);
             color: white;
-        }
-
-        .grad-btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            :root {
-                --sidebar-width: 240px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .panel-layout {
-                flex-direction: column;
-            }
-            .side-nav {
-                width: 100%;
-                position: relative;
-                height: auto;
-            }
-            .page-container {
-                margin-left: 0;
-            }
-            .progress-steps {
-                flex-direction: column;
-            }
-            .single-step {
-                text-align: left;
-                padding: 15px 0;
-            }
-            .single-step:not(:last-child):after {
-                top: auto;
-                left: 15px;
-                right: auto;
-                bottom: -50%;
-                width: 2px;
-                height: 30px;
-            }
-        }
-
-        /* Color Switcher */
-        .color-switcher {
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
             cursor: pointer;
-            padding: 8px;
-            border-radius: var(--border-radius);
-            background-color: rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
         }
-
-        .dark-theme .color-switcher {
-            background-color: rgba(255, 255, 255, 0.1);
+        
+        .btn-deposit:hover {
+            background-color: #00b8a9;
         }
-
-        .dark-icon, .light-icon {
-            font-size: 20px;
-            color: #333;
+        
+        .deposit-info {
+            background-color: rgba(0,206,201,0.05);
+            border-left: 3px solid var(--accent);
+            padding: 15px;
+            border-radius: 0 5px 5px 0;
+            margin-top: 20px;
         }
-
-        .dark-theme .dark-icon {
-            color: #fff;
+        
+        .deposit-info p {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 5px;
         }
-
-        .dark-theme .light-icon {
-            color: #fff;
+        
+        .deposit-info p:last-child {
+            margin-bottom: 0;
+        }
+        
+        /* Recent Deposits */
+        .recent-deposits {
+            background-color: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .deposits-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        .deposits-table th, .deposits-table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .deposits-table th {
+            background-color: #f9f9f9;
+            color: #555;
+            font-weight: 600;
+        }
+        
+        .deposits-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        .status-badge.pending {
+            background-color: rgba(253,203,110,0.1);
+            color: var(--warning);
+        }
+        
+        .status-badge.completed {
+            background-color: rgba(0,184,148,0.1);
+            color: var(--success);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .dashboard-container {
+                flex-direction: column;
+            }
+            
+            .sidebar {
+                width: 100%;
+            }
+            
+            .deposit-container {
+                flex-direction: column;
+            }
+            
+            .deposits-table {
+                display: block;
+                overflow-x: auto;
+            }
         }
     </style>
 </head>
-<body class="dark-theme">
-
-<div class="panel-layout">
-    <!-- Desktop Navigation -->
-    <div class="desktop-screen-show">
-        <div class="side-nav">
-            <div class="logo-section">
-                <img src="https://raw.githubusercontent.com/Duckey2001/Hydrogem_Capitals-final/main/images/WhatsApp%20Image%202025-02-20%20at%2017.49.30_65046ac8.jpg" alt="Hydrogem Capitals Logo">
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar (same as dashboard) -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-wallet"></i> Hydrogem Capitals</h3>
             </div>
-            
-            <div class="side-wallet-box">
-                <div class="user-balance-card">
-                    <div class="wallet-name">
-                        <div class="name">Account Balance</div>
-                        <div class="default">Active Wallet</div>
-                    </div>
-                    <div class="wallet-info">
-                        <div class="wallet-id"><i class="fas fa-wallet"></i> Main Wallet</div>
-                        <div class="balance">USDT0</div>
-                    </div>
-                    <div class="wallet-info">
-                        <div class="wallet-id"><i class="fas fa-landmark"></i> Profit Wallet</div>
-                        <div class="balance">USDT0</div>
-                    </div>
-                </div>
-                <div class="actions">
-                    <a href="deposit.html" class="user-sidebar-btn">
-                        <i class="fas fa-plus-circle"></i> Deposit
-                    </a>
-                    <a href="invest.html" class="user-sidebar-btn red-btn">
-                        <i class="fas fa-chart-line"></i> Invest Now
-                    </a>
-                </div>
-            </div>
-            
-            <ul class="side-nav-menu">
-                <li class="side-nav-item">
-                    <a href="deshboard.html">
-                        <i class="fas fa-tachometer-alt"></i><span>Dashboard</span>
-                    </a>
-                </li>
-                <li class="side-nav-item">
-                    <a href="investmentPlan.html">
-                        <i class="fas fa-clipboard-check"></i><span>Investment Plans</span>
-                    </a>
-                </li>
-                <li class="side-nav-item">
-                    <a href="invest.html">
-                        <i class="fas fa-copy"></i><span>My Investments</span>
-                    </a>
-                </li>
-                <li class="side-nav-item">
-                    <a href="trackInvestment.html">
-                        <i class="fas fa-inbox"></i><span>Transactions</span>
-                    </a>
-                </li>
-                <li class="side-nav-item active">
-                    <a href="deposit.html">
-                        <i class="fas fa-file-import"></i><span>Deposit Funds</span>
-                    </a>
-                </li>
-                <li class="side-nav-item">
-                    <a href="withdraw.html">
-                        <i class="fas fa-university"></i><span>Withdraw Funds</span>
-                    </a>
-                </li>
-                <li class="side-nav-item">
-                    <a href="referal.html">
-                        <i class="fas fa-users"></i><span>Referral Program</span>
-                    </a>
-                </li>
-                <li class="side-nav-item">
-                    <a href="support.html">
-                        <i class="fas fa-tools"></i><span>Support Center</span>
-                    </a>
-                </li>
-                <li class="side-nav-item">
-                    <a href="settingss.html">
-                        <i class="fas fa-cog"></i><span>Account Settings</span>
-                    </a>
-                </li>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
+                <li><a href="invest.html"><i class="fas fa-chart-line"></i> Invest</a></li>
+                <li><a href="deposit.html" class="active"><i class="fas fa-plus-circle"></i> Deposit</a></li>
+                <li><a href="withdraw.html"><i class="fas fa-minus-circle"></i> Withdraw</a></li>
+                <li><a href="transactions.html"><i class="fas fa-exchange-alt"></i> Transactions</a></li>
+                <li><a href="referral.html"><i class="fas fa-users"></i> Referral</a></li>
+                <li><a href="settings.html"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="support.html"><i class="fas fa-headset"></i> Support</a></li>
+                <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
             </ul>
         </div>
-    </div>
-
-    <!-- Main Content -->
-    <div class="page-container">
-        <div class="panel-header">
-            <div class="logo">
-                <a href="dashboard.html">
-                    <img src="https://raw.githubusercontent.com/Duckey2001/Hydrogem_Capitals-final/main/images/WhatsApp%20Image%202025-02-20%20at%2017.49.30_65046ac8.jpg" alt="Logo" style="height: 30px;">
-                </a>
-            </div>
-            <div class="nav-right">
-                <div class="color-switcher">
-                    <i class="fas fa-moon dark-icon" data-mode="dark"></i>
-                    <i class="fas fa-sun light-icon" data-mode="light"></i>
-                </div>
-
-                <div class="single-nav-right user-notifications111">
-                    <button type="button" class="item notification-dot" onclick="toggleDropdown(this)">
-                        <i class="fas fa-bell"></i>
-                        <div class="number">0</div>
-                    </button>
-                    <div class="dropdown-menu notification-pop">
-                        <div class="noti-head">Notifications <span>0</span></div>
-                        <div class="all-noti">
-                            <p>No new notifications</p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="single-right">
-                    <button type="button" class="item" onclick="toggleDropdown(this)">
-                        <i class="fas fa-user"></i>
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a href="settingss.html" class="dropdown-item">
-                                <i class="fas fa-cog"></i> Settings
-                            </a>
-                        </li>
-                        <li>
-                            <a href="changePassword.html" class="dropdown-item">
-                                <i class="fas fa-lock"></i> Change Password
-                            </a>
-                        </li>
-                        <li>
-                            <a href="support.html" class="dropdown-item">
-                                <i class="fas fa-headset"></i> Support Tickets
-                            </a>
-                        </li>
-                        <li class="logout">
-                            <a href="index.html" class="dropdown-item" onclick="localStorage.clear()">
-                                <i class="fas fa-sign-out-alt"></i> Logout
-                            </a>
-                        </li>
-                    </ul>
+        
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="header">
+                <h2>Deposit Funds</h2>
+                <div class="user-balance">
+                    <span>Available Balance: <strong>$5,245.30</strong></span>
                 </div>
             </div>
-        </div>
-
-        <!-- Deposit Form Section -->
-        <div class="site-card">
-            <div class="site-card-header">
-                <h3 class="title">Deposit Funds</h3>
-                <div class="card-header-links">
-                    <a href="deposit-history.html" class="card-header-link">
-                        <i class="fas fa-history"></i> View Deposit History
-                    </a>
-                </div>
-            </div>
-            <div class="site-card-body">
-                <div class="progress-steps">
-                    <div class="single-step current">
-                        <div class="number">1</div>
-                        <div class="content">
-                            <h4>Select Method</h4>
-                            <p>Choose your payment method</p>
+            
+            <div class="deposit-container">
+                <div class="deposit-methods">
+                    <div class="deposit-card">
+                        <div class="section-title">
+                            <h3>Select Payment Method</h3>
+                            <p>Choose your preferred payment method to deposit funds</p>
+                        </div>
+                        
+                        <div class="payment-methods">
+                            <div class="payment-method active">
+                                <img src="assets/images/usdt.png" alt="USDT">
+                                <p>USDT (TRC20)</p>
+                            </div>
+                            <div class="payment-method">
+                                <img src="assets/images/bitcoin.png" alt="Bitcoin">
+                                <p>Bitcoin</p>
+                            </div>
+                            <div class="payment-method">
+                                <img src="assets/images/ethereum.png" alt="Ethereum">
+                                <p>Ethereum</p>
+                            </div>
+                            <div class="payment-method">
+                                <img src="assets/images/credit-card.png" alt="Credit Card">
+                                <p>Credit Card</p>
+                            </div>
+                            <div class="payment-method">
+                                <img src="assets/images/bank-transfer.png" alt="Bank Transfer">
+                                <p>Bank Transfer</p>
+                            </div>
+                            <div class="payment-method">
+                                <img src="assets/images/paypal.png" alt="PayPal">
+                                <p>PayPal</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="single-step">
-                        <div class="number">2</div>
-                        <div class="content">
-                            <h4>Enter Amount</h4>
-                            <p>Specify deposit amount</p>
+                    
+                    <div class="deposit-card">
+                        <div class="section-title">
+                            <h3>Deposit Instructions</h3>
+                            <p>Follow these steps to deposit funds into your account</p>
                         </div>
-                    </div>
-                    <div class="single-step">
-                        <div class="number">3</div>
-                        <div class="content">
-                            <h4>Confirmation</h4>
-                            <p>Review and confirm</p>
+                        
+                        <div class="deposit-steps">
+                            <div class="step">
+                                <h4><span class="step-number">1</span> Select Payment Method</h4>
+                                <p>Choose your preferred payment method from the options above.</p>
+                            </div>
+                            <div class="step">
+                                <h4><span class="step-number">2</span> Enter Deposit Amount</h4>
+                                <p>Specify the amount you wish to deposit in the form.</p>
+                            </div>
+                            <div class="step">
+                                <h4><span class="step-number">3</span> Complete Payment</h4>
+                                <p>Follow the payment instructions to complete your deposit.</p>
+                            </div>
+                            <div class="step">
+                                <h4><span class="step-number">4</span> Confirmation</h4>
+                                <p>Your deposit will be credited after blockchain confirmation.</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <form id="depositForm" action="process-deposit.html" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="_token" value="L3OjUxq6CueXJsGgzB5nQ7yw8tonIwVgVSto9Sur">
-                    
-                    <!-- Step 1: Payment Method -->
-                    <div class="form-step" id="step1">
-                        <h4 class="mb-3">Select Payment Method</h4>
-                        <div class="payment-method-option selected" data-method="coinpayments-usdt">
-                            <img src="https://cryptologos.cc/logos/tether-usdt-logo.png" alt="USDT">
-                            <div>
-                                <h5>USDT (TRC20)</h5>
-                                <p>Deposit using Tether (TRC20 network)</p>
-                            </div>
-                        </div>
-                        <input type="hidden" name="gateway_code" id="selectedMethod" value="coinpayments-usdt">
-                    </div>
-                    
-                    <!-- Step 2: Amount -->
-                    <div class="form-step hidden" id="step2">
-                        <h4 class="mb-3">Enter Deposit Amount</h4>
-                        <div class="mb-3">
-                            <label for="amount" class="form-label">Amount (USDT):</label>
-                            <div class="input-group">
-                                <input type="text" name="amount" class="form-control" id="amount"
-                                       placeholder="Enter amount" oninput="validateAmount(this)">
-                                <span class="input-group-text">USDT</span>
-                            </div>
-                            <div class="input-info-text">
-                                Minimum: 10 USDT | Maximum: 10,000 USDT
-                            </div>
-                            <div id="amountError" class="invalid-feedback"></div>
-                        </div>
-                    </div>
-                    
-                    <!-- Step 3: Confirmation -->
-                    <div class="form-step hidden" id="step3">
-                        <h4 class="mb-3">Confirm Your Deposit</h4>
-                        <div class="transaction-list table-responsive">
-                            <table class="table">
-                                <tbody>
-                                <tr>
-                                    <td><strong>Payment Method</strong></td>
-                                    <td id="paymentMethodDisplay">USDT (TRC20)</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Amount</strong></td>
-                                    <td><span id="confirmAmount">0</span> USDT</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>Network Fee</strong></td>
-                                    <td><span id="confirmFee">2</span>%</td>
-                                </tr>
-                                <tr>
-                                    <td><strong>You Will Receive</strong></td>
-                                    <td><span id="confirmTotal">0</span> USDT</td>
-                                </tr>
-                                </tbody>
-                            </table>
+                <div class="deposit-form-container">
+                    <div class="deposit-card">
+                        <div class="section-title">
+                            <h3>Deposit Form</h3>
+                            <p>Enter your deposit details below</p>
                         </div>
                         
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="checkbox" id="termsCheck" required>
-                            <label class="form-check-label" for="termsCheck">
-                                I agree to the <a href="terms.html">terms and conditions</a>
-                            </label>
-                        </div>
+                        <form>
+                            <div class="form-group">
+                                <label for="payment-method">Payment Method</label>
+                                <select id="payment-method" class="form-control">
+                                    <option>USDT (TRC20)</option>
+                                    <option>Bitcoin (BTC)</option>
+                                    <option>Ethereum (ETH)</option>
+                                    <option>Credit Card</option>
+                                    <option>Bank Transfer</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="amount">Amount to Deposit</label>
+                                <div class="input-group">
+                                    <span class="currency">$</span>
+                                    <input type="number" id="amount" class="form-control" placeholder="Enter amount" min="10">
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="wallet">Wallet Address</label>
+                                <div class="input-group">
+                                    <input type="text" id="wallet" class="form-control" value="TXYZ1234567890abcdefghijklmnopqrstuvw" readonly>
+                                    <button type="button" class="btn-copy" onclick="copyToClipboard('wallet')">
+                                        <i class="fas fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn-deposit">Proceed to Payment</button>
+                            
+                            <div class="deposit-info">
+                                <p><strong>Minimum deposit:</strong> $10.00</p>
+                                <p><strong>Processing time:</strong> Instant for crypto, 1-3 business days for bank transfers</p>
+                                <p><strong>No deposit fees</strong> for cryptocurrency payments</p>
+                            </div>
+                        </form>
                     </div>
                     
-                    <!-- Navigation Buttons -->
-                    <div class="buttons mt-4">
-                        <button type="button" class="site-btn" id="prevBtn" style="display: none;">
-                            <i class="fas fa-arrow-left"></i> Previous
-                        </button>
-                        <button type="button" class="site-btn grad-btn" id="nextBtn">
-                            Next <i class="fas fa-arrow-right"></i>
-                        </button>
-                        <button type="submit" class="site-btn grad-btn hidden" id="submitBtn">
-                            <i class="fas fa-lock"></i> Confirm & Pay
-                        </button>
+                    <div class="recent-deposits">
+                        <div class="section-title">
+                            <h3>Recent Deposits</h3>
+                            <p>Your last 5 deposit transactions</p>
+                        </div>
+                        
+                        <table class="deposits-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Amount</th>
+                                    <th>Method</th>
+                                    <th>Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>15 Jul 2023</td>
+                                    <td>$1,000.00</td>
+                                    <td>USDT</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>10 Jul 2023</td>
+                                    <td>$500.00</td>
+                                    <td>Bitcoin</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>05 Jul 2023</td>
+                                    <td>$300.00</td>
+                                    <td>Bank Transfer</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>01 Jul 2023</td>
+                                    <td>$200.00</td>
+                                    <td>Ethereum</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                </tr>
+                                <tr>
+                                    <td>25 Jun 2023</td>
+                                    <td>$1,500.00</td>
+                                    <td>USDT</td>
+                                    <td><span class="status-badge completed">Completed</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
-
-<script>
-    // Current step tracking
-    let currentStep = 1;
-    const totalSteps = 3;
     
-    // Initialize form
-    document.addEventListener('DOMContentLoaded', function() {
-        // Step navigation
-        document.getElementById('nextBtn').addEventListener('click', nextStep);
-        document.getElementById('prevBtn').addEventListener('click', prevStep);
-        
-        // Payment method selection
-        document.querySelector('.payment-method-option').addEventListener('click', function() {
-            document.getElementById('selectedMethod').value = this.dataset.method;
-        });
-        
-        // Amount validation
-        document.getElementById('amount').addEventListener('input', function() {
-            validateAmount(this);
-        });
-
-        // Theme switcher
-        document.querySelector('.color-switcher').addEventListener('click', function() {
-            document.body.classList.toggle('dark-theme');
-            localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
-        });
-
-        // Check for saved theme preference
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark-theme');
-        }
-    });
-    
-    // Step navigation functions
-    function nextStep() {
-        if (currentStep === 1 && !validateStep1()) return;
-        if (currentStep === 2 && !validateStep2()) return;
-        
-        document.getElementById(`step${currentStep}`).classList.add('hidden');
-        currentStep++;
-        document.getElementById(`step${currentStep}`).classList.remove('hidden');
-        
-        updateStepDisplay();
-    }
-    
-    function prevStep() {
-        document.getElementById(`step${currentStep}`).classList.add('hidden');
-        currentStep--;
-        document.getElementById(`step${currentStep}`).classList.remove('hidden');
-        
-        updateStepDisplay();
-    }
-    
-    function updateStepDisplay() {
-        // Update progress steps
-        document.querySelectorAll('.single-step').forEach((step, index) => {
-            step.classList.toggle('current', index + 1 === currentStep);
-        });
-        
-        // Update navigation buttons
-        document.getElementById('prevBtn').style.display = currentStep === 1 ? 'none' : 'inline-block';
-        document.getElementById('nextBtn').style.display = currentStep === totalSteps ? 'none' : 'inline-block';
-        document.getElementById('submitBtn').classList.toggle('hidden', currentStep !== totalSteps);
-        
-        // Update confirmation details if on last step
-        if (currentStep === 3) {
-            const amount = parseFloat(document.getElementById('amount').value) || 0;
-            const feePercent = 2; // 2% fee
-            const feeAmount = (amount * feePercent) / 100;
-            const totalAmount = amount - feeAmount;
+    <script>
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const textToCopy = element.value;
             
-            document.getElementById('confirmAmount').textContent = amount.toFixed(2);
-            document.getElementById('confirmFee').textContent = feeAmount.toFixed(2);
-            document.getElementById('confirmTotal').textContent = totalAmount.toFixed(2);
-        }
-    }
-    
-    // Validation functions
-    function validateStep1() {
-        // Payment method is selected by default in this example
-        return true;
-    }
-    
-    function validateStep2() {
-        const amountInput = document.getElementById('amount');
-        const amount = parseFloat(amountInput.value);
-        const minAmount = 10;
-        const maxAmount = 10000;
-        const errorElement = document.getElementById('amountError');
-        
-        if (!amount || isNaN(amount)) {
-            errorElement.textContent = 'Please enter a valid amount';
-            amountInput.classList.add('is-invalid');
-            return false;
-        }
-        
-        if (amount < minAmount) {
-            errorElement.textContent = `Minimum deposit is ${minAmount} USDT`;
-            amountInput.classList.add('is-invalid');
-            return false;
-        }
-        
-        if (amount > maxAmount) {
-            errorElement.textContent = `Maximum deposit is ${maxAmount} USDT`;
-            amountInput.classList.add('is-invalid');
-            return false;
-        }
-        
-        amountInput.classList.remove('is-invalid');
-        errorElement.textContent = '';
-        return true;
-    }
-    
-    function validateAmount(input) {
-        // Restrict to numbers and decimal point
-        input.value = input.value.replace(/[^0-9.]/g, '');
-        
-        // Ensure only one decimal point
-        if ((input.value.match(/\./g) || []).length > 1) {
-            input.value = input.value.slice(0, -1);
-        }
-        
-        // Limit to 2 decimal places
-        if (input.value.indexOf('.') >= 0) {
-            input.value = input.value.substring(0, input.value.indexOf('.') + 3);
-        }
-    }
-
-    // Toggle dropdown function
-    function toggleDropdown(element) {
-        const dropdown = element.nextElementSibling;
-        dropdown.classList.toggle('show');
-        
-        // Close other dropdowns
-        document.querySelectorAll('.dropdown-menu').forEach(item => {
-            if (item !== dropdown) {
-                item.classList.remove('show');
-            }
-        });
-    }
-
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', function(event) {
-        if (!event.target.closest('.dropdown-menu') && !event.target.closest('.item')) {
-            document.querySelectorAll('.dropdown-menu').forEach(item => {
-                item.classList.remove('show');
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                alert('Wallet address copied to clipboard!');
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
             });
         }
-    });
-</script>
+    </script>
 </body>
 </html>
