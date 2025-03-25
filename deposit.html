@@ -1,26 +1,504 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="Styling.css"/>
-    <link rel="stylesheet" href="Style3.css"/>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydrogem Capitals - Deposit Now</title>
     <script src="https://cdn.jsdelivr.net/npm/pusher-js@7.0.3/dist/web/pusher.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
     <style>
-        .site-head-tag {
+        /* Global Styles */
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --dark-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --danger-color: #e74c3c;
+            --warning-color: #f39c12;
+            --success-color: #27ae60;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --border-radius: 8px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .hidden {
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .dark-theme {
+            background-color: #1a1a1a;
+            color: #f5f5f5;
+        }
+
+        .dark-theme .site-card,
+        .dark-theme .side-nav,
+        .dark-theme .dropdown-menu {
+            background-color: #2d2d2d;
+            color: #f5f5f5;
+            border-color: #444;
+        }
+
+        .dark-theme .table {
+            color: #f5f5f5;
+        }
+
+        .dark-theme .form-control,
+        .dark-theme .site-nice-select,
+        .dark-theme .input-group-text {
+            background-color: #333;
+            color: #f5f5f5;
+            border-color: #444;
+        }
+
+        /* Layout */
+        .panel-layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .side-nav {
+            width: 250px;
+            background-color: white;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .page-container {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        /* Header */
+        .panel-header {
+            background-color: white;
+            padding: 15px 20px;
+            box-shadow: var(--shadow);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo img {
+            height: 40px;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* Cards */
+        .site-card {
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .site-card-header {
+            padding: 15px 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .site-card-body {
+            padding: 20px;
+        }
+
+        /* Forms */
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.2);
+        }
+
+        .input-group {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .input-group-text {
+            padding: 10px 15px;
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-left: none;
+            border-radius: 0 var(--border-radius) var(--border-radius) 0;
+        }
+
+        .site-nice-select {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: var(--border-radius);
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 1em;
+        }
+
+        /* Buttons */
+        .site-btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: var(--transition);
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .grad-btn {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+        }
+
+        .grad-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .red-btn {
+            background-color: var(--danger-color);
+            color: white;
+        }
+
+        /* Tables */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        .table th, .table td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Progress Steps */
+        .progress-steps {
+            display: flex;
+            margin-bottom: 30px;
+        }
+
+        .single-step {
+            flex: 1;
+            position: relative;
+            text-align: center;
+            padding: 0 10px;
+        }
+
+        .single-step:not(:last-child):after {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 50%;
+            right: -50%;
+            height: 2px;
+            background-color: #ddd;
+            z-index: 1;
+        }
+
+        .single-step.current:after {
+            background-color: var(--primary-color);
+        }
+
+        .single-step .number {
+            width: 30px;
+            height: 30px;
+            background-color: #ddd;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .single-step.current .number {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Side Navigation */
+        .side-nav-menu {
+            list-style: none;
+        }
+
+        .side-nav-item {
+            margin-bottom: 5px;
+        }
+
+        .side-nav-item a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: #333;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .side-nav-item a:hover {
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .side-nav-item.active a {
+            background-color: rgba(52, 152, 219, 0.2);
+            border-left: 3px solid var(--primary-color);
+        }
+
+        .side-nav-item i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* Wallet Box */
+        .side-wallet-box {
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .wallet-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .wallet-name {
+            margin-bottom: 15px;
+        }
+
+        .wallet-name .name {
+            font-weight: bold;
+        }
+
+        .wallet-name .default {
+            font-size: 12px;
+            color: var(--primary-color);
+        }
+
+        .actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .user-sidebar-btn {
+            flex: 1;
+            text-align: center;
+            padding: 8px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .user-sidebar-btn.red-btn {
+            background-color: var(--danger-color);
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .side-nav {
+                width: 220px;
+            }
+            .page-container {
+                margin-left: 220px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .panel-layout {
+                flex-direction: column;
+            }
+            .side-nav {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            .page-container {
+                margin-left: 0;
+            }
+            .progress-steps {
+                flex-direction: column;
+            }
+            .single-step {
+                text-align: left;
+                padding: 15px 0;
+            }
+            .single-step:not(:last-child):after {
+                top: auto;
+                left: 15px;
+                right: auto;
+                bottom: -50%;
+                width: 2px;
+                height: 30px;
+            }
+        }
+
+        /* Mobile Bottom Navigation */
+        .mobile-screen-show {
             display: none;
         }
+
+        @media (max-width: 576px) {
+            .desktop-screen-show {
+                display: none;
+            }
+            .mobile-screen-show {
+                display: block;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: white;
+                box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+                z-index: 1000;
+            }
+            .bottom-appbar {
+                display: flex;
+                justify-content: space-around;
+                padding: 10px 0;
+            }
+            .bottom-appbar a {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-decoration: none;
+                color: #666;
+                font-size: 12px;
+            }
+            .bottom-appbar a.active {
+                color: var(--primary-color);
+            }
+        }
+
+        /* Utility Classes */
+        .hidden {
+            display: none !important;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-3 {
+            margin-bottom: 15px;
+        }
+
+        .mt-3 {
+            margin-top: 15px;
+        }
+
         .payment-method {
             max-width: 100px;
             max-height: 50px;
         }
-    </style>
 
-    <title>hydrogemcapitals - Deposit Now</title>
+        /* Dropdowns */
+        .dropdown-menu {
+            position: absolute;
+            right: 0;
+            top: 100%;
+            background-color: white;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            min-width: 200px;
+            z-index: 1000;
+            display: none;
+        }
+
+        .dropdown-menu.show {
+            display: block;
+        }
+
+        .dropdown-item {
+            padding: 10px 15px;
+            display: block;
+            color: #333;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .dropdown-item:hover {
+            background-color: #f8f9fa;
+        }
+
+        /* Notifications */
+        .notification-pop {
+            padding: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .noti-head {
+            font-weight: bold;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* Color Switcher */
+        .color-switcher {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: var(--border-radius);
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-icon, .light-icon {
+            font-size: 20px;
+        }
+
+        .dark-theme .light-icon {
+            display: none;
+        }
+
+        .dark-theme .dark-icon {
+            display: none;
+        }
+
+        .dark-theme .light-icon {
+            display: block;
+        }
+    </style>
 </head>
 <body class="dark-theme">
 <script>
@@ -28,93 +506,78 @@
         timeout: "5000",
     }
 </script>
-<!--Full Layout-->
+
 <div class="panel-layout">
-    <!--Header-->
+    <!-- Header -->
     <div class="panel-header">
         <div class="logo">
             <a href="https://hydrogemcapitals.com">
-                <img class="logo-unfold" src="https://hydrogemcapitals.com/assets/global/images/1vMSsawnPG6Tl4dPtYEZ.png" alt="Logo"/>
-                <img class="logo-fold" src="https://hydrogemcapitals.com/assets/global/images/1vMSsawnPG6Tl4dPtYEZ.png" alt="Logo"/>
+                <img src="https://hydrogemcapitals.com/assets/global/images/1vMSsawnPG6Tl4dPtYEZ.png" alt="Logo"/>
             </a>
         </div>
-        <div class="nav-wrap">
-            <div class="nav-left">
-                <button class="sidebar-toggle">
-                    <i class="anticon anticon-arrow-left"></i>
-                </button>
+        <div class="nav-right">
+            <div class="color-switcher">
+                <i icon-name="moon" class="dark-icon" data-mode="dark"></i>
+                <i icon-name="sun" class="light-icon" data-mode="light"></i>
             </div>
-            <div class="nav-right">
-                <div class="single-nav-right">
-                    <div class="single-right">
-                        <div class="color-switcher">
-                            <i icon-name="moon" class="dark-icon" data-mode="dark"></i>
-                            <i icon-name="sun" class="light-icon" data-mode="light"></i>
-                        </div>
-                    </div>
 
-                    <div class="single-nav-right user-notifications111">
-                        <button type="button" class="item notification-dot" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i icon-name="bell-ring" class=""></i>
-                            <div class="number">0</div>
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end notification-pop">
-                            <div class="noti-head">Notifications <span>0</span></div>
-                            <div class="all-noti">
-                                <p>Notification Not Found</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="single-right">
-                        <select name="language" id="" class="site-nice-select"
-                                onchange="window.location.href=this.options[this.selectedIndex].value;">
-                            <option value="https://hydrogemcapitals.com/language-update?name=en" selected>English</option>
-                        </select>
-                    </div>
-                    <div class="single-right">
-                        <button
-                            type="button"
-                            class="item"
-                            data-bs-toggle="dropdown"
-                            aria-expanded="false"
-                        >
-                            <i class="anticon anticon-user"></i>
-                        </button>
-                        <ul class="dropdown-menu dropdown-menu-end">
-                            <li>
-                                <a href="https://hydrogemcapitals.com/user/settings" class="dropdown-item" type="button"><i
-                                        class="anticon anticon-setting"></i>Settings</a>
-                            </li>
-                            <li>
-                                <a href="https://hydrogemcapitals.com/user/change-password" class="dropdown-item" type="button">
-                                    <i class="anticon anticon-lock"></i>Change Password
-                                </a>
-                            </li>
-                            <li>
-                                <a href="supportTicket.html" class="dropdown-item" type="button">
-                                    <i class="anticon anticon-customer-service"></i>Support Tickets
-                                </a>
-                            </li>
-                            <li class="logout">
-                                <form method="POST" action="index.html" id="logout-form">
-                                    <input type="hidden" name="_token" value="L3OjUxq6CueXJsGgzB5nQ7yw8tonIwVgVSto9Sur">                               
-                                    <a href="index.html" class="dropdown-item"
-                                    onclick="event.preventDefault(); localStorage.clear();  $('#logout-form').submit();"><i
-                                            class="anticon anticon-logout"></i>Logout</a>
-                                </form>
-                            </li>
-                        </ul>
+            <div class="single-nav-right user-notifications111">
+                <button type="button" class="item notification-dot" onclick="toggleDropdown(this)">
+                    <i icon-name="bell-ring"></i>
+                    <div class="number">0</div>
+                </button>
+                <div class="dropdown-menu notification-pop">
+                    <div class="noti-head">Notifications <span>0</span></div>
+                    <div class="all-noti">
+                        <p>Notification Not Found</p>
                     </div>
                 </div>
             </div>
+
+            <div class="single-right">
+                <select name="language" class="site-nice-select"
+                        onchange="window.location.href=this.options[this.selectedIndex].value;">
+                    <option value="https://hydrogemcapitals.com/language-update?name=en" selected>English</option>
+                </select>
+            </div>
+            <div class="single-right">
+                <button type="button" class="item" onclick="toggleDropdown(this)">
+                    <i class="anticon anticon-user"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a href="https://hydrogemcapitals.com/user/settings" class="dropdown-item">
+                            <i class="anticon anticon-setting"></i>Settings
+                        </a>
+                    </li>
+                    <li>
+                        <a href="https://hydrogemcapitals.com/user/change-password" class="dropdown-item">
+                            <i class="anticon anticon-lock"></i>Change Password
+                        </a>
+                    </li>
+                    <li>
+                        <a href="supportTicket.html" class="dropdown-item">
+                            <i class="anticon anticon-customer-service"></i>Support Tickets
+                        </a>
+                    </li>
+                    <li class="logout">
+                        <form method="POST" action="index.html" id="logout-form">
+                            <input type="hidden" name="_token" value="L3OjUxq6CueXJsGgzB5nQ7yw8tonIwVgVSto9Sur">                               
+                            <a href="index.html" class="dropdown-item"
+                               onclick="event.preventDefault(); localStorage.clear(); document.getElementById('logout-form').submit();">
+                                <i class="anticon anticon-logout"></i>Logout
+                            </a>
+                        </form>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
-    <!--/Header-->
 
+    <!-- Desktop Navigation -->
     <div class="desktop-screen-show">
-        <div class="side-nav ">
-            <div class="side-wallet-box default-wallet mb-0">
+        <div class="side-nav">
+            <div class="side-wallet-box default-wallet">
                 <div class="user-balance-card">
                     <div class="wallet-name">
                         <div class="name">Account Balance</div>
@@ -130,85 +593,87 @@
                     </div>
                 </div>
                 <div class="actions">
-                    <a href="https://hydrogemcapitals.com/user/deposit" class="user-sidebar-btn"><i
-                            class="anticon anticon-file-add"></i>Deposit</a>
-                    <a href="https://hydrogemcapitals.com/user/schemas" class="user-sidebar-btn red-btn"><i
-                            class="anticon anticon-export"></i>Invest Now</a>
+                    <a href="https://hydrogemcapitals.com/user/deposit" class="user-sidebar-btn">
+                        <i class="anticon anticon-file-add"></i>Deposit
+                    </a>
+                    <a href="https://hydrogemcapitals.com/user/schemas" class="user-sidebar-btn red-btn">
+                        <i class="anticon anticon-export"></i>Invest Now
+                    </a>
                 </div>
             </div>
             <div class="side-nav-inside">
                 <ul class="side-nav-menu">
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/dashboard"><i
-                                class="anticon anticon-appstore"></i><span>Dashboard</span></a>
-                    </li>
-
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/schemas"><i
-                                class="anticon anticon-check-square"></i><span>All Investment  Plans</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/invest-logs"><i
-                                class="anticon anticon-copy"></i><span>Investment  Logs</span></a>
-                    </li>
-
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/transactions"><i
-                                class="anticon anticon-inbox"></i><span>All Transactions</span></a>
-                    </li>
-
-
-                    <li class="side-nav-item  active ">
-                        <a href="https://hydrogemcapitals.com/user/deposit"><i
-                                class="anticon anticon-file-add"></i><span>Add Money</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/deposit/log"><i
-                                class="anticon anticon-folder-add"></i><span>Add Money Log</span></a>
-                    </li>
-
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/wallet-exchange"><i
-                                class="anticon anticon-transaction"></i><span>Wallet Exchange</span></a>
-                    </li>
-
-                    <li class="side-nav-item   ">
-                        <a href="https://hydrogemcapitals.com/user/withdraw"><i
-                                class="anticon anticon-bank"></i><span>Withdraw</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/withdraw/log"><i
-                                class="anticon anticon-credit-card"></i><span>Withdraw Log</span></a>
-                    </li>
-
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/ranking-badge"><i
-                                class="anticon anticon-star"></i><span>Ranking Badge</span></a>
-                    </li>
-
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/referral"><i
-                                class="anticon anticon-usergroup-add"></i><span>Referral</span></a>
-                    </li>
-                    
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/settings"><i
-                                class="anticon anticon-setting"></i><span>Settings</span></a>
-                    </li>
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/support-ticket/index"
-                        ><i class="anticon anticon-tool"></i><span>Support Tickets</span></a
-                        >
-                    </li>
-
-                    <li class="side-nav-item ">
-                        <a href="https://hydrogemcapitals.com/user/notification/all"
-                        ><i class="anticon anticon-notification"></i><span>Notifications</span></a
-                        >
-                    </li>
-
                     <li class="side-nav-item">
-                        <!-- Authentication -->
+                        <a href="https://hydrogemcapitals.com/user/dashboard">
+                            <i class="anticon anticon-appstore"></i><span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/schemas">
+                            <i class="anticon anticon-check-square"></i><span>All Investment Plans</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/invest-logs">
+                            <i class="anticon anticon-copy"></i><span>Investment Logs</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/transactions">
+                            <i class="anticon anticon-inbox"></i><span>All Transactions</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item active">
+                        <a href="https://hydrogemcapitals.com/user/deposit">
+                            <i class="anticon anticon-file-add"></i><span>Add Money</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/deposit/log">
+                            <i class="anticon anticon-folder-add"></i><span>Add Money Log</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/wallet-exchange">
+                            <i class="anticon anticon-transaction"></i><span>Wallet Exchange</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/withdraw">
+                            <i class="anticon anticon-bank"></i><span>Withdraw</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/withdraw/log">
+                            <i class="anticon anticon-credit-card"></i><span>Withdraw Log</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/ranking-badge">
+                            <i class="anticon anticon-star"></i><span>Ranking Badge</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/referral">
+                            <i class="anticon anticon-usergroup-add"></i><span>Referral</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/settings">
+                            <i class="anticon anticon-setting"></i><span>Settings</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/support-ticket/index">
+                            <i class="anticon anticon-tool"></i><span>Support Tickets</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="https://hydrogemcapitals.com/user/notification/all">
+                            <i class="anticon anticon-notification"></i><span>Notifications</span>
+                        </a>
+                    </li>
+                    <li class="side-nav-item">
                         <form method="POST" action="https://hydrogemcapitals.com/logout">
                             <input type="hidden" name="_token" value="L3OjUxq6CueXJsGgzB5nQ7yw8tonIwVgVSto9Sur">                    
                             <button type="submit" class="site-btn grad-btn w-100">
@@ -221,32 +686,33 @@
         </div>
     </div>
 
+    <!-- Main Content -->
     <div class="page-container">
         <div class="main-content">
             <div class="section-gap">
                 <div class="container-fluid">
-                    <!--Page Content-->
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="site-card">
                                 <div class="site-card-header">
                                     <h3 class="title">Add Money</h3>
                                     <div class="card-header-links">
-                                        <a href="https://hydrogemcapitals.com/user/deposit/log"
-                                        class="card-header-link">Deposit History</a>
+                                        <a href="https://hydrogemcapitals.com/user/deposit/log" class="card-header-link">
+                                            Deposit History
+                                        </a>
                                     </div>
                                 </div>
                                 <div class="site-card-body">
                                     <div class="progress-steps">
                                         <div class="single-step current">
-                                            <div class="number"> </div>
+                                            <div class="number">1</div>
                                             <div class="content">
                                                 <h4>Deposit Amount</h4>
                                                 <p>Enter your deposit details</p>
                                             </div>
                                         </div>
-                                        <div class="single-step ">
-                                            <div class="number"> </div>
+                                        <div class="single-step">
+                                            <div class="number">2</div>
                                             <div class="content">
                                                 <h4>Success</h4>
                                                 <p>Success Your Deposit</p>
@@ -255,7 +721,7 @@
                                     </div>
                                     <div class="progress-steps-form">
                                         <form action="https://hydrogemcapitals.com/user/deposit/now" method="post" enctype="multipart/form-data">
-                                            <input type="hidden" name="_token" value="L3OjUxq6CueXJsGgzB5nQ7yw8tonIwVgVSto9Sur">            
+                                            <input type="hidden" name="_token" value="L3OjUxq6CueXJsGgzB5nQ7yw8tonIwVgVSto9Sur">
                                             <div class="row">
                                                 <div class="col-xl-6 col-md-12 mb-3">
                                                     <label for="gatewaySelect" class="form-label">Payment Method:</label>
@@ -265,17 +731,18 @@
                                                             <option value="coinpayments-usdt">USDT (TRC20)</option>
                                                         </select>
                                                     </div>
-                                                    <div class="input-info-text charge"></div>
+                                                    <div class="input-info-text charge">Charge 0 USDT</div>
                                                 </div>
                                                 <div class="col-xl-6 col-md-12">
                                                     <label for="amount" class="form-label">Enter Amount:</label>
                                                     <div class="input-group">
                                                         <input type="text" name="amount" class="form-control"
-                                                            oninput="this.value = validateDouble(this.value)" aria-label="Amount" id="amount"
-                                                            aria-describedby="basic-addon1">
+                                                               oninput="this.value = validateDouble(this.value)" 
+                                                               aria-label="Amount" id="amount"
+                                                               aria-describedby="basic-addon1">
                                                         <span class="input-group-text" id="basic-addon1">USDT</span>
                                                     </div>
-                                                    <div class="input-info-text min-max"></div>
+                                                    <div class="input-info-text min-max">Minimum 10 USDT and Maximum 10000 USDT</div>
                                                 </div>
                                             </div>
 
@@ -303,7 +770,6 @@
                                                         <td><strong>Total</strong></td>
                                                         <td class="total">0 USDT</td>
                                                     </tr>
-
                                                     <tr class="conversion hidden">
                                                         <td><strong>Conversion Rate</strong></td>
                                                         <td class="conversion-rate">0</td>
@@ -326,183 +792,200 @@
                             </div>
                         </div>
                     </div>
-                    <!--Page Content-->
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Show in 575px in Mobile Screen -->
+    <!-- Mobile Bottom Navigation -->
     <div class="mobile-screen-show">
         <div class="bottom-appbar">
-            <a href="https://hydrogemcapitals.com/user/dashboard" class="">
+            <a href="https://hydrogemcapitals.com/user/dashboard">
                 <i icon-name="layout-dashboard"></i>
+                <span>Dashboard</span>
             </a>
-            <a href="https://hydrogemcapitals.com/user/dashboard" class="active">
+            <a href="https://hydrogemcapitals.com/user/deposit" class="active">
                 <i icon-name="download"></i>
+                <span>Deposit</span>
             </a>
-            <a href="https://hydrogemcapitals.com/user/dashboard" class="">
+            <a href="https://hydrogemcapitals.com/user/invest-logs">
                 <i icon-name="box"></i>
+                <span>Invest</span>
             </a>
-            <a href="https://hydrogemcapitals.com/user/dashboardl" class="">
+            <a href="https://hydrogemcapitals.com/user/referral">
                 <i icon-name="gift"></i>
+                <span>Referral</span>
             </a>
-            <a href="https://hydrogemcapitals.com/user/dashboard" class="">
+            <a href="https://hydrogemcapitals.com/user/settings">
                 <i icon-name="settings"></i>
+                <span>Settings</span>
             </a>
         </div>
     </div>
-    <!-- Show in 575px in Mobile Screen End -->
 </div>
-<!--/Full Layout-->
 
 <script>
-    (function ($) {
-        'use strict';
-
-        // Validate double input
-        window.validateDouble = function(str) {
-            var regex = /^[0-9]*\.?[0-9]*$/;
-            if (regex.test(str)) {
-                return str;
-            } else {
-                return str.substring(0, str.length - 1);
+    // Toggle dropdown function
+    function toggleDropdown(element) {
+        const dropdown = element.nextElementSibling;
+        dropdown.classList.toggle('show');
+        
+        // Close other dropdowns
+        document.querySelectorAll('.dropdown-menu').forEach(item => {
+            if (item !== dropdown) {
+                item.classList.remove('show');
             }
-        }
+        });
+    }
 
-        // Calculate percentage
-        function calPercentage(amount, percentage) {
-            return (Number(amount) * Number(percentage)) / 100;
-        }
-
-        // Image preview function
-        function imagePreview() {
-            $('.image-preview').change(function() {
-                let reader = new FileReader();
-                reader.onload = (e) => { 
-                    $(this).parent().find('.image-preview-output').attr('src', e.target.result); 
-                }
-                reader.readAsDataURL(this.files[0]); 
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!event.target.closest('.dropdown-menu') && !event.target.closest('.item')) {
+            document.querySelectorAll('.dropdown-menu').forEach(item => {
+                item.classList.remove('show');
             });
         }
+    });
 
-        let pusherAppKey = "be09ea9de9775e90aa1b";
-        let pusherAppCluster = "us2";
+    // Color switcher
+    document.querySelector('.color-switcher').addEventListener('click', function() {
+        document.body.classList.toggle('dark-theme');
+        localStorage.setItem('theme', document.body.classList.contains('dark-theme') ? 'dark' : 'light');
+    });
 
-        var notification = new Pusher(pusherAppKey, {
-            encrypted: true,
-            cluster: pusherAppCluster,
-        });
-        var channel = notification.subscribe('user-notification111');
+    // Check for saved theme preference
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
 
-        channel.bind('notification-event', function (result) {
-            playSound();
-            latestNotification();
-            notifyToast(result);
-        });
-
-        function latestNotification() {
-            $.get('https://hydrogemcapitals.com/user/latest-notification', function (data) {
-                $('.user-notifications111').html(data);
-            })
+    // Validate double input
+    function validateDouble(str) {
+        var regex = /^[0-9]*\.?[0-9]*$/;
+        if (regex.test(str)) {
+            return str;
+        } else {
+            return str.substring(0, str.length - 1);
         }
+    }
 
-        function notifyToast(data) {
-            new Notify({
-                status: 'info',
-                title: data.data.title,
-                text: data.data.notice,
-                effect: 'slide',
-                speed: 300,
-                customClass: '',
-                customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>',
-                showIcon: true,
-                showCloseButton: true,
-                autoclose: true,
-                autotimeout: 9000,
-                gap: 20,
-                distance: 20,
-                type: 1,
-                position: 'right bottom',
-                customWrapper: '<div><a href="' + data.data.action_url + '" class="learn-more-link">Explore<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="external-link" class="lucide lucide-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg></a></div>',
-            })
-        }
+    // Calculate percentage
+    function calPercentage(amount, percentage) {
+        return (Number(amount) * Number(percentage)) / 100;
+    }
 
-        function playSound() {
-            var audio = new Audio("https://hydrogemcapitals.com/assets/global/tune/sticky.mp3");
-            audio.play();
-        }
-
-        // Gateway selection handler
-        var globalData;
-        var currency = "USDT";
-        $("#gatewaySelect").on('change', function (e) {
-            e.preventDefault();
-            $('.manual-row').empty();
-            var code = $(this).val();
-            var url = 'https://hydrogemcapitals.com/user/deposit/gateway/:code';
-            url = url.replace(':code', code);
+    // Gateway selection handler
+    var globalData;
+    var currency = "USDT";
+    
+    document.getElementById('gatewaySelect').addEventListener('change', function(e) {
+        e.preventDefault();
+        document.querySelector('.manual-row').innerHTML = '';
+        var code = this.value;
+        
+        // Simulate API call - in a real app, this would be an AJAX request
+        setTimeout(() => {
+            // Mock response data
+            const mockData = {
+                charge: 2,
+                charge_type: 'percentage',
+                minimum_deposit: 10,
+                maximum_deposit: 10000,
+                currency: "USDT",
+                rate: 1,
+                gateway_logo: "https://cryptologos.cc/logos/tether-usdt-logo.png"
+            };
             
-            $.get(url, function (data) {
-                globalData = data;
-
-                if (data.currency === currency) {
-                    $('.conversion').addClass('hidden');
-                } else {
-                    $('.conversion').removeClass('hidden');
-                }
-
-                $('.charge').text('Charge ' + data.charge + ' ' + (data.charge_type === 'percentage' ? '%' : currency));
-                $('.conversion-rate').text('1 ' + currency + ' = ' + data.rate + ' ' + data.currency);
-                $('.min-max').text('Minimum ' + data.minimum_deposit + ' ' + currency + ' and Maximum ' + data.maximum_deposit + ' ' + currency);
+            globalData = mockData;
+            
+            if (mockData.currency === currency) {
+                document.querySelectorAll('.conversion').forEach(el => el.classList.add('hidden'));
+            } else {
+                document.querySelectorAll('.conversion').forEach(el => el.classList.remove('hidden'));
+            }
+            
+            document.querySelector('.charge').textContent = 'Charge ' + mockData.charge + ' ' + 
+                (mockData.charge_type === 'percentage' ? '%' : currency);
                 
-                if (data.gateway_logo) {
-                    $('#logo').html(`<img class="payment-method" src="${data.gateway_logo}" alt="${code}">`);
-                }
-
-                var amount = $('#amount').val();
-                if (Number(amount) > 0) {
-                    updateAmountDetails(amount, data);
-                }
-
-                if (data.credentials !== undefined) {
-                    $('.manual-row').append(data.credentials);
-                    imagePreview();
-                }
-            });
-        });
-
-        // Amount input handler
-        $('#amount').on('keyup', function (e) {
-            var amount = $(this).val();
-            if (globalData) {
-                updateAmountDetails(amount, globalData);
+            document.querySelector('.conversion-rate').textContent = '1 ' + currency + ' = ' + 
+                mockData.rate + ' ' + mockData.currency;
+                
+            document.querySelector('.min-max').textContent = 'Minimum ' + mockData.minimum_deposit + 
+                ' ' + currency + ' and Maximum ' + mockData.maximum_deposit + ' ' + currency;
+                
+            if (mockData.gateway_logo) {
+                document.querySelector('#logo').innerHTML = 
+                    `<img class="payment-method" src="${mockData.gateway_logo}" alt="${code}">`;
             }
-        });
-
-        function updateAmountDetails(amount, data) {
-            $('.amount').text((Number(amount)));
-            $('.currency').text(currency);
-
-            var charge = data.charge_type === 'percentage' ? calPercentage(amount, data.charge) : data.charge;
-            $('.charge2').text(charge + ' ' + currency);
-
-            var total = (Number(amount) + Number(charge));
-            $('.total').text(total + ' ' + currency);
-
-            if (data.rate) {
-                $('.pay-amount').text((total * data.rate).toFixed(8) + ' ' + data.currency);
+            
+            var amount = document.getElementById('amount').value;
+            if (Number(amount) > 0) {
+                updateAmountDetails(amount, mockData);
             }
+        }, 300);
+    });
+
+    // Amount input handler
+    document.getElementById('amount').addEventListener('input', function(e) {
+        var amount = this.value;
+        if (globalData) {
+            updateAmountDetails(amount, globalData);
         }
+    });
 
-        // Color switcher
-        $(".color-switcher").on('click', function () {
-            $("body").toggleClass("dark-theme");
-            var url = '';
-            $.get(url);
-        });
+    function updateAmountDetails(amount, data) {
+        document.querySelector('.amount').textContent = (Number(amount) || 0);
+        document.querySelector('.currency').textContent = currency;
 
-    })(jQuery);
+        var charge = data.charge_type === 'percentage' ? 
+            calPercentage(amount, data.charge) : data.charge;
+            
+        document.querySelector('.charge2').textContent = charge + ' ' + currency;
+
+        var total = (Number(amount || 0) + Number(charge || 0);
+        document.querySelector('.total').textContent = total + ' ' + currency;
+
+        if (data.rate) {
+            document.querySelector('.pay-amount').textContent = 
+                (total * data.rate).toFixed(8) + ' ' + data.currency;
+        }
+    }
+
+    // Initialize with default values
+    document.addEventListener('DOMContentLoaded', function() {
+        // Trigger change event to load default gateway data
+        document.getElementById('gatewaySelect').dispatchEvent(new Event('change'));
+    });
+
+    // Pusher notifications - would need actual Pusher credentials
+    /*
+    let pusherAppKey = "be09ea9de9775e90aa1b";
+    let pusherAppCluster = "us2";
+
+    var notification = new Pusher(pusherAppKey, {
+        encrypted: true,
+        cluster: pusherAppCluster,
+    });
+    var channel = notification.subscribe('user-notification111');
+
+    channel.bind('notification-event', function (result) {
+        playSound();
+        latestNotification();
+        notifyToast(result);
+    });
+
+    function latestNotification() {
+        // AJAX call to get latest notifications
+    }
+
+    function notifyToast(data) {
+        // Show notification toast
+    }
+
+    function playSound() {
+        var audio = new Audio("https://hydrogemcapitals.com/assets/global/tune/sticky.mp3");
+        audio.play();
+    }
+    */
 </script>
 </body>
 </html>
