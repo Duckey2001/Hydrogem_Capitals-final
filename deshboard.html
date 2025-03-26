@@ -135,12 +135,8 @@
         }
 
         .panel-header .logo img {
-            height: 40px;
+            height: 50px; /* Increased logo size */
             transition: var(--transition);
-        }
-
-        .panel-header .logo img:hover {
-            opacity: 0.9;
         }
 
         .nav-wrap {
@@ -341,7 +337,7 @@
             border-color: var(--primary-color);
         }
 
-        /* Side Navigation */
+        /* Side Navigation - Completely redesigned */
         .side-nav {
             background-color: rgba(30, 42, 56, 0.9);
             color: var(--text-light);
@@ -356,6 +352,9 @@
             z-index: 998;
             backdrop-filter: blur(5px);
             border-right: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
 
         .side-nav::-webkit-scrollbar {
@@ -370,9 +369,9 @@
         .side-wallet-box {
             background-color: var(--secondary-light);
             border-radius: 10px;
-            padding: 15px;
-            margin-bottom: 20px;
+            padding: 20px;
             box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
         }
 
         .wallet-name {
@@ -385,6 +384,7 @@
         .wallet-name .name {
             font-weight: bold;
             color: var(--text-light);
+            font-size: 16px;
         }
 
         .wallet-name .default {
@@ -405,7 +405,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
+            padding: 12px 0;
             border-bottom: 1px solid var(--border-color);
         }
 
@@ -416,24 +416,28 @@
         .wallet-info i {
             margin-right: 10px;
             color: var(--primary-color);
+            width: 20px;
+            text-align: center;
         }
 
         .balance {
             font-weight: bold;
             color: var(--text-light);
+            font-size: 14px;
         }
 
         .wallet-id {
             display: flex;
             align-items: center;
             color: var(--text-light);
+            font-size: 14px;
         }
 
         .actions {
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            margin-top: 15px;
+            gap: 12px;
+            margin-top: 20px;
         }
 
         .user-sidebar-btn {
@@ -441,7 +445,7 @@
             color: white;
             border: none;
             border-radius: 5px;
-            padding: 10px;
+            padding: 12px;
             text-align: center;
             text-decoration: none;
             font-size: 14px;
@@ -472,10 +476,13 @@
             list-style: none;
             padding: 0;
             margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
 
         .side-nav-item {
-            margin-bottom: 5px;
+            margin-bottom: 0;
         }
 
         .side-nav-item a {
@@ -486,6 +493,7 @@
             padding: 12px 15px;
             border-radius: 5px;
             transition: var(--transition);
+            font-size: 14px;
         }
 
         .side-nav-item a:hover, .side-nav-item.active a {
@@ -497,6 +505,7 @@
             margin-right: 12px;
             width: 20px;
             text-align: center;
+            font-size: 16px;
         }
 
         .site-btn {
@@ -509,10 +518,12 @@
             display: flex;
             align-items: center;
             padding: 12px 15px;
+            font-size: 14px;
         }
 
         .site-btn i {
             margin-right: 12px;
+            font-size: 16px;
         }
 
         .site-btn:hover {
@@ -951,7 +962,7 @@
         <div class="panel-header">
             <div class="logo">
                 <a href="https://hydrogemcapitals.com">
-                    <img src="https://hydrogemcapitals.com/assets/global/images/logo.png" alt="Hydrogem Capitals Logo">
+                    <img src="https://github.com/Duckey2001/Hydrogem_Capitals-final/blob/main/images/WhatsApp%20Image%202025-02-20%20at%2017.49.30_65046ac8.jpg?raw=true" alt="Hydrogem Capitals Logo">
                 </a>
             </div>
             <div class="nav-wrap">
@@ -1032,9 +1043,9 @@
         </div>
         <!--/Header-->
 
-        <!-- Side Navigation -->
+        <!-- Side Navigation - Completely redesigned -->
         <div class="side-nav">
-            <div class="side-wallet-box default-wallet mb-0">
+            <div class="side-wallet-box">
                 <div class="user-balance-card">
                     <div class="wallet-name">
                         <div class="name">Wallet Balance</div>
