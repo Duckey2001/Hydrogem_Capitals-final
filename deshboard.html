@@ -14,12 +14,12 @@
             --primary-dark: #003366;
             --secondary-color: #1E2A38;
             --secondary-light: #2C3A4B;
-            --background-dark: #153A5F;
+            --background-dark: #0A0F17;
             --text-light: #FFFFFF;
             --text-dark: #333333;
-            --text-gray: #555555;
-            --border-color: #DDDDDD;
-            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --text-gray: #B0B0B0;
+            --border-color: #2A3A50;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
             --transition: all 0.3s ease;
         }
 
@@ -44,13 +44,29 @@
             color: var(--text-light);
             line-height: 1.6;
             transition: var(--transition);
+            background-image: url('https://images.unsplash.com/photo-1639762681057-408e52192e55?q=80&w=2232&auto=format&fit=crop');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* Overlay for better readability */
+        .panel-layout::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(10, 15, 23, 0.85);
+            z-index: -1;
         }
 
         /* Ticker Styles */
         .ticker-container {
             width: 100%;
             overflow: hidden;
-            background: var(--secondary-color);
+            background: rgba(30, 42, 56, 0.9);
             color: var(--text-light);
             padding: 10px 0;
             position: fixed;
@@ -60,6 +76,7 @@
             display: flex;
             align-items: center;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
         }
 
         .ticker-wrapper {
@@ -101,7 +118,7 @@
 
         /* Header Styles */
         .panel-header {
-            background-color: var(--secondary-color);
+            background-color: rgba(30, 42, 56, 0.9);
             color: var(--text-light);
             padding: 15px 30px;
             display: flex;
@@ -114,6 +131,7 @@
             z-index: 999;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             transition: var(--transition);
+            backdrop-filter: blur(5px);
         }
 
         .panel-header .logo img {
@@ -143,33 +161,44 @@
             cursor: pointer;
             margin-right: 20px;
             transition: var(--transition);
+            padding: 5px;
+            border-radius: 5px;
         }
 
         .sidebar-toggle:hover {
+            background-color: var(--secondary-light);
             color: var(--primary-color);
         }
 
         .single-nav-right {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
 
         .color-switcher {
             display: flex;
             gap: 10px;
+            background: var(--secondary-light);
+            padding: 5px;
+            border-radius: 30px;
         }
 
         .color-switcher i {
             cursor: pointer;
-            font-size: 20px;
+            font-size: 16px;
             transition: var(--transition);
             padding: 5px;
             border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .color-switcher i:hover {
-            background-color: var(--secondary-light);
+            background-color: var(--border-color);
         }
 
         .color-switcher i.active {
@@ -185,12 +214,17 @@
             background: none;
             border: none;
             color: var(--text-light);
-            font-size: 20px;
+            font-size: 16px;
             cursor: pointer;
             position: relative;
             transition: var(--transition);
             padding: 5px;
             border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .notification-dot:hover {
@@ -199,8 +233,8 @@
 
         .notification-dot .number {
             position: absolute;
-            top: -5px;
-            right: -5px;
+            top: 0;
+            right: 0;
             background-color: #ff4757;
             color: white;
             border-radius: 50%;
@@ -246,6 +280,11 @@
             color: var(--text-light);
             padding: 10px 0;
             margin: 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .all-noti p:last-child {
+            border-bottom: none;
         }
 
         .dropdown-menu {
@@ -295,6 +334,7 @@
             font-size: 14px;
             cursor: pointer;
             transition: var(--transition);
+            height: 35px;
         }
 
         .site-nice-select:hover {
@@ -303,7 +343,7 @@
 
         /* Side Navigation */
         .side-nav {
-            background-color: var(--secondary-color);
+            background-color: rgba(30, 42, 56, 0.9);
             color: var(--text-light);
             width: 280px;
             padding: 20px;
@@ -314,6 +354,8 @@
             overflow-y: auto;
             transition: var(--transition);
             z-index: 998;
+            backdrop-filter: blur(5px);
+            border-right: 1px solid var(--border-color);
         }
 
         .side-nav::-webkit-scrollbar {
@@ -330,6 +372,7 @@
             border-radius: 10px;
             padding: 15px;
             margin-bottom: 20px;
+            box-shadow: var(--card-shadow);
         }
 
         .wallet-name {
@@ -337,6 +380,11 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+        }
+
+        .wallet-name .name {
+            font-weight: bold;
+            color: var(--text-light);
         }
 
         .wallet-name .default {
@@ -358,7 +406,7 @@
             justify-content: space-between;
             align-items: center;
             padding: 10px 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-bottom: 1px solid var(--border-color);
         }
 
         .wallet-info:last-child {
@@ -367,10 +415,18 @@
 
         .wallet-info i {
             margin-right: 10px;
+            color: var(--primary-color);
         }
 
         .balance {
             font-weight: bold;
+            color: var(--text-light);
+        }
+
+        .wallet-id {
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
         }
 
         .actions {
@@ -472,11 +528,13 @@
         }
 
         .main-content {
-            background-color: var(--secondary-color);
+            background-color: rgba(30, 42, 56, 0.9);
             border-radius: 10px;
             padding: 25px;
             box-shadow: var(--card-shadow);
             transition: var(--transition);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--border-color);
         }
 
         .section-gap {
@@ -520,6 +578,7 @@
             position: relative;
             overflow: hidden;
             box-shadow: var(--card-shadow);
+            background-image: url('https://github.com/Duckey2001/Hydrogem_Capitals-final/blob/main/images/WhatsApp%20Image%202025-02-20%20at%2017.49.30_65046ac8.jpg?raw=true');
         }
 
         .user-ranking::before {
@@ -554,9 +613,9 @@
             z-index: 2;
         }
 
-        .user-ranking .rank img {
-            width: 50px;
-            height: 50px;
+        .user-ranking .rank i {
+            font-size: 50px;
+            color: gold;
         }
 
         /* Site Card */
@@ -566,6 +625,7 @@
             box-shadow: var(--card-shadow);
             height: 100%;
             transition: var(--transition);
+            border: 1px solid var(--border-color);
         }
 
         .site-card-header {
@@ -650,11 +710,12 @@
             display: flex;
             flex-direction: column;
             height: 100%;
+            box-shadow: var(--card-shadow);
         }
 
         .single:hover {
             transform: translateY(-5px);
-            box-shadow: var(--card-shadow);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
             border-color: var(--primary-color);
         }
 
@@ -677,7 +738,7 @@
 
         .content p {
             font-size: 14px;
-            color: var(--text-light);
+            color: var(--text-gray);
             margin: 0 0 15px 0;
         }
 
@@ -1041,11 +1102,11 @@
                         <div class="desktop-screen-show">
                             <div class="row">
                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="user-ranking" style="background: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
+                                    <div class="user-ranking">
                                         <h4>Level 1</h4>
                                         <p>Hydrogem Member</p>
                                         <div class="rank" data-bs-toggle="tooltip" data-bs-placement="top" title="By signing up to the account">
-                                            <i class="fas fa-medal" style="font-size: 50px; color: gold;"></i>
+                                            <i class="fas fa-medal"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -1417,14 +1478,14 @@
         
         // Sample currency ticker data
         const currencies = [
-            { symbol: "USD", rate: "1.00", change: "+0.00%" },
-            { symbol: "EUR", rate: "0.92", change: "-0.12%" },
-            { symbol: "GBP", rate: "0.79", change: "+0.05%" },
-            { symbol: "JPY", rate: "151.45", change: "+0.23%" },
-            { symbol: "AUD", rate: "1.52", change: "-0.08%" },
-            { symbol: "CAD", rate: "1.36", change: "+0.14%" },
-            { symbol: "CHF", rate: "0.90", change: "-0.03%" },
-            { symbol: "CNY", rate: "7.23", change: "+0.17%" }
+            { symbol: "BTC", rate: "61,423.50", change: "+2.34%" },
+            { symbol: "ETH", rate: "3,412.75", change: "+1.56%" },
+            { symbol: "USDT", rate: "1.00", change: "+0.00%" },
+            { symbol: "BNB", rate: "412.30", change: "-0.78%" },
+            { symbol: "SOL", rate: "142.60", change: "+5.23%" },
+            { symbol: "XRP", rate: "0.52", change: "-1.20%" },
+            { symbol: "ADA", rate: "0.45", change: "+0.89%" },
+            { symbol: "DOGE", rate: "0.12", change: "-2.45%" }
         ];
         
         // Populate currency ticker
