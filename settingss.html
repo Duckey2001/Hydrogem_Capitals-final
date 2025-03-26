@@ -44,6 +44,50 @@
             transition: all 0.3s ease;
         }
         
+        .sidebar-header {
+            padding: 0 20px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar-header img {
+            width: 30px;
+            height: 30px;
+            object-fit: contain;
+        }
+        
+        .sidebar-header h3 {
+            font-size: 18px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+        }
+        
+        .sidebar-menu li a {
+            display: block;
+            padding: 12px 20px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu li a:hover {
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-menu li a.active {
+            background-color: rgba(0,206,201,0.2);
+            border-left: 3px solid var(--accent);
+        }
+        
+        .sidebar-menu li a i {
+            width: 20px;
+            margin-right: 10px;
+            text-align: center;
+        }
+        
         /* Main Content Styles */
         .main-content {
             flex: 1;
@@ -167,6 +211,10 @@
             align-items: center;
             justify-content: center;
             cursor: pointer;
+        }
+        
+        .avatar-upload input[type="file"] {
+            display: none;
         }
         
         .profile-details h4 {
@@ -356,6 +404,130 @@
             transform: translateX(26px);
         }
         
+        /* Payment Methods */
+        .payment-methods {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .payment-card {
+            width: 300px;
+            background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+            color: white;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .payment-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/cardboard-flat.png');
+            opacity: 0.05;
+            border-radius: 10px;
+        }
+        
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .card-type {
+            font-size: 14px;
+            font-weight: 500;
+        }
+        
+        .card-chip {
+            width: 40px;
+            height: 30px;
+            background-color: #fdcb6e;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .card-chip i {
+            color: #a37c27;
+        }
+        
+        .card-number {
+            font-size: 18px;
+            letter-spacing: 2px;
+            margin-bottom: 25px;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .card-details {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .card-detail {
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        
+        .card-value {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        
+        .add-card {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 2px dashed #ddd;
+            border-radius: 10px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .add-card:hover {
+            border-color: var(--accent);
+            background-color: rgba(0,206,201,0.05);
+        }
+        
+        .add-card i {
+            font-size: 24px;
+            color: var(--accent);
+            margin-right: 10px;
+        }
+        
+        /* Preferences */
+        .preference-item {
+            margin-bottom: 20px;
+        }
+        
+        .preference-item h4 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .preference-options {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .preference-option {
+            display: flex;
+            align-items: center;
+        }
+        
+        .preference-option input {
+            margin-right: 8px;
+        }
+        
         /* Responsive Design */
         @media (max-width: 768px) {
             .dashboard-container {
@@ -374,6 +546,14 @@
                 width: 100%;
                 margin-bottom: 20px;
             }
+            
+            .payment-methods {
+                flex-direction: column;
+            }
+            
+            .payment-card {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -382,7 +562,8 @@
         <!-- Sidebar (same as dashboard) -->
         <div class="sidebar">
             <div class="sidebar-header">
-                <h3><i class="fas fa-wallet"></i> Hydrogem Capitals</h3>
+                <img src="https://github.com/Duckey2001/Hydrogem_Capitals-final/blob/main/images/WhatsApp%20Image%202025-02-20%20at%2017.49.30_65046ac8.jpg?raw=true" alt="Hydrogem Logo">
+                <h3>Hydrogem Capitals</h3>
             </div>
             <ul class="sidebar-menu">
                 <li><a href="dashboard.html"><i class="fas fa-home"></i> Dashboard</a></li>
@@ -446,10 +627,11 @@
                         
                         <div class="profile-info">
                             <div class="profile-avatar">
-                                <img src="assets/images/user-avatar.jpg" alt="Profile Avatar">
-                                <div class="avatar-upload">
+                                <img src="assets/images/user-avatar.jpg" alt="Profile Avatar" id="profile-avatar">
+                                <label class="avatar-upload">
                                     <i class="fas fa-camera"></i>
-                                </div>
+                                    <input type="file" id="avatar-upload" accept="image/*" style="display: none;">
+                                </label>
                             </div>
                             <div class="profile-details">
                                 <h4>John Doe</h4>
@@ -590,9 +772,195 @@
                             </label>
                         </div>
                     </div>
+                    
+                    <!-- Payment Methods -->
+                    <div class="settings-card" id="payment-methods">
+                        <div class="section-title">
+                            <h3>Payment Methods</h3>
+                            <p>Manage your payment options</p>
+                        </div>
+                        
+                        <div class="payment-methods">
+                            <div class="payment-card">
+                                <div class="card-header">
+                                    <span class="card-type">VISA</span>
+                                    <div class="card-chip">
+                                        <i class="fas fa-microchip"></i>
+                                    </div>
+                                </div>
+                                <div class="card-number">•••• •••• •••• 4242</div>
+                                <div class="card-details">
+                                    <div>
+                                        <div class="card-detail">Card Holder</div>
+                                        <div class="card-value">John Doe</div>
+                                    </div>
+                                    <div>
+                                        <div class="card-detail">Expires</div>
+                                        <div class="card-value">04/26</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="payment-card" style="background: linear-gradient(135deg, #00cec9, #81ecec);">
+                                <div class="card-header">
+                                    <span class="card-type">MASTERCARD</span>
+                                    <div class="card-chip">
+                                        <i class="fas fa-microchip"></i>
+                                    </div>
+                                </div>
+                                <div class="card-number">•••• •••• •••• 5555</div>
+                                <div class="card-details">
+                                    <div>
+                                        <div class="card-detail">Card Holder</div>
+                                        <div class="card-value">John Doe</div>
+                                    </div>
+                                    <div>
+                                        <div class="card-detail">Expires</div>
+                                        <div class="card-value">12/25</div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="add-card">
+                                <i class="fas fa-plus"></i>
+                                <span>Add New Card</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Add New Payment Method</label>
+                            <select class="form-control">
+                                <option>Credit/Debit Card</option>
+                                <option>Bank Transfer</option>
+                                <option>PayPal</option>
+                                <option>Crypto Wallet</option>
+                            </select>
+                        </div>
+                        
+                        <button class="btn-save">Save Payment Method</button>
+                    </div>
+                    
+                    <!-- Preferences -->
+                    <div class="settings-card" id="preferences">
+                        <div class="section-title">
+                            <h3>Account Preferences</h3>
+                            <p>Customize your account experience</p>
+                        </div>
+                        
+                        <div class="preference-item">
+                            <h4>Theme Preference</h4>
+                            <div class="preference-options">
+                                <div class="preference-option">
+                                    <input type="radio" id="theme-light" name="theme" checked>
+                                    <label for="theme-light">Light Mode</label>
+                                </div>
+                                <div class="preference-option">
+                                    <input type="radio" id="theme-dark" name="theme">
+                                    <label for="theme-dark">Dark Mode</label>
+                                </div>
+                                <div class="preference-option">
+                                    <input type="radio" id="theme-system" name="theme">
+                                    <label for="theme-system">System Default</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="preference-item">
+                            <h4>Dashboard Layout</h4>
+                            <div class="preference-options">
+                                <div class="preference-option">
+                                    <input type="radio" id="layout-default" name="layout" checked>
+                                    <label for="layout-default">Default</label>
+                                </div>
+                                <div class="preference-option">
+                                    <input type="radio" id="layout-compact" name="layout">
+                                    <label for="layout-compact">Compact</label>
+                                </div>
+                                <div class="preference-option">
+                                    <input type="radio" id="layout-detailed" name="layout">
+                                    <label for="layout-detailed">Detailed</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="preference-item">
+                            <h4>Language</h4>
+                            <div class="form-group">
+                                <select class="form-control">
+                                    <option>English</option>
+                                    <option>Spanish</option>
+                                    <option>French</option>
+                                    <option>German</option>
+                                    <option>Chinese</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="preference-item">
+                            <h4>Currency</h4>
+                            <div class="form-group">
+                                <select class="form-control">
+                                    <option>US Dollar (USD)</option>
+                                    <option>Euro (EUR)</option>
+                                    <option>British Pound (GBP)</option>
+                                    <option>Bitcoin (BTC)</option>
+                                    <option>Ethereum (ETH)</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <button class="btn-save">Save Preferences</button>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    <script>
+        // Profile picture upload functionality
+        document.getElementById('avatar-upload').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    document.getElementById('profile-avatar').src = event.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        });
+        
+        // Tab switching functionality
+        document.querySelectorAll('.menu-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // Remove active class from all links
+                document.querySelectorAll('.menu-link').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                this.classList.add('active');
+                
+                // Hide all settings cards
+                document.querySelectorAll('.settings-card').forEach(card => {
+                    card.style.display = 'none';
+                });
+                
+                // Show the selected card
+                const target = this.getAttribute('href');
+                document.querySelector(target).style.display = 'block';
+            });
+        });
+        
+        // Initialize - show only the active tab
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.settings-card').forEach(card => {
+                if (card.id !== 'profile') {
+                    card.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
