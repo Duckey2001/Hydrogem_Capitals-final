@@ -23,6 +23,19 @@
             --transition: all 0.3s ease;
         }
 
+        /* Light Theme Variables */
+        [data-theme="light"] {
+            --primary-color: #0056B3;
+            --primary-dark: #003366;
+            --secondary-color: #F5F7FA;
+            --secondary-light: #E1E5EB;
+            --background-dark: #FFFFFF;
+            --text-light: #333333;
+            --text-dark: #111111;
+            --text-gray: #666666;
+            --border-color: #CCCCCC;
+        }
+
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -30,6 +43,7 @@
             background-color: var(--background-dark);
             color: var(--text-light);
             line-height: 1.6;
+            transition: var(--transition);
         }
 
         /* Ticker Styles */
@@ -99,6 +113,7 @@
             right: 0;
             z-index: 999;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
         }
 
         .panel-header .logo img {
@@ -140,14 +155,26 @@
             gap: 20px;
         }
 
+        .color-switcher {
+            display: flex;
+            gap: 10px;
+        }
+
         .color-switcher i {
             cursor: pointer;
             font-size: 20px;
             transition: var(--transition);
+            padding: 5px;
+            border-radius: 50%;
         }
 
         .color-switcher i:hover {
-            color: var(--primary-color);
+            background-color: var(--secondary-light);
+        }
+
+        .color-switcher i.active {
+            background-color: var(--primary-color);
+            color: white;
         }
 
         .user-notifications111 {
@@ -162,10 +189,12 @@
             cursor: pointer;
             position: relative;
             transition: var(--transition);
+            padding: 5px;
+            border-radius: 50%;
         }
 
         .notification-dot:hover {
-            color: var(--primary-color);
+            background-color: var(--secondary-light);
         }
 
         .notification-dot .number {
@@ -185,9 +214,9 @@
 
         .notification-pop {
             position: absolute;
-            top: 40px;
+            top: 50px;
             right: 0;
-            background: #FFFFFF;
+            background: var(--secondary-color);
             border: 1px solid var(--border-color);
             border-radius: 5px;
             padding: 15px;
@@ -205,7 +234,7 @@
             font-size: 16px;
             font-weight: bold;
             margin-bottom: 10px;
-            color: var(--text-dark);
+            color: var(--text-light);
             display: flex;
             justify-content: space-between;
             padding-bottom: 10px;
@@ -214,20 +243,20 @@
 
         .all-noti p {
             font-size: 14px;
-            color: var(--text-gray);
+            color: var(--text-light);
             padding: 10px 0;
             margin: 0;
         }
 
         .dropdown-menu {
-            background: #FFFFFF;
+            background: var(--secondary-color);
             border: 1px solid var(--border-color);
             border-radius: 5px;
             padding: 10px 0;
             box-shadow: var(--card-shadow);
             position: absolute;
             right: 0;
-            top: 40px;
+            top: 50px;
             min-width: 200px;
             z-index: 1001;
             display: none;
@@ -238,7 +267,7 @@
         }
 
         .dropdown-item {
-            color: var(--text-dark);
+            color: var(--text-light);
             padding: 10px 15px;
             text-decoration: none;
             display: flex;
@@ -253,14 +282,14 @@
         }
 
         .dropdown-item:hover {
-            background-color: #F4F7FA;
+            background-color: var(--secondary-light);
             color: var(--primary-color);
         }
 
         .site-nice-select {
             background-color: var(--secondary-light);
             color: var(--text-light);
-            border: 1px solid var(--secondary-light);
+            border: 1px solid var(--border-color);
             border-radius: 5px;
             padding: 8px 15px;
             font-size: 14px;
@@ -443,10 +472,11 @@
         }
 
         .main-content {
-            background-color: #FFFFFF;
+            background-color: var(--secondary-color);
             border-radius: 10px;
             padding: 25px;
             box-shadow: var(--card-shadow);
+            transition: var(--transition);
         }
 
         .section-gap {
@@ -531,10 +561,11 @@
 
         /* Site Card */
         .site-card {
-            background-color: white;
+            background-color: var(--secondary-light);
             border-radius: 10px;
             box-shadow: var(--card-shadow);
             height: 100%;
+            transition: var(--transition);
         }
 
         .site-card-header {
@@ -547,6 +578,7 @@
             font-size: 18px;
             display: flex;
             align-items: center;
+            color: var(--text-light);
         }
 
         .site-card-header i {
@@ -569,6 +601,8 @@
             border: 1px solid var(--border-color);
             border-radius: 5px 0 0 5px;
             font-size: 14px;
+            background-color: var(--secondary-color);
+            color: var(--text-light);
         }
 
         .referral-link-form button {
@@ -593,7 +627,7 @@
 
         .referral-joined {
             font-size: 14px;
-            color: var(--text-gray);
+            color: var(--text-light);
             margin: 0;
         }
 
@@ -606,7 +640,7 @@
         }
 
         .single {
-            background: #FFFFFF;
+            background: var(--secondary-light);
             border: 1px solid var(--border-color);
             border-radius: 10px;
             padding: 25px 20px;
@@ -633,7 +667,7 @@
         .content h4 {
             font-size: 20px;
             margin: 10px 0;
-            color: var(--text-dark);
+            color: var(--text-light);
         }
 
         .content h4 b {
@@ -643,7 +677,7 @@
 
         .content p {
             font-size: 14px;
-            color: var(--text-gray);
+            color: var(--text-light);
             margin: 0 0 15px 0;
         }
 
@@ -662,6 +696,113 @@
 
         .invest-now-btn:hover {
             background-color: var(--primary-dark);
+        }
+
+        /* Wallet Transfer Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1002;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .modal-content {
+            background-color: var(--secondary-color);
+            margin: 10% auto;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .modal-header h2 {
+            margin: 0;
+            color: var(--text-light);
+        }
+
+        .close {
+            color: var(--text-light);
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--primary-color);
+        }
+
+        .modal-body {
+            padding: 20px 0;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-light);
+        }
+
+        .form-group select, 
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 5px;
+            background-color: var(--secondary-light);
+            color: var(--text-light);
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: var(--transition);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background-color: var(--secondary-light);
+            color: var(--text-light);
+            margin-right: 10px;
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--border-color);
         }
 
         /* Responsive Design */
@@ -736,7 +877,7 @@
         }
     </style>
 </head>
-<body class="dark-theme">
+<body class="dark-theme" data-theme="dark">
     <div class="ticker-container">
         <div class="ticker-wrapper" id="currencyTicker">
             Loading currency rates...
@@ -755,14 +896,14 @@
             <div class="nav-wrap">
                 <div class="nav-left">
                     <button class="sidebar-toggle">
-                        <i class="fas fa-arrow-left"></i>
+                        <i class="fas fa-bars"></i>
                     </button>
                 </div>
                 <div class="nav-right">
                     <div class="single-nav-right">
                         <div class="single-right">
                             <div class="color-switcher">
-                                <i class="fas fa-moon dark-icon" data-mode="dark"></i>
+                                <i class="fas fa-moon dark-icon active" data-mode="dark"></i>
                                 <i class="fas fa-sun light-icon" data-mode="light"></i>
                             </div>
                         </div>
@@ -771,21 +912,29 @@
                             <div class="single-nav-right user-notifications111">
                                 <button type="button" class="item notification-dot" onclick="toggleNotifications()">
                                     <i class="fas fa-bell"></i>
-                                    <div class="number">0</div>
+                                    <div class="number">3</div>
                                 </button>
                                 <div class="dropdown-menu notification-pop">
-                                    <div class="noti-head">Notifications <span>0</span></div>
+                                    <div class="noti-head">Notifications <span>3</span></div>
                                     <div class="all-noti">
-                                        <p>Notification Not Found</p>
+                                        <p>New investment plan available</p>
+                                        <p>Your deposit has been confirmed</p>
+                                        <p>Referral bonus received</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
 
                         <div class="single-right">
-                            <select name="language" class="site-nice-select"
-                                    onchange="window.location.href=this.options[this.selectedIndex].value;">
-                                <option value="https://hydrogemcapitals.com/language-update?name=en" selected>English</option>
+                            <select name="language" class="site-nice-select" id="languageSelect">
+                                <option value="en">English</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                                <option value="de">Deutsch</option>
+                                <option value="zh">中文</option>
+                                <option value="ja">日本語</option>
+                                <option value="ru">Русский</option>
+                                <option value="ar">العربية</option>
                             </select>
                         </div>
                         <div class="single-right">
@@ -827,16 +976,20 @@
             <div class="side-wallet-box default-wallet mb-0">
                 <div class="user-balance-card">
                     <div class="wallet-name">
-                        <div class="name"></div>
+                        <div class="name">Wallet Balance</div>
                         <div class="default"><i class="fas fa-wallet"></i><span>Wallet</span></div>
                     </div>
                     <div class="wallet-info">
                         <div class="wallet-id"><i class="fas fa-wallet"></i>Main Wallet</div>
-                        <div class="balance">USDT0</div>
+                        <div class="balance">USDT <span id="mainWalletBalance">1,250.00</span></div>
                     </div>
                     <div class="wallet-info">
                         <div class="wallet-id"><i class="fas fa-landmark"></i>Profit Wallet</div>
-                        <div class="balance">USDT0</div>
+                        <div class="balance">USDT <span id="profitWalletBalance">3,750.50</span></div>
+                    </div>
+                    <div class="wallet-info">
+                        <div class="wallet-id"><i class="fas fa-exchange-alt"></i>Transfer Funds</div>
+                        <div class="balance"><button onclick="openTransferModal()" style="background: none; border: none; color: var(--primary-color); cursor: pointer;">Transfer</button></div>
                     </div>
                 </div>
                 <div class="actions">
@@ -888,11 +1041,11 @@
                         <div class="desktop-screen-show">
                             <div class="row">
                                 <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
-                                    <div class="user-ranking" style="background: url(https://hydrogemcapitals.com/assets/frontend/images/user.png);">
+                                    <div class="user-ranking" style="background: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');">
                                         <h4>Level 1</h4>
                                         <p>Hydrogem Member</p>
                                         <div class="rank" data-bs-toggle="tooltip" data-bs-placement="top" title="By signing up to the account">
-                                            <img src="https://hydrogemcapitals.com/assets/global/images/sCQgIyl0OKzFiO73nmWF.svg" alt="">
+                                            <i class="fas fa-medal" style="font-size: 50px; color: gold;"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -904,14 +1057,14 @@
                                         <div class="site-card-body">
                                             <div class="referral-link">
                                                 <div class="referral-link-form">
-                                                    <input type="text" value="https://hydrogemcapitals.com/register?invite=esf8irmtzk" id="refLink" readonly/>
+                                                    <input type="text" value="https://hydrogemcapitals.com/register?invite=user123456" id="refLink" readonly/>
                                                     <button type="button" onclick="copyRef()">
                                                         <i class="fas fa-copy"></i>
                                                         <span id="copy">Copy</span>
                                                     </button>
                                                 </div>
                                                 <p class="referral-joined">
-                                                    0 People have joined using this URL.
+                                                    <span id="referralCount">5</span> People have joined using this URL.
                                                 </p>
                                             </div>
                                         </div>
@@ -924,7 +1077,7 @@
                                     <div class="single clickable-stat" onclick="handleStatClick('All Transactions')">
                                         <div class="icon"><i class="fas fa-exchange-alt"></i></div>
                                         <div class="content">
-                                            <h4><span class="count">0</span></h4>
+                                            <h4><span class="count">12</span></h4>
                                             <p>All Transactions</p>
                                         </div>
                                         <button class="invest-now-btn" onclick="handleInvestClick('All Transactions')">View more</button>
@@ -936,7 +1089,7 @@
                                     <div class="single clickable-stat" onclick="handleStatClick('Total Deposit')">
                                         <div class="icon"><i class="fas fa-coins"></i></div>
                                         <div class="content">
-                                            <h4><b>USDT</b><span class="count">0</span></h4>
+                                            <h4><b>USDT</b><span class="count">5,000.00</span></h4>
                                             <p>Total Deposit</p>
                                         </div>
                                         <button class="invest-now-btn" onclick="handleInvestClick('Total Deposit')">View more</button>
@@ -948,7 +1101,7 @@
                                     <div class="single clickable-stat" onclick="handleStatClick('Total Investment')">
                                         <div class="icon"><i class="fas fa-chart-pie"></i></div>
                                         <div class="content">
-                                            <h4><b>USDT</b><span class="count">0</span></h4>
+                                            <h4><b>USDT</b><span class="count">3,250.00</span></h4>
                                             <p>Total Investment</p>
                                         </div>
                                         <button class="invest-now-btn" onclick="handleInvestClick('Total Investment')">View more</button>
@@ -960,7 +1113,7 @@
                                     <div class="single clickable-stat" onclick="handleStatClick('Total Points')">
                                         <div class="icon"><i class="fas fa-star"></i></div>
                                         <div class="content">
-                                            <h4><span class="count">0</span></h4>
+                                            <h4><span class="count">1,250</span></h4>
                                             <p>Total Points</p>
                                         </div>
                                         <button class="invest-now-btn" onclick="handleInvestClick('Total Points')">View more</button>
@@ -972,7 +1125,7 @@
                                     <div class="single clickable-stat" onclick="handleStatClick('Total Withdraw')">
                                         <div class="icon"><i class="fas fa-money-check-alt"></i></div>
                                         <div class="content">
-                                            <h4><b>USDT</b><span class="count">0</span></h4>
+                                            <h4><b>USDT</b><span class="count">1,750.50</span></h4>
                                             <p>Total Withdraw</p>
                                         </div>
                                         <button class="invest-now-btn" onclick="handleInvestClick('Total Withdraw')">View more</button>
@@ -984,7 +1137,7 @@
                                     <div class="single clickable-stat" onclick="handleStatClick('Referral Bonus')">
                                         <div class="icon"><i class="fas fa-gift"></i></div>
                                         <div class="content">
-                                            <h4><b>USDT</b><span class="count">0</span></h4>
+                                            <h4><b>USDT</b><span class="count">500.00</span></h4>
                                             <p>Referral Bonus</p>
                                         </div>
                                         <button class="invest-now-btn" onclick="handleInvestClick('Referral Bonus')">View more</button>
@@ -996,7 +1149,7 @@
                                     <div class="single clickable-stat" onclick="handleStatClick('Deposit Bonus')">
                                         <div class="icon"><i class="fas fa-piggy-bank"></i></div>
                                         <div class="content">
-                                            <h4><b>USDT</b><span class="count">0</span></h4>
+                                            <h4><b>USDT</b><span class="count">250.00</span></h4>
                                             <p>Deposit Bonus</p>
                                         </div>
                                         <button class="invest-now-btn" onclick="handleInvestClick('Deposit Bonus')">View more</button>
@@ -1008,7 +1161,7 @@
                                     <div class="single clickable-stat" onclick="handleStatClick('Investment Bonus')">
                                         <div class="icon"><i class="fas fa-trophy"></i></div>
                                         <div class="content">
-                                            <h4><b>USDT</b><span class="count">0</span></h4>
+                                            <h4><b>USDT</b><span class="count">750.00</span></h4>
                                             <p>Investment Bonus</p>
                                         </div>
                                         <button class="invest-now-btn" onclick="handleInvestClick('Investment Bonus')">View more</button>
@@ -1020,7 +1173,7 @@
                                     <div class="single clickable-stat" onclick="handleStatClick('Total Referral')">
                                         <div class="icon"><i class="fas fa-users"></i></div>
                                         <div class="content">
-                                            <h4 class="count">0</h4>
+                                            <h4 class="count">5</h4>
                                             <p>Total Referral</p>
                                         </div>
                                         <button class="invest-now-btn" onclick="handleInvestClick('Total Referral')">View more</button>
@@ -1034,7 +1187,71 @@
         </div>
     </div>
 
+    <!-- Wallet Transfer Modal -->
+    <div id="transferModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Transfer Funds Between Wallets</h2>
+                <span class="close" onclick="closeTransferModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="transferForm">
+                    <div class="form-group">
+                        <label for="fromWallet">From Wallet:</label>
+                        <select id="fromWallet" required>
+                            <option value="">Select Wallet</option>
+                            <option value="main">Main Wallet (USDT 1,250.00)</option>
+                            <option value="profit">Profit Wallet (USDT 3,750.50)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="toWallet">To Wallet:</label>
+                        <select id="toWallet" required>
+                            <option value="">Select Wallet</option>
+                            <option value="main">Main Wallet</option>
+                            <option value="profit">Profit Wallet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount (USDT):</label>
+                        <input type="number" id="amount" min="0.01" step="0.01" placeholder="Enter amount" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeTransferModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="transferFunds()">Transfer</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Theme switcher functionality
+        const darkIcon = document.querySelector('.dark-icon');
+        const lightIcon = document.querySelector('.light-icon');
+        const body = document.body;
+        
+        // Check for saved theme preference or use preferred color scheme
+        const savedTheme = localStorage.getItem('theme') || 
+                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        setTheme(savedTheme);
+        
+        function setTheme(theme) {
+            body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
+            
+            if (theme === 'dark') {
+                darkIcon.classList.add('active');
+                lightIcon.classList.remove('active');
+            } else {
+                lightIcon.classList.add('active');
+                darkIcon.classList.remove('active');
+            }
+        }
+        
+        darkIcon.addEventListener('click', () => setTheme('dark'));
+        lightIcon.addEventListener('click', () => setTheme('light'));
+        
         // Toggle dropdown menus
         function toggleDropdown(button) {
             const dropdown = button.nextElementSibling;
@@ -1069,6 +1286,7 @@
             }
         });
 
+        // Copy referral link function
         function copyRef() {
             var copyText = document.getElementById("refLink");
             copyText.select();
@@ -1085,9 +1303,34 @@
             });
         }
 
+        // Handle stat card clicks
         function handleStatClick(statName) {
             // Here you can add more functionality, like redirecting to a detailed page
             console.log("Stat clicked: " + statName);
+            switch(statName) {
+                case 'All Transactions':
+                    window.location.href = 'depositAndwithdrew.html';
+                    break;
+                case 'Total Deposit':
+                    window.location.href = 'money.html';
+                    break;
+                case 'Total Investment':
+                    window.location.href = 'investmentPlan.html';
+                    break;
+                case 'Total Withdraw':
+                    window.location.href = 'withdraw.html';
+                    break;
+                case 'Referral Bonus':
+                case 'Deposit Bonus':
+                case 'Investment Bonus':
+                    window.location.href = 'trackInvestment.html';
+                    break;
+                case 'Total Referral':
+                    // Show referral page or modal
+                    break;
+                default:
+                    console.log("No specific action for: " + statName);
+            }
         }
 
         function handleInvestClick(statName) {
@@ -1095,8 +1338,82 @@
             event.stopPropagation();
             
             // Here you can add more functionality for handling "Invest Now" button clicks
-            console.log("Invest Now clicked for: " + statName);
+            console.log("View more clicked for: " + statName);
+            handleStatClick(statName); // Reuse the same function for now
         }
+        
+        // Generate a unique referral link for each user
+        function generateReferralLink() {
+            const userId = Math.random().toString(36).substring(2, 10) + Math.random().toString(36).substring(2, 10);
+            const refLink = `https://hydrogemcapitals.com/register?invite=${userId}`;
+            document.getElementById('refLink').value = refLink;
+        }
+        
+        // Wallet transfer modal functions
+        function openTransferModal() {
+            document.getElementById('transferModal').style.display = 'block';
+        }
+        
+        function closeTransferModal() {
+            document.getElementById('transferModal').style.display = 'none';
+            document.getElementById('transferForm').reset();
+        }
+        
+        function transferFunds() {
+            const fromWallet = document.getElementById('fromWallet').value;
+            const toWallet = document.getElementById('toWallet').value;
+            const amount = parseFloat(document.getElementById('amount').value);
+            
+            if (!fromWallet || !toWallet || !amount || amount <= 0) {
+                alert('Please fill all fields with valid values');
+                return;
+            }
+            
+            if (fromWallet === toWallet) {
+                alert('Cannot transfer to the same wallet');
+                return;
+            }
+            
+            // Here you would typically make an API call to process the transfer
+            // For demo purposes, we'll just update the UI
+            let fromBalance, toBalance;
+            
+            if (fromWallet === 'main') {
+                fromBalance = parseFloat(document.getElementById('mainWalletBalance').textContent.replace(/,/g, ''));
+                if (amount > fromBalance) {
+                    alert('Insufficient funds in Main Wallet');
+                    return;
+                }
+                document.getElementById('mainWalletBalance').textContent = (fromBalance - amount).toFixed(2);
+            } else {
+                fromBalance = parseFloat(document.getElementById('profitWalletBalance').textContent.replace(/,/g, ''));
+                if (amount > fromBalance) {
+                    alert('Insufficient funds in Profit Wallet');
+                    return;
+                }
+                document.getElementById('profitWalletBalance').textContent = (fromBalance - amount).toFixed(2);
+            }
+            
+            if (toWallet === 'main') {
+                toBalance = parseFloat(document.getElementById('mainWalletBalance').textContent.replace(/,/g, ''));
+                document.getElementById('mainWalletBalance').textContent = (toBalance + amount).toFixed(2);
+            } else {
+                toBalance = parseFloat(document.getElementById('profitWalletBalance').textContent.replace(/,/g, ''));
+                document.getElementById('profitWalletBalance').textContent = (toBalance + amount).toFixed(2);
+            }
+            
+            alert(`Successfully transferred USDT ${amount.toFixed(2)}`);
+            closeTransferModal();
+        }
+        
+        // Language switcher functionality
+        document.getElementById('languageSelect').addEventListener('change', function() {
+            const language = this.value;
+            // In a real application, you would make an API call to change the language
+            // and reload the content in the selected language
+            console.log("Language changed to: " + language);
+            alert("Language changed to: " + language);
+        });
         
         // Sample currency ticker data
         const currencies = [
@@ -1120,6 +1437,33 @@
                 </span>
             </div>
         `).join('');
+        
+        // Initialize the page
+        window.onload = function() {
+            generateReferralLink();
+            
+            // Close modals when clicking outside
+            window.onclick = function(event) {
+                if (event.target == document.getElementById('transferModal')) {
+                    closeTransferModal();
+                }
+            }
+            
+            // Prevent selecting same wallet in transfer form
+            document.getElementById('fromWallet').addEventListener('change', function() {
+                const toWallet = document.getElementById('toWallet');
+                for (let i = 0; i < toWallet.options.length; i++) {
+                    toWallet.options[i].disabled = toWallet.options[i].value === this.value;
+                }
+            });
+            
+            document.getElementById('toWallet').addEventListener('change', function() {
+                const fromWallet = document.getElementById('fromWallet');
+                for (let i = 0; i < fromWallet.options.length; i++) {
+                    fromWallet.options[i].disabled = fromWallet.options[i].value === this.value;
+                }
+            });
+        };
     </script>
 </body>
 </html>
