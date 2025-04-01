@@ -4,66 +4,570 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hydrogem Capitals - Dashboard</title>
-    <!-- Include FontAwesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lucide/1.0.0/css/lucide.min.css">
     <style>
-        /* [Previous CSS remains exactly the same] */
-        /* All your existing CSS styles remain unchanged */
-        /* I'm keeping them the same to maintain your design */
-        
-        /* Additional styles for better alignment */
-        .single .content h4 {
+        :root {
+            --primary-color: #0056B3;
+            --primary-dark: #003366;
+            --secondary-color: #1E2A38;
+            --secondary-light: #2C3A4B;
+            --background-dark: #0A0F17;
+            --text-light: #FFFFFF;
+            --text-dark: #333333;
+            --text-gray: #B0B0B0;
+            --border-color: #2A3A50;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+        }
+
+        [data-theme="light"] {
+            --primary-color: #0056B3;
+            --primary-dark: #003366;
+            --secondary-color: #F5F7FA;
+            --secondary-light: #E1E5EB;
+            --background-dark: #FFFFFF;
+            --text-light: #333333;
+            --text-dark: #111111;
+            --text-gray: #666666;
+            --border-color: #CCCCCC;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            transition: var(--transition);
+            background-image: url('images/background.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+        }
+
+        /* [Previous CSS styles remain unchanged] */
+        /* ... (include all your previous CSS styles here) ... */
+
+        /* New styles for better alignment */
+        .single .content {
             display: flex;
             flex-direction: column;
             align-items: center;
             gap: 5px;
         }
-        
+
+        .single .content h4 {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0;
+        }
+
         .single .content h4 b {
             font-size: 14px;
             opacity: 0.8;
+            font-weight: normal;
         }
-        
+
         .single .content h4 .count {
             font-size: 24px;
             font-weight: bold;
         }
-        
+
         .invest-now-btn {
             margin-top: 15px;
+            width: 100%;
         }
     </style>
 </head>
 <body class="dark-theme" data-theme="dark">
-    <!-- [Previous HTML structure remains exactly the same until the script section] -->
-    <!-- All your existing HTML remains unchanged -->
-    
+    <!-- Ticker -->
+    <div class="ticker-container">
+        <div class="ticker-wrapper" id="currencyTicker">
+            Loading currency rates...
+        </div>
+    </div>
+
+    <!-- Main Layout -->
+    <div class="panel-layout">
+        <!-- Header -->
+        <div class="panel-header">
+            <div class="logo">
+                <a href="index.html">
+                    <img src="images/logo.jpg" alt="Hydrogem Capitals Logo">
+                </a>
+            </div>
+            <div class="nav-wrap">
+                <div class="nav-left">
+                    <button class="sidebar-toggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+                <div class="nav-right">
+                    <div class="single-nav-right">
+                        <div class="single-right">
+                            <div class="color-switcher">
+                                <i class="fas fa-moon dark-icon active" data-mode="dark"></i>
+                                <i class="fas fa-sun light-icon" data-mode="light"></i>
+                            </div>
+                        </div>
+                       
+                        <div class="plan-card">
+                            <div class="single-nav-right user-notifications111">
+                                <button type="button" class="item notification-dot" onclick="toggleNotifications()">
+                                    <i class="fas fa-bell"></i>
+                                    <div class="number">3</div>
+                                </button>
+                                <div class="dropdown-menu notification-pop">
+                                    <div class="noti-head">Notifications <span>3</span></div>
+                                    <div class="all-noti">
+                                        <p>New investment plan available</p>
+                                        <p>Your deposit has been confirmed</p>
+                                        <p>Referral bonus received</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="single-right">
+                            <select name="language" class="site-nice-select" id="languageSelect">
+                                <option value="en">English</option>
+                                <option value="es">Español</option>
+                                <option value="fr">Français</option>
+                            </select>
+                        </div>
+                        <div class="single-right">
+                            <button type="button" class="item" onclick="toggleDropdown(this)">
+                                <i class="fas fa-user"></i>
+                            </button>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="settings.html" class="dropdown-item"><i class="fas fa-cog"></i>Settings</a>
+                                </li>
+                                <li>
+                                    <a href="change-password.html" class="dropdown-item">
+                                        <i class="fas fa-lock"></i>Change Password
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="support.html" class="dropdown-item">
+                                        <i class="fas fa-headset"></i>Support Tickets
+                                    </a>
+                                </li>
+                                <li class="logout">
+                                    <a href="#" class="dropdown-item" id="logout-btn">
+                                        <i class="fas fa-sign-out-alt"></i>Logout
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Side Navigation -->
+        <div class="side-nav">
+            <div class="side-wallet-box">
+                <div class="user-balance-card">
+                    <div class="wallet-name">
+                        <div class="name">Wallet Balance</div>
+                        <div class="default"><i class="fas fa-wallet"></i><span>Wallet</span></div>
+                    </div>
+                    <div class="wallet-info">
+                        <div class="wallet-id"><i class="fas fa-wallet"></i>Main Wallet</div>
+                        <div class="balance">USDT <span id="mainWalletBalance">0.00</span></div>
+                    </div>
+                    <div class="wallet-info">
+                        <div class="wallet-id"><i class="fas fa-landmark"></i>Profit Wallet</div>
+                        <div class="balance">USDT <span id="profitWalletBalance">0.00</span></div>
+                    </div>
+                    <div class="wallet-info">
+                        <div class="wallet-id"><i class="fas fa-exchange-alt"></i>Transfer Funds</div>
+                        <div class="balance"><button onclick="openTransferModal()" style="background: none; border: none; color: var(--primary-color); cursor: pointer;">Transfer</button></div>
+                    </div>
+                </div>
+                <div class="actions">
+                    <a href="deposit.html" class="user-sidebar-btn"><i class="fas fa-plus"></i>Deposit</a>
+                    <a href="investment-plans.html" class="user-sidebar-btn red-btn"><i class="fas fa-chart-line"></i>Start to Invest</a>
+                </div>
+            </div>
+            <div class="side-nav-inside">
+                <ul class="side-nav-menu"> 
+                    <li class="side-nav-item active">
+                        <a href="dashboard.html"><i class="fas fa-home"></i><span>Dashboard</span></a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="investment-plans.html"><i class="fas fa-chart-pie"></i><span>Investment Plans</span></a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="transactions.html"><i class="fas fa-exchange-alt"></i><span>Transactions</span></a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="deposit.html"><i class="fas fa-coins"></i><span>Deposit</span></a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="track-investment.html"><i class="fas fa-search-dollar"></i><span>Track Investment</span></a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="wallet-exchange.html"><i class="fas fa-wallet"></i><span>Wallet Exchange</span></a>
+                    </li>
+                    <li class="side-nav-item">
+                        <a href="withdraw.html"><i class="fas fa-money-check-alt"></i><span>Withdraw</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="page-container">
+            <div class="main-content">
+                <div class="section-gap">
+                    <div class="container-fluid">
+                        <div class="desktop-screen-show">
+                            <div class="row">
+                                <div class="col-xl-3 col-lg-3 col-md-4 col-sm-6 col-12">
+                                    <div class="user-ranking">
+                                        <h4>Level 1</h4>
+                                        <p>Hydrogem Member</p>
+                                        <div class="rank" title="By signing up to the account">
+                                            <i class="fas fa-medal"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-xl-9 col-lg-9 col-md-8 col-sm-12 col-12"> 
+                                    <div class="site-card">
+                                        <div class="site-card-header">
+                                            <h3 class="title"><i class="fas fa-link"></i>Referral URL</h3>
+                                        </div>
+                                        <div class="site-card-body">
+                                            <div class="referral-link">
+                                                <div class="referral-link-form">
+                                                    <input type="text" id="refLink" readonly/>
+                                                    <button type="button" onclick="copyRef()">
+                                                        <i class="fas fa-copy"></i>
+                                                        <span id="copy">Copy</span>
+                                                    </button>
+                                                </div>
+                                                <p class="referral-joined">
+                                                    <span id="referralCount">0</span> People have joined using this URL.
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row user-cards">
+                                <!-- All Transactions -->
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="single" onclick="handleStatClick('transactions')">
+                                        <div class="icon"><i class="fas fa-exchange-alt"></i></div>
+                                        <div class="content">
+                                            <h4><span class="count">0</span></h4>
+                                            <p>All Transactions</p>
+                                        </div>
+                                        <button class="invest-now-btn" onclick="handleInvestClick('transactions')">View more</button>
+                                    </div>
+                                </div>
+                            
+                                <!-- Total Deposit -->
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="single" onclick="handleStatClick('deposit')">
+                                        <div class="icon"><i class="fas fa-coins"></i></div>
+                                        <div class="content">
+                                            <h4><b>USDT</b><span class="count">0.00</span></h4>
+                                            <p>Total Deposit</p>
+                                        </div>
+                                        <button class="invest-now-btn" onclick="handleInvestClick('deposit')">View more</button>
+                                    </div>
+                                </div>
+                            
+                                <!-- Total Investment -->
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="single" onclick="handleStatClick('investment')">
+                                        <div class="icon"><i class="fas fa-chart-pie"></i></div>
+                                        <div class="content">
+                                            <h4><b>USDT</b><span class="count">0.00</span></h4>
+                                            <p>Total Investment</p>
+                                        </div>
+                                        <button class="invest-now-btn" onclick="handleInvestClick('investment')">View more</button>
+                                    </div>
+                                </div>
+                            
+                                <!-- Total Points -->
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="single" onclick="handleStatClick('points')">
+                                        <div class="icon"><i class="fas fa-star"></i></div>
+                                        <div class="content">
+                                            <h4><span class="count">0</span></h4>
+                                            <p>Total Points</p>
+                                        </div>
+                                        <button class="invest-now-btn" onclick="handleInvestClick('points')">View more</button>
+                                    </div>
+                                </div>
+                            
+                                <!-- Total Withdraw -->
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="single" onclick="handleStatClick('withdraw')">
+                                        <div class="icon"><i class="fas fa-money-check-alt"></i></div>
+                                        <div class="content">
+                                            <h4><b>USDT</b><span class="count">0.00</span></h4>
+                                            <p>Total Withdraw</p>
+                                        </div>
+                                        <button class="invest-now-btn" onclick="handleInvestClick('withdraw')">View more</button>
+                                    </div>
+                                </div>
+                            
+                                <!-- Referral Bonus -->
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="single" onclick="handleStatClick('referral-bonus')">
+                                        <div class="icon"><i class="fas fa-gift"></i></div>
+                                        <div class="content">
+                                            <h4><b>USDT</b><span class="count">0.00</span></h4>
+                                            <p>Referral Bonus</p>
+                                        </div>
+                                        <button class="invest-now-btn" onclick="handleInvestClick('referral-bonus')">View more</button>
+                                    </div>
+                                </div>
+                            
+                                <!-- Deposit Bonus -->
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="single" onclick="handleStatClick('deposit-bonus')">
+                                        <div class="icon"><i class="fas fa-piggy-bank"></i></div>
+                                        <div class="content">
+                                            <h4><b>USDT</b><span class="count">0.00</span></h4>
+                                            <p>Deposit Bonus</p>
+                                        </div>
+                                        <button class="invest-now-btn" onclick="handleInvestClick('deposit-bonus')">View more</button>
+                                    </div>
+                                </div>
+                            
+                                <!-- Investment Bonus -->
+                                <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+                                    <div class="single" onclick="handleStatClick('investment-bonus')">
+                                        <div class="icon"><i class="fas fa-trophy"></i></div>
+                                        <div class="content">
+                                            <h4><b>USDT</b><span class="count">0.00</span></h4>
+                                            <p>Investment Bonus</p>
+                                        </div>
+                                        <button class="invest-now-btn" onclick="handleInvestClick('investment-bonus')">View more</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wallet Transfer Modal -->
+    <div id="transferModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Transfer Funds Between Wallets</h2>
+                <span class="close" onclick="closeTransferModal()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="transferForm">
+                    <div class="form-group">
+                        <label for="fromWallet">From Wallet:</label>
+                        <select id="fromWallet" required>
+                            <option value="">Select Wallet</option>
+                            <option value="main">Main Wallet</option>
+                            <option value="profit">Profit Wallet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="toWallet">To Wallet:</label>
+                        <select id="toWallet" required>
+                            <option value="">Select Wallet</option>
+                            <option value="main">Main Wallet</option>
+                            <option value="profit">Profit Wallet</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Amount (USDT):</label>
+                        <input type="number" id="amount" min="0.01" step="0.01" placeholder="Enter amount" required>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeTransferModal()">Cancel</button>
+                <button class="btn btn-primary" onclick="transferFunds()">Transfer</button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        // [Previous JavaScript remains exactly the same until the generateReferralLink function]
+        // User Data Management
+        class UserData {
+            constructor() {
+                this.userId = this.generateUserId();
+                this.initData();
+            }
+
+            generateUserId() {
+                let userId = localStorage.getItem('userId');
+                if (!userId) {
+                    userId = 'user-' + Math.random().toString(36).substring(2, 10);
+                    localStorage.setItem('userId', userId);
+                }
+                return userId;
+            }
+
+            generateWalletAddress() {
+                let address = localStorage.getItem('walletAddress');
+                if (!address) {
+                    const chars = '0123456789ABCDEF';
+                    address = 'HC-';
+                    for (let i = 0; i < 12; i++) {
+                        address += chars.charAt(Math.floor(Math.random() * chars.length));
+                    }
+                    localStorage.setItem('walletAddress', address);
+                }
+                return address;
+            }
+
+            generateReferralCode() {
+                let code = localStorage.getItem('referralCode');
+                if (!code) {
+                    code = 'REF-' + Math.random().toString(36).substring(2, 8).toUpperCase();
+                    localStorage.setItem('referralCode', code);
+                }
+                return code;
+            }
+
+            initData() {
+                const defaultData = {
+                    mainWalletBalance: 0,
+                    profitWalletBalance: 0,
+                    totalDeposit: 0,
+                    totalInvestment: 0,
+                    totalWithdraw: 0,
+                    referralBonus: 0,
+                    depositBonus: 0,
+                    investmentBonus: 0,
+                    transactionsCount: 0,
+                    referralCount: 0,
+                    totalPoints: 0
+                };
+
+                Object.keys(defaultData).forEach(key => {
+                    if (!localStorage.getItem(key)) {
+                        localStorage.setItem(key, defaultData[key]);
+                    }
+                });
+            }
+
+            getData(key) {
+                return localStorage.getItem(key) || 0;
+            }
+
+            setData(key, value) {
+                localStorage.setItem(key, value);
+                this.updateUI();
+            }
+
+            updateUI() {
+                // Update wallet balances
+                document.getElementById('mainWalletBalance').textContent = parseFloat(this.getData('mainWalletBalance')).toFixed(2);
+                document.getElementById('profitWalletBalance').textContent = parseFloat(this.getData('profitWalletBalance')).toFixed(2);
+
+                // Update all counters
+                document.querySelectorAll('.count').forEach(el => {
+                    const key = el.closest('.single').getAttribute('onclick').match(/'([^']+)'/)[1].replace('-', '');
+                    el.textContent = parseFloat(this.getData(key)).toFixed(key.includes('Count') ? 0 : 2);
+                });
+            }
+        }
+
+        // Initialize user data
+        const user = new UserData();
+
+        // Theme switcher
+        const darkIcon = document.querySelector('.dark-icon');
+        const lightIcon = document.querySelector('.light-icon');
+        const body = document.body;
         
-        // Generate a unique referral link for each user using their user ID from localStorage
-        function generateReferralLink() {
-            // Check if user already has a referral code in localStorage
-            let referralCode = localStorage.getItem('userReferralCode');
+        function setTheme(theme) {
+            body.setAttribute('data-theme', theme);
+            localStorage.setItem('theme', theme);
             
-            if (!referralCode) {
-                // Generate a new referral code if one doesn't exist
-                referralCode = 'HC-' + Math.random().toString(36).substring(2, 8).toUpperCase();
-                localStorage.setItem('userReferralCode', referralCode);
+            if (theme === 'dark') {
+                darkIcon.classList.add('active');
+                lightIcon.classList.remove('active');
+            } else {
+                lightIcon.classList.add('active');
+                darkIcon.classList.remove('active');
             }
-            
-            const refLink = `https://hydrogemcapitals.com/register?ref=${referralCode}`;
-            document.getElementById('refLink').value = refLink;
-            
-            // Store the referral count in localStorage if not already present
-            if (!localStorage.getItem('referralCount')) {
-                localStorage.setItem('referralCount', '0');
-            }
-            document.getElementById('referralCount').textContent = localStorage.getItem('referralCount');
         }
         
-        // Enhanced wallet transfer modal functions with validation
+        darkIcon.addEventListener('click', () => setTheme('dark'));
+        lightIcon.addEventListener('click', () => setTheme('light'));
+
+        // Initialize theme
+        const savedTheme = localStorage.getItem('theme') || 
+                         (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        setTheme(savedTheme);
+
+        // Dropdown menus
+        function toggleDropdown(button) {
+            const dropdown = button.nextElementSibling;
+            dropdown.classList.toggle('active');
+            
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu !== dropdown) menu.classList.remove('active');
+            });
+        }
+
+        function toggleNotifications() {
+            const notificationPop = document.querySelector('.notification-pop');
+            notificationPop.classList.toggle('active');
+            
+            document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                if (menu !== notificationPop) menu.classList.remove('active');
+            });
+        }
+
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.dropdown-menu') && !event.target.closest('.item')) {
+                document.querySelectorAll('.dropdown-menu').forEach(menu => {
+                    menu.classList.remove('active');
+                });
+            }
+        });
+
+        // Referral system
+        function generateReferralLink() {
+            const refLink = `https://hydrogemcapitals.com/register?ref=${user.generateReferralCode()}`;
+            document.getElementById('refLink').value = refLink;
+            document.getElementById('referralCount').textContent = user.getData('referralCount');
+        }
+
+        function copyRef() {
+            const copyText = document.getElementById("refLink");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                const copyButton = document.getElementById("copy");
+                copyButton.textContent = "Copied!";
+                setTimeout(() => copyButton.textContent = "Copy", 2000);
+            });
+        }
+
+        // Wallet transfer
+        function openTransferModal() {
+            document.getElementById('transferModal').style.display = 'block';
+        }
+        
+        function closeTransferModal() {
+            document.getElementById('transferModal').style.display = 'none';
+            document.getElementById('transferForm').reset();
+        }
+        
         function transferFunds() {
             const fromWallet = document.getElementById('fromWallet').value;
             const toWallet = document.getElementById('toWallet').value;
@@ -79,136 +583,71 @@
                 return;
             }
             
-            // Get current balances from localStorage or set defaults
-            let mainBalance = parseFloat(localStorage.getItem('mainWalletBalance') || 1250.00;
-            let profitBalance = parseFloat(localStorage.getItem('profitWalletBalance')) || 3750.50;
+            const fromKey = `${fromWallet}WalletBalance`;
+            const toKey = `${toWallet}WalletBalance`;
             
-            // Process transfer
-            if (fromWallet === 'main') {
-                if (amount > mainBalance) {
-                    alert('Insufficient funds in Main Wallet');
-                    return;
-                }
-                mainBalance -= amount;
-            } else {
-                if (amount > profitBalance) {
-                    alert('Insufficient funds in Profit Wallet');
-                    return;
-                }
-                profitBalance -= amount;
+            const fromBalance = parseFloat(user.getData(fromKey));
+            const toBalance = parseFloat(user.getData(toKey));
+            
+            if (amount > fromBalance) {
+                alert(`Insufficient funds in ${fromWallet === 'main' ? 'Main' : 'Profit'} Wallet`);
+                return;
             }
             
-            if (toWallet === 'main') {
-                mainBalance += amount;
-            } else {
-                profitBalance += amount;
-            }
-            
-            // Update localStorage
-            localStorage.setItem('mainWalletBalance', mainBalance.toFixed(2));
-            localStorage.setItem('profitWalletBalance', profitBalance.toFixed(2));
-            
-            // Update UI
-            document.getElementById('mainWalletBalance').textContent = mainBalance.toFixed(2);
-            document.getElementById('profitWalletBalance').textContent = profitBalance.toFixed(2);
+            user.setData(fromKey, (fromBalance - amount).toFixed(2));
+            user.setData(toKey, (toBalance + amount).toFixed(2));
             
             alert(`Successfully transferred USDT ${amount.toFixed(2)}`);
             closeTransferModal();
         }
-        
-        // Generate a unique wallet address for each user
-        function generateWalletAddress() {
-            let walletAddress = localStorage.getItem('userWalletAddress');
-            
-            if (!walletAddress) {
-                // Generate a new wallet address if one doesn't exist
-                const chars = '0123456789ABCDEF';
-                walletAddress = 'HC-';
-                for (let i = 0; i < 12; i++) {
-                    walletAddress += chars.charAt(Math.floor(Math.random() * chars.length));
-                }
-                localStorage.setItem('userWalletAddress', walletAddress);
+
+        // Navigation
+        function handleStatClick(statType) {
+            switch(statType) {
+                case 'transactions': window.location.href = 'transactions.html'; break;
+                case 'deposit': window.location.href = 'deposit.html'; break;
+                case 'investment': window.location.href = 'investment-plans.html'; break;
+                case 'withdraw': window.location.href = 'withdraw.html'; break;
+                default: window.location.href = 'dashboard.html';
             }
-            
-            return walletAddress;
         }
-        
-        // Initialize the page with user data
+
+        function handleInvestClick(statType) {
+            event.stopPropagation();
+            handleStatClick(statType);
+        }
+
+        // Logout
+        document.getElementById('logout-btn').addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.clear();
+            window.location.href = 'index.html';
+        });
+
+        // Initialize page
         window.onload = function() {
-            // Generate or retrieve user's wallet address
-            generateWalletAddress();
-            
-            // Initialize wallet balances from localStorage or set defaults
-            if (!localStorage.getItem('mainWalletBalance')) {
-                localStorage.setItem('mainWalletBalance', '1250.00');
-            }
-            if (!localStorage.getItem('profitWalletBalance')) {
-                localStorage.setItem('profitWalletBalance', '3750.50');
-            }
-            
-            // Update UI with stored values
-            document.getElementById('mainWalletBalance').textContent = localStorage.getItem('mainWalletBalance');
-            document.getElementById('profitWalletBalance').textContent = localStorage.getItem('profitWalletBalance');
-            
-            // Generate referral link
+            // Initialize user data and UI
+            user.updateUI();
             generateReferralLink();
+
+            // Currency ticker
+            const currencies = [
+                { symbol: "BTC", rate: "61,423.50", change: "+2.34%" },
+                { symbol: "ETH", rate: "3,412.75", change: "+1.56%" },
+                { symbol: "USDT", rate: "1.00", change: "+0.00%" },
+                { symbol: "BNB", rate: "412.30", change: "-0.78%" }
+            ];
             
-            // Update all counts from localStorage
-            const stats = {
-                'All Transactions': 'transactionsCount',
-                'Total Deposit': 'totalDeposit',
-                'Total Investment': 'totalInvestment',
-                'Total Points': 'totalPoints',
-                'Total Withdraw': 'totalWithdraw',
-                'Referral Bonus': 'referralBonus',
-                'Deposit Bonus': 'depositBonus',
-                'Investment Bonus': 'investmentBonus',
-                'Total Referral': 'referralCount'
-            };
-            
-            // Initialize counts if not set
-            if (!localStorage.getItem('transactionsCount')) {
-                localStorage.setItem('transactionsCount', '12');
-            }
-            if (!localStorage.getItem('totalDeposit')) {
-                localStorage.setItem('totalDeposit', '5000.00');
-            }
-            if (!localStorage.getItem('totalInvestment')) {
-                localStorage.setItem('totalInvestment', '3250.00');
-            }
-            if (!localStorage.getItem('totalPoints')) {
-                localStorage.setItem('totalPoints', '1250');
-            }
-            if (!localStorage.getItem('totalWithdraw')) {
-                localStorage.setItem('totalWithdraw', '1750.50');
-            }
-            if (!localStorage.getItem('referralBonus')) {
-                localStorage.setItem('referralBonus', '500.00');
-            }
-            if (!localStorage.getItem('depositBonus')) {
-                localStorage.setItem('depositBonus', '250.00');
-            }
-            if (!localStorage.getItem('investmentBonus')) {
-                localStorage.setItem('investmentBonus', '750.00');
-            }
-            
-            // Update all count elements
-            document.querySelectorAll('.count').forEach(element => {
-                const statName = element.closest('.single').querySelector('p').textContent;
-                const storageKey = stats[statName];
-                if (storageKey) {
-                    element.textContent = localStorage.getItem(storageKey);
-                }
-            });
-            
-            // Close modals when clicking outside
-            window.onclick = function(event) {
-                if (event.target == document.getElementById('transferModal')) {
-                    closeTransferModal();
-                }
-            }
-            
-            // Prevent selecting same wallet in transfer form
+            document.getElementById('currencyTicker').innerHTML = currencies.map(c => `
+                <div class="ticker-item">
+                    <span>${c.symbol}: ${c.rate}</span>
+                    <span style="color: ${c.change.startsWith('+') ? '#2ecc71' : '#e74c3c'}; margin-left: 5px;">
+                        ${c.change}
+                    </span>
+                </div>
+            `).join('');
+
+            // Transfer form validation
             document.getElementById('fromWallet').addEventListener('change', function() {
                 const toWallet = document.getElementById('toWallet');
                 for (let i = 0; i < toWallet.options.length; i++) {
@@ -222,35 +661,7 @@
                     fromWallet.options[i].disabled = fromWallet.options[i].value === this.value;
                 }
             });
-            
-            // Enhanced logout functionality
-            document.querySelector('.logout a').addEventListener('click', function(e) {
-                e.preventDefault();
-                localStorage.clear(); // Clear all user data
-                window.location.href = 'index.html'; // Redirect to index
-            });
         };
-        
-        // Function to handle deposits (to be called from deposit page)
-        function processDeposit(amount) {
-            // Update main wallet balance
-            let mainBalance = parseFloat(localStorage.getItem('mainWalletBalance')) || 0;
-            mainBalance += parseFloat(amount);
-            localStorage.setItem('mainWalletBalance', mainBalance.toFixed(2));
-            
-            // Update total deposit
-            let totalDeposit = parseFloat(localStorage.getItem('totalDeposit')) || 0;
-            totalDeposit += parseFloat(amount);
-            localStorage.setItem('totalDeposit', totalDeposit.toFixed(2));
-            
-            // Update transactions count
-            let transactionsCount = parseInt(localStorage.getItem('transactionsCount')) || 0;
-            transactionsCount++;
-            localStorage.setItem('transactionsCount', transactionsCount.toString());
-            
-            // Return to dashboard with success message
-            window.location.href = 'dashboard.html?depositSuccess=true';
-        }
     </script>
 </body>
 </html>
