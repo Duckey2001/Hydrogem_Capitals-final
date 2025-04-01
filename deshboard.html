@@ -32,10 +32,14 @@
             --border-color: #CCCCCC;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
             background-color: var(--background-dark);
             color: var(--text-light);
             line-height: 1.6;
@@ -44,18 +48,157 @@
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
+            display: flex;
+            min-height: 100vh;
         }
 
-        /* [Previous CSS styles remain unchanged] */
-        /* ... (include all your previous CSS styles here) ... */
+        /* SIDEBAR STYLES */
+        .sidebar {
+            width: 250px;
+            background-color: var(--secondary-color);
+            padding: 20px 0;
+            height: 100vh;
+            position: fixed;
+            transition: var(--transition);
+            z-index: 100;
+        }
 
-        /* NEW PERFECT ALIGNMENT STYLES */
-        .single {
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+        }
+
+        .sidebar-header h3 {
+            color: var(--text-light);
             display: flex;
-            flex-direction: column;
-            height: 100%;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-header h3 i {
+            color: var(--primary-color);
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            gap: 10px;
+        }
+
+        .sidebar-menu li a:hover, 
+        .sidebar-menu li a.active {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        .sidebar-menu li a i {
+            width: 20px;
+            text-align: center;
+        }
+
+        /* MAIN CONTENT AREA */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        /* TOP NAVBAR */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            margin-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .currency-tracker {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding: 10px 0;
+        }
+
+        .currency-item {
+            background-color: var(--secondary-light);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        .currency-item span {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+
+        .user-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .theme-toggle, .notification-btn, .user-profile {
+            cursor: pointer;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* DASHBOARD CARDS */
+        .dashboard-title {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .user-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .single {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
             padding: 25px 20px;
             text-align: center;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .single:hover {
+            transform: translateY(-5px);
         }
 
         .single .icon {
@@ -106,37 +249,40 @@
             width: 100%;
             padding: 10px;
             font-size: 14px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: var(--transition);
         }
 
-        /* Make all cards equal height */
-        .user-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
+        .invest-now-btn:hover {
+            background-color: var(--primary-dark);
         }
 
-        /* Perfectly aligned referral section */
-        .referral-link-form {
-            display: flex;
-            align-items: center;
-        }
-
-        .referral-link-form input {
-            flex: 1;
-            padding: 10px 15px;
-        }
-
-        .referral-link-form button {
-            padding: 10px 15px;
-            white-space: nowrap;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .single {
-                padding: 20px 15px;
+        /* RESPONSIVE STYLES */
+        @media (max-width: 992px) {
+            .sidebar {
+                width: 70px;
+                overflow: hidden;
             }
             
+            .sidebar-header h3 span,
+            .sidebar-menu li a span {
+                display: none;
+            }
+            
+            .sidebar-menu li a {
+                justify-content: center;
+            }
+            
+            .main-content {
+                margin-left: 70px;
+            }
+        }
+
+        @media (max-width: 768px) {
             .user-cards {
                 grid-template-columns: 1fr 1fr;
             }
@@ -147,24 +293,74 @@
                 grid-template-columns: 1fr;
             }
             
-            .referral-link-form {
+            .top-nav {
                 flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
             }
             
-            .referral-link-form button {
+            .currency-tracker {
                 width: 100%;
-                margin-top: 10px;
+                padding-bottom: 10px;
             }
         }
     </style>
 </head>
 <body class="dark-theme" data-theme="dark">
-    <!-- [Rest of your HTML remains exactly the same until the cards section] -->
-    
-    <!-- Updated Cards Section with Perfect Alignment -->
-    <div class="row user-cards">
-        <!-- All Transactions -->
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-water"></i> <span>Hydrogem Capitals</span></h3>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="#" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="#"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
+            <li><a href="#"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
+            <li><a href="#"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
+            <li><a href="#"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
+            <li><a href="#"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- TOP NAV WITH CURRENCY TRACKER -->
+        <div class="top-nav">
+            <div class="currency-tracker">
+                <div class="currency-item">BTC: <span>$42,850</span></div>
+                <div class="currency-item">ETH: <span>$2,350</span></div>
+                <div class="currency-item">USDT: <span>$1.00</span></div>
+                <div class="currency-item">BNB: <span>$310</span></div>
+                <div class="currency-item">SOL: <span>$95</span></div>
+                <div class="currency-item">XRP: <span>$0.55</span></div>
+            </div>
+            <div class="user-actions">
+                <div class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fas fa-moon"></i>
+                </div>
+                <div class="notification-btn">
+                    <i class="fas fa-bell"></i>
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <span>John Doe</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- DASHBOARD TITLE -->
+        <div class="dashboard-title">
+            <h2>Dashboard Overview</h2>
+            <div class="date-display">April 1, 2023</div>
+        </div>
+
+        <!-- DASHBOARD CARDS -->
+        <div class="row user-cards">
+            <!-- All Transactions -->
             <div class="single" onclick="handleStatClick('transactions')">
                 <div class="icon"><i class="fas fa-exchange-alt"></i></div>
                 <div class="content">
@@ -173,10 +369,8 @@
                 </div>
                 <button class="invest-now-btn" onclick="handleInvestClick('transactions')">View more</button>
             </div>
-        </div>
-    
-        <!-- Total Deposit -->
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        
+            <!-- Total Deposit -->
             <div class="single" onclick="handleStatClick('deposit')">
                 <div class="icon"><i class="fas fa-coins"></i></div>
                 <div class="content">
@@ -185,10 +379,8 @@
                 </div>
                 <button class="invest-now-btn" onclick="handleInvestClick('deposit')">View more</button>
             </div>
-        </div>
-    
-        <!-- Total Investment -->
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        
+            <!-- Total Investment -->
             <div class="single" onclick="handleStatClick('investment')">
                 <div class="icon"><i class="fas fa-chart-pie"></i></div>
                 <div class="content">
@@ -197,10 +389,8 @@
                 </div>
                 <button class="invest-now-btn" onclick="handleInvestClick('investment')">View more</button>
             </div>
-        </div>
-    
-        <!-- Total Points -->
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        
+            <!-- Total Points -->
             <div class="single" onclick="handleStatClick('points')">
                 <div class="icon"><i class="fas fa-star"></i></div>
                 <div class="content">
@@ -209,10 +399,8 @@
                 </div>
                 <button class="invest-now-btn" onclick="handleInvestClick('points')">View more</button>
             </div>
-        </div>
-    
-        <!-- Total Withdraw -->
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        
+            <!-- Total Withdraw -->
             <div class="single" onclick="handleStatClick('withdraw')">
                 <div class="icon"><i class="fas fa-money-check-alt"></i></div>
                 <div class="content">
@@ -221,10 +409,8 @@
                 </div>
                 <button class="invest-now-btn" onclick="handleInvestClick('withdraw')">View more</button>
             </div>
-        </div>
-    
-        <!-- Referral Bonus -->
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        
+            <!-- Referral Bonus -->
             <div class="single" onclick="handleStatClick('referral-bonus')">
                 <div class="icon"><i class="fas fa-gift"></i></div>
                 <div class="content">
@@ -233,10 +419,8 @@
                 </div>
                 <button class="invest-now-btn" onclick="handleInvestClick('referral-bonus')">View more</button>
             </div>
-        </div>
-    
-        <!-- Deposit Bonus -->
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        
+            <!-- Deposit Bonus -->
             <div class="single" onclick="handleStatClick('deposit-bonus')">
                 <div class="icon"><i class="fas fa-piggy-bank"></i></div>
                 <div class="content">
@@ -245,10 +429,8 @@
                 </div>
                 <button class="invest-now-btn" onclick="handleInvestClick('deposit-bonus')">View more</button>
             </div>
-        </div>
-    
-        <!-- Investment Bonus -->
-        <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6 col-12">
+        
+            <!-- Investment Bonus -->
             <div class="single" onclick="handleStatClick('investment-bonus')">
                 <div class="icon"><i class="fas fa-trophy"></i></div>
                 <div class="content">
@@ -258,8 +440,34 @@
                 <button class="invest-now-btn" onclick="handleInvestClick('investment-bonus')">View more</button>
             </div>
         </div>
-    </div>
 
-    <!-- [Rest of your HTML and JavaScript remains exactly the same] -->
+        <!-- ADDITIONAL DASHBOARD SECTIONS CAN GO HERE -->
+        <!-- For example: Recent Transactions, Investment Plans, etc. -->
+    </main>
+
+    <script>
+        // Theme toggle function
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            
+            // Update icon
+            const themeIcon = document.querySelector('.theme-toggle i');
+            themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        // Handle card clicks
+        function handleStatClick(type) {
+            console.log(`Viewing ${type} details`);
+            // Add your logic here
+        }
+
+        function handleInvestClick(type) {
+            console.log(`Investing in ${type}`);
+            // Add your logic here
+        }
+    </script>
 </body>
 </html>
