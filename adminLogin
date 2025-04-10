@@ -181,11 +181,13 @@
         </div>
         
         <form class="login-form" id="adminLoginForm">
+            <input type="hidden" id="csrfToken" name="_csrf">
+            
             <div class="form-group">
                 <label for="username">Username</label>
                 <div class="input-with-icon">
                     <i class="fas fa-user"></i>
-                    <input type="text" id="username" name="username" placeholder="Enter admin username" required>
+                    <input type="text" id="username" name="username" placeholder="Enter admin username" required autocomplete="username">
                 </div>
             </div>
             
@@ -193,7 +195,7 @@
                 <label for="password">Password</label>
                 <div class="input-with-icon">
                     <i class="fas fa-lock"></i>
-                    <input type="password" id="password" name="password" placeholder="Enter password" required>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required autocomplete="current-password">
                 </div>
             </div>
             
@@ -212,53 +214,86 @@
     </div>
 
     <script>
-        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+        // Get CSRF token when page loads
+        document.addEventListener('DOMContentLoaded', async () => {
+            try {
+                const response = await fetch('/login');
+                if (!response.ok) throw new Error('Failed to get CSRF token');
+                
+                const data = await response.json();
+                document.getElementById('csrfToken').value = data.csrfToken;
+            } catch (error) {
+                console.error('Error:', error);
+                document.getElementById('errorMessage').textContent = 'Failed to initialize login form. Please refresh.';
+                document.getElementById('errorMessage').style.display = 'block';
+            }
+        });
+
+        document.getElementById('adminLoginForm').addEventListener('submit', async function(e) {
             e.preventDefault();
             
-            // Get input values
+            // Get elements
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
             const errorMessage = document.getElementById('errorMessage');
             const loginButton = document.getElementById('loginButton');
             const buttonText = document.getElementById('buttonText');
+            const csrfToken = document.getElementById('csrfToken').value;
             
             // Show loading state
             loginButton.disabled = true;
             buttonText.innerHTML = '<div class="loading"></div> Authenticating...';
+            errorMessage.style.display = 'none';
             
-            // Default credentials (in a real app, this would be server-side validation)
-            const correctUsername = 'hydrogemcapitals.com';
-            const correctPassword = 'hydrogem2024!';
-            
-            // Simulate network delay
-            setTimeout(() => {
-                // Validate credentials
-                if (username === correctUsername && password === correctPassword) {
-                    // Successful login - redirect to admin dashboard
-                    window.location.href = 'admin/dashboard.html';
-                } else {
-                    // Show error message
-                    errorMessage.style.display = 'block';
-                    
-                    // Reset button state
-                    loginButton.disabled = false;
-                    buttonText.textContent = 'Login';
-                    
-                    // Hide error message after 3 seconds
-                    setTimeout(() => {
-                        errorMessage.style.display = 'none';
-                    }, 3000);
-                    
-                    // Clear password field
-                    document.getElementById('password').value = '';
+            try {
+                const response = await fetch('/api/admin/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'CSRF-Token': csrfToken
+                    },
+                    body: JSON.stringify({
+                        username,
+                        password,
+                        _csrf: csrfToken
+                    }),
+                    credentials: 'include' // Important for cookies
+                });
+                
+                const data = await response.json();
+                
+                if (!response.ok) {
+                    throw new Error(data.error || 'Login failed');
                 }
-            }, 1000);
-        });
-        
-        // Security feature - prevent form autofill
-        window.addEventListener('DOMContentLoaded', function() {
-            document.getElementById('username').value = '';
-            document.getElementById('password').value = '';
+                
+                // Successful login - redirect to dashboard
+                window.location.href = '/admin/dashboard.html';
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                
+                // Show error message
+                errorMessage.textContent = error.message || 'Login failed. Please try again.';
+                errorMessage.style.display = 'block';
+                
+                // Reset button state
+                loginButton.disabled = false;
+                buttonText.textContent = 'Login';
+                
+                // Clear password field
+                document.getElementById('password').value = '';
+                
+                // Get new CSRF token
+                try {
+                    const csrfResponse = await fetch('/login');
+                    if (csrfResponse.ok) {
+                        const csrfData = await csrfResponse.json();
+                        document.getElementById('csrfToken').value = csrfData.csrfToken;
+                    }
+                } catch (csrfError) {
+                    console.error('CSRF token refresh error:', csrfError);
+                }
+            }
         });
     </script>
 </body>
