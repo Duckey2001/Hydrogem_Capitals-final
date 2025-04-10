@@ -12,55 +12,94 @@
     
     <style>
         body {
-            background-color: #121212; /* Dark background for the body */
-            color: #ffffff; /* White text color */
+            background-color: #121212;
+            color: #ffffff;
         }
         .app-header {
-            background-color: #1e1e1e; /* Darker header background */
-            border-bottom: 1px solid #444; /* Subtle border for separation */
+            background-color: #1e1e1e;
+            border-bottom: 1px solid #444;
         }
         .breadcrumb {
-            background-color: transparent; /* Transparent background for breadcrumb */
+            background-color: transparent;
+            color: #aaa !important;
+        }
+        .breadcrumb-item.active {
+            color: #fff !important;
         }
         .card {
-            background-color: #1e1e1e; /* Dark card background */
-            border: 1px solid #444; /* Subtle border for card */
+            background-color: #1e1e1e;
+            border: 1px solid #444;
+            border-radius: 8px;
+        }
+        .card-header {
+            border-bottom: 1px solid #444;
+            padding: 1rem 1.5rem;
+        }
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: #fff;
         }
         .form-label {
-            color: #ffffff; /* White color for form labels */
+            color: #ffffff;
+            margin-bottom: 0.5rem;
         }
         .form-control {
-            background-color: #2a2a2a; /* Dark background for input fields */
-            color: #ffffff; /* White text color for input fields */
-            border: 1px solid #444; /* Subtle border for input fields */
+            background-color: #2a2a2a;
+            color: #ffffff;
+            border: 1px solid #444;
+            padding: 0.5rem 0.75rem;
         }
         .form-control:focus {
-            border-color: #007bff; /* Blue border on focus */
-            background-color: #2a2a2a; /* Keep the same background on focus */
-            color: #ffffff; /* Keep the same text color on focus */
+            border-color: #007bff;
+            background-color: #2a2a2a;
+            color: #ffffff;
+            box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
         }
         .btn-primary2 {
-            background-color: #007bff; /* Primary button color */
-            border: none; /* Remove border */
+            background-color: #007bff;
+            border: none;
+            padding: 0.5rem 1rem;
+            font-weight: 500;
+        }
+        .btn-primary2:hover {
+            background-color: #0069d9;
         }
         .btn-primary2:disabled {
-            background-color: #555; /* Darker color for disabled button */
+            background-color: #555;
+            cursor: not-allowed;
         }
         .text-warning {
-            color: #ffc107; /* Warning text color */
+            color: #ffc107;
         }
         #ushnt {
-            background-color: #2a2a2a; /* Dark background for fee/net amount section */
+            background-color: #2a2a2a;
+            border-radius: 6px;
+            margin: 1rem 0;
         }
         .icon-container {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 15px;
+            margin-bottom: 1.5rem;
+            padding: 0.5rem;
+            background-color: rgba(255,255,255,0.05);
+            border-radius: 6px;
         }
         .icon-container img {
-            width: 30px; /* Set a fixed width for icons */
-            height: 30px; /* Set a fixed height for icons */
+            width: 30px;
+            height: 30px;
+        }
+        .icon-container span {
+            font-weight: 500;
+        }
+        .balance-display {
+            background-color: rgba(0, 123, 255, 0.1);
+            border: 1px solid rgba(0, 123, 255, 0.2);
+        }
+        .balance-amount {
+            font-size: 1.125rem;
+            font-weight: 600;
         }
     </style>
 </head>
@@ -100,8 +139,8 @@
                     </div>
                 </div>
                 
-                <div class="row">
-                    <div class="col-xl-5">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6 col-lg-8 col-md-10">
                         <div class="card custom-card">
                             <div class="card-header">
                                 <div class="card-title">Payout Request</div>
@@ -109,48 +148,48 @@
                             <form class="card-body" method="post">
                                 <div class="icon-container">
                                     <img src="assets/images/icons/bitcoin.png" alt="Bitcoin Icon">
-                                    <span class="fw-medium">Bitcoin</span>
+                                    <span>Bitcoin</span>
                                     <img src="assets/images/icons/forex.png" alt="Forex Icon">
-                                    <span class="fw-medium">Forex</span>
+                                    <span>Forex</span>
                                 </div>
                                 <div class="mb-3">
-                                    <span class="form-label">Wallet Balance :</span>
+                                    <span class="form-label">Wallet Balance:</span>
                                     <div class="position-relative">
-                                        <div class="p-2 border rounded d-flex align-items-center justify-content-between gap-3 mt-1 flex-wrap">
+                                        <div class="p-3 border rounded d-flex align-items-center justify-content-between gap-3 mt-1 flex-wrap balance-display">
                                             <div class="gap-2 d-flex align-items-center">
                                                 <div class="fw-medium">USDT Balance</div>
                                             </div>
                                             <div class="text-end ms-auto">
-                                                <span class="fw-medium d-block fs-18">$0</span>
+                                                <span class="fw-medium d-block balance-amount">$0</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="withdrawal_amount" class="form-label fs-14 text-dark">Amount</label>
+                                    <label for="withdrawal_amount" class="form-label">Amount (Minimum $5)</label>
                                     <input type="number" step="1" min="5" class="form-control" placeholder="Enter Amount" id="withdrawal_amount" name="withdrawal_amount" required>
                                 </div>
                                 
-                                <div class="p-3 rounded mb-3 fs-14" id="ushnt">
-                                    <div class="pb-1">
-                                        <div class="d-inline-flex"><span class="fw-medium text-dark">Fee:</span></div>
-                                        <span id="service_charge" class="text-dark fw-medium float-end">0</span>
+                                <div class="p-3 rounded mb-3" id="ushnt">
+                                    <div class="pb-1 d-flex justify-content-between">
+                                        <span class="fw-medium">Fee:</span>
+                                        <span id="service_charge" class="fw-medium">$0</span>
                                     </div>
-                                    <div class="pt-2">
-                                        <div class="d-inline-flex"><span class="fw-medium text-dark">Net Amount:</span></div>
-                                        <span id="net_amount" class="text-dark fw-medium float-end">0</span>
+                                    <div class="pt-2 d-flex justify-content-between">
+                                        <span class="fw-medium">Net Amount:</span>
+                                        <span id="net_amount" class="fw-medium">$0</span>
                                     </div>
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="trn_password" class="form-label fs-14 text-dark">Transaction Code</label>
+                                    <label for="trn_password" class="form-label">Transaction Code</label>
                                     <input type="password" class="form-control" placeholder="Enter Transaction Code" id="trn_password" name="trn_password" required autocomplete="new-password">
                                 </div>
                                 
-                                <div class="d-grid mt-3">
-                                    <button type="button" disabled class="btn btn-primary2 btn-wave waves-effect waves-light">Withdrawal Closed<i class="fa-solid fa-arrow-right ms-2"></i></button>
-                                    <p class="text-warning mt-3">Withdrawal Available: Wednesday and Friday</p>
+                                <div class="d-grid mt-4">
+                                    <button type="button" id="withdrawalBtn" class="btn btn-primary2 btn-wave waves-effect waves-light">Request Withdrawal <i class="fa-solid fa-arrow-right ms-2"></i></button>
+                                    <p class="text-warning mt-3 text-center">Withdrawal Available: Wednesday and Friday</p>
                                 </div>
                             </form>
                         </div>
@@ -173,11 +212,41 @@
                 return params;
             }
 
-            const params = getQueryParams();
-            const withdrawalAmount = params['amount'];
-            if (withdrawalAmount) {
-                document.getElementById('withdrawal_amount').value = withdrawalAmount; // Set the value in the input field
+            // Calculate fee and net amount
+            function calculateAmounts() {
+                const amount = parseFloat(document.getElementById('withdrawal_amount').value) || 0;
+                const fee = Math.max(1, amount * 0.05); // 5% fee with $1 minimum
+                const netAmount = amount - fee;
+                
+                document.getElementById('service_charge').textContent = '$' + fee.toFixed(2);
+                document.getElementById('net_amount').textContent = '$' + netAmount.toFixed(2);
+                
+                // Enable/disable button based on amount
+                const btn = document.getElementById('withdrawalBtn');
+                btn.disabled = amount < 5;
             }
+
+            // Initialize
+            document.addEventListener('DOMContentLoaded', function() {
+                const params = getQueryParams();
+                const withdrawalAmount = params['amount'];
+                if (withdrawalAmount) {
+                    document.getElementById('withdrawal_amount').value = withdrawalAmount;
+                    calculateAmounts();
+                }
+                
+                // Add event listener for amount changes
+                document.getElementById('withdrawal_amount').addEventListener('input', calculateAmounts);
+                
+                // Check if today is Wednesday or Friday (0=Sunday, 2=Tuesday, etc.)
+                const today = new Date().getDay();
+                const isWithdrawalDay = today === 3 || today === 5; // Wednesday(3) or Friday(5)
+                
+                if (!isWithdrawalDay) {
+                    document.getElementById('withdrawalBtn').disabled = true;
+                    document.querySelector('.text-warning').textContent += ' (Today is not a withdrawal day)';
+                }
+            });
         </script>
     </div>
 </body>
