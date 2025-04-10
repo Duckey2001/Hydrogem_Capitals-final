@@ -573,6 +573,22 @@
             font-size: 12px;
         }
 
+        /* LOADING SPINNER */
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top: 4px solid var(--primary-color);
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
         /* RESPONSIVE STYLES */
         @media (max-width: 992px) {
             .sidebar {
@@ -644,15 +660,15 @@
         </div>
         <ul class="sidebar-menu">
             <li><a href="#" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-            <li><a href="#"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
+            <li><a href="#" onclick="handleWalletClick(event)"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
             <li><a href="#" onclick="openModal('deposit-modal')"><i class="fas fa-money-bill-wave"></i> <span>Deposit</span></a></li>
             <li><a href="#" onclick="handleWithdrawClick(event)"><i class="fas fa-hand-holding-usd"></i> <span>Withdraw</span></a></li>
             <li><a href="#" onclick="handleInvestClick(event)"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
-            <li><a href="#"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
-            <li><a href="#"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
-            <li><a href="#"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
-            <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
-            <li><a href="#"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+            <li><a href="#" onclick="handleTransactionsClick(event)"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
+            <li><a href="#" onclick="handleReferralsClick(event)"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
+            <li><a href="#" onclick="handleRewardsClick(event)"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
+            <li><a href="#" onclick="handleSettingsClick(event)"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            <li><a href="#" onclick="handleLogoutClick(event)"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
         </ul>
     </aside>
 
@@ -661,8 +677,8 @@
         <!-- HEADER WITH BACKGROUND IMAGE -->
         <div class="dashboard-header">
             <div class="header-overlay">
-                <h1>Welcome Back, John</h1>
-                <p>Your current balance: <strong>1,245.50 USDT</strong></p>
+                <h1>Welcome Back, <span id="username">John</span></h1>
+                <p>Your current balance: <strong id="user-balance">0.00 USDT</strong></p>
             </div>
         </div>
 
@@ -685,7 +701,7 @@
                     <div class="user-avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <span>John Doe</span>
+                    <span id="profile-name">John Doe</span>
                 </div>
             </div>
         </div>
@@ -704,7 +720,7 @@
                 <div class="single" onclick="handleStatClick('transactions')">
                     <div class="icon"><i class="fas fa-exchange-alt"></i></div>
                     <div class="content">
-                        <h4><span class="count">24</span></h4>
+                        <h4><span class="count" id="transactions-count">0</span></h4>
                         <p>All Transactions</p>
                     </div>
                     <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('transactions')">View more</button>
@@ -714,7 +730,7 @@
                 <div class="single" onclick="handleStatClick('deposit')">
                     <div class="icon"><i class="fas fa-coins"></i></div>
                     <div class="content">
-                        <h4><span class="count">1,850.00</span> <b>USDT</b></h4>
+                        <h4><span class="count" id="total-deposit">0.00</span> <b>USDT</b></h4>
                         <p>Total Deposit</p>
                     </div>
                     <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('deposit')">View more</button>
@@ -724,7 +740,7 @@
                 <div class="single deposit-required" onclick="handleStatClick('investment')">
                     <div class="icon"><i class="fas fa-chart-pie"></i></div>
                     <div class="content">
-                        <h4><span class="count">1,245.50</span> <b>USDT</b></h4>
+                        <h4><span class="count" id="total-investment">0.00</span> <b>USDT</b></h4>
                         <p>Total Investment</p>
                     </div>
                     <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('investment')">View more</button>
@@ -734,7 +750,7 @@
                 <div class="single" onclick="handleStatClick('points')">
                     <div class="icon"><i class="fas fa-star"></i></div>
                     <div class="content">
-                        <h4><span class="count">1,850</span></h4>
+                        <h4><span class="count" id="total-points">0</span></h4>
                         <p>Total Points</p>
                     </div>
                     <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('points')">View more</button>
@@ -744,7 +760,7 @@
                 <div class="single deposit-required" onclick="handleStatClick('withdraw')">
                     <div class="icon"><i class="fas fa-money-check-alt"></i></div>
                     <div class="content">
-                        <h4><span class="count">604.50</span> <b>USDT</b></h4>
+                        <h4><span class="count" id="total-withdraw">0.00</span> <b>USDT</b></h4>
                         <p>Total Withdraw</p>
                     </div>
                     <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('withdraw')">View more</button>
@@ -754,7 +770,7 @@
                 <div class="single" onclick="handleStatClick('referral-bonus')">
                     <div class="icon"><i class="fas fa-gift"></i></div>
                     <div class="content">
-                        <h4><span class="count">125.00</span> <b>USDT</b></h4>
+                        <h4><span class="count" id="referral-bonus">0.00</span> <b>USDT</b></h4>
                         <p>Referral Bonus</p>
                     </div>
                     <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('referral-bonus')">View more</button>
@@ -764,7 +780,7 @@
                 <div class="single" onclick="handleStatClick('deposit-bonus')">
                     <div class="icon"><i class="fas fa-piggy-bank"></i></div>
                     <div class="content">
-                        <h4><span class="count">75.00</span> <b>USDT</b></h4>
+                        <h4><span class="count" id="deposit-bonus">0.00</span> <b>USDT</b></h4>
                         <p>Deposit Bonus</p>
                     </div>
                     <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('deposit-bonus')">View more</button>
@@ -774,7 +790,7 @@
                 <div class="single deposit-required" onclick="handleStatClick('investment-bonus')">
                     <div class="icon"><i class="fas fa-trophy"></i></div>
                     <div class="content">
-                        <h4><span class="count">92.50</span> <b>USDT</b></h4>
+                        <h4><span class="count" id="investment-bonus">0.00</span> <b>USDT</b></h4>
                         <p>Investment Bonus</p>
                     </div>
                     <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('investment-bonus')">View more</button>
@@ -817,7 +833,7 @@
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('deposit-modal')">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Proceed to Payment</button>
+                    <button type="submit" class="btn btn-primary" id="deposit-submit-btn">Proceed to Payment</button>
                 </div>
             </form>
         </div>
@@ -851,7 +867,7 @@
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('withdraw-modal')">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Request Withdrawal</button>
+                    <button type="submit" class="btn btn-primary" id="withdraw-submit-btn">Request Withdrawal</button>
                 </div>
             </form>
         </div>
@@ -864,28 +880,9 @@
                 <h3>Notifications</h3>
                 <button class="close-modal" onclick="closeModal('notifications-modal')">&times;</button>
             </div>
-            <div class="notifications-list">
-                <div class="notification-item">
-                    <div class="notification-icon"><i class="fas fa-gift"></i></div>
-                    <div class="notification-content">
-                        <p>You received a $25 deposit bonus!</p>
-                        <small>2 hours ago</small>
-                    </div>
-                </div>
-                <div class="notification-item">
-                    <div class="notification-icon"><i class="fas fa-user-plus"></i></div>
-                    <div class="notification-content">
-                        <p>John Smith joined using your referral link</p>
-                        <small>1 day ago</small>
-                    </div>
-                </div>
-                <div class="notification-item">
-                    <div class="notification-icon"><i class="fas fa-chart-line"></i></div>
-                    <div class="notification-content">
-                        <p>Your investment has earned $12.50 today</p>
-                        <small>2 days ago</small>
-                    </div>
-                </div>
+            <div class="notifications-list" id="notifications-list">
+                <!-- Notifications will be loaded here -->
+                <div class="spinner"></div>
             </div>
         </div>
     </div>
@@ -908,31 +905,125 @@
         </div>
     </div>
 
-    <script>
-        // Track user deposit status
-        let hasDeposited = false; // This would typically come from your backend
+    <!-- PROFILE MODAL -->
+    <div class="modal" id="profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>User Profile</h3>
+                <button class="close-modal" onclick="closeModal('profile-modal')">&times;</button>
+            </div>
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" id="profile-fullname" placeholder="Your full name" disabled>
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                <input type="email" id="profile-email" placeholder="Your email" disabled>
+            </div>
+            <div class="form-group">
+                <label>Account Status</label>
+                <input type="text" id="profile-status" placeholder="Account status" disabled>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('profile-modal')">Close</button>
+            </div>
+        </div>
+    </div>
 
-        // Function to check deposit status and enable/disable features
+    <!-- LOADING MODAL -->
+    <div class="modal" id="loading-modal">
+        <div class="modal-content" style="text-align: center; padding: 40px;">
+            <div class="spinner"></div>
+            <p id="loading-text">Processing your request...</p>
+        </div>
+    </div>
+
+    <script>
+        // API Configuration
+        const API_BASE_URL = 'https://api.hydrogemcapitals.com/v1';
+        let authToken = localStorage.getItem('authToken') || '';
+        let userData = {};
+        let hasDeposited = false;
+
+        // Initialize the application
+        async function initApp() {
+            updateCurrentDate();
+            updateCurrencyTracker();
+            simulateLivePrices();
+            
+            // Load user data
+            await loadUserData();
+            
+            // Check deposit status
+            checkDepositStatus();
+            
+            // Load notifications
+            loadNotifications();
+            
+            // Set up event listeners
+            setupEventListeners();
+        }
+
+        // Load user data from backend
+        async function loadUserData() {
+            showLoading('Loading user data...');
+            try {
+                const response = await fetch(`${API_BASE_URL}/user`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load user data');
+                }
+                
+                userData = await response.json();
+                updateUIWithUserData();
+                hasDeposited = userData.totalDeposits > 0;
+            } catch (error) {
+                console.error('Error loading user data:', error);
+                alert('Failed to load user data. Please try again.');
+            } finally {
+                hideLoading();
+            }
+        }
+
+        // Update UI with user data
+        function updateUIWithUserData() {
+            document.getElementById('username').textContent = userData.username || 'User';
+            document.getElementById('profile-name').textContent = userData.fullName || 'User';
+            document.getElementById('user-balance').textContent = `${userData.balance || '0.00'} USDT`;
+            document.getElementById('transactions-count').textContent = userData.transactionCount || '0';
+            document.getElementById('total-deposit').textContent = userData.totalDeposits || '0.00';
+            document.getElementById('total-investment').textContent = userData.totalInvestments || '0.00';
+            document.getElementById('total-points').textContent = userData.totalPoints || '0';
+            document.getElementById('total-withdraw').textContent = userData.totalWithdrawals || '0.00';
+            document.getElementById('referral-bonus').textContent = userData.referralBonus || '0.00';
+            document.getElementById('deposit-bonus').textContent = userData.depositBonus || '0.00';
+            document.getElementById('investment-bonus').textContent = userData.investmentBonus || '0.00';
+            
+            // Update profile modal
+            document.getElementById('profile-fullname').value = userData.fullName || '';
+            document.getElementById('profile-email').value = userData.email || '';
+            document.getElementById('profile-status').value = userData.accountStatus || 'Active';
+        }
+
+        // Check deposit status and enable/disable features
         function checkDepositStatus() {
-            // Get all elements that require deposit
             const depositRequiredElements = document.querySelectorAll('.deposit-required');
-            const withdrawLinks = document.querySelectorAll('a[onclick*="withdraw-modal"]');
-            const investLinks = document.querySelectorAll('a[onclick*="handleInvestClick"]');
             
             if (!hasDeposited) {
-                // Disable elements that require deposit
                 depositRequiredElements.forEach(el => {
                     el.classList.add('disabled');
                 });
                 
-                // Disable withdraw and invest buttons
                 document.querySelectorAll('.invest-now-btn').forEach(btn => {
                     if (btn.textContent.includes('Invest') || btn.textContent.includes('Withdraw')) {
                         btn.classList.add('disabled');
                     }
                 });
             } else {
-                // Enable all elements if deposit has been made
                 depositRequiredElements.forEach(el => {
                     el.classList.remove('disabled');
                 });
@@ -956,65 +1047,204 @@
             const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             body.setAttribute('data-theme', newTheme);
             
-            // Update icon
             const themeIcon = document.querySelector('.theme-toggle i');
             themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
             
-            // Save preference to localStorage
             localStorage.setItem('theme', newTheme);
         }
-
-        // Check for saved theme preference
-        const savedTheme = localStorage.getItem('theme') || 'dark';
-        document.body.setAttribute('data-theme', savedTheme);
-        const themeIcon = document.querySelector('.theme-toggle i');
-        themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
 
         // Modal functions
         function openModal(id) {
             document.getElementById(id).style.display = 'flex';
-            document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal(id) {
             document.getElementById(id).style.display = 'none';
-            document.body.style.overflow = 'auto'; // Re-enable scrolling
+            document.body.style.overflow = 'auto';
         }
 
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            if (event.target.className === 'modal') {
-                event.target.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
+        // Loading functions
+        function showLoading(message = 'Loading...') {
+            document.getElementById('loading-text').textContent = message;
+            openModal('loading-modal');
+        }
+
+        function hideLoading() {
+            closeModal('loading-modal');
         }
 
         // Form submissions
-        document.getElementById('deposit-form').addEventListener('submit', function(e) {
+        document.getElementById('deposit-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const amount = document.getElementById('deposit-amount').value;
             const method = document.getElementById('deposit-method').value;
             
-            // Simulate successful deposit
-            hasDeposited = true;
-            alert(`Deposit of ${amount} USDT via ${method} has been received!`);
-            closeModal('deposit-modal');
+            showLoading('Processing deposit...');
             
-            // Update UI to reflect deposit
-            checkDepositStatus();
-            
-            // Here you would typically send the data to your server
+            try {
+                const response = await fetch(`${API_BASE_URL}/deposit`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({
+                        amount: parseFloat(amount),
+                        method: method
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Deposit failed');
+                }
+                
+                const result = await response.json();
+                
+                // Update user data
+                hasDeposited = true;
+                userData.balance = result.newBalance;
+                userData.totalDeposits = result.totalDeposits;
+                updateUIWithUserData();
+                checkDepositStatus();
+                
+                alert(`Deposit of ${amount} USDT via ${method} was successful!`);
+                closeModal('deposit-modal');
+                
+                // Add notification
+                addNotification(`Deposit of ${amount} USDT received`, 'deposit');
+            } catch (error) {
+                console.error('Deposit error:', error);
+                alert('Deposit failed. Please try again.');
+            } finally {
+                hideLoading();
+            }
         });
 
-        document.getElementById('withdraw-form').addEventListener('submit', function(e) {
+        document.getElementById('withdraw-form').addEventListener('submit', async function(e) {
             e.preventDefault();
             const amount = document.getElementById('withdraw-amount').value;
             const method = document.getElementById('withdraw-method').value;
             const address = document.getElementById('wallet-address').value;
-            alert(`Withdrawal request for ${amount} USDT to ${address} via ${method} has been received!`);
-            closeModal('withdraw-modal');
-            // Here you would typically send the data to your server
+            
+            showLoading('Processing withdrawal...');
+            
+            try {
+                const response = await fetch(`${API_BASE_URL}/withdraw`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${authToken}`
+                    },
+                    body: JSON.stringify({
+                        amount: parseFloat(amount),
+                        method: method,
+                        walletAddress: address
+                    })
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Withdrawal failed');
+                }
+                
+                const result = await response.json();
+                
+                // Update user data
+                userData.balance = result.newBalance;
+                userData.totalWithdrawals = result.totalWithdrawals;
+                updateUIWithUserData();
+                
+                alert(`Withdrawal request for ${amount} USDT to ${address} via ${method} has been received!`);
+                closeModal('withdraw-modal');
+                
+                // Add notification
+                addNotification(`Withdrawal request for ${amount} USDT submitted`, 'withdrawal');
+            } catch (error) {
+                console.error('Withdrawal error:', error);
+                alert('Withdrawal failed. Please try again.');
+            } finally {
+                hideLoading();
+            }
         });
+
+        // Notification functions
+        async function loadNotifications() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/notifications`, {
+                    headers: {
+                        'Authorization': `Bearer ${authToken}`
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error('Failed to load notifications');
+                }
+                
+                const notifications = await response.json();
+                displayNotifications(notifications);
+            } catch (error) {
+                console.error('Error loading notifications:', error);
+            }
+        }
+
+        function displayNotifications(notifications) {
+            const container = document.getElementById('notifications-list');
+            container.innerHTML = '';
+            
+            if (notifications.length === 0) {
+                container.innerHTML = '<p>No notifications</p>';
+                return;
+            }
+            
+            notifications.forEach(notification => {
+                const item = document.createElement('div');
+                item.className = 'notification-item';
+                item.innerHTML = `
+                    <div class="notification-icon"><i class="fas fa-${getNotificationIcon(notification.type)}"></i></div>
+                    <div class="notification-content">
+                        <p>${notification.message}</p>
+                        <small>${formatDate(notification.timestamp)}</small>
+                    </div>
+                `;
+                container.appendChild(item);
+            });
+        }
+
+        function addNotification(message, type) {
+            const container = document.getElementById('notifications-list');
+            const item = document.createElement('div');
+            item.className = 'notification-item';
+            item.innerHTML = `
+                <div class="notification-icon"><i class="fas fa-${getNotificationIcon(type)}"></i></div>
+                <div class="notification-content">
+                    <p>${message}</p>
+                    <small>Just now</small>
+                </div>
+            `;
+            container.insertBefore(item, container.firstChild);
+            
+            // Update notification count
+            const countElement = document.querySelector('.notification-count');
+            const currentCount = parseInt(countElement.textContent) || 0;
+            countElement.textContent = currentCount + 1;
+        }
+
+        function getNotificationIcon(type) {
+            const icons = {
+                'deposit': 'money-bill-wave',
+                'withdrawal': 'hand-holding-usd',
+                'investment': 'chart-line',
+                'referral': 'user-plus',
+                'bonus': 'gift',
+                'default': 'bell'
+            };
+            return icons[type] || icons.default;
+        }
+
+        function formatDate(timestamp) {
+            const date = new Date(timestamp);
+            return date.toLocaleString();
+        }
 
         // Copy referral link
         function copyReferralLink() {
@@ -1062,6 +1292,37 @@
             } else {
                 openModal('withdraw-modal');
             }
+        }
+
+        function handleWalletClick(event) {
+            event.preventDefault();
+            alert('Wallet functionality will be implemented soon');
+        }
+
+        function handleTransactionsClick(event) {
+            event.preventDefault();
+            alert('Transactions functionality will be implemented soon');
+        }
+
+        function handleReferralsClick(event) {
+            event.preventDefault();
+            alert('Referrals functionality will be implemented soon');
+        }
+
+        function handleRewardsClick(event) {
+            event.preventDefault();
+            alert('Rewards functionality will be implemented soon');
+        }
+
+        function handleSettingsClick(event) {
+            event.preventDefault();
+            alert('Settings functionality will be implemented soon');
+        }
+
+        function handleLogoutClick(event) {
+            event.preventDefault();
+            localStorage.removeItem('authToken');
+            window.location.href = 'login.html';
         }
 
         // Live currency data (simulated)
@@ -1114,19 +1375,39 @@
             }, 5000);
         }
 
-        // Initialize everything when page loads
-        window.onload = function() {
-            updateCurrentDate();
-            updateCurrencyTracker();
-            simulateLivePrices();
-            checkDepositStatus();
-            
+        // Setup event listeners
+        function setupEventListeners() {
             // Prevent button clicks from triggering card clicks
             document.querySelectorAll('.invest-now-btn').forEach(button => {
                 button.addEventListener('click', function(e) {
                     e.stopPropagation();
                 });
             });
+            
+            // Close modal when clicking outside
+            window.onclick = function(event) {
+                if (event.target.className === 'modal') {
+                    event.target.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            };
+            
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme') || 'dark';
+            document.body.setAttribute('data-theme', savedTheme);
+            const themeIcon = document.querySelector('.theme-toggle i');
+            themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        // Initialize the application when page loads
+        window.onload = function() {
+            // Check if user is authenticated
+            if (!authToken) {
+                window.location.href = 'login.html';
+                return;
+            }
+            
+            initApp();
         };
     </script>
 </body>
