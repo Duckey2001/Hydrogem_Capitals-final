@@ -20,6 +20,7 @@
             --transition: all 0.3s ease;
             --positive-change: #4CAF50;
             --negative-change: #F44336;
+            --disabled-color: #555555;
         }
 
         [data-theme="light"] {
@@ -34,6 +35,7 @@
             --border-color: #CCCCCC;
             --positive-change: #2E7D32;
             --negative-change: #C62828;
+            --disabled-color: #CCCCCC;
         }
 
         * {
@@ -49,6 +51,37 @@
             line-height: 1.6;
             transition: var(--transition);
             overflow-x: hidden;
+        }
+
+        .disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        .deposit-required {
+            position: relative;
+        }
+
+        .deposit-required::after {
+            content: "Deposit required";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            opacity: 0;
+            transition: var(--transition);
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        .deposit-required:hover::after {
+            opacity: 1;
         }
 
         /* HEADER WITH BACKGROUND IMAGE */
@@ -275,6 +308,7 @@
             display: flex;
             flex-direction: column;
             border: 1px solid var(--border-color);
+            position: relative;
         }
 
         .single:hover {
@@ -340,6 +374,10 @@
 
         .invest-now-btn:hover {
             background-color: var(--primary-dark);
+        }
+
+        .invest-now-btn.disabled {
+            background-color: var(--disabled-color);
         }
 
         /* REFERRAL SECTION */
@@ -605,16 +643,16 @@
             <h3><i class="fas fa-water"></i> <span>Hydrogem Capitals</span></h3>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="deshboard.html" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-            <li><a href="wallet.html"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
-            <li><a href="deposit.html" onclick="openModal('deposit-modal')"><i class="fas fa-money-bill-wave"></i> <span>Deposit</span></a></li>
-            <li><a href="withdraw.html" onclick="openModal('withdraw-modal')"><i class="fas fa-hand-holding-usd"></i> <span>Withdraw</span></a></li>
-            <li><a href="invest.html"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
+            <li><a href="#" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="#"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
+            <li><a href="#" onclick="openModal('deposit-modal')"><i class="fas fa-money-bill-wave"></i> <span>Deposit</span></a></li>
+            <li><a href="#" onclick="handleWithdrawClick(event)"><i class="fas fa-hand-holding-usd"></i> <span>Withdraw</span></a></li>
+            <li><a href="#" onclick="handleInvestClick(event)"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
             <li><a href="#"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
             <li><a href="#"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
             <li><a href="#"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
-            <li><a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
-            <li><a href="logout.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+            <li><a href="#"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            <li><a href="#"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
         </ul>
     </aside>
 
@@ -683,7 +721,7 @@
                 </div>
             
                 <!-- Total Investment -->
-                <div class="single" onclick="handleStatClick('investment')">
+                <div class="single deposit-required" onclick="handleStatClick('investment')">
                     <div class="icon"><i class="fas fa-chart-pie"></i></div>
                     <div class="content">
                         <h4><span class="count">1,245.50</span> <b>USDT</b></h4>
@@ -703,7 +741,7 @@
                 </div>
             
                 <!-- Total Withdraw -->
-                <div class="single" onclick="handleStatClick('withdraw')">
+                <div class="single deposit-required" onclick="handleStatClick('withdraw')">
                     <div class="icon"><i class="fas fa-money-check-alt"></i></div>
                     <div class="content">
                         <h4><span class="count">604.50</span> <b>USDT</b></h4>
@@ -733,7 +771,7 @@
                 </div>
             
                 <!-- Investment Bonus -->
-                <div class="single" onclick="handleStatClick('investment-bonus')">
+                <div class="single deposit-required" onclick="handleStatClick('investment-bonus')">
                     <div class="icon"><i class="fas fa-trophy"></i></div>
                     <div class="content">
                         <h4><span class="count">92.50</span> <b>USDT</b></h4>
@@ -852,7 +890,59 @@
         </div>
     </div>
 
+    <!-- DEPOSIT REQUIRED MODAL -->
+    <div class="modal" id="deposit-required-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Deposit Required</h3>
+                <button class="close-modal" onclick="closeModal('deposit-required-modal')">&times;</button>
+            </div>
+            <div style="margin-bottom: 20px;">
+                <p>You need to make a deposit before you can access this feature.</p>
+                <p>Please make a deposit to unlock all platform functionalities.</p>
+            </div>
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary" onclick="closeModal('deposit-required-modal')">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="openModal('deposit-modal'); closeModal('deposit-required-modal')">Make Deposit</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Track user deposit status
+        let hasDeposited = false; // This would typically come from your backend
+
+        // Function to check deposit status and enable/disable features
+        function checkDepositStatus() {
+            // Get all elements that require deposit
+            const depositRequiredElements = document.querySelectorAll('.deposit-required');
+            const withdrawLinks = document.querySelectorAll('a[onclick*="withdraw-modal"]');
+            const investLinks = document.querySelectorAll('a[onclick*="handleInvestClick"]');
+            
+            if (!hasDeposited) {
+                // Disable elements that require deposit
+                depositRequiredElements.forEach(el => {
+                    el.classList.add('disabled');
+                });
+                
+                // Disable withdraw and invest buttons
+                document.querySelectorAll('.invest-now-btn').forEach(btn => {
+                    if (btn.textContent.includes('Invest') || btn.textContent.includes('Withdraw')) {
+                        btn.classList.add('disabled');
+                    }
+                });
+            } else {
+                // Enable all elements if deposit has been made
+                depositRequiredElements.forEach(el => {
+                    el.classList.remove('disabled');
+                });
+                
+                document.querySelectorAll('.invest-now-btn').forEach(btn => {
+                    btn.classList.remove('disabled');
+                });
+            }
+        }
+
         // Current date display
         function updateCurrentDate() {
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -904,8 +994,15 @@
             e.preventDefault();
             const amount = document.getElementById('deposit-amount').value;
             const method = document.getElementById('deposit-method').value;
-            alert(`Deposit request for ${amount} USDT via ${method} has been received!`);
+            
+            // Simulate successful deposit
+            hasDeposited = true;
+            alert(`Deposit of ${amount} USDT via ${method} has been received!`);
             closeModal('deposit-modal');
+            
+            // Update UI to reflect deposit
+            checkDepositStatus();
+            
             // Here you would typically send the data to your server
         });
 
@@ -941,13 +1038,29 @@
             // Here you would typically navigate to a detailed view
         }
 
-        function handleInvestClick(type) {
+        function handleInvestClick(type, event) {
+            if (event) event.preventDefault();
+            
+            if (!hasDeposited && (type === 'investment' || type === 'withdraw' || type === 'investment-bonus')) {
+                openModal('deposit-required-modal');
+                return;
+            }
+            
             if (type === 'deposit') {
                 openModal('deposit-modal');
             } else if (type === 'withdraw') {
                 openModal('withdraw-modal');
             } else {
                 console.log(`Investing in ${type}`);
+            }
+        }
+
+        function handleWithdrawClick(event) {
+            event.preventDefault();
+            if (!hasDeposited) {
+                openModal('deposit-required-modal');
+            } else {
+                openModal('withdraw-modal');
             }
         }
 
@@ -993,7 +1106,7 @@
                     if (currency.symbol !== 'USDT') { // USDT should stay at 1.00
                         // Small random price change
                         const randomChange = (Math.random() - 0.5) * 2;
-                        currency.price = parseFloat((currency.price * (1 + randomChange/100)).toFixed(2);
+                        currency.price = parseFloat((currency.price * (1 + randomChange/100)).toFixed(2));
                         currency.change = parseFloat((parseFloat(currency.change) + (Math.random() - 0.5) * 0.5).toFixed(1));
                     }
                 });
@@ -1006,6 +1119,7 @@
             updateCurrentDate();
             updateCurrencyTracker();
             simulateLivePrices();
+            checkDepositStatus();
             
             // Prevent button clicks from triggering card clicks
             document.querySelectorAll('.invest-now-btn').forEach(button => {
