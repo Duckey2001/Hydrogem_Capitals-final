@@ -11,84 +11,118 @@
     <link href="assets/css/icons.css" rel="stylesheet">
     
     <style>
+        :root {
+            --primary-color: #007bff;
+            --primary-hover: #0069d9;
+            --dark-bg: #121212;
+            --card-bg: #1e1e1e;
+            --border-color: #444;
+            --text-light: #ffffff;
+            --text-muted: #aaa;
+            --warning-color: #ffc107;
+            --success-color: #28a745;
+            --danger-color: #dc3545;
+        }
+        
         body {
-            background-color: #121212;
-            color: #ffffff;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
         }
         .app-header {
-            background-color: #1e1e1e;
-            border-bottom: 1px solid #444;
+            background-color: var(--card-bg);
+            border-bottom: 1px solid var(--border-color);
         }
         .breadcrumb {
             background-color: transparent;
-            color: #aaa !important;
+            color: var(--text-muted) !important;
         }
         .breadcrumb-item.active {
-            color: #fff !important;
+            color: var(--text-light) !important;
         }
         .card {
-            background-color: #1e1e1e;
-            border: 1px solid #444;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
         .card-header {
-            border-bottom: 1px solid #444;
+            border-bottom: 1px solid var(--border-color);
             padding: 1rem 1.5rem;
         }
         .card-title {
             font-size: 1.25rem;
             font-weight: 500;
-            color: #fff;
+            color: var(--text-light);
         }
         .form-label {
-            color: #ffffff;
+            color: var(--text-light);
             margin-bottom: 0.5rem;
+            display: block;
         }
         .form-control {
             background-color: #2a2a2a;
-            color: #ffffff;
-            border: 1px solid #444;
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
             padding: 0.5rem 0.75rem;
+            transition: all 0.3s ease;
         }
         .form-control:focus {
-            border-color: #007bff;
+            border-color: var(--primary-color);
             background-color: #2a2a2a;
-            color: #ffffff;
+            color: var(--text-light);
             box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
         }
         .btn-primary2 {
-            background-color: #007bff;
+            background-color: var(--primary-color);
             border: none;
-            padding: 0.5rem 1rem;
+            padding: 0.75rem 1.5rem;
             font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         .btn-primary2:hover {
-            background-color: #0069d9;
+            background-color: var(--primary-hover);
+            transform: translateY(-1px);
         }
         .btn-primary2:disabled {
             background-color: #555;
             cursor: not-allowed;
+            transform: none;
         }
         .text-warning {
-            color: #ffc107;
+            color: var(--warning-color);
+        }
+        .text-success {
+            color: var(--success-color);
+        }
+        .text-danger {
+            color: var(--danger-color);
         }
         #ushnt {
             background-color: #2a2a2a;
             border-radius: 6px;
             margin: 1rem 0;
+            transition: all 0.3s ease;
         }
         .icon-container {
             display: flex;
             align-items: center;
             gap: 15px;
             margin-bottom: 1.5rem;
-            padding: 0.5rem;
+            padding: 0.75rem;
             background-color: rgba(255,255,255,0.05);
             border-radius: 6px;
+            justify-content: center;
         }
         .icon-container img {
             width: 30px;
             height: 30px;
+            transition: transform 0.3s ease;
+        }
+        .icon-container img:hover {
+            transform: scale(1.1);
         }
         .icon-container span {
             font-weight: 500;
@@ -96,10 +130,71 @@
         .balance-display {
             background-color: rgba(0, 123, 255, 0.1);
             border: 1px solid rgba(0, 123, 255, 0.2);
+            transition: all 0.3s ease;
+        }
+        .balance-display:hover {
+            background-color: rgba(0, 123, 255, 0.15);
         }
         .balance-amount {
             font-size: 1.125rem;
             font-weight: 600;
+        }
+        .info-text {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 0.25rem;
+        }
+        .payout-status {
+            padding: 0.75rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 500;
+        }
+        .payout-open {
+            background-color: rgba(40, 167, 69, 0.1);
+            border: 1px solid rgba(40, 167, 69, 0.2);
+        }
+        .payout-closed {
+            background-color: rgba(220, 53, 69, 0.1);
+            border: 1px solid rgba(220, 53, 69, 0.2);
+        }
+        .amount-input-group {
+            position: relative;
+        }
+        .amount-input-group .currency-symbol {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+        .amount-input-group input {
+            padding-left: 25px;
+        }
+        .tooltip-icon {
+            cursor: pointer;
+            margin-left: 5px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+        .tooltip-icon:hover {
+            color: var(--primary-color);
+        }
+        .hidden {
+            display: none;
+        }
+        #confirmationModal .modal-content {
+            background-color: var(--card-bg);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+        }
+        #confirmationModal .modal-header {
+            border-bottom: 1px solid var(--border-color);
+        }
+        #confirmationModal .modal-footer {
+            border-top: 1px solid var(--border-color);
         }
     </style>
 </head>
@@ -145,13 +240,18 @@
                             <div class="card-header">
                                 <div class="card-title">Payout Request</div>
                             </div>
-                            <form class="card-body" method="post">
+                            <form class="card-body" method="post" id="payoutForm">
                                 <div class="icon-container">
                                     <img src="assets/images/icons/bitcoin.png" alt="Bitcoin Icon">
                                     <span>Bitcoin</span>
                                     <img src="assets/images/icons/forex.png" alt="Forex Icon">
                                     <span>Forex</span>
                                 </div>
+                                
+                                <div id="payoutStatus" class="payout-status hidden">
+                                    <!-- Will be filled by JavaScript -->
+                                </div>
+                                
                                 <div class="mb-3">
                                     <span class="form-label">Wallet Balance:</span>
                                     <div class="position-relative">
@@ -160,36 +260,44 @@
                                                 <div class="fw-medium">USDT Balance</div>
                                             </div>
                                             <div class="text-end ms-auto">
-                                                <span class="fw-medium d-block balance-amount">$0</span>
+                                                <span class="fw-medium d-block balance-amount">$<span id="walletBalance">0</span></span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 
                                 <div class="mb-3">
-                                    <label for="withdrawal_amount" class="form-label">Amount (Minimum $5)</label>
-                                    <input type="number" step="1" min="5" class="form-control" placeholder="Enter Amount" id="withdrawal_amount" name="withdrawal_amount" required>
+                                    <label for="withdrawal_amount" class="form-label">
+                                        Amount (Minimum $5)
+                                        <span class="tooltip-icon" title="Minimum withdrawal amount is $5. Fees apply.">ⓘ</span>
+                                    </label>
+                                    <div class="amount-input-group">
+                                        <span class="currency-symbol">$</span>
+                                        <input type="number" step="0.01" min="5" class="form-control" placeholder="Enter Amount" id="withdrawal_amount" name="withdrawal_amount" required>
+                                    </div>
+                                    <div class="info-text">Available: $<span id="availableBalance">0</span></div>
                                 </div>
                                 
                                 <div class="p-3 rounded mb-3" id="ushnt">
                                     <div class="pb-1 d-flex justify-content-between">
-                                        <span class="fw-medium">Fee:</span>
-                                        <span id="service_charge" class="fw-medium">$0</span>
+                                        <span class="fw-medium">Fee (5%):</span>
+                                        <span id="service_charge" class="fw-medium">$0.00</span>
                                     </div>
                                     <div class="pt-2 d-flex justify-content-between">
                                         <span class="fw-medium">Net Amount:</span>
-                                        <span id="net_amount" class="fw-medium">$0</span>
+                                        <span id="net_amount" class="fw-medium text-success">$0.00</span>
                                     </div>
                                 </div>
                                 
                                 <div class="mb-3">
                                     <label for="trn_password" class="form-label">Transaction Code</label>
                                     <input type="password" class="form-control" placeholder="Enter Transaction Code" id="trn_password" name="trn_password" required autocomplete="new-password">
+                                    <div class="info-text">Enter your secure transaction code to confirm</div>
                                 </div>
                                 
                                 <div class="d-grid mt-4">
                                     <button type="button" id="withdrawalBtn" class="btn btn-primary2 btn-wave waves-effect waves-light">Request Withdrawal <i class="fa-solid fa-arrow-right ms-2"></i></button>
-                                    <p class="text-warning mt-3 text-center">Withdrawal Available: Wednesday and Friday</p>
+                                    <p class="text-warning mt-3 text-center" id="withdrawalScheduleInfo"></p>
                                 </div>
                             </form>
                         </div>
@@ -198,55 +306,237 @@
             </div>
         </div>
 
+        <!-- Confirmation Modal -->
+        <div class="modal fade" id="confirmationModal" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Confirm Withdrawal</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>You are about to request a withdrawal of <strong>$<span id="confirmAmount">0</span></strong>.</p>
+                        <p>Fee: <strong>$<span id="confirmFee">0</span></strong></p>
+                        <p>Net Amount: <strong class="text-success">$<span id="confirmNetAmount">0</span></strong></p>
+                        <p>This action cannot be undone. Are you sure you want to proceed?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="button" id="confirmWithdrawal" class="btn btn-primary2">Confirm Withdrawal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="assets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
         <script>
-            // Get the amount from the URL
+            // Configuration
+            const config = {
+                minWithdrawal: 5,
+                feePercentage: 0.05,
+                minFee: 1,
+                walletBalance: 1000, // Example balance - replace with actual user balance
+                withdrawalDays: [3, 5], // Wednesday (3), Friday (5)
+                withdrawalHours: { start: 9, end: 17 } // 9AM to 5PM
+            };
+
+            // DOM Elements
+            const elements = {
+                form: document.getElementById('payoutForm'),
+                amountInput: document.getElementById('withdrawal_amount'),
+                feeDisplay: document.getElementById('service_charge'),
+                netAmountDisplay: document.getElementById('net_amount'),
+                walletBalanceDisplay: document.getElementById('walletBalance'),
+                availableBalanceDisplay: document.getElementById('availableBalance'),
+                withdrawalBtn: document.getElementById('withdrawalBtn'),
+                statusDisplay: document.getElementById('payoutStatus'),
+                scheduleInfo: document.getElementById('withdrawalScheduleInfo'),
+                passwordInput: document.getElementById('trn_password'),
+                confirmationModal: new bootstrap.Modal(document.getElementById('confirmationModal')),
+                confirmAmount: document.getElementById('confirmAmount'),
+                confirmFee: document.getElementById('confirmFee'),
+                confirmNetAmount: document.getElementById('confirmNetAmount'),
+                confirmWithdrawalBtn: document.getElementById('confirmWithdrawal')
+            };
+
+            // Initialize
+            document.addEventListener('DOMContentLoaded', function() {
+                // Set initial wallet balance
+                updateWalletBalance(config.walletBalance);
+                
+                // Check URL for pre-filled amount
+                const params = getQueryParams();
+                if (params.amount) {
+                    elements.amountInput.value = params.amount;
+                    calculateAmounts();
+                }
+                
+                // Add event listeners
+                elements.amountInput.addEventListener('input', calculateAmounts);
+                elements.withdrawalBtn.addEventListener('click', showConfirmationModal);
+                elements.confirmWithdrawalBtn.addEventListener('click', processWithdrawal);
+                
+                // Check withdrawal availability
+                checkWithdrawalAvailability();
+            });
+
+            // Helper Functions
             function getQueryParams() {
                 const params = {};
                 const queryString = window.location.search.substring(1);
                 const regex = /([^&=]+)=([^&]*)/g;
                 let m;
-
                 while (m = regex.exec(queryString)) {
                     params[decodeURIComponent(m[1])] = decodeURIComponent(m[2]);
                 }
                 return params;
             }
 
-            // Calculate fee and net amount
-            function calculateAmounts() {
-                const amount = parseFloat(document.getElementById('withdrawal_amount').value) || 0;
-                const fee = Math.max(1, amount * 0.05); // 5% fee with $1 minimum
-                const netAmount = amount - fee;
-                
-                document.getElementById('service_charge').textContent = '$' + fee.toFixed(2);
-                document.getElementById('net_amount').textContent = '$' + netAmount.toFixed(2);
-                
-                // Enable/disable button based on amount
-                const btn = document.getElementById('withdrawalBtn');
-                btn.disabled = amount < 5;
+            function updateWalletBalance(balance) {
+                elements.walletBalanceDisplay.textContent = balance.toFixed(2);
+                elements.availableBalanceDisplay.textContent = balance.toFixed(2);
             }
 
-            // Initialize
-            document.addEventListener('DOMContentLoaded', function() {
-                const params = getQueryParams();
-                const withdrawalAmount = params['amount'];
-                if (withdrawalAmount) {
-                    document.getElementById('withdrawal_amount').value = withdrawalAmount;
+            // Business Logic
+            function calculateAmounts() {
+                const amount = parseFloat(elements.amountInput.value) || 0;
+                const fee = calculateFee(amount);
+                const netAmount = amount - fee;
+                
+                // Update displays
+                elements.feeDisplay.textContent = '$' + fee.toFixed(2);
+                elements.netAmountDisplay.textContent = '$' + netAmount.toFixed(2);
+                
+                // Validate amount
+                validateAmount(amount);
+            }
+
+            function calculateFee(amount) {
+                const calculatedFee = amount * config.feePercentage;
+                return Math.max(config.minFee, calculatedFee);
+            }
+
+            function validateAmount(amount) {
+                let isValid = true;
+                let message = '';
+                
+                if (amount < config.minWithdrawal) {
+                    isValid = false;
+                    message = `Minimum withdrawal is $${config.minWithdrawal}`;
+                } else if (amount > config.walletBalance) {
+                    isValid = false;
+                    message = 'Amount exceeds available balance';
+                }
+                
+                elements.withdrawalBtn.disabled = !isValid;
+                
+                // Show/hide validation message
+                const existingValidation = document.getElementById('amountValidation');
+                if (existingValidation) existingValidation.remove();
+                
+                if (!isValid) {
+                    const validationElement = document.createElement('div');
+                    validationElement.id = 'amountValidation';
+                    validationElement.className = 'text-danger mt-1';
+                    validationElement.textContent = message;
+                    elements.amountInput.parentNode.appendChild(validationElement);
+                }
+                
+                return isValid;
+            }
+
+            function checkWithdrawalAvailability() {
+                const now = new Date();
+                const day = now.getDay();
+                const hour = now.getHours();
+                const isWithdrawalDay = config.withdrawalDays.includes(day);
+                const isWithinHours = hour >= config.withdrawalHours.start && hour < config.withdrawalHours.end;
+                const isAvailable = isWithdrawalDay && isWithinHours;
+                
+                // Update status display
+                elements.statusDisplay.className = isAvailable ? 'payout-status payout-open text-success' : 'payout-status payout-closed text-danger';
+                elements.statusDisplay.textContent = isAvailable ? 'Withdrawals are currently OPEN' : 'Withdrawals are currently CLOSED';
+                elements.statusDisplay.classList.remove('hidden');
+                
+                // Update button state
+                elements.withdrawalBtn.disabled = !isAvailable;
+                
+                // Update schedule info
+                const daysText = config.withdrawalDays.map(d => {
+                    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                    return days[d];
+                }).join(' and ');
+                
+                elements.scheduleInfo.textContent = `Withdrawals available on ${daysText} between ${config.withdrawalHours.start}AM and ${config.withdrawalHours.end}PM`;
+                
+                if (!isAvailable) {
+                    let message = ' (Currently closed)';
+                    if (!isWithdrawalDay) {
+                        message = ` (Next opening: ${getNextOpeningTime()})`;
+                    } else if (!isWithinHours) {
+                        message = ' (Will open at 9AM)';
+                    }
+                    elements.scheduleInfo.textContent += message;
+                }
+            }
+
+            function getNextOpeningTime() {
+                const now = new Date();
+                let daysToAdd = 1;
+                
+                while (true) {
+                    const nextDate = new Date(now);
+                    nextDate.setDate(now.getDate() + daysToAdd);
+                    const nextDay = nextDate.getDay();
+                    
+                    if (config.withdrawalDays.includes(nextDay)) {
+                        const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                        return days[nextDay];
+                    }
+                    
+                    daysToAdd++;
+                    if (daysToAdd > 7) break; // Prevent infinite loop
+                }
+                
+                return 'soon';
+            }
+
+            function showConfirmationModal() {
+                const amount = parseFloat(elements.amountInput.value) || 0;
+                const fee = calculateFee(amount);
+                const netAmount = amount - fee;
+                
+                // Update modal content
+                elements.confirmAmount.textContent = amount.toFixed(2);
+                elements.confirmFee.textContent = fee.toFixed(2);
+                elements.confirmNetAmount.textContent = netAmount.toFixed(2);
+                
+                // Show modal
+                elements.confirmationModal.show();
+            }
+
+            function processWithdrawal() {
+                // Simulate processing
+                elements.confirmationModal.hide();
+                
+                // Show loading state
+                const originalText = elements.withdrawalBtn.innerHTML;
+                elements.withdrawalBtn.disabled = true;
+                elements.withdrawalBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>Processing...';
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Reset button
+                    elements.withdrawalBtn.innerHTML = originalText;
+                    
+                    // Show success message (in a real app, you'd check the response)
+                    alert('Withdrawal request submitted successfully!');
+                    
+                    // Reset form
+                    elements.form.reset();
                     calculateAmounts();
-                }
-                
-                // Add event listener for amount changes
-                document.getElementById('withdrawal_amount').addEventListener('input', calculateAmounts);
-                
-                // Check if today is Wednesday or Friday (0=Sunday, 2=Tuesday, etc.)
-                const today = new Date().getDay();
-                const isWithdrawalDay = today === 3 || today === 5; // Wednesday(3) or Friday(5)
-                
-                if (!isWithdrawalDay) {
-                    document.getElementById('withdrawalBtn').disabled = true;
-                    document.querySelector('.text-warning').textContent += ' (Today is not a withdrawal day)';
-                }
-            });
+                }, 2000);
+            }
         </script>
     </div>
 </body>
