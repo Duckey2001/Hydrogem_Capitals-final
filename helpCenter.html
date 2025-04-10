@@ -1,251 +1,333 @@
-
-
-
 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>
-	AAA Finity
-</title><link href="Scripte/css/bootstrap.min.css" rel="stylesheet" /><link rel="shortcut icon" href="scripte/favicon.png" type="image/x-icon" /><link rel="stylesheet" href="scripte/css/vendors/uikit.min.css" /><link rel="stylesheet" href="scripte/css/style.css" />
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login - AAA Finity</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="shortcut icon" href="scripte/favicon.png" type="image/x-icon">
+    
     <style>
-        .uk-grid > * {
-            padding-left: 0px;
+        :root {
+            --primary-color: #dba03c;
+            --primary-hover: #e78800;
+            --dark-bg: #121212;
+            --light-bg: #fbfaf8;
+            --card-bg: rgba(255, 255, 255, 0.95);
+            --text-dark: #080808;
+            --text-light: #f8f9fa;
+            --border-color: #dfa750;
+            --error-color: #dc3545;
         }
 
-        .uk-grid {
-            margin: 0px
-        }
-
-        .uk-margin-top {
-            margin-top: 10px !important;
-        }
-
-        .uk-margin-medium-bottom {
-            margin-bottom: 28px !important;
-        }
-
-        .uk-container {
-            padding-left: 0px;
-            padding-right: 0px;
-        }
-
-        .uk-text-lead {
-            font-size: 1.4rem;
-            color: #080808;
-        }
-
-        .uk-link, a {
-            color: #dba03c;
-            font-weight: 600;
-        }
-
-            .uk-link-toggle:focus .uk-link, .uk-link-toggle:hover .uk-link, .uk-link:hover, a:hover {
-                color: #e78800;
-                text-decoration: underline;
-            }
-
-        * + .uk-margin-small {
-            margin-top: 0px !important;
-        }
-
-        .uk-margin-small {
-            margin-bottom: 0px;
-        }
-
-        .label_text {
-            margin-top: 10px;
-        }
-
-        .uk-logo img {
-            margin-bottom: 10px;
-        }
-
-        .uk-button-primary {
-            background: linear-gradient(45deg, #f1b455, #25221e);
-            color: #fff;
-        }
-
-        .uk-input, .uk-select, .uk-textarea {
-            background: #ffe1b30a;
-            color: #0c0c0c;
-            border: 1px solid #dfa750;
-        }
-
-        .uk-form-icon {
-            color: #9d722e;
-        }
-
-        .uk-input:focus, .uk-select:focus, .uk-textarea:focus {
-            background-color: #fff;
-            color: #0c0c0c;
-            border-color: #f5b857;
-        }
-
-        .bg_page {
-            background-image: url(assets/images/bg.jpg);
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('assets/images/bg.jpg') no-repeat center center fixed;
             background-size: cover;
-            height: 100%;
-            background-position: center;
-            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
         }
 
-        .uk-background-center-right {
-            background-position: 45% 5%;
+        .login-container {
+            max-width: 450px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            margin: 2rem auto;
         }
 
-        .in-padding-horizontal\@s {
-            width: 385px;
-            background: linear-gradient(45deg, #fbfaf8, transparent);
-            padding: 20px;
-            border-radius: 20px;
-            box-shadow: 3px 3px 5px #fff;
+        .logo-container {
+            text-align: center;
+            margin-bottom: 2rem;
         }
 
-        @media(max-width:600px) {
-            .bg_page {
-                background-position: right;
+        .logo-container img {
+            max-width: 180px;
+            height: auto;
+        }
+
+        .login-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .login-subtitle {
+            color: var(--text-dark);
+            opacity: 0.8;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .form-control {
+            height: 50px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: rgba(255, 225, 179, 0.05);
+            padding-left: 45px;
+            transition: all 0.3s;
+        }
+
+        .form-control:focus {
+            box-shadow: 0 0 0 0.25rem rgba(219, 160, 60, 0.25);
+            border-color: var(--primary-color);
+            background-color: white;
+        }
+
+        .input-group-text {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            color: var(--primary-color);
+            background: transparent;
+            border: none;
+        }
+
+        .btn-login {
+            background: linear-gradient(45deg, var(--primary-color), #25221e);
+            border: none;
+            height: 50px;
+            border-radius: 8px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s;
+        }
+
+        .btn-login:hover {
+            background: linear-gradient(45deg, var(--primary-hover), #25221e);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(219, 160, 60, 0.3);
+        }
+
+        .links-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .login-link {
+            color: var(--primary-color);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .login-link:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .divider::before {
+            margin-right: 1rem;
+        }
+
+        .divider::after {
+            margin-left: 1rem;
+        }
+
+        .social-login {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-btn {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-google {
+            background: #DB4437;
+        }
+
+        .btn-facebook {
+            background: #4267B2;
+        }
+
+        .error-message {
+            color: var(--error-color);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: block;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--primary-color);
+            z-index: 5;
+        }
+
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 2rem 1.5rem;
+                margin: 1rem;
             }
-
-            .in-padding-horizontal\@s {
-              background: linear-gradient(292deg, #fbfaf8, #fbfaf8c4, #fcfcfc7a);
-
+            
+            .links-container {
+                flex-direction: column;
+                gap: 0.5rem;
+                align-items: center;
             }
         }
     </style>
 </head>
-
 <body>
-    <form method="post" action="./Login" onsubmit="javascript:return WebForm_OnSubmit();" id="form1">
-<div class="aspNetHidden">
-<input type="hidden" name="__EVENTTARGET" id="__EVENTTARGET" value="" />
-<input type="hidden" name="__EVENTARGUMENT" id="__EVENTARGUMENT" value="" />
-<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="xiuzkGzq4YnVMNjjCexmlBgTuUjn61mh2PEL2JpFtJuqOuv6qTLbptk/99ff3vM/KgM0L2yV9lhWPIBKSVQi6rq7oHCohOzN8q/0KY/ZQJg=" />
-</div>
-
-<script type="text/javascript">
-//<![CDATA[
-var theForm = document.forms['form1'];
-if (!theForm) {
-    theForm = document.form1;
-}
-function __doPostBack(eventTarget, eventArgument) {
-    if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
-        theForm.__EVENTTARGET.value = eventTarget;
-        theForm.__EVENTARGUMENT.value = eventArgument;
-        theForm.submit();
-    }
-}
-//]]>
-</script>
-
-
-<script src="/WebResource.axd?d=pynGkmcFUV13He1Qd6_TZMixKkCar4TIlKJYgPCcd73clpCRb2w1FYCXseUea0AgYMrsG-mqeVocIDsSSF4rUw2&amp;t=638628207619783110" type="text/javascript"></script>
-
-
-<script src="/ScriptResource.axd?d=nv7asgRUU0tRmHNR2D6t1CPynCcgSQVqyWsAShJYeI0MOfdA2g3H6KrOdByKyyW1A1SGxElcjAM9MDqC6n9cvwUaqn-xle6WBKeUROQ7nOPREOCz68EzjSZoErWm-Cpv1kMgeSBAw0cMCO2DNoDVuw2&amp;t=ffffffffc7a8e318" type="text/javascript"></script>
-<script src="Scripts/WebForms/MsAjax/MicrosoftAjax.js" type="text/javascript"></script>
-<script type="text/javascript">
-//<![CDATA[
-if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
-//]]>
-</script>
-
-<script src="Scripts/WebForms/MsAjax/MicrosoftAjaxWebForms.js" type="text/javascript"></script>
-<script src="Scripts/jquery-3.4.1.js" type="text/javascript"></script>
-<script type="text/javascript">
-//<![CDATA[
-function WebForm_OnSubmit() {
-if (typeof(ValidatorOnSubmit) == "function" && ValidatorOnSubmit() == false) return false;
-return true;
-}
-//]]>
-</script>
-
-<div class="aspNetHidden">
-
-	<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="C2EE9ABB" />
-	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="Nh2OfIv5cC6/7tIv7fYQDM9l+GDZf7nCE4A6vyqi7eevMO6ulAr5xttK6gWA77M8lINoZ5BhAivJwa8++B+x1KcnXiWQdjIOLoMGXEtlNCZn/ks9FWykjxFvgfwbVH0OICALmfdjDynswmpgFzJqCNQ5aABQdynkBTaq4Cg3hXE=" />
-</div>
-        <script type="text/javascript">
-//<![CDATA[
-Sys.WebForms.PageRequestManager._initialize('ctl00$ctl08', 'form1', [], [], [], 90, 'ctl00');
-//]]>
-</script>
-
-        <div class="in-loader">
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-        <!-- preloader end -->
-
-        <main class="bg_page">
-            <div class="uk-section uk-padding-remove-vertical">
-                <div class="uk-container uk-container-expand">
-                    <div class="uk-grid" data-uk-height-viewport="expand: true">
-                        <div class="uk-width-3-5@m uk-background-cover uk-background-center-right uk-visible@m uk-box-shadow-xlarge" style="background-image: url(assets/images/login1.jpg);">
-                        </div>
-                        <div class="uk-width-expand@m uk-flex uk-flex-middle">
-                            <div class="uk-grid uk-flex-center">
-                                <div class="uk-width-3-5@m">
-                                    <div class="in-padding-horizontal@s">
-                                        <!-- module logo begin -->
-                                        <a class="uk-logo" href="index.aspx">
-                                            <img class="in-offset-top-10" src="assets/images/logo-dark.png" alt="logo" width="200">
-                                        </a>
-                                        
-    <!-- module logo begin -->
-    <p class="uk-text-lead uk-margin-top uk-margin-remove-bottom">Log into your account</p>
-    <p class="uk-text-small uk-margin-remove-top uk-margin-medium-bottom">Don't have an account? <a href="Register">Register here</a></p>
-    <!-- login form begin -->
-    <div class="uk-grid uk-form">
-        <div class="uk-margin-small uk-width-1-1 uk-inline">
-            <span class="uk-form-icon uk-form-icon-flip fas fa-user fa-sm"></span>
-            <input name="ctl00$ContentPlaceHolder1$TxtLoginID" type="text" id="ContentPlaceHolder1_TxtLoginID" placeholder="Enter Member Id" class="uk-input uk-border-rounded" />
-        </div>
-        <span data-val-controltovalidate="ContentPlaceHolder1_TxtLoginID" data-val-errormessage="Please Enter Login Id" data-val-validationGroup="signin" id="ContentPlaceHolder1_RequiredFieldValidator3" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="color:Red;visibility:hidden;">Please Enter Login Id</span>
-
-        <div class="uk-margin-small uk-width-1-1 uk-inline">
-            <span class="uk-form-icon uk-form-icon-flip fas fa-lock fa-sm"></span>
-            <input name="ctl00$ContentPlaceHolder1$TxtPassword" type="password" id="ContentPlaceHolder1_TxtPassword" placeholder="Enter Password" class="uk-input uk-border-rounded" />
-        </div>
-        <span data-val-controltovalidate="ContentPlaceHolder1_TxtPassword" data-val-errormessage="Please Enter Password" data-val-validationGroup="signin" id="ContentPlaceHolder1_RequiredFieldValidator4" data-val="true" data-val-evaluationfunction="RequiredFieldValidatorEvaluateIsValid" data-val-initialvalue="" style="color:Red;visibility:hidden;">Please Enter Password</span>
-
-
-        <div class="uk-margin-small uk-width-1-1">
+    <div class="container">
+        <div class="login-container">
+            <div class="logo-container">
+                <img src="assets/images/logo-dark.png" alt="AAA Finity Logo">
+            </div>
             
-
-            <input type="submit" name="ctl00$ContentPlaceHolder1$Btn_Login" value="Sign in" onclick="javascript:WebForm_DoPostBackWithOptions(new WebForm_PostBackOptions(&quot;ctl00$ContentPlaceHolder1$Btn_Login&quot;, &quot;&quot;, true, &quot;signin&quot;, &quot;&quot;, false, false))" id="ContentPlaceHolder1_Btn_Login" class="uk-button uk-width-1-1 uk-button-primary uk-border-rounded uk-float-left" /><br />
-            <span id="ContentPlaceHolder1_lblerr"></span>
-        </div>
-        <div class="uk-margin-small uk-width-auto uk-text-small">
-            <label class="label_text">
-                <a class="uk-link-reset" href="forget_password">Forgot password?</a>
-                | <a class="uk-link-reset" href="Register">New Registration?</a>
-            </label>
+            <h1 class="login-title">Welcome back</h1>
+            <p class="login-subtitle">Log into your account. Don't have an account? <a href="Register" class="login-link">Register here</a></p>
+            
+            <form method="post" action="./Login" id="loginForm">
+                <div class="mb-3">
+                    <div class="position-relative">
+                        <i class="fas fa-user input-group-text"></i>
+                        <input type="text" name="username" id="username" class="form-control" placeholder="Enter Member ID" required>
+                    </div>
+                    <span id="usernameError" class="error-message"></span>
+                </div>
+                
+                <div class="mb-3 password-container">
+                    <div class="position-relative">
+                        <i class="fas fa-lock input-group-text"></i>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter Password" required>
+                        <i class="fas fa-eye toggle-password" id="togglePassword"></i>
+                    </div>
+                    <span id="passwordError" class="error-message"></span>
+                </div>
+                
+                <div class="d-grid gap-2 mb-3">
+                    <button type="submit" class="btn btn-login btn-block">Sign In</button>
+                </div>
+                
+                <div class="links-container">
+                    <a href="forget_password" class="login-link">Forgot password?</a>
+                    <a href="Register" class="login-link">New Registration</a>
+                </div>
+                
+                <!-- Uncomment if you want social login options -->
+                <!--
+                <div class="divider">or continue with</div>
+                
+                <div class="social-login">
+                    <a href="#" class="social-btn btn-google"><i class="fab fa-google"></i></a>
+                    <a href="#" class="social-btn btn-facebook"><i class="fab fa-facebook-f"></i></a>
+                </div>
+                -->
+            </form>
         </div>
     </div>
 
-                                        <!-- login form end -->
-                                        <!--<p class="uk-heading-line uk-text-center"><span>Or sign in with</span></p>
-                                    <div class="uk-margin-medium-bottom uk-text-center">
-                                        <a class="uk-button uk-button-small uk-border-rounded in-brand-google" href="scripte/#"><i class="fab fa-google uk-margin-small-right"></i>Google</a>
-                                        <a class="uk-button uk-button-small uk-border-rounded in-brand-facebook" href="scripte/#"><i class="fab fa-facebook-f uk-margin-small-right"></i>Facebook</a>
-                                    </div>-->
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- section content end -->
-        </main>
-        <!-- Javascript -->
-        <script src="scripte/js/vendors/uikit.min.js"></script>
-        <script src="scripte/js/vendors/indonez.min.js"></script>
-
-        
-    <script src="//code.tidio.co/japzmbc0puxz0wzm4nrndxxvjr1ca5xk.js" async></script>
-    </form>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Password toggle functionality
+            const togglePassword = document.getElementById('togglePassword');
+            const passwordInput = document.getElementById('password');
+            
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.classList.toggle('fa-eye-slash');
+                this.classList.toggle('fa-eye');
+            });
+            
+            // Form validation
+            const loginForm = document.getElementById('loginForm');
+            
+            loginForm.addEventListener('submit', function(e) {
+                let isValid = true;
+                
+                // Validate username
+                const username = document.getElementById('username').value.trim();
+                if (!username) {
+                    document.getElementById('usernameError').textContent = 'Please enter your Member ID';
+                    isValid = false;
+                } else {
+                    document.getElementById('usernameError').textContent = '';
+                }
+                
+                // Validate password
+                const password = document.getElementById('password').value.trim();
+                if (!password) {
+                    document.getElementById('passwordError').textContent = 'Please enter your password';
+                    isValid = false;
+                } else {
+                    document.getElementById('passwordError').textContent = '';
+                }
+                
+                if (!isValid) {
+                    e.preventDefault();
+                }
+                
+                // In a real application, you would add AJAX submission here
+            });
+            
+            // Input validation on blur
+            document.getElementById('username').addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    document.getElementById('usernameError').textContent = 'Please enter your Member ID';
+                } else {
+                    document.getElementById('usernameError').textContent = '';
+                }
+            });
+            
+            document.getElementById('password').addEventListener('blur', function() {
+                if (!this.value.trim()) {
+                    document.getElementById('passwordError').textContent = 'Please enter your password';
+                } else {
+                    document.getElementById('passwordError').textContent = '';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
