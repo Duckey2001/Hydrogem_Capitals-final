@@ -195,13 +195,7 @@
             position: absolute;
             gap: 15px;
             padding: 10px 0;
-            animation: scroll 30s linear infinite;
             white-space: nowrap;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
         }
 
         .currency-item {
@@ -589,6 +583,12 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* ANIMATION FOR CURRENCY TRACKER */
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
         /* RESPONSIVE STYLES */
         @media (max-width: 992px) {
             .sidebar {
@@ -650,6 +650,95 @@
                 padding: 20px;
             }
         }
+
+        /* NEW STYLES FOR TRANSACTIONS */
+        .transactions-section {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .transaction-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        .transaction-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+        
+        .transaction-icon i {
+            color: var(--primary-color);
+            font-size: 16px;
+        }
+        
+        .transaction-details {
+            flex: 1;
+        }
+        
+        .transaction-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .transaction-type {
+            font-weight: 500;
+            text-transform: capitalize;
+        }
+        
+        .transaction-amount {
+            font-weight: bold;
+        }
+        
+        .transaction-amount.positive {
+            color: var(--positive-change);
+        }
+        
+        .transaction-amount.negative {
+            color: var(--negative-change);
+        }
+        
+        .transaction-footer {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+        
+        .transaction-status {
+            text-transform: capitalize;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 11px;
+        }
+        
+        .transaction-status.pending {
+            background-color: #FFF3E0;
+            color: #E65100;
+        }
+        
+        .transaction-status.completed {
+            background-color: #E8F5E9;
+            color: #2E7D32;
+        }
+        
+        .transaction-status.failed {
+            background-color: #FFEBEE;
+            color: #C62828;
+        }
     </style>
 </head>
 <body class="dark-theme" data-theme="dark">
@@ -659,15 +748,15 @@
             <h3><i class="fas fa-water"></i> <span>Hydrogem Capitals</span></h3>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="#" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-            <li><a href="#" onclick="handleWalletClick(event)"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
+            <li><a href="deshboard.html" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="wallet.html"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
             <li><a href="#" onclick="openModal('deposit-modal')"><i class="fas fa-money-bill-wave"></i> <span>Deposit</span></a></li>
             <li><a href="#" onclick="handleWithdrawClick(event)"><i class="fas fa-hand-holding-usd"></i> <span>Withdraw</span></a></li>
-            <li><a href="#" onclick="handleInvestClick(event)"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
-            <li><a href="#" onclick="handleTransactionsClick(event)"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
-            <li><a href="#" onclick="handleReferralsClick(event)"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
-            <li><a href="#" onclick="handleRewardsClick(event)"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
-            <li><a href="#" onclick="handleSettingsClick(event)"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            <li><a href="investments.html"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
+            <li><a href="transactions.html"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
+            <li><a href="referrals.html"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
+            <li><a href="rewards.html"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
             <li><a href="#" onclick="handleLogoutClick(event)"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
         </ul>
     </aside>
@@ -677,7 +766,7 @@
         <!-- HEADER WITH BACKGROUND IMAGE -->
         <div class="dashboard-header">
             <div class="header-overlay">
-                <h1>Welcome Back, <span id="username">John</span></h1>
+                <h1>Welcome to Hydrogem Capitals, <span id="username">User</span></h1>
                 <p>Your current balance: <strong id="user-balance">0.00 USDT</strong></p>
             </div>
         </div>
@@ -701,7 +790,7 @@
                     <div class="user-avatar">
                         <i class="fas fa-user"></i>
                     </div>
-                    <span id="profile-name">John Doe</span>
+                    <span id="profile-name">User</span>
                 </div>
             </div>
         </div>
@@ -711,90 +800,99 @@
             <!-- DASHBOARD TITLE -->
             <div class="dashboard-title">
                 <h2>Dashboard Overview</h2>
-                <div class="date-display" id="current-date">April 1, 2023</div>
+                <div class="date-display" id="current-date">Loading date...</div>
             </div>
 
             <!-- DASHBOARD CARDS -->
             <div class="user-cards">
                 <!-- All Transactions -->
-                <div class="single" onclick="handleStatClick('transactions')">
+                <div class="single" onclick="window.location.href='transactions.html'">
                     <div class="icon"><i class="fas fa-exchange-alt"></i></div>
                     <div class="content">
                         <h4><span class="count" id="transactions-count">0</span></h4>
                         <p>All Transactions</p>
                     </div>
-                    <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('transactions')">View more</button>
+                    <button class="invest-now-btn" onclick="window.location.href='transactions.html'; event.stopPropagation();">View more</button>
                 </div>
             
                 <!-- Total Deposit -->
-                <div class="single" onclick="handleStatClick('deposit')">
+                <div class="single" onclick="openModal('deposit-modal')">
                     <div class="icon"><i class="fas fa-coins"></i></div>
                     <div class="content">
                         <h4><span class="count" id="total-deposit">0.00</span> <b>USDT</b></h4>
                         <p>Total Deposit</p>
                     </div>
-                    <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('deposit')">View more</button>
+                    <button class="invest-now-btn" onclick="openModal('deposit-modal'); event.stopPropagation();">Deposit Now</button>
                 </div>
             
                 <!-- Total Investment -->
-                <div class="single deposit-required" onclick="handleStatClick('investment')">
+                <div class="single deposit-required" onclick="window.location.href='investments.html'">
                     <div class="icon"><i class="fas fa-chart-pie"></i></div>
                     <div class="content">
                         <h4><span class="count" id="total-investment">0.00</span> <b>USDT</b></h4>
                         <p>Total Investment</p>
                     </div>
-                    <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('investment')">View more</button>
+                    <button class="invest-now-btn" onclick="window.location.href='investments.html'; event.stopPropagation();">Invest Now</button>
                 </div>
             
                 <!-- Total Points -->
-                <div class="single" onclick="handleStatClick('points')">
+                <div class="single" onclick="window.location.href='rewards.html'">
                     <div class="icon"><i class="fas fa-star"></i></div>
                     <div class="content">
                         <h4><span class="count" id="total-points">0</span></h4>
                         <p>Total Points</p>
                     </div>
-                    <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('points')">View more</button>
+                    <button class="invest-now-btn" onclick="window.location.href='rewards.html'; event.stopPropagation();">View Rewards</button>
                 </div>
             
                 <!-- Total Withdraw -->
-                <div class="single deposit-required" onclick="handleStatClick('withdraw')">
+                <div class="single deposit-required" onclick="handleWithdrawClick(event)">
                     <div class="icon"><i class="fas fa-money-check-alt"></i></div>
                     <div class="content">
                         <h4><span class="count" id="total-withdraw">0.00</span> <b>USDT</b></h4>
                         <p>Total Withdraw</p>
                     </div>
-                    <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('withdraw')">View more</button>
+                    <button class="invest-now-btn" onclick="handleWithdrawClick(event); event.stopPropagation();">Withdraw</button>
                 </div>
             
                 <!-- Referral Bonus -->
-                <div class="single" onclick="handleStatClick('referral-bonus')">
+                <div class="single" onclick="window.location.href='referrals.html'">
                     <div class="icon"><i class="fas fa-gift"></i></div>
                     <div class="content">
                         <h4><span class="count" id="referral-bonus">0.00</span> <b>USDT</b></h4>
                         <p>Referral Bonus</p>
                     </div>
-                    <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('referral-bonus')">View more</button>
+                    <button class="invest-now-btn" onclick="window.location.href='referrals.html'; event.stopPropagation();">View Referrals</button>
                 </div>
             
                 <!-- Deposit Bonus -->
-                <div class="single" onclick="handleStatClick('deposit-bonus')">
+                <div class="single" onclick="window.location.href='rewards.html'">
                     <div class="icon"><i class="fas fa-piggy-bank"></i></div>
                     <div class="content">
                         <h4><span class="count" id="deposit-bonus">0.00</span> <b>USDT</b></h4>
                         <p>Deposit Bonus</p>
                     </div>
-                    <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('deposit-bonus')">View more</button>
+                    <button class="invest-now-btn" onclick="window.location.href='rewards.html'; event.stopPropagation();">View Bonuses</button>
                 </div>
             
                 <!-- Investment Bonus -->
-                <div class="single deposit-required" onclick="handleStatClick('investment-bonus')">
+                <div class="single deposit-required" onclick="window.location.href='rewards.html'">
                     <div class="icon"><i class="fas fa-trophy"></i></div>
                     <div class="content">
                         <h4><span class="count" id="investment-bonus">0.00</span> <b>USDT</b></h4>
                         <p>Investment Bonus</p>
                     </div>
-                    <button class="invest-now-btn" onclick="event.stopPropagation(); handleInvestClick('investment-bonus')">View more</button>
+                    <button class="invest-now-btn" onclick="window.location.href='rewards.html'; event.stopPropagation();">View Bonuses</button>
                 </div>
+            </div>
+
+            <!-- TRANSACTIONS SECTION -->
+            <div class="transactions-section">
+                <h3><i class="fas fa-exchange-alt"></i> Recent Transactions</h3>
+                <div class="transactions-list" id="transactions-list">
+                    <!-- Transactions will be loaded here -->
+                </div>
+                <button class="invest-now-btn" style="margin-top: 15px;" onclick="window.location.href='transactions.html'">View All Transactions</button>
             </div>
 
             <!-- REFERRAL SECTION -->
@@ -802,7 +900,7 @@
                 <h3><i class="fas fa-share-alt"></i> Your Referral Link</h3>
                 <p>Earn 5% commission on every deposit made by your referrals!</p>
                 <div class="referral-link-container">
-                    <div class="referral-link" id="referral-link">https://hydrogem.capitals/ref/johndoe123</div>
+                    <div class="referral-link" id="referral-link">Loading referral link...</div>
                     <button class="copy-btn" onclick="copyReferralLink()"><i class="fas fa-copy"></i> Copy</button>
                 </div>
             </div>
@@ -833,7 +931,7 @@
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('deposit-modal')">Cancel</button>
-                    <button type="submit" class="btn btn-primary" id="deposit-submit-btn">Proceed to Payment</button>
+                    <button type="submit" class="btn btn-primary">Proceed to Payment</button>
                 </div>
             </form>
         </div>
@@ -867,7 +965,7 @@
                 </div>
                 <div class="form-actions">
                     <button type="button" class="btn btn-secondary" onclick="closeModal('withdraw-modal')">Cancel</button>
-                    <button type="submit" class="btn btn-primary" id="withdraw-submit-btn">Request Withdrawal</button>
+                    <button type="submit" class="btn btn-primary">Request Withdrawal</button>
                 </div>
             </form>
         </div>
@@ -882,7 +980,13 @@
             </div>
             <div class="notifications-list" id="notifications-list">
                 <!-- Notifications will be loaded here -->
-                <div class="spinner"></div>
+                <div class="notification-item">
+                    <div class="notification-icon"><i class="fas fa-bell"></i></div>
+                    <div class="notification-content">
+                        <p>Welcome to Hydrogem Capitals!</p>
+                        <small>Just now</small>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -939,74 +1043,150 @@
     </div>
 
     <script>
-        // API Configuration
-        const API_BASE_URL = 'https://api.hydrogemcapitals.com/v1';
-        let authToken = localStorage.getItem('authToken') || '';
-        let userData = {};
+        // User data from localStorage
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
         let hasDeposited = false;
+        
+        // Currency data
+        const currencies = [
+            { symbol: 'BTC', name: 'Bitcoin', price: 42850.32, change: 2.3 },
+            { symbol: 'ETH', name: 'Ethereum', price: 2350.75, change: 1.8 },
+            { symbol: 'USDT', name: 'Tether', price: 1.00, change: 0 },
+            { symbol: 'BNB', name: 'Binance Coin', price: 310.42, change: -0.5 },
+            { symbol: 'SOL', name: 'Solana', price: 95.18, change: 5.2 },
+            { symbol: 'XRP', name: 'Ripple', price: 0.55, change: -1.2 },
+            { symbol: 'ADA', name: 'Cardano', price: 0.38, change: 0.7 },
+            { symbol: 'DOGE', name: 'Dogecoin', price: 0.12, change: 3.1 }
+        ];
+
+        // Sample transactions data
+        const sampleTransactions = [
+            { id: 1, type: 'deposit', amount: 100.00, date: new Date(), status: 'completed' },
+            { id: 2, type: 'bonus', amount: 5.00, date: new Date(Date.now() - 86400000), status: 'completed' },
+            { id: 3, type: 'investment', amount: -50.00, date: new Date(Date.now() - 172800000), status: 'pending' }
+        ];
 
         // Initialize the application
-        async function initApp() {
-            updateCurrentDate();
-            updateCurrencyTracker();
-            simulateLivePrices();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check if user is logged in
+            if (!currentUser || !currentUser.email) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Update UI with user data
+            updateUserData();
             
-            // Load user data
-            await loadUserData();
-            
-            // Check deposit status
-            checkDepositStatus();
-            
-            // Load notifications
-            loadNotifications();
+            // Initialize currency tracker
+            initCurrencyTracker();
             
             // Set up event listeners
             setupEventListeners();
+            
+            // Load transactions
+            loadTransactions();
+            
+            // Update current date
+            updateCurrentDate();
+            
+            // Generate referral link
+            generateReferralLink();
+        });
+
+        // Update UI with user data
+        function updateUserData() {
+            document.getElementById('username').textContent = currentUser.name || 'User';
+            document.getElementById('profile-name').textContent = currentUser.name || 'User';
+            document.getElementById('profile-fullname').value = currentUser.name || '';
+            document.getElementById('profile-email').value = currentUser.email || '';
+            document.getElementById('profile-status').value = 'Active';
+            
+            // Check if user has deposited (for demo, we'll check if balance > 0)
+            hasDeposited = currentUser.balance > 0;
+            checkDepositStatus();
         }
 
-        // Load user data from backend
-        async function loadUserData() {
-            showLoading('Loading user data...');
-            try {
-                const response = await fetch(`${API_BASE_URL}/user`, {
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`
+        // Initialize currency tracker with animation
+        function initCurrencyTracker() {
+            const tracker = document.getElementById('currency-tracker');
+            
+            // Create currency items
+            currencies.forEach(currency => {
+                const changeClass = currency.change >= 0 ? 'positive' : 'negative';
+                const changeIcon = currency.change >= 0 ? '▲' : '▼';
+                
+                const item = document.createElement('div');
+                item.className = 'currency-item';
+                item.innerHTML = `
+                    ${currency.symbol}: <span>$${currency.price.toLocaleString()}</span>
+                    <span class="${changeClass}">${changeIcon} ${Math.abs(currency.change)}%</span>
+                `;
+                
+                // Clone the item to create seamless looping
+                const clone = item.cloneNode(true);
+                tracker.appendChild(item);
+                tracker.appendChild(clone);
+            });
+            
+            // Start animation
+            animateCurrencyTracker();
+        }
+
+        // Animate currency tracker
+        function animateCurrencyTracker() {
+            const tracker = document.getElementById('currency-tracker');
+            const items = tracker.querySelectorAll('.currency-item');
+            const itemWidth = items[0].offsetWidth + 15; // 15px gap
+            
+            // Calculate total width needed
+            const totalWidth = itemWidth * items.length;
+            tracker.style.width = `${totalWidth}px`;
+            
+            // Animation
+            let position = 0;
+            const animationSpeed = 0.5; // pixels per frame
+            
+            function animate() {
+                position -= animationSpeed;
+                
+                // Reset position when first item is completely off-screen
+                if (position <= -itemWidth * (items.length / 2)) {
+                    position = 0;
+                }
+                
+                tracker.style.transform = `translateX(${position}px)`;
+                requestAnimationFrame(animate);
+            }
+            
+            animate();
+        }
+
+        // Update live prices (simulated)
+        function updateLivePrices() {
+            setInterval(() => {
+                currencies.forEach(currency => {
+                    if (currency.symbol !== 'USDT') {
+                        // Random price change
+                        const randomChange = (Math.random() - 0.5) * 2;
+                        currency.price = parseFloat((currency.price * (1 + randomChange/100)).toFixed(2);
+                        currency.change = parseFloat((parseFloat(currency.change) + (Math.random() - 0.5) * 0.5).toFixed(1);
                     }
                 });
                 
-                if (!response.ok) {
-                    throw new Error('Failed to load user data');
-                }
-                
-                userData = await response.json();
-                updateUIWithUserData();
-                hasDeposited = userData.totalDeposits > 0;
-            } catch (error) {
-                console.error('Error loading user data:', error);
-                alert('Failed to load user data. Please try again.');
-            } finally {
-                hideLoading();
-            }
-        }
-
-        // Update UI with user data
-        function updateUIWithUserData() {
-            document.getElementById('username').textContent = userData.username || 'User';
-            document.getElementById('profile-name').textContent = userData.fullName || 'User';
-            document.getElementById('user-balance').textContent = `${userData.balance || '0.00'} USDT`;
-            document.getElementById('transactions-count').textContent = userData.transactionCount || '0';
-            document.getElementById('total-deposit').textContent = userData.totalDeposits || '0.00';
-            document.getElementById('total-investment').textContent = userData.totalInvestments || '0.00';
-            document.getElementById('total-points').textContent = userData.totalPoints || '0';
-            document.getElementById('total-withdraw').textContent = userData.totalWithdrawals || '0.00';
-            document.getElementById('referral-bonus').textContent = userData.referralBonus || '0.00';
-            document.getElementById('deposit-bonus').textContent = userData.depositBonus || '0.00';
-            document.getElementById('investment-bonus').textContent = userData.investmentBonus || '0.00';
-            
-            // Update profile modal
-            document.getElementById('profile-fullname').value = userData.fullName || '';
-            document.getElementById('profile-email').value = userData.email || '';
-            document.getElementById('profile-status').value = userData.accountStatus || 'Active';
+                // Update tracker display
+                const items = document.querySelectorAll('.currency-item');
+                currencies.forEach((currency, index) => {
+                    const changeClass = currency.change >= 0 ? 'positive' : 'negative';
+                    const changeIcon = currency.change >= 0 ? '▲' : '▼';
+                    
+                    // Update both original and cloned items
+                    items[index].innerHTML = `
+                        ${currency.symbol}: <span>$${currency.price}</span>
+                        <span class="${changeClass}">${changeIcon} ${Math.abs(currency.change)}%</span>
+                    `;
+                    items[index + currencies.length].innerHTML = items[index].innerHTML;
+                });
+            }, 5000);
         }
 
         // Check deposit status and enable/disable features
@@ -1034,23 +1214,82 @@
             }
         }
 
-        // Current date display
+        // Load and display transactions
+        function loadTransactions() {
+            const transactionsList = document.getElementById('transactions-list');
+            transactionsList.innerHTML = '';
+            
+            sampleTransactions.forEach(tx => {
+                const item = document.createElement('div');
+                item.className = 'transaction-item';
+                item.innerHTML = `
+                    <div class="transaction-icon">
+                        <i class="fas ${getTransactionIcon(tx.type)}"></i>
+                    </div>
+                    <div class="transaction-details">
+                        <div class="transaction-header">
+                            <span class="transaction-type">${tx.type}</span>
+                            <span class="transaction-amount ${tx.amount >= 0 ? 'positive' : 'negative'}">
+                                ${tx.amount >= 0 ? '+' : ''}${tx.amount} USDT
+                            </span>
+                        </div>
+                        <div class="transaction-footer">
+                            <span class="transaction-date">${tx.date.toLocaleString()}</span>
+                            <span class="transaction-status ${tx.status}">${tx.status}</span>
+                        </div>
+                    </div>
+                `;
+                transactionsList.appendChild(item);
+            });
+            
+            // Update transactions count
+            document.getElementById('transactions-count').textContent = sampleTransactions.length;
+        }
+
+        function getTransactionIcon(type) {
+            const icons = {
+                'deposit': 'fa-money-bill-wave',
+                'withdrawal': 'fa-hand-holding-usd',
+                'investment': 'fa-chart-line',
+                'bonus': 'fa-gift',
+                'referral': 'fa-user-plus'
+            };
+            return icons[type.toLowerCase()] || 'fa-exchange-alt';
+        }
+
+        // Generate unique referral link
+        function generateReferralLink() {
+            if (!currentUser || !currentUser.email) return;
+            
+            // Create a unique referral code based on user email
+            const referralCode = btoa(currentUser.email).replace(/[^a-zA-Z0-9]/g, '').substring(0, 10);
+            const referralLink = `${window.location.origin}/index.html?ref=${referralCode}`;
+            
+            document.getElementById('referral-link').textContent = referralLink;
+            currentUser.referralCode = referralCode;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+        }
+
+        // Copy referral link to clipboard
+        function copyReferralLink() {
+            const link = document.getElementById('referral-link');
+            navigator.clipboard.writeText(link.textContent).then(() => {
+                const copyBtn = document.querySelector('.copy-btn');
+                const originalHtml = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
+                setTimeout(() => {
+                    copyBtn.innerHTML = originalHtml;
+                }, 2000);
+            }).catch(err => {
+                console.error('Failed to copy text: ', err);
+                alert('Failed to copy referral link. Please try again.');
+            });
+        }
+
+        // Update current date display
         function updateCurrentDate() {
             const options = { year: 'numeric', month: 'long', day: 'numeric' };
             document.getElementById('current-date').textContent = new Date().toLocaleDateString('en-US', options);
-        }
-
-        // Theme toggle function
-        function toggleTheme() {
-            const body = document.body;
-            const currentTheme = body.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            body.setAttribute('data-theme', newTheme);
-            
-            const themeIcon = document.querySelector('.theme-toggle i');
-            themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-            
-            localStorage.setItem('theme', newTheme);
         }
 
         // Modal functions
@@ -1064,164 +1303,163 @@
             document.body.style.overflow = 'auto';
         }
 
+        // Handle withdraw click
+        function handleWithdrawClick(event) {
+            event.preventDefault();
+            if (!hasDeposited) {
+                openModal('deposit-required-modal');
+            } else {
+                openModal('withdraw-modal');
+            }
+        }
+
+        // Handle logout
+        function handleLogoutClick(event) {
+            event.preventDefault();
+            localStorage.removeItem('currentUser');
+            window.location.href = 'index.html';
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Deposit form submission
+            document.getElementById('deposit-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const amount = parseFloat(document.getElementById('deposit-amount').value);
+                const method = document.getElementById('deposit-method').value;
+                
+                if (!amount || !method) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                // Simulate deposit processing
+                showLoading('Processing deposit...');
+                
+                setTimeout(() => {
+                    // Update user balance
+                    currentUser.balance = (currentUser.balance || 0) + amount;
+                    currentUser.totalDeposits = (currentUser.totalDeposits || 0) + amount;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    // Update UI
+                    document.getElementById('user-balance').textContent = `${currentUser.balance.toFixed(2)} USDT`;
+                    document.getElementById('total-deposit').textContent = currentUser.totalDeposits.toFixed(2);
+                    
+                    // Add transaction
+                    sampleTransactions.unshift({
+                        id: sampleTransactions.length + 1,
+                        type: 'deposit',
+                        amount: amount,
+                        date: new Date(),
+                        status: 'completed'
+                    });
+                    loadTransactions();
+                    
+                    // Check deposit status
+                    hasDeposited = true;
+                    checkDepositStatus();
+                    
+                    // Close modal and show success
+                    closeModal('deposit-modal');
+                    hideLoading();
+                    alert(`Deposit of ${amount} USDT via ${method} was successful!`);
+                    
+                    // Add notification
+                    addNotification(`Deposit of ${amount} USDT received`, 'deposit');
+                }, 2000);
+            });
+            
+            // Withdraw form submission
+            document.getElementById('withdraw-form').addEventListener('submit', function(e) {
+                e.preventDefault();
+                const amount = parseFloat(document.getElementById('withdraw-amount').value);
+                const method = document.getElementById('withdraw-method').value;
+                const address = document.getElementById('wallet-address').value;
+                
+                if (!amount || !method || !address) {
+                    alert('Please fill in all fields');
+                    return;
+                }
+                
+                if (amount > (currentUser.balance || 0)) {
+                    alert('Insufficient balance');
+                    return;
+                }
+                
+                // Simulate withdrawal processing
+                showLoading('Processing withdrawal...');
+                
+                setTimeout(() => {
+                    // Update user balance
+                    currentUser.balance = (currentUser.balance || 0) - amount;
+                    currentUser.totalWithdrawals = (currentUser.totalWithdrawals || 0) + amount;
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    // Update UI
+                    document.getElementById('user-balance').textContent = `${currentUser.balance.toFixed(2)} USDT`;
+                    document.getElementById('total-withdraw').textContent = currentUser.totalWithdrawals.toFixed(2);
+                    
+                    // Add transaction
+                    sampleTransactions.unshift({
+                        id: sampleTransactions.length + 1,
+                        type: 'withdrawal',
+                        amount: -amount,
+                        date: new Date(),
+                        status: 'pending'
+                    });
+                    loadTransactions();
+                    
+                    // Close modal and show success
+                    closeModal('withdraw-modal');
+                    hideLoading();
+                    alert(`Withdrawal request for ${amount} USDT has been submitted!`);
+                    
+                    // Add notification
+                    addNotification(`Withdrawal request for ${amount} USDT submitted`, 'withdrawal');
+                }, 2000);
+            });
+            
+            // Theme toggle
+            document.querySelector('.theme-toggle').addEventListener('click', toggleTheme);
+            
+            // Close modal when clicking outside
+            window.addEventListener('click', function(event) {
+                if (event.target.className === 'modal') {
+                    event.target.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                }
+            });
+            
+            // Start live price updates
+            updateLivePrices();
+        }
+
         // Loading functions
         function showLoading(message = 'Loading...') {
             document.getElementById('loading-text').textContent = message;
-            openModal('loading-modal');
+            document.getElementById('loading-modal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
         }
 
         function hideLoading() {
-            closeModal('loading-modal');
+            document.getElementById('loading-modal').style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
 
-        // Form submissions
-        document.getElementById('deposit-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const amount = document.getElementById('deposit-amount').value;
-            const method = document.getElementById('deposit-method').value;
-            
-            showLoading('Processing deposit...');
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/deposit`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${authToken}`
-                    },
-                    body: JSON.stringify({
-                        amount: parseFloat(amount),
-                        method: method
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Deposit failed');
-                }
-                
-                const result = await response.json();
-                
-                // Update user data
-                hasDeposited = true;
-                userData.balance = result.newBalance;
-                userData.totalDeposits = result.totalDeposits;
-                updateUIWithUserData();
-                checkDepositStatus();
-                
-                alert(`Deposit of ${amount} USDT via ${method} was successful!`);
-                closeModal('deposit-modal');
-                
-                // Add notification
-                addNotification(`Deposit of ${amount} USDT received`, 'deposit');
-            } catch (error) {
-                console.error('Deposit error:', error);
-                alert('Deposit failed. Please try again.');
-            } finally {
-                hideLoading();
-            }
-        });
-
-        document.getElementById('withdraw-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            const amount = document.getElementById('withdraw-amount').value;
-            const method = document.getElementById('withdraw-method').value;
-            const address = document.getElementById('wallet-address').value;
-            
-            showLoading('Processing withdrawal...');
-            
-            try {
-                const response = await fetch(`${API_BASE_URL}/withdraw`, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${authToken}`
-                    },
-                    body: JSON.stringify({
-                        amount: parseFloat(amount),
-                        method: method,
-                        walletAddress: address
-                    })
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Withdrawal failed');
-                }
-                
-                const result = await response.json();
-                
-                // Update user data
-                userData.balance = result.newBalance;
-                userData.totalWithdrawals = result.totalWithdrawals;
-                updateUIWithUserData();
-                
-                alert(`Withdrawal request for ${amount} USDT to ${address} via ${method} has been received!`);
-                closeModal('withdraw-modal');
-                
-                // Add notification
-                addNotification(`Withdrawal request for ${amount} USDT submitted`, 'withdrawal');
-            } catch (error) {
-                console.error('Withdrawal error:', error);
-                alert('Withdrawal failed. Please try again.');
-            } finally {
-                hideLoading();
-            }
-        });
-
-        // Notification functions
-        async function loadNotifications() {
-            try {
-                const response = await fetch(`${API_BASE_URL}/notifications`, {
-                    headers: {
-                        'Authorization': `Bearer ${authToken}`
-                    }
-                });
-                
-                if (!response.ok) {
-                    throw new Error('Failed to load notifications');
-                }
-                
-                const notifications = await response.json();
-                displayNotifications(notifications);
-            } catch (error) {
-                console.error('Error loading notifications:', error);
-            }
-        }
-
-        function displayNotifications(notifications) {
-            const container = document.getElementById('notifications-list');
-            container.innerHTML = '';
-            
-            if (notifications.length === 0) {
-                container.innerHTML = '<p>No notifications</p>';
-                return;
-            }
-            
-            notifications.forEach(notification => {
-                const item = document.createElement('div');
-                item.className = 'notification-item';
-                item.innerHTML = `
-                    <div class="notification-icon"><i class="fas fa-${getNotificationIcon(notification.type)}"></i></div>
-                    <div class="notification-content">
-                        <p>${notification.message}</p>
-                        <small>${formatDate(notification.timestamp)}</small>
-                    </div>
-                `;
-                container.appendChild(item);
-            });
-        }
-
+        // Add notification
         function addNotification(message, type) {
-            const container = document.getElementById('notifications-list');
-            const item = document.createElement('div');
-            item.className = 'notification-item';
-            item.innerHTML = `
+            const notificationsList = document.getElementById('notifications-list');
+            const notificationItem = document.createElement('div');
+            notificationItem.className = 'notification-item';
+            notificationItem.innerHTML = `
                 <div class="notification-icon"><i class="fas fa-${getNotificationIcon(type)}"></i></div>
                 <div class="notification-content">
                     <p>${message}</p>
                     <small>Just now</small>
                 </div>
             `;
-            container.insertBefore(item, container.firstChild);
+            notificationsList.insertBefore(notificationItem, notificationsList.firstChild);
             
             // Update notification count
             const countElement = document.querySelector('.notification-count');
@@ -1241,174 +1479,18 @@
             return icons[type] || icons.default;
         }
 
-        function formatDate(timestamp) {
-            const date = new Date(timestamp);
-            return date.toLocaleString();
-        }
-
-        // Copy referral link
-        function copyReferralLink() {
-            const link = document.getElementById('referral-link');
-            navigator.clipboard.writeText(link.textContent).then(() => {
-                const copyBtn = document.querySelector('.copy-btn');
-                const originalHtml = copyBtn.innerHTML;
-                copyBtn.innerHTML = '<i class="fas fa-check"></i> Copied!';
-                setTimeout(() => {
-                    copyBtn.innerHTML = originalHtml;
-                }, 2000);
-            }).catch(err => {
-                console.error('Failed to copy text: ', err);
-                alert('Failed to copy referral link. Please try again.');
-            });
-        }
-
-        // Handle card clicks
-        function handleStatClick(type) {
-            console.log(`Viewing ${type} details`);
-            // Here you would typically navigate to a detailed view
-        }
-
-        function handleInvestClick(type, event) {
-            if (event) event.preventDefault();
+        // Theme toggle
+        function toggleTheme() {
+            const body = document.body;
+            const currentTheme = body.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
             
-            if (!hasDeposited && (type === 'investment' || type === 'withdraw' || type === 'investment-bonus')) {
-                openModal('deposit-required-modal');
-                return;
-            }
-            
-            if (type === 'deposit') {
-                openModal('deposit-modal');
-            } else if (type === 'withdraw') {
-                openModal('withdraw-modal');
-            } else {
-                console.log(`Investing in ${type}`);
-            }
-        }
-
-        function handleWithdrawClick(event) {
-            event.preventDefault();
-            if (!hasDeposited) {
-                openModal('deposit-required-modal');
-            } else {
-                openModal('withdraw-modal');
-            }
-        }
-
-        function handleWalletClick(event) {
-            event.preventDefault();
-            alert('Wallet functionality will be implemented soon');
-        }
-
-        function handleTransactionsClick(event) {
-            event.preventDefault();
-            alert('Transactions functionality will be implemented soon');
-        }
-
-        function handleReferralsClick(event) {
-            event.preventDefault();
-            alert('Referrals functionality will be implemented soon');
-        }
-
-        function handleRewardsClick(event) {
-            event.preventDefault();
-            alert('Rewards functionality will be implemented soon');
-        }
-
-        function handleSettingsClick(event) {
-            event.preventDefault();
-            alert('Settings functionality will be implemented soon');
-        }
-
-        function handleLogoutClick(event) {
-            event.preventDefault();
-            localStorage.removeItem('authToken');
-            window.location.href = 'login.html';
-        }
-
-        // Live currency data (simulated)
-        const currencies = [
-            { symbol: 'BTC', price: 42850.32, change: 2.3 },
-            { symbol: 'ETH', price: 2350.75, change: 1.8 },
-            { symbol: 'USDT', price: 1.00, change: 0 },
-            { symbol: 'BNB', price: 310.42, change: -0.5 },
-            { symbol: 'SOL', price: 95.18, change: 5.2 },
-            { symbol: 'XRP', price: 0.55, change: -1.2 },
-            { symbol: 'ADA', price: 0.38, change: 0.7 },
-            { symbol: 'DOGE', price: 0.12, change: 3.1 }
-        ];
-
-        // Create currency tracker items
-        function updateCurrencyTracker() {
-            const tracker = document.getElementById('currency-tracker');
-            tracker.innerHTML = '';
-            
-            currencies.forEach(currency => {
-                const changeClass = currency.change >= 0 ? 'positive' : 'negative';
-                const changeIcon = currency.change >= 0 ? '▲' : '▼';
-                
-                const item = document.createElement('div');
-                item.className = 'currency-item';
-                item.innerHTML = `
-                    ${currency.symbol}: <span>$${currency.price.toLocaleString()}</span>
-                    <span class="${changeClass}">${changeIcon} ${Math.abs(currency.change)}%</span>
-                `;
-                
-                // Clone the item to create seamless looping
-                const clone = item.cloneNode(true);
-                tracker.appendChild(item);
-                tracker.appendChild(clone);
-            });
-        }
-        
-        // Simulate live price updates
-        function simulateLivePrices() {
-            setInterval(() => {
-                currencies.forEach(currency => {
-                    if (currency.symbol !== 'USDT') { // USDT should stay at 1.00
-                        // Small random price change
-                        const randomChange = (Math.random() - 0.5) * 2;
-                        currency.price = parseFloat((currency.price * (1 + randomChange/100)).toFixed(2));
-                        currency.change = parseFloat((parseFloat(currency.change) + (Math.random() - 0.5) * 0.5).toFixed(1));
-                    }
-                });
-                updateCurrencyTracker();
-            }, 5000);
-        }
-
-        // Setup event listeners
-        function setupEventListeners() {
-            // Prevent button clicks from triggering card clicks
-            document.querySelectorAll('.invest-now-btn').forEach(button => {
-                button.addEventListener('click', function(e) {
-                    e.stopPropagation();
-                });
-            });
-            
-            // Close modal when clicking outside
-            window.onclick = function(event) {
-                if (event.target.className === 'modal') {
-                    event.target.style.display = 'none';
-                    document.body.style.overflow = 'auto';
-                }
-            };
-            
-            // Check for saved theme preference
-            const savedTheme = localStorage.getItem('theme') || 'dark';
-            document.body.setAttribute('data-theme', savedTheme);
             const themeIcon = document.querySelector('.theme-toggle i');
-            themeIcon.className = savedTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
-        }
-
-        // Initialize the application when page loads
-        window.onload = function() {
-            // Check if user is authenticated
-            if (!authToken) {
-                window.location.href = 'login.html';
-                return;
-            }
+            themeIcon.className = newTheme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
             
-            initApp();
-        };
+            localStorage.setItem('theme', newTheme);
+        }
     </script>
 </body>
 </html>
