@@ -90,10 +90,16 @@
 
         document.getElementById("loginForm").addEventListener("submit", function(e) {
             e.preventDefault();
-            const email = document.getElementById("email").value;
+            const email = document.getElementById("email").value.trim();
             const password = document.getElementById("password").value;
             const errorElement = document.getElementById("error");
             errorElement.textContent = "";
+
+            // Input validation
+            if (!email || !password) {
+                errorElement.textContent = "Please fill in all fields";
+                return;
+            }
 
             // Check if admin
             if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
@@ -119,6 +125,13 @@
                 window.location.href = "deshboard.html";
             } else {
                 errorElement.textContent = "Invalid email or password!";
+            }
+        });
+
+        // Check if user is already logged in
+        window.addEventListener('DOMContentLoaded', () => {
+            if (localStorage.getItem("currentUser")) {
+                window.location.href = "deshboard.html";
             }
         });
     </script>
