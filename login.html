@@ -84,7 +84,7 @@
     </div>
 
     <script>
-        // Hardcoded admin credentials (for demo)
+        // Hardcoded admin credentials
         const ADMIN_EMAIL = "admin@example.com";
         const ADMIN_PASSWORD = "admin123";
 
@@ -97,8 +97,12 @@
 
             // Check if admin
             if (email === ADMIN_EMAIL && password === ADMIN_PASSWORD) {
-                alert("Admin login successful! Redirecting to dashboard...");
-                window.location.href = "dashboard.html?admin=true"; // Redirect with admin flag
+                localStorage.setItem("currentUser", JSON.stringify({
+                    email: ADMIN_EMAIL,
+                    name: "Admin",
+                    isAdmin: true
+                }));
+                window.location.href = "dashboard.html";
                 return;
             }
 
@@ -107,8 +111,12 @@
             const user = users[email];
 
             if (user && user.password === password) {
-                alert(`Welcome back, ${user.name || email}!`);
-                window.location.href = "dashboard.html";
+                localStorage.setItem("currentUser", JSON.stringify({
+                    email: user.email,
+                    name: user.name,
+                    isAdmin: false
+                }));
+                window.location.href = "deshboard.html";
             } else {
                 errorElement.textContent = "Invalid email or password!";
             }
