@@ -717,6 +717,15 @@
             font-size: 12px;
             color: var(--text-gray);
         }
+        .date-display {
+    font-size: 14px;
+    color: var(--text-gray);
+    background-color: var(--secondary-light);
+    padding: 8px 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-top: 5px;
+}
         
         .transaction-status {
             text-transform: capitalize;
@@ -749,15 +758,15 @@
         </div>
         <ul class="sidebar-menu">
             <li><a href="deshboard.html" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-            <li><a href="wallet.html"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
-            <li><a href="#" onclick="openModal('deposit-modal')"><i class="fas fa-money-bill-wave"></i> <span>Deposit</span></a></li>
-            <li><a href="#" onclick="handleWithdrawClick(event)"><i class="fas fa-hand-holding-usd"></i> <span>Withdraw</span></a></li>
-            <li><a href="investments.html"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
-            <li><a href="transactions.html"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
-            <li><a href="referrals.html"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
+            <li><a href="walletExchange.html"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
+            <li><a href="deposit.html" onclick="openModal('deposit-modal')"><i class="fas fa-money-bill-wave"></i> <span>Deposit</span></a></li>
+            <li><a href="withdraw.html" onclick="handleWithdrawClick(event)"><i class="fas fa-hand-holding-usd"></i> <span>Withdraw</span></a></li>
+            <li><a href="investmentPlan.html"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
+            <li><a href="moneyTrack.html"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
+            <li><a href="referal.html"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
             <li><a href="rewards.html"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
-            <li><a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
-            <li><a href="#" onclick="handleLogoutClick(event)"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+            <li><a href="settingss.html"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            <li><a href="index.html" onclick="handleLogoutClick(event)"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
         </ul>
     </aside>
 
@@ -799,9 +808,38 @@
         <div class="content-container">
             <!-- DASHBOARD TITLE -->
             <div class="dashboard-title">
-                <h2>Dashboard Overview</h2>
-                <div class="date-display" id="current-date">Loading date...</div>
-            </div>
+              <h2>Dashboard Overview</h2>
+<div class="date-display" id="current-date">Loading date...</div>
+
+<script>
+// Function to update date and time in real-time
+function updateRealTimeDateTime() {
+    const dateDisplay = document.getElementById('current-date');
+    
+    // Format options for date and time
+    const options = { 
+        weekday: 'long', 
+        year: 'numeric', 
+        month: 'long', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit',
+        hour12: true
+    };
+    
+    // Update immediately
+    dateDisplay.textContent = new Date().toLocaleDateString('en-US', options);
+    
+    // Update every second to keep time current
+    setInterval(() => {
+        dateDisplay.textContent = new Date().toLocaleDateString('en-US', options);
+    }, 1000);
+}
+
+// Call the function when the page loads
+document.addEventListener('DOMContentLoaded', updateRealTimeDateTime);
+</script>
 
             <!-- DASHBOARD CARDS -->
             <div class="user-cards">
