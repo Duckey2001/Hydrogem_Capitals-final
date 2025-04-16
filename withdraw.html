@@ -35,19 +35,58 @@
             min-height: 100vh;
         }
         
-        /* Sidebar Styles (same as dashboard) */
+        /* Sidebar Styles */
         .sidebar {
             width: 250px;
             background-color: var(--primary);
             color: white;
             padding: 20px 0;
             transition: all 0.3s ease;
+            position: fixed;
+            height: 100vh;
+        }
+        
+        .sidebar-header {
+            padding: 0 20px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .sidebar-header h3 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sidebar-menu {
+            list-style: none;
+            padding: 20px 0;
+        }
+        
+        .sidebar-menu li {
+            margin-bottom: 5px;
+        }
+        
+        .sidebar-menu a {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 20px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .sidebar-menu a:hover, .sidebar-menu a.active {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
         }
         
         /* Main Content Styles */
         .main-content {
             flex: 1;
             padding: 30px;
+            margin-left: 250px;
+            max-width: calc(100% - 250px);
         }
         
         .header {
@@ -61,6 +100,14 @@
         
         .header h2 {
             color: var(--primary);
+            font-size: 28px;
+        }
+        
+        .user-balance {
+            background-color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
         
         /* Withdrawal Section */
@@ -71,10 +118,12 @@
         
         .withdrawal-form-container {
             flex: 1;
+            min-width: 0;
         }
         
         .withdrawal-info {
             flex: 1;
+            min-width: 0;
         }
         
         .withdrawal-card {
@@ -92,10 +141,12 @@
         .section-title h3 {
             font-size: 22px;
             color: var(--primary);
+            margin-bottom: 5px;
         }
         
         .section-title p {
             color: #777;
+            font-size: 14px;
         }
         
         .form-group {
@@ -106,6 +157,7 @@
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
+            color: #555;
         }
         
         .form-control {
@@ -151,10 +203,12 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            margin-top: 10px;
         }
         
         .btn-withdraw:hover {
             background-color: #00b8a9;
+            transform: translateY(-1px);
         }
         
         .withdrawal-details {
@@ -195,10 +249,30 @@
             font-size: 14px;
             color: #555;
             margin-bottom: 10px;
+            line-height: 1.5;
         }
         
         .withdrawal-instructions p:last-child {
             margin-bottom: 0;
+        }
+        
+        .info-item {
+            margin-bottom: 20px;
+        }
+        
+        .info-item h4 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .info-item p {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.5;
         }
         
         /* Recent Withdrawals */
@@ -224,6 +298,12 @@
             background-color: #f9f9f9;
             color: #555;
             font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .withdrawals-table td {
+            font-size: 14px;
+            color: #555;
         }
         
         .withdrawals-table tr:last-child td {
@@ -253,18 +333,47 @@
             color: var(--danger);
         }
         
+        /* Security Protection Elements */
+        #securityOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            text-align: center;
+        }
+        
         /* Responsive Design */
-        @media (max-width: 768px) {
-            .dashboard-container {
-                flex-direction: column;
-            }
-            
-            .sidebar {
-                width: 100%;
-            }
-            
+        @media (max-width: 992px) {
             .withdrawal-container {
                 flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                position: relative;
+                height: auto;
+            }
+            
+            .main-content {
+                margin-left: 0;
+                max-width: 100%;
+                padding: 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
             }
             
             .withdrawals-table {
@@ -275,8 +384,16 @@
     </style>
 </head>
 <body>
+    <!-- Security Overlay -->
+    <div id="securityOverlay">
+        <div>
+            <h3>Security Violation Detected</h3>
+            <p>Unauthorized access attempt blocked</p>
+        </div>
+    </div>
+
     <div class="dashboard-container">
-        <!-- Sidebar (same as dashboard) -->
+        <!-- Sidebar -->
         <div class="sidebar">
             <div class="sidebar-header">
                 <h3><i class="fas fa-wallet"></i> Hydrogem Capitals</h3>
@@ -311,33 +428,34 @@
                             <p>Enter your withdrawal details below</p>
                         </div>
                         
-                        <form>
+                        <form id="withdrawalForm">
                             <div class="form-group">
                                 <label for="payment-method">Withdrawal Method</label>
-                                <select id="payment-method" class="form-control">
-                                    <option>USDT (TRC20)</option>
-                                    <option>Bitcoin (BTC)</option>
-                                    <option>Ethereum (ETH)</option>
-                                    <option>Bank Transfer</option>
+                                <select id="payment-method" class="form-control" required>
+                                    <option value="">Select method</option>
+                                    <option value="USDT">USDT (TRC20)</option>
+                                    <option value="BTC">Bitcoin (BTC)</option>
+                                    <option value="ETH">Ethereum (ETH)</option>
+                                    <option value="BANK">Bank Transfer</option>
                                 </select>
                             </div>
                             
                             <div class="form-group">
                                 <label for="wallet-address">Wallet Address</label>
-                                <input type="text" id="wallet-address" class="form-control" placeholder="Enter your wallet address">
+                                <input type="text" id="wallet-address" class="form-control" placeholder="Enter your wallet address" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="amount">Amount to Withdraw</label>
                                 <div class="input-group">
                                     <span class="currency">$</span>
-                                    <input type="number" id="amount" class="form-control" placeholder="Enter amount" min="20">
+                                    <input type="number" id="amount" class="form-control" placeholder="Enter amount" min="20" max="50000" step="0.01" required>
                                 </div>
                             </div>
                             
                             <div class="form-group">
                                 <label for="security-code">Security Code</label>
-                                <input type="password" id="security-code" class="form-control" placeholder="Enter your security code">
+                                <input type="password" id="security-code" class="form-control" placeholder="Enter your security code" required>
                             </div>
                             
                             <button type="submit" class="btn-withdraw">Request Withdrawal</button>
@@ -448,5 +566,95 @@
             </div>
         </div>
     </div>
+
+    <script>
+    // Security Protection Script
+    (function() {
+        'use strict';
+        
+        // Security overlay element
+        const securityOverlay = document.getElementById('securityOverlay');
+        
+        // Detect developer tools
+        function detectDevTools() {
+            const widthThreshold = window.outerWidth - window.innerWidth > 160;
+            const heightThreshold = window.outerHeight - window.innerHeight > 160;
+            
+            if (widthThreshold || heightThreshold) {
+                securityOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+                return true;
+            }
+            return false;
+        }
+        
+        // Check periodically
+        setInterval(detectDevTools, 1000);
+        
+        // Block right-click
+        document.addEventListener('contextmenu', function(e) {
+            e.preventDefault();
+            securityOverlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        });
+        
+        // Block keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'F12' || 
+                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
+                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
+                (e.ctrlKey && e.key === 'U')) {
+                e.preventDefault();
+                securityOverlay.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }
+        });
+        
+        // Form submission handler
+        document.getElementById('withdrawalForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const method = document.getElementById('payment-method').value;
+            const address = document.getElementById('wallet-address').value.trim();
+            const amount = parseFloat(document.getElementById('amount').value);
+            const securityCode = document.getElementById('security-code').value;
+            
+            // Basic validation
+            if (!method || !address || !amount || !securityCode) {
+                alert('Please fill in all fields');
+                return;
+            }
+            
+            if (amount < 20) {
+                alert('Minimum withdrawal amount is $20');
+                return;
+            }
+            
+            if (amount > 50000) {
+                alert('Maximum daily withdrawal limit is $50,000');
+                return;
+            }
+            
+            // In a real application, you would send this data to your server
+            alert('Withdrawal request submitted for processing');
+            
+            // Reset form
+            this.reset();
+        });
+        
+        // Calculate received amount
+        document.getElementById('amount').addEventListener('input', function() {
+            const amount = parseFloat(this.value) || 0;
+            const fee = Math.max(5, amount * 0.01); // 1% or $5 minimum
+            const received = amount - fee;
+            
+            document.querySelector('.withdrawal-details .detail-value:nth-child(2)').textContent = 
+                `$${fee.toFixed(2)} (${(fee/amount*100).toFixed(1)}%)`;
+            document.querySelector('.withdrawal-details .detail-value:nth-child(3)').textContent = 
+                `$${received.toFixed(2)}`;
+        });
+    })();
+    </script>
 </body>
 </html>
