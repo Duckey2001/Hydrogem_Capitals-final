@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Secure Login</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background: #0077b6; /* Blue background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2980, #26d0ce);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -16,136 +16,211 @@
             color: white;
         }
         .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             width: 100%;
-            max-width: 350px;
+            max-width: 400px;
             text-align: center;
-            color: #333;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h2 {
+            margin-bottom: 1.5rem;
+            color: white;
+            font-weight: 600;
         }
         input {
             width: 100%;
-            padding: 12px;
-            margin: 8px 0;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            box-sizing: border-box;
+            padding: 14px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.9);
+            font-size: 16px;
         }
         button {
             width: 100%;
-            padding: 12px;
-            background-color: #0096c7;
+            padding: 14px;
+            background: #4CAF50;
             color: white;
             border: none;
-            border-radius: 4px;
+            border-radius: 6px;
             cursor: pointer;
-            margin-top: 10px;
-            font-weight: bold;
-            transition: background-color 0.3s;
+            margin-top: 1rem;
+            font-size: 16px;
+            font-weight: 600;
+            transition: all 0.3s;
         }
         button:hover {
-            background-color: #0077b6;
+            background: #45a049;
+            transform: translateY(-2px);
         }
         .error {
-            color: #e63946;
-            margin: 10px 0;
+            color: #ff6b6b;
+            margin: 1rem 0;
             font-size: 14px;
             min-height: 20px;
         }
         .register-link {
-            margin-top: 15px;
-            font-size: 14px;
+            margin-top: 1.5rem;
+            font-size: 15px;
         }
         .register-link a {
-            color: #0096c7;
+            color: #4CAF50;
             text-decoration: none;
-            font-weight: bold;
-        }
-        h2 {
-            color: #0077b6;
-            margin-bottom: 20px;
+            font-weight: 600;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Login</h2>
+        <h2>Secure Login</h2>
         <form id="loginForm">
             <input type="email" id="email" placeholder="Email" required>
             <input type="password" id="password" placeholder="Password" required>
             <button type="submit">Login</button>
             <div class="error" id="error"></div>
             <div class="register-link">
-                Don't have an account? <a href="register.html">Register</a>
+                Don't have an account? <a href="#" id="registerLink">Register</a>
             </div>
         </form>
     </div>
 
     <script>
-        // Initialize users in localStorage if not exists
-        if (!localStorage.getItem('users')) {
-            const defaultUsers = {
-                'admin@example.com': {
-                    email: 'admin@example.com',
-                    password: 'admin123', // In production, never store plain passwords
-                    name: 'Admin',
-                    isAdmin: true
+        // Security Enhancements
+        (function() {
+            // 1. Obfuscate sensitive code
+            const security = {
+                check: function(e, p) {
+                    // This would normally be a server-side check
+                    const users = JSON.parse(localStorage.getItem('secure_users') || '{}');
+                    const user = users[e];
+                    return user && this.hash(p) === user.password;
                 },
-                'user@example.com': {
-                    email: 'user@example.com',
-                    password: 'user123',
-                    name: 'Regular User',
-                    isAdmin: false
+                hash: function(s) {
+                    // Extremely basic hashing - in real apps use proper hashing like bcrypt
+                    let h = 0;
+                    for(let i = 0; i < s.length; i++) {
+                        h = Math.imul(31, h) + s.charCodeAt(i) | 0;
+                    }
+                    return h.toString();
+                },
+                init: function() {
+                    if (!localStorage.getItem('secure_users')) {
+                        const defaultUsers = {
+                            'admin@secure.com': {
+                                email: 'admin@secure.com',
+                                password: this.hash('SecureAdmin123!'),
+                                name: 'Admin',
+                                isAdmin: true
+                            }
+                        };
+                        localStorage.setItem('secure_users', JSON.stringify(defaultUsers));
+                    }
                 }
             };
-            localStorage.setItem('users', JSON.stringify(defaultUsers));
-        }
+            
+            security.init();
 
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const email = document.getElementById('email').value.trim();
-            const password = document.getElementById('password').value;
-            const errorElement = document.getElementById('error');
-            
-            // Clear previous errors
-            errorElement.textContent = '';
-            
-            // Validate inputs
-            if (!email || !password) {
-                errorElement.textContent = 'Please fill in all fields';
-                return;
+            // 2. Anti-tampering protection
+            let originalHash = null;
+            function calculateHash() {
+                return security.hash(document.getElementById('loginForm').outerHTML + 
+                      security.hash.toString());
             }
             
-            // Get users from localStorage
-            const users = JSON.parse(localStorage.getItem('users'));
-            const user = users[email];
+            function checkTampering() {
+                if (originalHash && calculateHash() !== originalHash) {
+                    document.body.innerHTML = '<h1 style="color:white;text-align:center;">Security Violation Detected</h1>';
+                    window.location.href = 'about:blank';
+                    return true;
+                }
+                return false;
+            }
             
-            // Check credentials
-            if (user && user.password === password) {
-                // Create session
-                const currentUser = {
-                    email: user.email,
-                    name: user.name,
-                    isAdmin: user.isAdmin,
-                    loggedInAt: new Date().toISOString()
+            // 3. Secure form handling
+            document.getElementById('loginForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                if (checkTampering()) return;
+                
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value;
+                const errorElement = document.getElementById('error');
+                
+                errorElement.textContent = '';
+                
+                if (!email || !password) {
+                    errorElement.textContent = 'Please fill in all fields';
+                    return;
+                }
+                
+                if (security.check(email, password)) {
+                    const users = JSON.parse(localStorage.getItem('secure_users'));
+                    const user = users[email];
+                    
+                    // Create secure session token
+                    const sessionToken = {
+                        email: user.email,
+                        name: user.name,
+                        isAdmin: user.isAdmin,
+                        loggedInAt: new Date().toISOString(),
+                        token: security.hash(email + Date.now() + 'SALT_VALUE')
+                    };
+                    
+                    sessionStorage.setItem('secure_session', JSON.stringify(sessionToken));
+                    window.location.href = 'dashboard.html';
+                } else {
+                    errorElement.textContent = 'Invalid credentials';
+                    setTimeout(() => {
+                        errorElement.textContent = '';
+                    }, 3000);
+                }
+            });
+            
+            // 4. Developer tools detection
+            setInterval(function() {
+                if (checkTampering()) return;
+                
+                // Detect dev tools
+                const devtools = /./;
+                devtools.toString = function() {
+                    document.body.innerHTML = '<h1 style="color:white;text-align:center;">Security Violation Detected</h1>';
+                    window.location.href = 'about:blank';
+                    return '';
                 };
-                
-                localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                
-                // Redirect to dashboard
+                console.log(devtools);
+            }, 1000);
+            
+            // 5. Disable right-click and keyboard shortcuts
+            document.addEventListener('contextmenu', (e) => e.preventDefault());
+            document.addEventListener('keydown', (e) => {
+                if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'i' || e.key === 'I')) {
+                    e.preventDefault();
+                }
+                if (e.key === 'F12') {
+                    e.preventDefault();
+                }
+            });
+            
+            // Initialize hash after DOM loads
+            setTimeout(() => {
+                originalHash = calculateHash();
+            }, 500);
+            
+            // 6. Check for existing session
+            if (sessionStorage.getItem('secure_session')) {
                 window.location.href = 'dashboard.html';
-            } else {
-                errorElement.textContent = 'Invalid email or password';
             }
-        });
-
-        // Check if already logged in
-        if (localStorage.getItem('currentUser')) {
-            window.location.href = 'dashboard.html';
-        }
+            
+            // 7. Fake register link
+            document.getElementById('registerLink').addEventListener('click', (e) => {
+                e.preventDefault();
+                document.getElementById('error').textContent = 'Registration is currently admin-only';
+            });
+        })();
     </script>
 </body>
 </html>
