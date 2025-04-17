@@ -7,21 +7,23 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background: #f0f2f5;
+            background: #0077b6; /* Blue background */
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
             margin: 0;
+            color: white;
         }
         .container {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             padding: 2rem;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
             width: 100%;
             max-width: 350px;
             text-align: center;
+            color: #333;
         }
         input {
             width: 100%;
@@ -34,27 +36,36 @@
         button {
             width: 100%;
             padding: 12px;
-            background-color: #4CAF50;
+            background-color: #0096c7;
             color: white;
             border: none;
             border-radius: 4px;
             cursor: pointer;
             margin-top: 10px;
+            font-weight: bold;
+            transition: background-color 0.3s;
         }
         button:hover {
-            background-color: #45a049;
+            background-color: #0077b6;
         }
         .error {
-            color: red;
+            color: #e63946;
             margin: 10px 0;
+            font-size: 14px;
+            min-height: 20px;
         }
         .register-link {
             margin-top: 15px;
             font-size: 14px;
         }
         .register-link a {
-            color: #4CAF50;
+            color: #0096c7;
             text-decoration: none;
+            font-weight: bold;
+        }
+        h2 {
+            color: #0077b6;
+            margin-bottom: 20px;
         }
     </style>
 </head>
@@ -73,76 +84,68 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const loginForm = document.getElementById('loginForm');
+        // Initialize users in localStorage if not exists
+        if (!localStorage.getItem('users')) {
+            const defaultUsers = {
+                'admin@example.com': {
+                    email: 'admin@example.com',
+                    password: 'admin123', // In production, never store plain passwords
+                    name: 'Admin',
+                    isAdmin: true
+                },
+                'user@example.com': {
+                    email: 'user@example.com',
+                    password: 'user123',
+                    name: 'Regular User',
+                    isAdmin: false
+                }
+            };
+            localStorage.setItem('users', JSON.stringify(defaultUsers));
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
             const errorElement = document.getElementById('error');
             
-            // Check if user is already logged in
-            if(localStorage.getItem('currentUser')) {
-                window.location.href = 'dashboard.html';
+            // Clear previous errors
+            errorElement.textContent = '';
+            
+            // Validate inputs
+            if (!email || !password) {
+                errorElement.textContent = 'Please fill in all fields';
+                return;
             }
             
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const email = document.getElementById('email').value.trim();
-                const password = document.getElementById('password').value;
-                
-                // Basic validation
-                if(!email || !password) {
-                    errorElement.textContent = 'Please fill in all fields';
-                    return;
-                }
-                
-                // Check credentials
-                if(checkCredentials(email, password)) {
-                    // Successful login
-                    const user = {
-                        email: email,
-                        name: email === 'admin@example.com' ? 'Admin' : 'User',
-                        isAdmin: email === 'admin@example.com'
-                    };
-                    
-                    localStorage.setItem('currentUser', JSON.stringify(user));
-                    window.location.href = 'dashboard.html';
-                } else {
-                    // Check if user exists in localStorage
-                    const users = JSON.parse(localStorage.getItem('users') || {};
-                    const user = users[email];
-                    
-                    if(user && user.password === password) {
-                        // Regular user login
-                        localStorage.setItem('currentUser', JSON.stringify({
-                            email: user.email,
-                            name: user.name,
-                            isAdmin: false
-                        }));
-                        window.location.href = 'dashboard.html';
-                    } else {
-                        errorElement.textContent = 'Invalid email or password!';
-                    }
-                }
-            });
+            // Get users from localStorage
+            const users = JSON.parse(localStorage.getItem('users'));
+            const user = users[email];
             
-            function checkCredentials(email, password) {
-                // Hardcoded admin credentials (not recommended for production)
-                return email === 'admin@example.com' && password === 'adminpassword';
+            // Check credentials
+            if (user && user.password === password) {
+                // Create session
+                const currentUser = {
+                    email: user.email,
+                    name: user.name,
+                    isAdmin: user.isAdmin,
+                    loggedInAt: new Date().toISOString()
+                };
+                
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                // Redirect to dashboard
+                window.location.href = 'dashboard.html';
+            } else {
+                errorElement.textContent = 'Invalid email or password';
             }
         });
 
-        // Basic developer tools protection (note: this is not foolproof)
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-        });
-        
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-                (e.ctrlKey && e.key === 'U')) {
-                e.preventDefault();
-            }
-        });
+        // Check if already logged in
+        if (localStorage.getItem('currentUser')) {
+            window.location.href = 'dashboard.html';
+        }
     </script>
 </body>
 </html>
