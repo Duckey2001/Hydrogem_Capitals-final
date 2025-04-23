@@ -1,226 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Secure Login</title>
-    <style>
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a2980, #26d0ce);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            color: white;
-        }
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            padding: 2.5rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            width: 100%;
-            max-width: 400px;
-            text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        h2 {
-            margin-bottom: 1.5rem;
-            color: white;
-            font-weight: 600;
-        }
-        input {
-            width: 100%;
-            padding: 14px;
-            margin: 10px 0;
-            border: none;
-            border-radius: 6px;
-            background: rgba(255, 255, 255, 0.9);
-            font-size: 16px;
-        }
-        button {
-            width: 100%;
-            padding: 14px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            margin-top: 1rem;
-            font-size: 16px;
-            font-weight: 600;
-            transition: all 0.3s;
-        }
-        button:hover {
-            background: #45a049;
-            transform: translateY(-2px);
-        }
-        .error {
-            color: #ff6b6b;
-            margin: 1rem 0;
-            font-size: 14px;
-            min-height: 20px;
-        }
-        .register-link {
-            margin-top: 1.5rem;
-            font-size: 15px;
-        }
-        .register-link a {
-            color: #4CAF50;
-            text-decoration: none;
-            font-weight: 600;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Login</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #1a2980, #26d0ce);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: #fff;
+    }
+    .login-container {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      padding: 2rem;
+      border-radius: 12px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 0 30px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+    input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border-radius: 6px;
+      border: none;
+      font-size: 16px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      margin-top: 1rem;
+      background-color: #4caf50;
+      border: none;
+      border-radius: 6px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .error {
+      color: #ff6b6b;
+      text-align: center;
+      min-height: 1.2rem;
+      font-size: 14px;
+    }
+    .register-link {
+      text-align: center;
+      margin-top: 1rem;
+      font-size: 14px;
+    }
+    .register-link a {
+      color: #4caf50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h2>Secure Login</h2>
-        <form id="loginForm">
-            <input type="email" id="email" placeholder="Email" required>
-            <input type="password" id="password" placeholder="Password" required>
-            <button type="submit">Login</button>
-            <div class="error" id="error"></div>
-            <div class="register-link">
-                Don't have an account? <a href="#" id="registerLink">Register</a>
-            </div>
-        </form>
-    </div>
+  <div class="login-container">
+    <h2>Login</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+      <div class="error" id="errorMsg"></div>
+      <div class="register-link">
+        Don't have an account? <a href="#" id="register">Register</a>
+      </div>
+    </form>
+  </div>
 
-    <script>
-        // Security Enhancements
-        (function() {
-            // 1. Obfuscate sensitive code
-            const security = {
-                check: function(e, p) {
-                    // This would normally be a server-side check
-                    const users = JSON.parse(localStorage.getItem('secure_users') || '{}');
-                    const user = users[e];
-                    return user && this.hash(p) === user.password;
-                },
-                hash: function(s) {
-                    // Extremely basic hashing - in real apps use proper hashing like bcrypt
-                    let h = 0;
-                    for(let i = 0; i < s.length; i++) {
-                        h = Math.imul(31, h) + s.charCodeAt(i) | 0;
-                    }
-                    return h.toString();
-                },
-                init: function() {
-                    if (!localStorage.getItem('secure_users')) {
-                        const defaultUsers = {
-                            'admin@secure.com': {
-                                email: 'admin@secure.com',
-                                password: this.hash('SecureAdmin123!'),
-                                name: 'Admin',
-                                isAdmin: true
-                            }
-                        };
-                        localStorage.setItem('secure_users', JSON.stringify(defaultUsers));
-                    }
-                }
-            };
-            
-            security.init();
+  <script>
+    (function () {
+      const emailField = document.getElementById("email");
+      const passwordField = document.getElementById("password");
+      const errorMsg = document.getElementById("errorMsg");
 
-            // 2. Anti-tampering protection
-            let originalHash = null;
-            function calculateHash() {
-                return security.hash(document.getElementById('loginForm').outerHTML + 
-                      security.hash.toString());
-            }
-            
-            function checkTampering() {
-                if (originalHash && calculateHash() !== originalHash) {
-                    document.body.innerHTML = '<h1 style="color:white;text-align:center;">Security Violation Detected</h1>';
-                    window.location.href = 'about:blank';
-                    return true;
-                }
-                return false;
-            }
-            
-            // 3. Secure form handling
-            document.getElementById('loginForm').addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                if (checkTampering()) return;
-                
-                const email = document.getElementById('email').value.trim();
-                const password = document.getElementById('password').value;
-                const errorElement = document.getElementById('error');
-                
-                errorElement.textContent = '';
-                
-                if (!email || !password) {
-                    errorElement.textContent = 'Please fill in all fields';
-                    return;
-                }
-                
-                if (security.check(email, password)) {
-                    const users = JSON.parse(localStorage.getItem('secure_users'));
-                    const user = users[email];
-                    
-                    // Create secure session token
-                    const sessionToken = {
-                        email: user.email,
-                        name: user.name,
-                        isAdmin: user.isAdmin,
-                        loggedInAt: new Date().toISOString(),
-                        token: security.hash(email + Date.now() + 'SALT_VALUE')
-                    };
-                    
-                    sessionStorage.setItem('secure_session', JSON.stringify(sessionToken));
-                    window.location.href = 'dashboard.html';
-                } else {
-                    errorElement.textContent = 'Invalid credentials';
-                    setTimeout(() => {
-                        errorElement.textContent = '';
-                    }, 3000);
-                }
-            });
-            
-            // 4. Developer tools detection
-            setInterval(function() {
-                if (checkTampering()) return;
-                
-                // Detect dev tools
-                const devtools = /./;
-                devtools.toString = function() {
-                    document.body.innerHTML = '<h1 style="color:white;text-align:center;">Security Violation Detected</h1>';
-                    window.location.href = 'about:blank';
-                    return '';
-                };
-                console.log(devtools);
-            }, 1000);
-            
-            // 5. Disable right-click and keyboard shortcuts
-            document.addEventListener('contextmenu', (e) => e.preventDefault());
-            document.addEventListener('keydown', (e) => {
-                if (e.ctrlKey && (e.key === 'u' || e.key === 'U' || e.key === 'i' || e.key === 'I')) {
-                    e.preventDefault();
-                }
-                if (e.key === 'F12') {
-                    e.preventDefault();
-                }
-            });
-            
-            // Initialize hash after DOM loads
-            setTimeout(() => {
-                originalHash = calculateHash();
-            }, 500);
-            
-            // 6. Check for existing session
-            if (sessionStorage.getItem('secure_session')) {
-                window.location.href = 'dashboard.html';
-            }
-            
-            // 7. Fake register link
-            document.getElementById('registerLink').addEventListener('click', (e) => {
-                e.preventDefault();
-                document.getElementById('error').textContent = 'Registration is currently admin-only';
-            });
-        })();
-    </script>
+      const hash = (str) => {
+        let hash = 0;
+        for (let i = 0; i < str.length; i++) {
+          hash = (hash << 5) - hash + str.charCodeAt(i);
+          hash |= 0;
+        }
+        return hash.toString();
+      };
+
+      const loadUsers = () => {
+        let users = localStorage.getItem("users");
+        if (!users) {
+          const defaultUsers = {
+            "admin@secure.com": {
+              password: hash("SecureAdmin123!"),
+              name: "Admin",
+              isAdmin: true,
+            },
+          };
+          localStorage.setItem("users", JSON.stringify(defaultUsers));
+          return defaultUsers;
+        }
+        return JSON.parse(users);
+      };
+
+      const login = (email, password) => {
+        const users = loadUsers();
+        const user = users[email];
+        if (user && hash(password) === user.password) {
+          const session = {
+            email,
+            name: user.name,
+            isAdmin: user.isAdmin,
+            token: hash(email + Date.now() + "salt"),
+          };
+          sessionStorage.setItem("session", JSON.stringify(session));
+          return true;
+        }
+        return false;
+      };
+
+      document.getElementById("loginForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const email = emailField.value.trim();
+        const password = passwordField.value;
+
+        if (!email || !password) {
+          errorMsg.textContent = "Please enter both email and password.";
+          return;
+        }
+
+        if (login(email, password)) {
+          window.location.href = "dashboard.html";
+        } else {
+          errorMsg.textContent = "Invalid credentials.";
+        }
+      });
+
+      // Redirect if already logged in
+      if (sessionStorage.getItem("session")) {
+        window.location.href = "dashboard.html";
+      }
+
+      // Register link handling
+      document.getElementById("register").addEventListener("click", function (e) {
+        e.preventDefault();
+        errorMsg.textContent = "Registration is not open to the public.";
+      });
+    })();
+  </script>
 </body>
 </html>
