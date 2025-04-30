@@ -1,2039 +1,265 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <meta name="csrf-token" content="DN4Eo1Tk75W3o2zGpdPyp4pZKsApYZQsiEhhMaiz ">
-    <link
-        rel="shortcut icon"
-        href="https://cnxcapital.net/assets/global/images/zOBAHAvwIab9UugEe0p1.png"
-        type="image/x-icon"
-    />
-    <link rel="icon" href="https://cnxcapital.net/assets/global/images/zOBAHAvwIab9UugEe0p1.png" type="image/x-icon"/>
-    <link rel="stylesheet" href="https://cnxcapital.net/assets/global/css/fontawesome.min.css"/>
-    <link rel="stylesheet" href="https://cnxcapital.net/assets/backend/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="https://cnxcapital.net/assets/backend/css/animate.css"/>
-    <link rel="stylesheet" href="https://cnxcapital.net/assets/global/css/nice-select.css"/>
-    <link rel="stylesheet" href="https://cnxcapital.net/assets/global/css/datatables.min.css"/>
-    <link rel="stylesheet" href="https://cnxcapital.net/assets/global/css/simple-notify.min.css"/>
-    <link rel="stylesheet" href="https://cnxcapital.net/assets/global/css/simple-notify.min.css"/>
-    <link rel="stylesheet" href="https://cnxcapital.net/assets/global/css/daterangepicker.css"/>
-    <link rel="stylesheet" type="text/css" href="https://cnxcapital.net/assets/vendor/mckenziearts/laravel-notify/css/notify.css"/>  
- <link rel="stylesheet" href="https://cnxcapital.net/assets/backend/css/summernote-lite.min.css"/>
-    <link rel="stylesheet" href="https://cnxcapital.net/assets/global/css/select2.min.css"/>
-    <link rel="stylesheet" href="https://cnxcapital.net/assets/global/css/custom.css?var=2.2"/>
-    <link rel="stylesheet" href="admincss.css"/>
-    
-    <title>CNX Capital -     Dashboard
-</title>
-</head>
-
-<body>
-<!--Full Layout-->
-<div class="layout">
-
-    <script>
-    var notify = {
-        timeout: "5000",
-    }
-</script>
-    <!--Header-->
-    <div class="header">
-    <div class="logo">
-        <a href="https://cnxcapital.net/admin">
-            <img
-                class="logo-unfold"
-                src="https://cnxcapital.net/assets/global/images/1vMSsawnPG6Tl4dPtYEZ.png"
-                alt="Logo"
-            />
-            <img
-                class="logo-fold"
-                src="https://cnxcapital.net/assets/global/images/1vMSsawnPG6Tl4dPtYEZ.png"
-                alt="Logo"
-            />
-        </a>
-    </div>
-    <div class="nav-wrap">
-        <div class="nav-left">
-            <button class="sidebar-toggle"><i icon-name="list"></i></button>
-        </div>
-        <div class="nav-right">
-
-            <div class="single-nav-right admin-language-switch">
-                <select name="language" class="form-select"
-                        onchange="window.location.href=this.options[this.selectedIndex].value;">
-                                            <option
-                            value="https://cnxcapital.net/language-update?name=en" selected>English</option>
-                                    </select>
-            </div>
-
-            <div class="single-nav-right admin-notifications">
-                                <button type="button" class="item notification-dot" data-bs-toggle="dropdown" aria-expanded="false">
-    <i icon-name="bell-ring" class=""></i>
-    <div class="number">0</div>
-</button>
-<div class="dropdown-menu dropdown-menu-end notification-pop">
-    <div class="noti-head">Notifications <span>0</span></div>
-    <div class="all-noti">
-                    <div class="single-noti">
-                <a href="https://cnxcapital.net/admin/notification-read/812" class="read">
-                    <div class="icon">
-                        <i icon-name="user-plus"></i>
-                    </div>
-                    <div class="content">
-                        <div class="main-cont">
-                            <span>Test Test</span> Thanks for joining us  test test
-
-.New User added our system.
-                        </div>
-                        <div class="time">1 week ago</div>
-                    </div>
-                </a>
-            </div>
-                    <div class="single-noti">
-                <a href="https://cnxcapital.net/admin/notification-read/803" class="read">
-                    <div class="icon">
-                        <i icon-name="user-plus"></i>
-                    </div>
-                    <div class="content">
-                        <div class="main-cont">
-                            <span>Lilian Gallagher</span> Thanks for joining us  Lilian Gallagher
-
-.New User added our system.
-                        </div>
-                        <div class="time">2 weeks ago</div>
-                    </div>
-                </a>
-            </div>
-                    <div class="single-noti">
-                <a href="https://cnxcapital.net/admin/notification-read/802" class="read">
-                    <div class="icon">
-                        <i icon-name="user-plus"></i>
-                    </div>
-                    <div class="content">
-                        <div class="main-cont">
-                            <span>VripWcHoCvCod RlxaPKpuRUQp</span> Thanks for joining us  VripWcHoCvCod rlxaPKpuRUQp
-
-.New User added our system.
-                        </div>
-                        <div class="time">2 weeks ago</div>
-                    </div>
-                </a>
-            </div>
-                    <div class="single-noti">
-                <a href="https://cnxcapital.net/admin/notification-read/801" class="read">
-                    <div class="icon">
-                        <i icon-name="user-plus"></i>
-                    </div>
-                    <div class="content">
-                        <div class="main-cont">
-                            <span>BEMKcpatOvRDZQv YaazDXSZySATyrf</span> Thanks for joining us  BEMKcpatOvRDZQv yaazDXSZySATyrf
-
-.New User added our system.
-                        </div>
-                        <div class="time">2 weeks ago</div>
-                    </div>
-                </a>
-            </div>
-                    <div class="single-noti">
-                <a href="https://cnxcapital.net/admin/notification-read/800" class="read">
-                    <div class="icon">
-                        <i icon-name="user-plus"></i>
-                    </div>
-                    <div class="content">
-                        <div class="main-cont">
-                            <span>Yannick Kalombo</span> Thanks for joining us  yannick Kalombo
-
-.New User added our system.
-                        </div>
-                        <div class="time">2 weeks ago</div>
-                    </div>
-                </a>
-            </div>
-                    <div class="single-noti">
-                <a href="https://cnxcapital.net/admin/notification-read/799" class="read">
-                    <div class="icon">
-                        <i icon-name="user-plus"></i>
-                    </div>
-                    <div class="content">
-                        <div class="main-cont">
-                            <span>IRSUWSvNeTCt ATnjtBoEbDVJc</span> Thanks for joining us  iRSUWSvNeTCt ATnjtBoEbDVJc
-
-.New User added our system.
-                        </div>
-                        <div class="time">2 weeks ago</div>
-                    </div>
-                </a>
-            </div>
-                    <div class="single-noti">
-                <a href="https://cnxcapital.net/admin/notification-read/794" class="read">
-                    <div class="icon">
-                        <i icon-name="user-plus"></i>
-                    </div>
-                    <div class="content">
-                        <div class="main-cont">
-                            <span>Yannick Kalombo</span> Thanks for joining us  Yannick Kalombo
-
-.New User added our system.
-                        </div>
-                        <div class="time">2 weeks ago</div>
-                    </div>
-                </a>
-            </div>
-                    <div class="single-noti">
-                <a href="https://cnxcapital.net/admin/notification-read/793" class="read">
-                    <div class="icon">
-                        <i icon-name="user-plus"></i>
-                    </div>
-                    <div class="content">
-                        <div class="main-cont">
-                            <span>Sylvie Aberwe</span> Thanks for joining us  Sylvie Aberwe
-
-.New User added our system.
-                        </div>
-                        <div class="time">2 weeks ago</div>
-                    </div>
-                </a>
-            </div>
-                    <div class="single-noti">
-                <a href="https://cnxcapital.net/admin/notification-read/792" class="read">
-                    <div class="icon">
-                        <i icon-name="user-plus"></i>
-                    </div>
-                    <div class="content">
-                        <div class="main-cont">
-                            <span>Neo Lipetjo</span> Thanks for joining us  Neo Lipetjo
-
-.New User added our system.
-                        </div>
-                        <div class="time">2 weeks ago</div>
-                    </div>
-                </a>
-            </div>
-                    <div class="single-noti">
-                <a href="https://cnxcapital.net/admin/notification-read/791" class="read">
-                    <div class="icon">
-                        <i icon-name="user-plus"></i>
-                    </div>
-                    <div class="content">
-                        <div class="main-cont">
-                            <span>DxgIttZXlP XukfxjzOedSMUuS</span> Thanks for joining us  dxgIttZXlP XukfxjzOedSMUuS
-
-.New User added our system.
-                        </div>
-                        <div class="time">2 weeks ago</div>
-                    </div>
-                </a>
-            </div>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Hydrogem Capitals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2b1c4a;
+            --secondary: #6c5ce7;
+            --accent: #00cec9;
+            --light: #f8f9fa;
+            --dark: #212529;
+        }
         
-            </div>
-
-            <div class="noti-footer mt-3">
-                        <a class="noti-btn-2 ms-1 w-100"
-               href="https://cnxcapital.net/admin/notification/all">See all Notifications</a>
-        </div>
-    </div>
-
-
-            </div>
-
-
-            <div class="single-nav-right">
-                <a href="https://cnxcapital.net" target="_blank" class="item" data-bs-toggle="tooltip" title=""
-                   data-bs-placement="left" data-bs-original-title="Visit Landing Page">
-                    <i icon-name="globe"></i>
-                </a>
-            </div>
-            <div class="single-nav-right">
-                <button type="button" class="item" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i icon-name="user"></i>
-                </button>
-                <ul class="dropdown-menu dropdown-menu-end">
-                    <li>
-                        <a href="https://cnxcapital.net/admin/profile" class="dropdown-item"><i
-                                icon-name="user"></i>Profile</a>
-                    </li>
-                    <li>
-                        <a href="https://cnxcapital.net/admin/password-change" class="dropdown-item">
-                            <i icon-name="lock"></i>Change Password
-                        </a>
-                    </li>
-                    <li class="logout">
-
-                        <a href="https://cnxcapital.net/admin/logout" class="dropdown-item" type="button"
-                           onclick="event.preventDefault(); localStorage.clear();  $('#logout-form').submit();">
-                            <i icon-name="log-out"></i> Logout
-                        </a>
-                        <form id="logout-form" action="https://cnxcapital.net/admin/logout" method="POST" class="d-none">
-                            <input type="hidden" name="_token" value="DN4Eo1Tk75W3o2zGpdPyp4pZKsApYZQsiEhhMaiz">                        </form>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-    <!--/Header-->
-
-    <!--Side Nav-->
-    <div class="side-nav">
-    <div class="side-nav-inside">
-        <ul class="side-nav-menu">
-
-            <li class="side-nav-item active">
-                <a href="https://cnxcapital.net/admin"><i
-                        icon-name="layout-dashboard"></i><span>Dashboard</span></a>
-            </li>
-
-            
-                            <li class="side-nav-item category-title">
-                    <span>Customer Management</span>
-                </li>
-                <li class="side-nav-item side-nav-dropdown ">
-                    <a href="javascript:void(0);" class="dropdown-link">
-                        <i icon-name="users"></i><span>Customers</span>
-                        <span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
-                    <ul class="dropdown-items">
-                                                    <li class="">
-                                <a href="https://cnxcapital.net/admin/user"><i
-                                        icon-name="users"></i>All Customers</a>
-                            </li>
-                            <li class="">
-                                <a href="https://cnxcapital.net/admin/user/active"><i
-                                        icon-name="user-check"></i>Active Customers</a>
-                            </li>
-                            <li class="">
-                                <a href="https://cnxcapital.net/admin/user/disabled"><i
-                                        icon-name="user-x"></i>Disabled Customers</a>
-                            </li>
-
-                                                <li class="">
-                            <a href="https://cnxcapital.net/admin/notification/all"><i
-                                    icon-name="megaphone"></i>Notifications</a>
-                        </li>
-                                                    <li class="">
-                                <a href="https://cnxcapital.net/admin/user/mail-send/all"><i
-                                        icon-name="send"></i>Send Email to all</a>
-                            </li>
-                        
-                    </ul>
-                </li>
-            
-                            <li class="side-nav-item side-nav-dropdown ">
-                    <a href="javascript:void(0);" class="dropdown-link"><i
-                            icon-name="check-square"></i><span>KYC Management</span><span
-                            class="right-arrow"><i icon-name="chevron-down"></i></span></a>
-                    <ul class="dropdown-items">
-                                                    <li class="">
-                                <a href="https://cnxcapital.net/admin/kyc/pending"><i
-                                        icon-name="airplay"></i>Pending KYC</a>
-                            </li>
-                            <li class="">
-                                <a href="https://cnxcapital.net/admin/kyc/rejected"><i
-                                        icon-name="file-warning"></i>Rejected KYC</a>
-                            </li>
-                            <li class="">
-                                <a href="https://cnxcapital.net/admin/kyc/all"><i
-                                        icon-name="contact"></i>All KYC Logs</a>
-                            </li>
-                                                                            <li class="">
-                                <a href="https://cnxcapital.net/admin/kyc-form"><i
-                                        icon-name="check-square"></i>KYC Form</a>
-                            </li>
-                        
-                    </ul>
-                </li>
-            
-
-            
-                            <li class="side-nav-item category-title">
-                    <span>Staff Management</span>
-                </li>
-                                    <li class="side-nav-item ">
-                        <a href="https://cnxcapital.net/admin/roles"><i
-                                icon-name="contact"></i><span>Manage Roles</span></a>
-                    </li>
-                                                    <li class="side-nav-item ">
-                        <a href="https://cnxcapital.net/admin/staff"><i
-                                icon-name="user-cog"></i><span>Manage Staffs</span></a>
-                    </li>
-                            
-            
-                            <li class="side-nav-item category-title">
-                    <span>Plans</span>
-                </li>
-                <li class="side-nav-item side-nav-dropdown ">
-                    <a href="javascript:void(0);" class="dropdown-link"><i
-                            icon-name="album"></i><span>Manage Investment</span>
-                        <span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
-                    <ul class="dropdown-items">
-                                                    <li class="side-nav-item ">
-                                <a href="https://cnxcapital.net/admin/schedule"><i
-                                        icon-name="alarm-check"></i><span>Schedule</span></a>
-                            </li>
-                                                                            <li class="side-nav-item ">
-                                <a href="https://cnxcapital.net/admin/schema"><i
-                                        icon-name="airplay"></i><span>Manage Investment</span></a>
-                            </li>
-                        
-                    </ul>
-                </li>
-            
-            
-                            <li class="side-nav-item category-title">
-                    <span>Transactions</span>
-                </li>
-                                    <li class="side-nav-item ">
-                        <a href="https://cnxcapital.net/admin/transactions"><i
-                                icon-name="cast"></i><span>Transactions</span></a>
-                    </li>
-                                                    <li class="side-nav-item ">
-                        <a href="https://cnxcapital.net/admin/investments"><i
-                                icon-name="anchor"></i><span>Investments</span></a>
-                    </li>
-                                                    <li class="side-nav-item ">
-                        <a href="https://cnxcapital.net/admin/all-profits"><i
-                                icon-name="credit-card"></i><span>User Profits</span></a>
-                    </li>
-                            
-            
-            
-                <li class="side-nav-item category-title">
-                    <span>Essentials</span>
-                </li>
-
-                                                            <li class="side-nav-item ">
-                            <a href="https://cnxcapital.net/admin/gateway/automatic"><i
-                                    icon-name="door-open"></i><span>Automatic Gateways</span></a>
-                        </li>
-                    
-                    <li class="side-nav-item side-nav-dropdown ">
-                        <a href="javascript:void(0);" class="dropdown-link"><i
-                                icon-name="arrow-down-circle"></i><span>Deposits</span><span
-                                class="right-arrow"><i icon-name="chevron-down"></i></span></a>
-                        <ul class="dropdown-items">
-
-                                                            <li class=""><a
-                                        href="https://cnxcapital.net/admin/deposit/method/list/auto"><i
-                                            icon-name="workflow"></i>Automatic Methods</a></li>
-                            
-                                                            <li class=""><a
-                                        href="https://cnxcapital.net/admin/deposit/method/list/manual"><i
-                                            icon-name="compass"></i>Manual Methods</a></li>
-                            
-                                                            <li class=""><a
-                                        href="https://cnxcapital.net/admin/deposit/manual-pending"><i
-                                            icon-name="columns"></i>Pending Manual Deposits</a></li>
-                                <li class=""><a
-                                        href="https://cnxcapital.net/admin/deposit/history"><i
-                                            icon-name="clipboard-check"></i>Deposit History</a></li>
-                                                    </ul>
-                    </li>
-                
-                                    <li class="side-nav-item side-nav-dropdown  ">
-                        <a href="javascript:void(0);" class="dropdown-link"><i
-                                icon-name="landmark"></i><span>Withdraw</span><span class="right-arrow"><i
-                                    icon-name="chevron-down"></i></span></a>
-                        <ul class="dropdown-items">
-                                                            <li class="">
-                                    <a
-                                        href="https://cnxcapital.net/admin/withdraw/method/list/auto"><i
-                                            icon-name="workflow"></i>Automatic Methods</a></li>
-                                <li class="">
-                                    <a
-                                        href="https://cnxcapital.net/admin/withdraw/method/list/manual"><i
-                                            icon-name="compass"></i>Manual Methods</a></li>
-
-                                                                                        <li class=""><a
-                                        href="https://cnxcapital.net/admin/withdraw/pending"><i
-                                            icon-name="wallet"></i>Pending Withdraws</a></li>
-                                                                                        <li class=""><a
-                                        href="https://cnxcapital.net/admin/withdraw/schedule"><i
-                                            icon-name="alarm-clock"></i>Withdraw Schedule</a></li>
-                                                                                        <li class=""><a
-                                        href="https://cnxcapital.net/admin/withdraw/history"><i
-                                            icon-name="piggy-bank"></i>Withdraw History</a></li>
-                                                    </ul>
-                    </li>
-                
-                                    <li class="side-nav-item side-nav-dropdown ">
-                        <a href="javascript:void(0);" class="dropdown-link"><i
-                                icon-name="settings-2"></i><span>Manage Referral</span><span
-                                class="right-arrow"><i icon-name="chevron-down"></i></span></a>
-                        <ul class="dropdown-items">
-
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/referral/level"><i
-                                            icon-name="align-end-horizontal"></i>Multi Level Referral</a>
-                                </li>
-                                <li class="">
-                                    <a href="https://cnxcapital.net/admin/referral/index"><i
-                                            icon-name="expand"></i>Targets Referral</a>
-                                </li>
-                            
-                        </ul>
-                    </li>
-                
-                                    <li class="side-nav-item ">
-                        <a href="https://cnxcapital.net/admin/ranking"><i
-                                icon-name="medal"></i><span>User Rankings</span></a>
-                    </li>
-                
-            
-
-
-            
-                            <li class="side-nav-item category-title">
-                    <span>Site Settings</span>
-                </li>
-                                    <li class="side-nav-item side-nav-dropdown ">
-                        <a href="javascript:void(0);" class="dropdown-link"><i icon-name="settings"></i>
-                            <span>Settings</span><span class="right-arrow"><i icon-name="chevron-down"></i></span></a>
-                        <ul class="dropdown-items">
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/settings/site"><i
-                                            icon-name="settings-2"></i>Site Settings</a>
-                                </li>
-                                                                                        <li class="">
-                                    <a href="https://cnxcapital.net/admin/settings/mail"><i
-                                            icon-name="inbox"></i>Email Settings</a>
-                                </li>
-                                                                                        <li class="">
-                                    <a href="https://cnxcapital.net/admin/settings/plugin/system"><i
-                                            icon-name="toy-brick"></i>Plugin Settings</a>
-                                </li>
-
-                                <li class="">
-                                    <a href="https://cnxcapital.net/admin/settings/plugin/sms"><i
-                                            icon-name="message-circle"></i>SMS Settings</a>
-                                </li>
-
-                                <li class="">
-                                    <a href="https://cnxcapital.net/admin/settings/plugin/notification"><i
-                                            icon-name="bell-ring"></i>Push Notification</a>
-                                </li>
-                                <li class="">
-                                    <a href="https://cnxcapital.net/admin/settings/notification/tune"><i
-                                            icon-name="volume-2"></i>Notification Tune</a>
-                                </li>
-                            
-                        </ul>
-                    </li>
-                
-                                    <li class="side-nav-item ">
-                        <a href="https://cnxcapital.net/admin/language"><i
-                                icon-name="languages"></i><span>Language Settings</span></a>
-                    </li>
-                                                    <li class="side-nav-item ">
-                        <a href="https://cnxcapital.net/admin/page/settings"><i
-                                icon-name="layout"></i><span>Page Settings</span></a>
-                    </li>
-                            
-
-            
-                            <li class="side-nav-item category-title">
-                    <span>Site Essentials</span>
-                </li>
-                
-                    
-                    <li class="side-nav-item side-nav-dropdown  ">
-                        <a href="javascript:void(0);" class="dropdown-link"><i
-                                icon-name="palette"></i><span>Theme Manage</span><span
-                                class="right-arrow"><i icon-name="chevron-down"></i></span></a>
-                        <ul class="dropdown-items">
-                            <li class="">
-                                <a href="https://cnxcapital.net/admin/theme/site"><i
-                                        icon-name="roller-coaster"></i>Site Theme</a>
-                            </li>
-                            <li class="">
-                                <a href="https://cnxcapital.net/admin/theme/dynamic-landing"><i
-                                        icon-name="warehouse"></i>Dynamic Landing Theme</a>
-                            </li>
-
-                        </ul>
-                    </li>
-                    
-
-                    <li class="side-nav-item side-nav-dropdown  ">
-                        <a href="javascript:void(0);" class="dropdown-link"><i
-                                icon-name="home"></i><span>Landing Page</span><span class="right-arrow"><i
-                                    icon-name="chevron-down"></i></span></a>
-                        <ul class="dropdown-items">
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/hero"><i
-                                            icon-name="egg"></i>Hero Section</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/schema"><i
-                                            icon-name="egg"></i>Schema Section</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/calculation"><i
-                                            icon-name="egg"></i>Calculation Section</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/howitworks"><i
-                                            icon-name="egg"></i>How it works Section
-</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/recent"><i
-                                            icon-name="egg"></i>Recent Section
-</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/whychooseus"><i
-                                            icon-name="egg"></i>Why Choose Us Section
-</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/counter"><i
-                                            icon-name="egg"></i>Counter Section
-</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/faq"><i
-                                            icon-name="egg"></i>FAQ Section
-</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/cta"><i
-                                            icon-name="egg"></i>Call To Action
-</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/blog"><i
-                                            icon-name="egg"></i>Blog Section
-</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/gateway"><i
-                                            icon-name="egg"></i>Gateway Section
-</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/section/newsletter"><i
-                                            icon-name="egg"></i>Newslatter Section
-</a>
-                                </li>
-                            
-                        </ul>
-                    </li>
-                                                    <li class="side-nav-item side-nav-dropdown ">
-                        <a href="javascript:void(0);" class="dropdown-link"><i
-                                icon-name="layout-grid"></i><span>Pages</span><span class="right-arrow"><i
-                                    icon-name="chevron-down"></i></span></a>
-                        <ul class="dropdown-items">
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/schema"><i
-                                            icon-name="egg"></i>Schema</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/howitworks"><i
-                                            icon-name="egg"></i>How It Works</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/about"><i
-                                            icon-name="egg"></i>About Us</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/faq"><i
-                                            icon-name="egg"></i>FAQ </a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/ranking"><i
-                                            icon-name="egg"></i>Rankings </a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/blog"><i
-                                            icon-name="egg"></i>Blog </a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/contact"><i
-                                            icon-name="egg"></i>Contact Us</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/privacy"><i
-                                            icon-name="egg"></i>Privacy Policy</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/terms"><i
-                                            icon-name="egg"></i>Terms and Conditions</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/login"><i
-                                            icon-name="egg"></i>Login</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/registration"><i
-                                            icon-name="egg"></i>Registration</a>
-                                </li>
-                                                            <li class="">
-                                    <a href="https://cnxcapital.net/admin/page/edit/forgetpassword"><i
-                                            icon-name="egg"></i>Forgot Password</a>
-                                </li>
-                                                        <li class="">
-                                <a href="https://cnxcapital.net/admin/page/create"><i
-                                        icon-name="egg"></i>Add New Page</a>
-                            </li>
-                        </ul>
-                    </li>
-                                                    <li class="side-nav-item ">
-                        <a href="https://cnxcapital.net/admin/navigation/menu"><i
-                                icon-name="menu"></i><span>Site Navigations</span></a>
-                    </li>
-                                                    <li class="side-nav-item ">
-                        <a href="https://cnxcapital.net/admin/footer-content"><i
-                                icon-name="list-end"></i><span>Footer Contents</span></a>
-                    </li>
-                            
-
-            
-
-            <li class="side-nav-item category-title">
-                <span>Templates</span>
-            </li>
-                            <li class="side-nav-item ">
-                    <a href="https://cnxcapital.net/admin/email-template"><i
-                            icon-name="mail"></i><span>Email Template</span></a>
-                </li>
-
-                <li class="side-nav-item ">
-                    <a href="https://cnxcapital.net/admin/template/sms"><i
-                            icon-name="message-square"></i><span>SMS Template</span></a>
-                </li>
-
-                <li class="side-nav-item ">
-                    <a href="https://cnxcapital.net/admin/template/notification"><i
-                            icon-name="bell-ring"></i><span>Push Notification Template</span></a>
-                </li>
-            
-
-            
-            <li class="side-nav-item category-title">
-                <span>Others</span>
-            </li>
-                            <li class="side-nav-item ">
-                    <a href="https://cnxcapital.net/admin/subscribers"><i
-                            icon-name="mail-open"></i><span>All Subscriber</span></a>
-                </li>
-                                        <li class="side-nav-item ">
-                    <a href="https://cnxcapital.net/admin/support-ticket/index"><i
-                            icon-name="wrench"></i><span>Support Tickets</span></a>
-                </li>
-            
-
-                            <li class="side-nav-item ">
-                    <a href="https://cnxcapital.net/admin/custom-css"><i
-                            icon-name="braces"></i><span>Custom CSS</span></a>
-                </li>
-            
-            <li class="side-nav-item ">
-                <a href="https://cnxcapital.net/admin/clear-cache"><i
-                        icon-name="trash-2"></i><span>Clear Cache</span></a>
-            </li>
-            <li class="side-nav-item  ">
-                <a href="https://cnxcapital.net/admin/application-info"><i
-                        icon-name="indent"></i><span>Application Details</span><span
-                        class="badge yellow-color">2.5.1</span></a>
-            </li>
-        </ul>
-    </div>
-</div>
-    <!--/Side Nav-->
-
-    <!--Page Content-->
-    <div class="page-container">
-            <div class="main-content">
-        <div class="page-title">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col">
-                        <div class="title-content">
-                            <h2 class="title">CNX Capital Dashboard</h2>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row">
-                                                </div>
-            
-            <div class="row">
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="users"></i>
-            </div>
-            <div class="content">
-                <h4 class="count">1272</h4>
-                <p>Registered User</p>
-            </div>
-            <a class="link" href="https://cnxcapital.net/admin/user"><i icon-name="external-link"></i></a>
-        </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="user-check"></i>
-            </div>
-            <div class="content">
-                <h4 class="count">1272</h4>
-                <p>Active Users</p>
-            </div>
-            <a class="link" href="https://cnxcapital.net/admin/user/active"><i icon-name="external-link"></i></a>
-        </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="user-cog"></i>
-            </div>
-            <div class="content">
-                <h4 class="count">1</h4>
-                <p>Site Staff</p>
-            </div>
-            <a class="link" href="https://cnxcapital.net/admin/staff"><i icon-name="external-link"></i></a>
-        </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="wallet"></i>
-            </div>
-            <div class="content">
-                <h4>USDT<span class="count">205</span></h4>
-                <p>Total Deposits</p>
-            </div>
-            <a class="link" href="https://cnxcapital.net/admin/deposit/history"><i icon-name="external-link"></i></a>
-        </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="landmark"></i>
-            </div>
-            <div class="content">
-                <h4>USDT<span class="count">27</span></h4>
-                <p>Total Withdraw</p>
-            </div>
-            <a class="link" href="https://cnxcapital.net/admin/withdraw/history"><i icon-name="external-link"></i></a>
-        </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="link"></i>
-            </div>
-            <div class="content">
-                <h4 class="count">64</h4>
-                <p>Total Referral</p>
-            </div>
-            <a class="link" href="https://cnxcapital.net/admin/referral/index"><i icon-name="external-link"></i></a>
-        </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="send"></i>
-            </div>
-            <div class="content">
-                <h4>USDT<span class="count">0</span></h4>
-                <p>Total Send</p>
-            </div>
-        </div>
-    </div>
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="droplet"></i>
-            </div>
-            <div class="content">
-                <h4>USDT<span class="count">254</span></h4>
-                <p>Total Investment</p>
-            </div>
-            <a class="link" href="https://cnxcapital.net/admin/investments"><i icon-name="external-link"></i></a>
-        </div>
-    </div>
-
-
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="package-plus"></i>
-            </div>
-            <div class="content">
-                <h4>USDT<span class="count">0</span></h4>
-                <p>Deposit Bonus</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="sprout"></i>
-            </div>
-            <div class="content">
-                <h4>  USDT<span class="count">1.92</span></h4>
-                <p>Investment Bonus</p>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="webhook"></i>
-            </div>
-            <div class="content">
-                <h4 class="count">17</h4>
-                <p>Total Automatic Gateway</p>
-            </div>
-            <a class="link" href="https://cnxcapital.net/admin/gateway/automatic"><i icon-name="external-link"></i></a>
-        </div>
-    </div>
-
-    <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-        <div class="data-card">
-            <div class="icon">
-                <i icon-name="help-circle"></i>
-            </div>
-            <div class="content">
-                <h4 class="count">0</h4>
-                <p>Total Ticket</p>
-            </div>
-            <a class="link" href="https://cnxcapital.net/admin/support-ticket/index"><i icon-name="external-link"></i></a>
-        </div>
-    </div>
-
-</div>
-
-
-            <div class="row">
-                <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12">
-                    <div class="site-chart">
-                        <div class="site-card">
-                            <div class="site-card-header">
-                                <h3 class="title">Site Statistics</h3>
-                                <div class="card-header-links">
-                                    <input class="card-header-input" type="text" name="daterange"
-                                           value="03/07/2025 - 03/14/2025"/>
-                                </div>
-                            </div>
-                            <div class="site-card-body">
-                                <canvas id="depositChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="site-chart">
-                        <div class="site-card">
-                            <div class="site-card-header">
-                                <h3 class="title">Scheme Statistics</h3>
-                            </div>
-                            <div class="site-card-body">
-                                <canvas id="schemeChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="site-chart">
-                        <div class="site-card">
-                            <div class="site-card-header">
-                                <h3 class="title">Top Country Statistics</h3>
-                            </div>
-                            <div class="site-card-body">
-                                <canvas id="countryChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="site-chart">
-                        <div class="site-card">
-                            <div class="site-card-header">
-                                <h3 class="title">Best Browser Statistics</h3>
-                            </div>
-                            <div class="site-card-body">
-                                <canvas id="browserChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-xl-4 col-lg-6 col-md-6 col-sm-6 col-12">
-                    <div class="site-chart">
-                        <div class="site-card">
-                            <div class="site-card-header">
-                                <h3 class="title">Best OS Statistics</h3>
-                            </div>
-                            <div class="site-card-body">
-                                <canvas id="osChart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-    <div class="col-xl-12">
-        <div class="site-card">
-            <div class="site-card-header">
-                <h3 class="title">Latest Registered User</h3>
-            </div>
-            <div class="site-card-body table-responsive">
-                <div class="site-datatable">
-                    <table class="data-table mb-0">
-                        <thead>
-                        <tr>
-                            <th>Avatar</th>
-                            <th>User</th>
-                            <th>Email</th>
-                            <th>Balance</th>
-                            <th>Profit</th>
-                            <th>KYC</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                                                    <tr>
-                                <td>
-                                                                            <img class="avatar avatar-round" src="https://cnxcapital.net/assets/frontend/images/user.png" alt=""
-                                             height="40" width="40">
-                                                                    </td>
-                                <td><a href="https://cnxcapital.net/admin/user/1349/edit"
-                                       class="link">test</a></td>
-                                <td>
-                                    <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="38545d5f595b41555d5c51590101785f55595154165b5755">[email&#160;protected]</a></strong>
-                                </td>
-                                <td><strong>USDT0</strong></td>
-                                <td><strong>USDT0</strong></td>
-                                <td>
-                                                                            <div class="site-badge pending">Unverified</div>
-                                                                    </td>
-                                <td>
-                                                                            <div class="site-badge success">Active</div>
-                                                                    </td>
-                                <td>
-
-                                    <a href="https://cnxcapital.net/admin/user/1349/edit"
-                                       class="round-icon-btn primary-btn" data-bs-toggle="tooltip" title=""
-                                       data-bs-original-title="Edit User"><i icon-name="edit-3"></i></a>
-                                    <span type="button"
-                                          data-id="1349"
-                                          data-name="test test"
-                                          class="send-mail"
-                                    ><button class="round-icon-btn red-btn" data-bs-toggle="tooltip"
-                                             title="" data-bs-original-title="Send Email"><i
-                                                icon-name="mail"></i></button></span>
-
-                                </td>
-                            </tr>
-                                                    <tr>
-                                <td>
-                                                                            <img class="avatar avatar-round" src="https://cnxcapital.net/assets/frontend/images/user.png" alt=""
-                                             height="40" width="40">
-                                                                    </td>
-                                <td><a href="https://cnxcapital.net/admin/user/1348/edit"
-                                       class="link">capitalfm</a></td>
-                                <td>
-                                    <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6e1d1b1e1c0b030b0807000f000d0b5c5b2e09030f0702400d0103">[email&#160;protected]</a></strong>
-                                </td>
-                                <td><strong>USDT0</strong></td>
-                                <td><strong>USDT0</strong></td>
-                                <td>
-                                                                            <div class="site-badge pending">Unverified</div>
-                                                                    </td>
-                                <td>
-                                                                            <div class="site-badge success">Active</div>
-                                                                    </td>
-                                <td>
-
-                                    <a href="https://cnxcapital.net/admin/user/1348/edit"
-                                       class="round-icon-btn primary-btn" data-bs-toggle="tooltip" title=""
-                                       data-bs-original-title="Edit User"><i icon-name="edit-3"></i></a>
-                                    <span type="button"
-                                          data-id="1348"
-                                          data-name="Lilian Gallagher"
-                                          class="send-mail"
-                                    ><button class="round-icon-btn red-btn" data-bs-toggle="tooltip"
-                                             title="" data-bs-original-title="Send Email"><i
-                                                icon-name="mail"></i></button></span>
-
-                                </td>
-                            </tr>
-                                                    <tr>
-                                <td>
-                                                                            <img class="avatar avatar-round" src="https://cnxcapital.net/assets/frontend/images/user.png" alt=""
-                                             height="40" width="40">
-                                                                    </td>
-                                <td><a href="https://cnxcapital.net/admin/user/1347/edit"
-                                       class="link">UzxLIEgS</a></td>
-                                <td>
-                                    <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="bed5cfd1d1ccd1d2cdc6dbcadcfec7dfd6d1d190ddd1d3">[email&#160;protected]</a></strong>
-                                </td>
-                                <td><strong>USDT0</strong></td>
-                                <td><strong>USDT0</strong></td>
-                                <td>
-                                                                            <div class="site-badge pending">Unverified</div>
-                                                                    </td>
-                                <td>
-                                                                            <div class="site-badge success">Active</div>
-                                                                    </td>
-                                <td>
-
-                                    <a href="https://cnxcapital.net/admin/user/1347/edit"
-                                       class="round-icon-btn primary-btn" data-bs-toggle="tooltip" title=""
-                                       data-bs-original-title="Edit User"><i icon-name="edit-3"></i></a>
-                                    <span type="button"
-                                          data-id="1347"
-                                          data-name="VripWcHoCvCod rlxaPKpuRUQp"
-                                          class="send-mail"
-                                    ><button class="round-icon-btn red-btn" data-bs-toggle="tooltip"
-                                             title="" data-bs-original-title="Send Email"><i
-                                                icon-name="mail"></i></button></span>
-
-                                </td>
-                            </tr>
-                                                    <tr>
-                                <td>
-                                                                            <img class="avatar avatar-round" src="https://cnxcapital.net/assets/frontend/images/user.png" alt=""
-                                             height="40" width="40">
-                                                                    </td>
-                                <td><a href="https://cnxcapital.net/admin/user/1346/edit"
-                                       class="link">RQtkoCWpOBwZPmo</a></td>
-                                <td>
-                                    <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e881878184849d858186899c8d899d8b8081858d9da88f85898184c68b8785">[email&#160;protected]</a></strong>
-                                </td>
-                                <td><strong>USDT0</strong></td>
-                                <td><strong>USDT0</strong></td>
-                                <td>
-                                                                            <div class="site-badge pending">Unverified</div>
-                                                                    </td>
-                                <td>
-                                                                            <div class="site-badge success">Active</div>
-                                                                    </td>
-                                <td>
-
-                                    <a href="https://cnxcapital.net/admin/user/1346/edit"
-                                       class="round-icon-btn primary-btn" data-bs-toggle="tooltip" title=""
-                                       data-bs-original-title="Edit User"><i icon-name="edit-3"></i></a>
-                                    <span type="button"
-                                          data-id="1346"
-                                          data-name="BEMKcpatOvRDZQv yaazDXSZySATyrf"
-                                          class="send-mail"
-                                    ><button class="round-icon-btn red-btn" data-bs-toggle="tooltip"
-                                             title="" data-bs-original-title="Send Email"><i
-                                                icon-name="mail"></i></button></span>
-
-                                </td>
-                            </tr>
-                                                    <tr>
-                                <td>
-                                                                            <img class="avatar avatar-round" src="https://cnxcapital.net/assets/frontend/images/user.png" alt=""
-                                             height="40" width="40">
-                                                                    </td>
-                                <td><a href="https://cnxcapital.net/admin/user/1345/edit"
-                                       class="link">yannick0001</a></td>
-                                <td>
-                                    <strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="0b6d7f66647f796a6f6e7978393e4b6c666a626725686466">[email&#160;protected]</a></strong>
-                                </td>
-                                <td><strong>USDT0</strong></td>
-                                <td><strong>USDT0</strong></td>
-                                <td>
-                                                                            <div class="site-badge pending">Unverified</div>
-                                                                    </td>
-                                <td>
-                                                                            <div class="site-badge success">Active</div>
-                                                                    </td>
-                                <td>
-
-                                    <a href="https://cnxcapital.net/admin/user/1345/edit"
-                                       class="round-icon-btn primary-btn" data-bs-toggle="tooltip" title=""
-                                       data-bs-original-title="Edit User"><i icon-name="edit-3"></i></a>
-                                    <span type="button"
-                                          data-id="1345"
-                                          data-name="yannick Kalombo"
-                                          class="send-mail"
-                                    ><button class="round-icon-btn red-btn" data-bs-toggle="tooltip"
-                                             title="" data-bs-original-title="Send Email"><i
-                                                icon-name="mail"></i></button></span>
-
-                                </td>
-                            </tr>
-                                                <tr class="centered">
-                            <td colspan="7">
-                                                            </td>
-                        </tr>
-
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-xl-12">
-        <div class="site-card">
-            <div class="site-card-header">
-                <h3 class="title">Latest Investment</h3>
-            </div>
-            <div class="site-card-body table-responsive">
-                <div class="site-datatable">
-                    <table class="data-table mb-0">
-                        <thead>
-                        <tr>
-                            <th>Avatar</th>
-                            <th>User</th>
-                            <th>Investment Plan</th>
-                            <th>ROI</th>
-                            <th>Profit</th>
-                            <th>Capital Back</th>
-                            <th>Timeline</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        
-                            
-
-                            <tr>
-                                <td>
-                                                                            <img class="avatar" src="https://cnxcapital.net/assets/frontend/images/user.png" alt=""
-                                             height="40" width="40">
-                                                                    </td>
-                                <td><a href="https://cnxcapital.net/admin/user/111/edit"
-                                       class="link">57620256</a></td>
-                                <td>
-
-                                    <strong> Bronze <i
-                                            icon-name="arrow-big-right"></i> USDT233
-                                    </strong>
-
-                                </td>
-                                <td>
-                                    <strong>1.5%</strong>
-                                </td>
-
-                                <td>
-                                    <strong>0 x 3.495 = 0 USDT</strong>
-                                </td>
-                                <td>
-                                    <div
-                                        class="site-badge pending">No</div>
-                                </td>
-                                <td>
-
-                                                                            <div class="site-badge pending">Pending</div>
-                                                                    </td>
-                            </tr>
-                        
-                            
-
-                            <tr>
-                                <td>
-                                                                            <img class="avatar" src="https://cnxcapital.net/assets/global/images/d358d2Nqpxi84ipBUFql.jpg" alt=""
-                                             height="40" width="40">
-                                                                    </td>
-                                <td><a href="https://cnxcapital.net/admin/user/103/edit"
-                                       class="link">Div</a></td>
-                                <td>
-
-                                    <strong> Bronze <i
-                                            icon-name="arrow-big-right"></i> USDT50
-                                    </strong>
-
-                                </td>
-                                <td>
-                                    <strong>1.5%</strong>
-                                </td>
-
-                                <td>
-                                    <strong>22 x 0.75 = 16.5 USDT</strong>
-                                </td>
-                                <td>
-                                    <div
-                                        class="site-badge pending">No</div>
-                                </td>
-                                <td>
-
-                                    
-                                        <div>
-                                            <strong><span id="days13"></span>D : <span
-                                                    id="hours13"></span>H : <span
-                                                    id="minutes13"></span>M : <span
-                                                    id="seconds13"></span>S</strong>
-                                            <span class="site-badge primary-bg ms-2"
-                                                  id="percentage13"></span>
-                                        </div>
-                                        <div class="progress investment-timeline">
-                                            <div
-                                                class="progress-bar progress-bar-striped progress-bar-animated"
-                                                id="time-progress13" role="progressbar"
-                                                aria-valuenow="75" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-
-                                        
-                                                                    </td>
-                            </tr>
-                        
-                            
-
-                            <tr>
-                                <td>
-                                                                            <img class="avatar" src="https://cnxcapital.net/assets/global/images/d358d2Nqpxi84ipBUFql.jpg" alt=""
-                                             height="40" width="40">
-                                                                    </td>
-                                <td><a href="https://cnxcapital.net/admin/user/103/edit"
-                                       class="link">Div</a></td>
-                                <td>
-
-                                    <strong> Bronze <i
-                                            icon-name="arrow-big-right"></i> USDT50
-                                    </strong>
-
-                                </td>
-                                <td>
-                                    <strong>1.5%</strong>
-                                </td>
-
-                                <td>
-                                    <strong>0 x 0.75 = 0 USDT</strong>
-                                </td>
-                                <td>
-                                    <div
-                                        class="site-badge pending">No</div>
-                                </td>
-                                <td>
-
-                                                                            <div class="site-badge pending">Canceled</div>
-                                                                    </td>
-                            </tr>
-                        
-                            
-
-                            <tr>
-                                <td>
-                                                                            <img class="avatar" src="https://cnxcapital.net/assets/frontend/images/user.png" alt=""
-                                             height="40" width="40">
-                                                                    </td>
-                                <td><a href="https://cnxcapital.net/admin/user/62/edit"
-                                       class="link">Hojan</a></td>
-                                <td>
-
-                                    <strong> Starter <i
-                                            icon-name="arrow-big-right"></i> USDT24
-                                    </strong>
-
-                                </td>
-                                <td>
-                                    <strong>1.2%</strong>
-                                </td>
-
-                                <td>
-                                    <strong>89 x 0.288 = 25.632 USDT</strong>
-                                </td>
-                                <td>
-                                    <div
-                                        class="site-badge success">Yes</div>
-                                </td>
-                                <td>
-
-                                    
-                                        <div>
-                                            <strong><span id="days6"></span>D : <span
-                                                    id="hours6"></span>H : <span
-                                                    id="minutes6"></span>M : <span
-                                                    id="seconds6"></span>S</strong>
-                                            <span class="site-badge primary-bg ms-2"
-                                                  id="percentage6"></span>
-                                        </div>
-                                        <div class="progress investment-timeline">
-                                            <div
-                                                class="progress-bar progress-bar-striped progress-bar-animated"
-                                                id="time-progress6" role="progressbar"
-                                                aria-valuenow="75" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-
-                                        
-                                                                    </td>
-                            </tr>
-                        
-                            
-
-                            <tr>
-                                <td>
-                                                                            <img class="avatar" src="https://cnxcapital.net/assets/frontend/images/user.png" alt=""
-                                             height="40" width="40">
-                                                                    </td>
-                                <td><a href="https://cnxcapital.net/admin/user/18/edit"
-                                       class="link">Wemazuri</a></td>
-                                <td>
-
-                                    <strong> Starter <i
-                                            icon-name="arrow-big-right"></i> USDT30
-                                    </strong>
-
-                                </td>
-                                <td>
-                                    <strong>1.2%</strong>
-                                </td>
-
-                                <td>
-                                    <strong>140 x 0.36 = 50.4 USDT</strong>
-                                </td>
-                                <td>
-                                    <div
-                                        class="site-badge success">Yes</div>
-                                </td>
-                                <td>
-
-                                    
-                                        <div>
-                                            <strong><span id="days4"></span>D : <span
-                                                    id="hours4"></span>H : <span
-                                                    id="minutes4"></span>M : <span
-                                                    id="seconds4"></span>S</strong>
-                                            <span class="site-badge primary-bg ms-2"
-                                                  id="percentage4"></span>
-                                        </div>
-                                        <div class="progress investment-timeline">
-                                            <div
-                                                class="progress-bar progress-bar-striped progress-bar-animated"
-                                                id="time-progress4" role="progressbar"
-                                                aria-valuenow="75" aria-valuemin="0"
-                                                aria-valuemax="100"></div>
-                                        </div>
-
-                                        
-                                                                    </td>
-                            </tr>
-                                                <tr class="centered">
-                            <td colspan="7">
-                                                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
-
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-        </div>
-    </div>
-    <!-- Modal for Send Email -->
-    <div
-    class="modal fade"
-    id="sendEmail"
-    tabindex="-1"
-    aria-labelledby="sendEmailModalLabel"
-    aria-hidden="true"
->
-    <div class="modal-dialog modal-md modal-dialog-centered">
-        <div class="modal-content site-table-modal">
-            <div class="modal-body popup-body">
-                <button
-                    type="button"
-                    class="btn-close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                ></button>
-                <div class="popup-body-text">
-                    <h3 class="title mb-4"> Send Mail to <span id="name"></span></h3>
-                    <form action="https://cnxcapital.net/admin/user/mail-send" method="post" id="send-mail-form">
-                        <input type="hidden" name="_token" value="DN4Eo1Tk75W3o2zGpdPyp4pZKsApYZQsiEhhMaiz">
-                        <input type="hidden" name="id" value="0" id="userId">
-
-                        <div class="site-input-groups">
-                            <label for="" class="box-input-label">Subject:</label>
-                            <input
-                                type="text"
-                                name="subject"
-                                class="box-input mb-0"
-                                required=""
-                            />
-                        </div>
-                        <div class="site-input-groups">
-                            <label for="" class="box-input-label">Email Details</label>
-                            <textarea name="message" class="form-textarea mb-0"></textarea>
-                        </div>
-
-                        <div class="action-btns">
-                            <button type="submit" class="site-btn-sm primary-btn me-2">
-                                <i icon-name="send"></i>
-                                Send Email
-                            </button>
-                            <a
-                                href="#"
-                                class="site-btn-sm red-btn"
-                                data-bs-dismiss="modal"
-                                aria-label="Close"
-                            >
-                                <i icon-name="x"></i>
-                                Close
-                            </a>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-    <!-- Modal for Send Email-->
-
-    </div>
-    <!--Page Content-->
-</div>
-<!--/Full Layout-->
-
-
-
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://cnxcapital.net/assets/global/js/jquery.min.js"></script>
-<script src="https://cnxcapital.net/assets/global/js/jquery-migrate.js"></script>
-<script src="https://cnxcapital.net/assets/backend/js/jquery-ui.js"></script>
-
-<script src="https://cnxcapital.net/assets/backend/js/bootstrap.bundle.min.js"></script>
-
-<script src="https://cnxcapital.net/assets/backend/js/scrollUp.min.js"></script>
-<script src="https://cnxcapital.net/assets/global/js/waypoints.min.js"></script>
-<script src="https://cnxcapital.net/assets/global/js/jquery.counterup.min.js"></script>
-<script src="https://cnxcapital.net/assets/backend/js/chart.js"></script>
-<script src="https://cnxcapital.net/assets/global/js/lucide.min.js"></script>
-<script src="https://cnxcapital.net/assets/global/js/jquery.nice-select.min.js"></script>
-<script src="https://cnxcapital.net/assets/global/js/datatables.min.js" type="text/javascript" charset="utf8"></script>
-<script src="https://cnxcapital.net/assets/global/js/moment.min.js"></script>
-<script src="https://cnxcapital.net/assets/global/js/daterangepicker.min.js"></script>
-
-<script src="https://cnxcapital.net/assets/global/js/simple-notify.min.js"></script>
-<script src="https://cnxcapital.net/assets/backend/js/summernote-lite.min.js"></script>
-<script src="https://cnxcapital.net/assets/global/js/select2.min.js"></script>
-<script src="https://cnxcapital.net/assets/backend/js/main.js?var=5"></script>
-<script src="https://cnxcapital.net/assets/global/js/pusher.min.js"></script>
-<script src="https://cnxcapital.net/assets/global/js/custom.js?var=6"></script>
-
-<script>
-    (function ($) {
-        'use strict';
-
-        let pusherAppKey = "be09ea9de9775e90aa1b";
-        let pusherAppCluster = "us2";
-
-        var notification = new Pusher(pusherAppKey, {
-            encrypted: true,
-            cluster: pusherAppCluster,
-        });
-        var channel = notification.subscribe('admin-notification');
-
-        channel.bind('notification-event', function (result) {
-            playSound();
-            latestNotification();
-            notifyToast(result);
-        });
-
-
-        function latestNotification() {
-            $.get('https://cnxcapital.net/admin/latest-notification', function (data) {
-                $('.admin-notifications').html(data);
-            })
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
-        function notifyToast(data) {
-            new Notify({
-                status: 'info',
-                title: data.data.title,
-                text: data.data.notice,
-                effect: 'slide',
-                speed: 300,
-                customClass: '',
-                customIcon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-megaphone"><path d="m3 11 18-5v12L3 14v-3z"></path><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"></path></svg>',
-                showIcon: true,
-                showCloseButton: true,
-                autoclose: true,
-                autotimeout: 9000,
-                gap: 20,
-                distance: 20,
-                type: 1,
-                position: 'right bottom',
-                customWrapper: '<div><a href="' + data.data.action_url + '" class="learn-more-link">Explore<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" icon-name="external-link" class="lucide lucide-external-link"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" x2="21" y1="14" y2="3"></line></svg></a></div>',
-            })
-
+        
+        body {
+            background-color: #f5f6fa;
+            color: var(--dark);
+            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--primary) 0%, #4a2b8a 100%);
         }
-
-        function playSound() {
-            var audio = new Audio("https://cnxcapital.net/assets/global/tune/sticky.mp3");
-            audio.play();
+        
+        .login-container {
+            width: 100%;
+            max-width: 450px;
+            padding: 40px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.5s ease;
         }
-
-
-    })(jQuery);
-</script>
-<script type="text/javascript" src="https://cnxcapital.net/assets/vendor/mckenziearts/laravel-notify/js/notify.js"></script>    <script>
-    (function ($) {
-        'use strict';
-
-        //site chart
-        let chart;
-        $('input[name="daterange"]').daterangepicker({
-            opens: 'left'
-        }, function (start, end) {
-
-            $.get('https://cnxcapital.net/admin', {
-                start_date: start.format('YYYY-MM-DD'),
-                end_date: end.format('YYYY-MM-DD')
-            }, function (chartData) {
-
-                chart.destroy()
-                chart_show(chartData);
-            });
-        });
-
-
-        function chart_show(chartData) {
-            var date_label = Object.keys(chartData['date_label']);
-            var deposit_data = Object.values(chartData['deposit_statistics']);
-            var invest_data = Object.values(chartData['invest_statistics']);
-            var withdraw_data = Object.values(chartData['withdraw_statistics']);
-            var profit_data = Object.values(chartData['profit_statistics']);
-            var symbol = chartData['symbol'];
-
-
-            // Bar Chart
-            var data = {
-                labels: date_label,
-                datasets: [{
-                    label: 'Total Deposit ' + symbol + sumArrayValues(deposit_data),
-                    data: deposit_data,
-                    backgroundColor: '#ef476f',
-                    borderColor: '#ffffff',
-                    borderWidth: 0,
-                    borderRadius: 90,
-                    tension: 0.1
-                },
-                    {
-                        label: 'Total Investment ' + symbol + sumArrayValues(invest_data),
-                        data: invest_data,
-                        backgroundColor: '#5e3fc9',
-                        borderColor: '#ffffff',
-                        borderWidth: 0,
-                        borderRadius: 90,
-                        tension: 1
-                    },
-                    {
-                        label: 'Total Withdraw ' + symbol + sumArrayValues(withdraw_data),
-                        data: withdraw_data,
-                        backgroundColor: '#2a9d8f',
-                        borderColor: '#ffffff',
-                        borderWidth: 0,
-                        borderRadius: 90,
-                        tension: 0.1
-                    },
-                    {
-                        label: 'Total Profit ' + symbol + sumArrayValues(profit_data),
-                        data: profit_data,
-                        backgroundColor: '#003566',
-                        borderColor: '#ffffff',
-                        borderWidth: 0,
-                        borderRadius: 90,
-                        tension: 0.1
-                    },
-                ]
-            };
-            // render init block
-
-
-            var ctx = document.getElementById('depositChart');
-            var configuration = {
-                type: 'bar',
-                data,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                label: function (context) {
-                                    return (context.dataset.label.split(symbol)[0]).split(' ')[1] + ': ' + symbol + context.formattedValue;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-
-            if (chart) {
-                chart.destroy();
-                chart = new Chart(ctx, configuration);
-            } else {
-                chart = new Chart(ctx, configuration);
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .login-header img {
+            height: 60px;
+            margin-bottom: 15px;
+        }
+        
+        .login-header h2 {
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+        
+        .login-header p {
+            color: #777;
+        }
+        
+        .login-form .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .login-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .input-with-icon {
+            position: relative;
+        }
+        
+        .input-with-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #777;
+        }
+        
+        .login-form input {
+            width: 100%;
+            padding: 12px 15px 12px 45px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .login-form input:focus {
+            border-color: var(--accent);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0,206,201,0.2);
+        }
+        
+        .btn-login {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .btn-login:hover {
+            background-color: #00b8a9;
+        }
+        
+        .login-footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+        
+        .login-footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+        
+        .login-footer a:hover {
+            text-decoration: underline;
+        }
+        
+        .error-message {
+            color: #d63031;
+            font-size: 14px;
+            margin-top: 5px;
+            display: none;
+            text-align: center;
+            padding: 10px;
+            background-color: rgba(214, 48, 49, 0.1);
+            border-radius: 5px;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 576px) {
+            .login-container {
+                padding: 30px 20px;
+                margin: 20px;
             }
         }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-header">
+            <img src="assets/images/logo.png" alt="Hydrogem Capitals">
+            <h2>Admin Portal</h2>
+            <p>Sign in to access the admin dashboard</p>
+        </div>
+        
+        <form class="login-form" id="adminLoginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-user"></i>
+                    <input type="text" id="username" name="username" placeholder="Enter admin username" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="password">Password</label>
+                <div class="input-with-icon">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" id="password" name="password" placeholder="Enter password" required>
+                </div>
+            </div>
+            
+            <div class="error-message" id="errorMessage">
+                Invalid username or password. Please try again.
+            </div>
+            
+            <button type="submit" class="btn-login" id="loginButton">
+                <span id="buttonText">Login</span>
+            </button>
+            
+            <div class="login-footer">
+                <a href="forgot-password.html">Forgot password?</a>
+            </div>
+        </form>
+    </div>
 
-        var chartData = {
-            'date_label': {"07 Mar":0,"08 Mar":0,"09 Mar":0,"10 Mar":0,"11 Mar":0,"12 Mar":0,"13 Mar":0,"14 Mar":0},
-            'deposit_statistics': {"07 Mar":0,"08 Mar":0,"09 Mar":0,"10 Mar":0,"11 Mar":0,"12 Mar":0,"13 Mar":0,"14 Mar":0},
-            'invest_statistics': {"07 Mar":0,"08 Mar":0,"09 Mar":0,"10 Mar":0,"11 Mar":0,"12 Mar":0,"13 Mar":0,"14 Mar":0},
-            'withdraw_statistics': {"07 Mar":0,"08 Mar":0,"09 Mar":0,"10 Mar":0,"11 Mar":0,"12 Mar":0,"13 Mar":0,"14 Mar":0},
-            'profit_statistics': {"07 Mar":2.598,"08 Mar":0,"09 Mar":0,"10 Mar":2.598,"11 Mar":2.598,"12 Mar":2.598,"13 Mar":0,"14 Mar":0},
-            'symbol': "USDT",
-        }
-        chart_show(chartData);
-
-
-        //Plan chart
-        var schema = {"Starter":3,"Bronze":2};
-        var invest_data = Object.values(schema);
-        var invest_label = Object.keys(schema);
-        // Bar Chart
-        var data = {
-            labels: invest_label,
-            datasets: [{
-                label: 'Total Investment',
-                data: invest_data,
-                backgroundColor: [
-                    '#5e3fc9',
-                    '#2a9d8f',
-                    '#ee6c4d',
-                    '#6d597a',
-                    '#003566',
-                    '#ef476f',
-                    '#718355',
-                ],
-                borderColor: [
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff'
-                ],
-                borderWidth: 3,
-                borderRadius: 12,
-                barPercentage: 0.3,
-                hoverBackgroundColor: '#003566',
-            }]
-        };
-        // render init block
-        new Chart(
-            document.getElementById('schemeChart'),
-            {
-                type: 'doughnut',
-                data,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            }
-        );
-
-
-        // Country Chart
-        var country = {"Zimbabwe":1231,"Kenya":13,"The Democratic Republic of the Congo":12,"Lesotho":4,"South Africa":2};
-        var country_data = Object.values(country);
-        var country_label = Object.keys(country);
-        var data = {
-            labels: country_label,
-            datasets: [{
-                label: 'Country',
-                data: country_data,
-                backgroundColor: [
-                    '#5e3fc9',
-                    '#2a9d8f',
-                    '#ef476f',
-                    '#718355',
-                    '#ee6c4d',
-                    '#6d597a',
-                    '#003566',
-                    "#b91d47",
-                    "#00aba9",
-                    "#2b5797",
-                    "#e8c3b9",
-                    "#1e7145"
-                ],
-                borderColor: [
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff'
-                ],
-                borderWidth: 3,
-                borderRadius: 12,
-                barPercentage: 0.3,
-                hoverBackgroundColor: '#003566',
-            }]
-        };
-        // render init block
-        new Chart(
-            document.getElementById('countryChart'),
-            {
-                type: 'doughnut',
-                data,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            }
-        );
-
-        // Browser Chart
-        var browser = {"Chrome":1497,"Safari":30,"Firefox":1,"Opera":1};
-        var browser_data = Object.values(browser);
-        var browser_label = Object.keys(browser);
-        var data = {
-            labels: browser_label,
-            datasets: [{
-                label: 'Browser',
-                data: browser_data,
-                backgroundColor: [
-                    '#5e3fc9',
-                    '#2a9d8f',
-                    '#ef476f',
-                    '#718355',
-                    '#ee6c4d',
-                    '#6d597a',
-                    '#003566',
-                    "#b91d47",
-                    "#00aba9",
-                    "#2b5797",
-                    "#e8c3b9",
-                    "#1e7145"
-                ],
-                borderColor: [
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff'
-                ],
-                borderWidth: 2,
-                borderRadius: 12,
-                barPercentage: 0.3,
-                hoverBackgroundColor: '#003566',
-            }]
-        };
-        // render init block
-        new Chart(
-            document.getElementById('browserChart'),
-            {
-                type: 'polarArea',
-                data,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            }
-        );
-
-        // OS Chart
-        var platform = {"AndroidOS":181,"Windows":92,"iOS":35,"Linux":20,"OS X":1201};
-        var platform_data = Object.values(platform);
-        var platform_label = Object.keys(platform);
-        var data = {
-            labels: platform_label,
-            datasets: [{
-                label: 'OS',
-                data: platform_data,
-                backgroundColor: [
-                    '#5e3fc9',
-                    '#718355',
-                    '#ef476f',
-                    '#ee6c4d',
-                    "#b91d47",
-                    "#2b5797",
-                    "#e8c3b9",
-                    "#1e7145",
-                    '#2a9d8f',
-                ],
-                borderColor: [
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff',
-                    '#ffffff'
-                ],
-                borderWidth: 3,
-                borderRadius: 12,
-                barPercentage: 0.3,
-                hoverBackgroundColor: '#003566',
-            }]
-        };
-        // render init block
-        new Chart(
-            document.getElementById('osChart'),
-            {
-                type: 'pie',
-                data,
-                options: {
-                    scales: {
-                        y: {
-                            beginAtZero: true
-                        }
-                    }
-                }
-            }
-        );
-
-    })(jQuery);
-</script>
     <script>
-        (function ($) {
-            'use strict'
-            //send mail modal form open
-            $('.send-mail').on('click', function () {
-                var id = $(this).data('id')
-                var name = $(this).data('name')
-                $('#name').html(name)
-                $('#userId').val(id)
-                $('#sendEmail').modal('toggle')
-            })
-        })(jQuery)
+        document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get input values
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMessage = document.getElementById('errorMessage');
+            const loginButton = document.getElementById('loginButton');
+            const buttonText = document.getElementById('buttonText');
+            
+            // Show loading state
+            loginButton.disabled = true;
+            buttonText.innerHTML = '<div class="loading"></div> Authenticating...';
+            
+            // Default credentials (in a real app, this would be server-side validation)
+            const correctUsername = 'hydrogemcapitals.com';
+            const correctPassword = 'hydrogem2024!';
+            
+            // Simulate network delay
+            setTimeout(() => {
+                // Validate credentials
+                if (username === correctUsername && password === correctPassword) {
+                    // Successful login - redirect to admin dashboard
+                    window.location.href = 'adminDashboard.html';
+                } else {
+                    // Show error message
+                    errorMessage.style.display = 'block';
+                    
+                    // Reset button state
+                    loginButton.disabled = false;
+                    buttonText.textContent = 'Login';
+                    
+                    // Hide error message after 3 seconds
+                    setTimeout(() => {
+                        errorMessage.style.display = 'none';
+                    }, 3000);
+                    
+                    // Clear password field
+                    document.getElementById('password').value = '';
+                }
+            }, 1000);
+        });
+        
+        // Security feature - prevent form autofill
+        window.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        });
     </script>
-                                            <script>
-                                                (function ($) {
-                                                    "use strict";
-                                                    // Countdown
-                                                    const second = 1000,
-                                                        minute = second * 60,
-                                                        hour = minute * 60,
-                                                        day = hour * 24;
-                                                    let timezone = "UTC";
-
-                                                    let countDown = new Date('Mar 13, 2025 00:24').getTime()
-                                                    var start = new Date('2025-03-12 00:24:12').getTime()
-                                                    setInterval(function () {
-
-                                                        let utc_datetime_str = new Date().toLocaleString("en-US", {timeZone: timezone});
-                                                        let now = new Date(utc_datetime_str).getTime();
-                                                        let distance = countDown - now;
-
-
-                                                        var progress = (((now - start) / (countDown - start)) * 100).toFixed(2);
-
-
-                                                        $("#time-progress13").css("width", progress + '%');
-
-                                                        $("#percentage13").text(progress >= 100 ? 100 + '%' : progress + '%');
-
-                                                        document.getElementById('days13').innerText = Math.floor(distance < 0 ? 0 : distance / (day)),
-                                                            document.getElementById('hours13').innerText = Math.floor(distance < 0 ? 0 : (distance % (day)) / (hour)),
-                                                            document.getElementById('minutes13').innerText = Math.floor(distance < 0 ? 0 : (distance % (hour)) / (minute)),
-                                                            document.getElementById('seconds13').innerText = Math.floor(distance < 0 ? 0 : (distance % (minute)) / second);
-
-                                                    }, second)
-
-                                                })(jQuery)
-                                            </script>
-                                                                                    <script>
-                                                (function ($) {
-                                                    "use strict";
-                                                    // Countdown
-                                                    const second = 1000,
-                                                        minute = second * 60,
-                                                        hour = minute * 60,
-                                                        day = hour * 24;
-                                                    let timezone = "UTC";
-
-                                                    let countDown = new Date('Mar 13, 2025 00:24').getTime()
-                                                    var start = new Date('2025-03-12 00:24:09').getTime()
-                                                    setInterval(function () {
-
-                                                        let utc_datetime_str = new Date().toLocaleString("en-US", {timeZone: timezone});
-                                                        let now = new Date(utc_datetime_str).getTime();
-                                                        let distance = countDown - now;
-
-
-                                                        var progress = (((now - start) / (countDown - start)) * 100).toFixed(2);
-
-
-                                                        $("#time-progress6").css("width", progress + '%');
-
-                                                        $("#percentage6").text(progress >= 100 ? 100 + '%' : progress + '%');
-
-                                                        document.getElementById('days6').innerText = Math.floor(distance < 0 ? 0 : distance / (day)),
-                                                            document.getElementById('hours6').innerText = Math.floor(distance < 0 ? 0 : (distance % (day)) / (hour)),
-                                                            document.getElementById('minutes6').innerText = Math.floor(distance < 0 ? 0 : (distance % (hour)) / (minute)),
-                                                            document.getElementById('seconds6').innerText = Math.floor(distance < 0 ? 0 : (distance % (minute)) / second);
-
-                                                    }, second)
-
-                                                })(jQuery)
-                                            </script>
-                                                                                    <script>
-                                                (function ($) {
-                                                    "use strict";
-                                                    // Countdown
-                                                    const second = 1000,
-                                                        minute = second * 60,
-                                                        hour = minute * 60,
-                                                        day = hour * 24;
-                                                    let timezone = "UTC";
-
-                                                    let countDown = new Date('Mar 13, 2025 00:24').getTime()
-                                                    var start = new Date('2025-03-12 00:24:07').getTime()
-                                                    setInterval(function () {
-
-                                                        let utc_datetime_str = new Date().toLocaleString("en-US", {timeZone: timezone});
-                                                        let now = new Date(utc_datetime_str).getTime();
-                                                        let distance = countDown - now;
-
-
-                                                        var progress = (((now - start) / (countDown - start)) * 100).toFixed(2);
-
-
-                                                        $("#time-progress4").css("width", progress + '%');
-
-                                                        $("#percentage4").text(progress >= 100 ? 100 + '%' : progress + '%');
-
-                                                        document.getElementById('days4').innerText = Math.floor(distance < 0 ? 0 : distance / (day)),
-                                                            document.getElementById('hours4').innerText = Math.floor(distance < 0 ? 0 : (distance % (day)) / (hour)),
-                                                            document.getElementById('minutes4').innerText = Math.floor(distance < 0 ? 0 : (distance % (hour)) / (minute)),
-                                                            document.getElementById('seconds4').innerText = Math.floor(distance < 0 ? 0 : (distance % (minute)) / second);
-
-                                                    }, second)
-
-                                                })(jQuery)
-                                            </script>
-                                        
-
-
-
 </body>
 </html>
-
-
-
-
-
-
