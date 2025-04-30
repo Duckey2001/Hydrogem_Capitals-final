@@ -54,22 +54,6 @@
     button:hover {
       background-color: #45a049;
     }
-    .error {
-      color: #ff6b6b;
-      text-align: center;
-      min-height: 1.2rem;
-      font-size: 14px;
-    }
-    .register-link {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 14px;
-    }
-    .register-link a {
-      color: #4caf50;
-      text-decoration: none;
-      font-weight: bold;
-    }
   </style>
 </head>
 <body>
@@ -79,88 +63,15 @@
       <input type="email" id="email" placeholder="Email" required />
       <input type="password" id="password" placeholder="Password" required />
       <button type="submit">Login</button>
-      <div class="error" id="errorMsg"></div>
-      <div class="register-link">
-        Don't have an account? <a href="#" id="register">Register</a>
-      </div>
     </form>
   </div>
 
   <script>
-    (function () {
-      const emailField = document.getElementById("email");
-      const passwordField = document.getElementById("password");
-      const errorMsg = document.getElementById("errorMsg");
-
-      const hash = (str) => {
-        let hash = 0;
-        for (let i = 0; i < str.length; i++) {
-          hash = (hash << 5) - hash + str.charCodeAt(i);
-          hash |= 0;
-        }
-        return hash.toString();
-      };
-
-      const loadUsers = () => {
-        let users = localStorage.getItem("users");
-        if (!users) {
-          const defaultUsers = {
-            "admin@secure.com": {
-              password: hash("SecureAdmin123!"),
-              name: "Admin",
-              isAdmin: true,
-            },
-          };
-          localStorage.setItem("users", JSON.stringify(defaultUsers));
-          return defaultUsers;
-        }
-        return JSON.parse(users);
-      };
-
-      const login = (email, password) => {
-        const users = loadUsers();
-        const user = users[email];
-        if (user && hash(password) === user.password) {
-          const session = {
-            email,
-            name: user.name,
-            isAdmin: user.isAdmin,
-            token: hash(email + Date.now() + "salt"),
-          };
-          sessionStorage.setItem("session", JSON.stringify(session));
-          return true;
-        }
-        return false;
-      };
-
-      document.getElementById("loginForm").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const email = emailField.value.trim();
-        const password = passwordField.value;
-
-        if (!email || !password) {
-          errorMsg.textContent = "Please enter both email and password.";
-          return;
-        }
-
-        if (login(email, password)) {
-          window.location.href = "dashboard.html";
-        } else {
-          errorMsg.textContent = "Invalid credentials.";
-        }
-      });
-
-      // Redirect if already logged in
-      if (sessionStorage.getItem("session")) {
-        window.location.href = "dashboard.html";
-      }
-
-      // Register link handling
-      document.getElementById("register").addEventListener("click", function (e) {
-        e.preventDefault();
-        errorMsg.textContent = "Registration is not open to the public.";
-      });
-    })();
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      // Simply redirect to dashboard.html when login button is pressed
+      window.location.href = "dashboard.html";
+    });
   </script>
 </body>
 </html>
