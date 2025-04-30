@@ -44,9 +44,10 @@
             color: #ccc;
         }
 
-        .login-btn {
+        .login-btn, .stay-btn {
             display: inline-block;
             padding: 12px 25px;
+            margin: 10px;
             background-color: #00cec9;
             color: white;
             text-decoration: none;
@@ -55,7 +56,8 @@
             transition: background-color 0.3s ease;
         }
 
-        .login-btn:hover {
+        .login-btn:hover,
+        .stay-btn:hover {
             background-color: #00b5b2;
         }
 
@@ -75,17 +77,22 @@
     </style>
 
     <script>
-        // Redirect to index.html after 3 seconds
-        setTimeout(function () {
+        let redirectTimeout = setTimeout(function () {
             window.location.href = "../index.html";
         }, 3000);
+
+        function cancelRedirect() {
+            clearTimeout(redirectTimeout);
+            alert("Redirect canceled. You can login again manually if you wish.");
+        }
     </script>
 </head>
 <body>
     <div class="container">
-        <h2>Logout</h2>
-        <p>You have been logged out successfully.<br>You will be redirected to the login page shortly.</p>
+        <h2>You have logged out</h2>
+        <p>You will be redirected to the login page in a few seconds.</p>
         <a href="../index.html" class="login-btn">Login Again</a>
+        <button onclick="cancelRedirect()" class="stay-btn">Stay on this Page</button>
     </div>
 </body>
 </html>
