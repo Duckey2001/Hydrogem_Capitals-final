@@ -1,42 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="../css/styling.css"/>
-    <link rel="stylesheet" href="../css/style3.css"/>
+    <meta charset="UTF-8" />
     <title>Logout - Hydrogem Capitals</title>
-    <script>
-        // Function to redirect user to the dashboard after logout
-        function redirectToDashboard() {
-            // Replace the URL with the actual URL of your dashboard page
-            window.location.href = "../dashboard.html"; 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
 
-        // Redirect user after 3 seconds
-        setTimeout(redirectToDashboard, 3000);
+        body {
+            background-color: #1e1e2f;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #2b2c3f;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            max-width: 500px;
+            width: 100%;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #00cec9;
+        }
+
+        p {
+            font-size: 16px;
+            margin-bottom: 30px;
+            color: #ccc;
+        }
+
+        .login-btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background-color: #00cec9;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-btn:hover {
+            background-color: #00b5b2;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+
+            h2 {
+                font-size: 24px;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+    </style>
+
+    <script>
+        // Redirect to index.html after 3 seconds
+        setTimeout(function () {
+            window.location.href = "../index.html";
+        }, 3000);
     </script>
 </head>
-<body class="dark-theme">
-    <div class="panel-layout">
-        <!-- Include the same header and sidebar as in dashboard.html -->
-        <div class="panel-header">
-            <!-- Header content -->
-        </div>
-        <div class="side-nav">
-            <!-- Sidebar content -->
-        </div>
-
-        <!-- Page Content -->
-        <div class="page-container">
-            <div class="main-content">
-                <div class="section-gap">
-                    <div class="container-fluid">
-                        <h2>Logout</h2>
-                        <p>You have been logged out successfully. You will be redirected to the dashboard shortly.</p>
-                        <a href="../index.html" class="login-btn">Login Again</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+<body>
+    <div class="container">
+        <h2>Logout</h2>
+        <p>You have been logged out successfully.<br>You will be redirected to the login page shortly.</p>
+        <a href="../index.html" class="login-btn">Login Again</a>
     </div>
 </body>
 </html>
