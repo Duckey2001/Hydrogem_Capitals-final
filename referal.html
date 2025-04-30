@@ -1,43 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" href="../css/styling.css"/>
     <link rel="stylesheet" href="../css/style3.css"/>
-    <title>Referral URL - Hydrogem Capitals</title>
+    <title>Referral Program - Hydrogem Capitals</title>
+    <style>
+        .referral-box {
+            background-color: #1e1e2f;
+            padding: 30px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 0 10px #00f0ff44;
+        }
+        .referral-link input {
+            width: 70%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        .referral-link button {
+            padding: 10px 20px;
+            background-color: #00f0ff;
+            color: #000;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+        .referral-link button:hover {
+            background-color: #00c4cc;
+        }
+        .copy-status {
+            margin-top: 10px;
+            color: #0f0;
+            display: none;
+        }
+        .referral-count {
+            margin-top: 20px;
+            font-size: 18px;
+            color: #ddd;
+        }
+    </style>
 </head>
 <body class="dark-theme">
     <div class="panel-layout">
-        <!-- Include the same header and sidebar as in dashboard.html -->
         <div class="panel-header">
-            <!-- Header content -->
+            <!-- Include Header Here -->
         </div>
         <div class="side-nav">
-            <!-- Sidebar content -->
+            <!-- Include Sidebar Here -->
         </div>
-
-        <!-- Page Content -->
         <div class="page-container">
             <div class="main-content">
                 <div class="section-gap">
                     <div class="container-fluid">
-                        <h2>Referral URL</h2>
-                        <div class="referral-link">
-                            <input type="text" value="https://hydrogemcapitals.com/register?invite=esf8irmtzk" id="refLink" readonly/>
-                            <button onclick="copyRef()">Copy</button>
+                        <div class="referral-box">
+                            <h2>Invite Friends & Earn Rewards</h2>
+                            <p>Share your unique referral link to invite others.</p>
+
+                            <div class="referral-link">
+                                <input type="text" id="refLink" readonly/>
+                                <button onclick="copyRef()">Copy</button>
+                                <div id="copyStatus" class="copy-status">Copied to clipboard!</div>
+                            </div>
+
+                            <div class="referral-count" id="referralCount">
+                                0 people have joined using your link.
+                            </div>
                         </div>
-                        <p>0 People have joined using this URL.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Simulated user referral code (in production, get this from session/backend)
+        const userReferralCode = "user_" + Math.random().toString(36).substr(2, 8);
+        const referralURL = `https://hydrogemcapitals.com/register?invite=${userReferralCode}`;
+
+        document.getElementById("refLink").value = referralURL;
+
+        function copyRef() {
+            const refInput = document.getElementById("refLink");
+            refInput.select();
+            refInput.setSelectionRange(0, 99999);
+            document.execCommand("copy");
+
+            const status = document.getElementById("copyStatus");
+            status.style.display = "block";
+            setTimeout(() => status.style.display = "none", 2000);
+        }
+
+        // TODO: Fetch actual referral count via backend API
+        const joinedCount = 0; // Replace with real data from backend
+        document.getElementById("referralCount").innerText = `${joinedCount} people have joined using your link.`;
+    </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
