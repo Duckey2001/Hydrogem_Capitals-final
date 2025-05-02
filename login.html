@@ -54,6 +54,13 @@
     button:hover {
       background-color: #45a049;
     }
+    .error-message {
+      color: #ff6b6b;
+      text-align: center;
+      margin-top: 10px;
+      font-size: 14px;
+      display: none;
+    }
   </style>
 </head>
 <body>
@@ -62,6 +69,7 @@
     <form id="loginForm">
       <input type="email" id="email" placeholder="Email" required />
       <input type="password" id="password" placeholder="Password" required />
+      <p id="errorMessage" class="error-message">Invalid credentials</p>
       <button type="submit">Login</button>
     </form>
   </div>
@@ -69,8 +77,25 @@
   <script>
     document.getElementById("loginForm").addEventListener("submit", function(e) {
       e.preventDefault();
-      // Simply redirect to dashboard.html when login button is pressed
-      window.location.href = "dashboard.html";
+      
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const errorMessage = document.getElementById("errorMessage");
+      
+      // Admin credentials
+      const adminEmail = "hydrogemcapitals.com";
+      const adminPassword = "hydrogem123";
+      
+      if (email === adminEmail && password === adminPassword) {
+        // Redirect to admin dashboard
+        window.location.href = "adminDashboard.html";
+      } else if (email && password) {
+        // Redirect to regular user dashboard
+        window.location.href = "dashboard.html";
+      } else {
+        // Show error message
+        errorMessage.style.display = "block";
+      }
     });
   </script>
 </body>
