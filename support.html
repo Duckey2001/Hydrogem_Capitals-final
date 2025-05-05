@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hydrogem Capitals - Support Center</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #00b4d8;
+            --primary-dark: #0077b6;
+            --secondary-color: #1E2A38;
+            --secondary-light: #2C3A4B;
+            --background-dark: #0A0F17;
+            --text-light: #FFFFFF;
+            --text-dark: #333333;
+            --text-gray: #B0B0B0;
+            --border-color: #2A3A50;
+            --card-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            --transition: all 0.3s ease;
+            --positive-change: #4CAF50;
+            --negative-change: #F44336;
+            --accent-color: #48cae4;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+        }
+
+        /* Sidebar Styles */
+        .sidebar {
+            width: 250px;
+            background-color: var(--secondary-color);
+            position: fixed;
+            height: 100%;
+            padding: 20px 0;
+            transition: var(--transition);
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 0 20px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+        }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            gap: 10px;
+        }
+
+        .sidebar-menu li a:hover {
+            background-color: var(--secondary-light);
+        }
+
+        .sidebar-menu li a.active {
+            background-color: var(--primary-dark);
+            color: white;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            transition: var(--transition);
+        }
+
+        /* Support Header */
+        .support-header {
+            background: linear-gradient(135deg, 
+                          rgba(0, 119, 182, 0.8), 
+                          rgba(0, 180, 216, 0.8));
+            border-radius: 15px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .support-header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .support-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .support-header h1 i {
+            color: var(--accent-color);
+        }
+
+        .support-header p {
+            font-size: 1.1rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Support Options */
+        .support-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .support-card {
+            background-color: var(--secondary-color);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            transition: var(--transition);
+            text-align: center;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .support-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+
+        .support-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+        }
+
+        .support-icon {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 30px;
+            color: white;
+        }
+
+        .support-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .support-card p {
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .support-btn {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .support-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            background-color: var(--secondary-color);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+            margin-bottom: 40px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .section-header h2 {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+        }
+
+        .section-header h2 i {
+            color: var(--accent-color);
+        }
+
+        .faq-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .faq-item {
+            background-color: var(--secondary-light);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        .faq-question {
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background-color: rgba(72, 202, 228, 0.1);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition);
+            color: var(--text-gray);
+        }
+
+        .faq-item.active .faq-question {
+            background-color: rgba(72, 202, 228, 0.1);
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 0 20px 20px;
+            max-height: 500px;
+        }
+
+        /* Contact Form */
+        .contact-section {
+            background-color: var(--secondary-color);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: var(--card-shadow);
+        }
+
+        .contact-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            background-color: var(--secondary-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            color: var(--text-light);
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--accent-color);
+            box-shadow: 0 0 0 2px rgba(72, 202, 228, 0.2);
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .submit-btn {
+            grid-column: 1 / -1;
+            padding: 12px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .submit-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .contact-form {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 80px;
+                overflow: hidden;
+            }
+            
+            .sidebar-header span,
+            .sidebar-menu li a span {
+                display: none;
+            }
+            
+            .sidebar-menu li a {
+                justify-content: center;
+            }
+            
+            .main-content {
+                margin-left: 80px;
+            }
+
+            .support-header h1 {
+                font-size: 2rem;
+            }
+
+            .support-header p {
+                font-size: 1rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .support-options {
+                grid-template-columns: 1fr;
+            }
+
+            .support-header h1 {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .support-card {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body class="dark-theme" data-theme="dark">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-water"></i> <span>Hydrogem Capitals</span></h3>
+        </div>
+        <ul class="sidebar-menu">
+            <li><a href="dashboard.html"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="wallet.html"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
+            <li><a href="deposit.html"><i class="fas fa-money-bill-wave"></i> <span>Deposit</span></a></li>
+            <li><a href="withdraw.html"><i class="fas fa-hand-holding-usd"></i> <span>Withdraw</span></a></li>
+            <li><a href="investments.html"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
+            <li><a href="transactions.html"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
+            <li><a href="referrals.html"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
+            <li><a href="rewards.html"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
+            <li><a href="support.html" class="active"><i class="fas fa-headset"></i> <span>Support</span></a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            <li><a href="index.html"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+        <!-- SUPPORT HEADER -->
+        <div class="support-header">
+            <div class="support-header-content">
+                <h1><i class="fas fa-headset"></i> Support Center</h1>
+                <p>We're here to help you with any questions or issues you may have. Choose from our support options below or contact our team directly.</p>
+            </div>
+        </div>
+
+        <!-- SUPPORT OPTIONS -->
+        <div class="support-options">
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <h3>Knowledge Base</h3>
+                <p>Browse our comprehensive knowledge base for answers to common questions and guides.</p>
+                <a href="#" class="support-btn">Visit Knowledge Base</a>
+            </div>
+            
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3>Live Chat</h3>
+                <p>Chat with our support team in real-time for immediate assistance.</p>
+                <a href="#" class="support-btn">Start Live Chat</a>
+            </div>
+            
+            <div class="support-card">
+                <div class="support-icon">
+                    <i class="fas fa-envelope"></i>
+                </div>
+                <h3>Email Support</h3>
+                <p>Send us an email and we'll get back to you within 24 hours.</p>
+                <a href="#" class="support-btn">Email Us</a>
+            </div>
+        </div>
+
+        <!-- FAQ SECTION -->
+        <div class="faq-section">
+            <div class="section-header">
+                <h2><i class="fas fa-question-circle"></i> Frequently Asked Questions</h2>
+            </div>
+            
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I create an account with Hydrogem Capitals?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>To create an account, click on the "Sign Up" button on our homepage. You'll need to provide your email address, create a password, and complete the verification process. Once verified, you can start using your account immediately.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What payment methods do you accept for deposits?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We accept various payment methods including bank transfers, credit/debit cards, and multiple cryptocurrencies (BTC, ETH, USDT, and more). The available options may vary depending on your region.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long do withdrawals take to process?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Withdrawal processing times vary by method: Cryptocurrency withdrawals are typically processed within 1-2 hours, while bank transfers may take 1-3 business days. All withdrawals are subject to security verification.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is my investment secure with Hydrogem Capitals?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes, we prioritize security with bank-level encryption, two-factor authentication, and cold storage for digital assets. We're also fully regulated and comply with all financial security standards.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I change my account password?</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <div class="faq-answer">
+                        <p>You can change your password by going to Settings > Security > Change Password. You'll need to verify your current password and then set a new one. We recommend using a strong, unique password.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CONTACT FORM -->
+        <div class="contact-section">
+            <div class="section-header">
+                <h2><i class="fas fa-paper-plane"></i> Contact Our Support Team</h2>
+            </div>
+            
+            <form class="contact-form">
+                <div class="form-group">
+                    <label for="name" class="form-label">Lebitso</label>
+                    <input type="text" id="name" class="form-control" placeholder="Kenya lebitso la hau" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" id="email" class="form-control" placeholder="Kenya aterese ea hau ea email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="subject" class="form-label">Sehlooho</label>
+                    <select id="subject" class="form-control" required>
+                        <option value="" disabled selected>Khetha sehlooho</option>
+                        <option value="account">Bothata ba akhaonto</option>
+                        <option value="deposit">Lipotsiso tsa deposit</option>
+                        <option value="withdrawal">Thuso ea ho tlosha chelete</option>
+                        <option value="investment">Meano ea ho beha chelete</option>
+                        <option value="technical">Thuso ea theknoloji</option>
+                        <option value="other">Tse ling</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="priority" class="form-label">Bohlokoa</label>
+                    <select id="priority" class="form-control" required>
+                        <option value="low">Ha e bohlokoa</option>
+                        <option value="medium" selected>Ka hare</option>
+                        <option value="high">Bohlokoa</option>
+                        <option value="urgent">Ka potlako</option>
+                    </select>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="message" class="form-label">Molaetsa</label>
+                    <textarea id="message" class="form-control" placeholder="Hlalosa bothata ka botlalo" required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Romella Molaetsa</button>
+            </form>
+        </div>
+    </main>
+
+    <script>
+        // Initialize the support page
+        document.addEventListener('DOMContentLoaded', function() {
+            // FAQ accordion functionality
+            const faqItems = document.querySelectorAll('.faq-item');
+            
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                
+                question.addEventListener('click', () => {
+                    // Close all other items
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                        }
+                    });
+                    
+                    // Toggle current item
+                    item.classList.toggle('active');
+                });
+            });
+            
+            // Form submission handling
+            const contactForm = document.querySelector('.contact-form');
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    
+                    // In a real app, you would send the form data to your server
+                    alert('Kea leboha molaetsa oa hau! Sehlopha sa rona sa thuso se tla buisana le uena haufinyane.');
+                    contactForm.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>
