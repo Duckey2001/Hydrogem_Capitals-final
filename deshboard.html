@@ -7,8 +7,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #0056B3;
-            --primary-dark: #003366;
+            --primary-color: #00b4d8;
+            --primary-dark: #0077b6;
             --secondary-color: #1E2A38;
             --secondary-light: #2C3A4B;
             --background-dark: #0A0F17;
@@ -21,11 +21,12 @@
             --positive-change: #4CAF50;
             --negative-change: #F44336;
             --disabled-color: #555555;
+            --accent-color: #48cae4;
         }
 
         [data-theme="light"] {
-            --primary-color: #0056B3;
-            --primary-dark: #003366;
+            --primary-color: #00b4d8;
+            --primary-dark: #0077b6;
             --secondary-color: #F5F7FA;
             --secondary-light: #E1E5EB;
             --background-dark: #FFFFFF;
@@ -36,6 +37,7 @@
             --positive-change: #2E7D32;
             --negative-change: #C62828;
             --disabled-color: #CCCCCC;
+            --accent-color: #0096c7;
         }
 
         * {
@@ -86,12 +88,14 @@
 
         /* HEADER WITH BACKGROUND IMAGE */
         .dashboard-header {
-            background-image: url('https://images.unsplash.com/photo-1625225233840-695456021cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-image: linear-gradient(135deg, rgba(0, 119, 182, 0.8), rgba(0, 180, 216, 0.8)), url('https://images.unsplash.com/photo-1625225233840-695456021cde?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
             background-size: cover;
             background-position: center;
             height: 250px;
             position: relative;
             margin-bottom: 30px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
 
         .header-overlay {
@@ -100,11 +104,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
-            padding: 20px;
+            padding: 30px;
         }
 
         /* SIDEBAR STYLES */
@@ -117,6 +120,7 @@
             transition: var(--transition);
             z-index: 100;
             overflow-y: auto;
+            border-right: 1px solid var(--border-color);
         }
 
         .sidebar-header {
@@ -130,10 +134,11 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1.5rem;
         }
 
         .sidebar-header h3 i {
-            color: var(--primary-color);
+            color: var(--accent-color);
         }
 
         .sidebar-menu {
@@ -148,17 +153,20 @@
             text-decoration: none;
             transition: var(--transition);
             gap: 10px;
+            border-left: 3px solid transparent;
         }
 
         .sidebar-menu li a:hover, 
         .sidebar-menu li a.active {
             background-color: var(--primary-dark);
             color: white;
+            border-left: 3px solid var(--accent-color);
         }
 
         .sidebar-menu li a i {
             width: 20px;
             text-align: center;
+            color: var(--accent-color);
         }
 
         /* MAIN CONTENT AREA */
@@ -180,6 +188,7 @@
             top: 0;
             z-index: 90;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border-color);
         }
 
         /* ANIMATED CURRENCY TRACKER */
@@ -188,6 +197,9 @@
             overflow: hidden;
             position: relative;
             height: 40px;
+            background-color: var(--secondary-light);
+            border-radius: 20px;
+            padding: 0 15px;
         }
 
         .currency-tracker {
@@ -196,19 +208,24 @@
             gap: 15px;
             padding: 10px 0;
             white-space: nowrap;
+            align-items: center;
+            height: 100%;
         }
 
         .currency-item {
-            background-color: var(--secondary-light);
+            background-color: var(--secondary-color);
             padding: 8px 15px;
             border-radius: 20px;
             font-size: 14px;
             white-space: nowrap;
             flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
 
         .currency-item span {
-            color: var(--primary-color);
+            color: var(--accent-color);
             font-weight: bold;
         }
 
@@ -249,6 +266,9 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            background-image: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            font-weight: bold;
         }
 
         .notification-btn {
@@ -259,7 +279,7 @@
             position: absolute;
             top: -5px;
             right: -5px;
-            background-color: var(--primary-color);
+            background-color: var(--accent-color);
             color: white;
             border-radius: 50%;
             width: 18px;
@@ -303,6 +323,7 @@
             flex-direction: column;
             border: 1px solid var(--border-color);
             position: relative;
+            overflow: hidden;
         }
 
         .single:hover {
@@ -310,9 +331,19 @@
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
         }
 
+        .single::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-image: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+        }
+
         .single .icon {
             font-size: 32px;
-            color: var(--primary-color);
+            color: var(--accent-color);
             margin-bottom: 15px;
             height: 40px;
             display: flex;
@@ -358,7 +389,7 @@
             width: 100%;
             padding: 10px;
             font-size: 14px;
-            background-color: var(--primary-color);
+            background-image: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             color: white;
             border: none;
             border-radius: 5px;
@@ -367,11 +398,13 @@
         }
 
         .invest-now-btn:hover {
-            background-color: var(--primary-dark);
+            opacity: 0.9;
+            transform: translateY(-2px);
         }
 
         .invest-now-btn.disabled {
-            background-color: var(--disabled-color);
+            background: var(--disabled-color);
+            cursor: not-allowed;
         }
 
         /* REFERRAL SECTION */
@@ -382,11 +415,23 @@
             margin-bottom: 30px;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .referral-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-image: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
         }
 
         .referral-section h3 {
             margin-bottom: 15px;
-            color: var(--primary-color);
+            color: var(--accent-color);
             display: flex;
             align-items: center;
             gap: 10px;
@@ -411,7 +456,7 @@
 
         .copy-btn {
             padding: 0 15px;
-            background-color: var(--primary-color);
+            background-image: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             color: white;
             border: none;
             border-radius: 5px;
@@ -423,7 +468,7 @@
         }
 
         .copy-btn:hover {
-            background-color: var(--primary-dark);
+            opacity: 0.9;
         }
 
         /* MODAL STYLES */
@@ -450,6 +495,17 @@
             border: 1px solid var(--border-color);
             max-height: 90vh;
             overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-image: linear-gradient(90deg, var(--primary-color), var(--accent-color));
         }
 
         .modal-header {
@@ -494,7 +550,7 @@
 
         .form-group input:focus, .form-group select:focus {
             outline: none;
-            border-color: var(--primary-color);
+            border-color: var(--accent-color);
         }
 
         .form-actions {
@@ -514,12 +570,12 @@
         }
 
         .btn-primary {
-            background-color: var(--primary-color);
+            background-image: linear-gradient(90deg, var(--primary-color), var(--accent-color));
             color: white;
         }
 
         .btn-primary:hover {
-            background-color: var(--primary-dark);
+            opacity: 0.9;
         }
 
         .btn-secondary {
@@ -545,11 +601,16 @@
             border-radius: 5px;
             background-color: var(--secondary-light);
             align-items: flex-start;
+            transition: var(--transition);
+        }
+
+        .notification-item:hover {
+            transform: translateX(5px);
         }
 
         .notification-icon {
             font-size: 18px;
-            color: var(--primary-color);
+            color: var(--accent-color);
             padding: 5px;
         }
 
@@ -571,7 +632,7 @@
         .spinner {
             border: 4px solid rgba(0, 0, 0, 0.1);
             border-radius: 50%;
-            border-top: 4px solid var(--primary-color);
+            border-top: 4px solid var(--accent-color);
             width: 30px;
             height: 30px;
             animation: spin 1s linear infinite;
@@ -659,6 +720,17 @@
             margin-bottom: 30px;
             box-shadow: var(--card-shadow);
             border: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .transactions-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-image: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
         }
 
         .transaction-item {
@@ -666,6 +738,11 @@
             align-items: center;
             padding: 12px 0;
             border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        
+        .transaction-item:hover {
+            background-color: var(--secondary-light);
         }
         
         .transaction-icon {
@@ -680,7 +757,7 @@
         }
         
         .transaction-icon i {
-            color: var(--primary-color);
+            color: var(--accent-color);
             font-size: 16px;
         }
         
@@ -739,6 +816,264 @@
             background-color: #FFEBEE;
             color: #C62828;
         }
+
+        /* NEW STYLES FOR INVESTMENT PROGRESS */
+        .investment-progress {
+            margin-bottom: 30px;
+        }
+
+        .progress-container {
+            background-color: var(--secondary-light);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .progress-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background-color: var(--secondary-light);
+            border-radius: 5px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-image: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 5px;
+            transition: width 1s ease;
+        }
+
+        .progress-details {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: var(--text-gray);
+        }
+
+        /* NEW STYLES FOR ACTIVITY FEED */
+        .activity-feed {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+        }
+
+        .activity-item {
+            display: flex;
+            gap: 15px;
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .activity-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--secondary-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .activity-icon i {
+            color: var(--accent-color);
+        }
+
+        .activity-content {
+            flex: 1;
+        }
+
+        .activity-content p {
+            margin-bottom: 5px;
+        }
+
+        .activity-time {
+            font-size: 12px;
+            color: var(--text-gray);
+        }
+
+        /* NEW STYLES FOR QUICK ACTIONS */
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .quick-action {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .quick-action:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            border-color: var(--accent-color);
+        }
+
+        .quick-action i {
+            font-size: 24px;
+            color: var(--accent-color);
+        }
+
+        .quick-action span {
+            font-size: 14px;
+        }
+
+        /* NEW STYLES FOR PERFORMANCE CHART */
+        .performance-chart {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .chart-placeholder {
+            width: 100%;
+            height: 100%;
+            background-color: var(--secondary-light);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+        }
+
+        /* NEW STYLES FOR WELCOME MESSAGE */
+        .welcome-message {
+            background-color: var(--secondary-color);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--card-shadow);
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .welcome-message::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background-image: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+        }
+
+        .welcome-message h3 {
+            color: var(--accent-color);
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .welcome-message p {
+            margin-bottom: 15px;
+        }
+
+        .welcome-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* NEW STYLES FOR TIER BADGE */
+        .tier-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+            background-image: linear-gradient(90deg, #ffd700, #c0c0c0);
+            color: #000;
+            margin-left: 10px;
+        }
+
+        /* NEW STYLES FOR ACCOUNT VERIFICATION */
+        .verification-status {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px;
+            background-color: var(--secondary-light);
+            border-radius: 5px;
+            margin-bottom: 15px;
+        }
+
+        .verification-status.verified {
+            border-left: 3px solid var(--positive-change);
+        }
+
+        .verification-status.pending {
+            border-left: 3px solid #FFC107;
+        }
+
+        .verification-status.unverified {
+            border-left: 3px solid var(--negative-change);
+        }
+
+        .verification-icon {
+            font-size: 20px;
+        }
+
+        .verification-status.verified .verification-icon {
+            color: var(--positive-change);
+        }
+
+        .verification-status.pending .verification-icon {
+            color: #FFC107;
+        }
+
+        .verification-status.unverified .verification-icon {
+            color: var(--negative-change);
+        }
+
+        .verification-content {
+            flex: 1;
+        }
+
+        .verification-content small {
+            color: var(--text-gray);
+            font-size: 12px;
+        }
+
+        .verify-btn {
+            padding: 5px 10px;
+            background-image: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            color: white;
+            border: none;
+            border-radius: 3px;
+            font-size: 12px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body class="dark-theme" data-theme="dark">
@@ -748,15 +1083,15 @@
             <h3><i class="fas fa-water"></i> <span>Hydrogem Capitals</span></h3>
         </div>
         <ul class="sidebar-menu">
-            <li><a href="deshboard.html" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
-            <li><a href="walletExchange.html"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
+            <li><a href="dashboard.html" class="active"><i class="fas fa-home"></i> <span>Dashboard</span></a></li>
+            <li><a href="wallet.html"><i class="fas fa-wallet"></i> <span>Wallet</span></a></li>
             <li><a href="deposit.html" onclick="openModal('deposit-modal')"><i class="fas fa-money-bill-wave"></i> <span>Deposit</span></a></li>
             <li><a href="withdraw.html" onclick="handleWithdrawClick(event)"><i class="fas fa-hand-holding-usd"></i> <span>Withdraw</span></a></li>
-            <li><a href="investmentPlan.html"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
-            <li><a href="moneyTrack.html"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
-            <li><a href="referal.html"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
+            <li><a href="investments.html"><i class="fas fa-chart-line"></i> <span>Investments</span></a></li>
+            <li><a href="transactions.html"><i class="fas fa-exchange-alt"></i> <span>Transactions</span></a></li>
+            <li><a href="referrals.html"><i class="fas fa-users"></i> <span>Referrals</span></a></li>
             <li><a href="rewards.html"><i class="fas fa-gift"></i> <span>Rewards</span></a></li>
-            <li><a href="settingss.html"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
+            <li><a href="settings.html"><i class="fas fa-cog"></i> <span>Settings</span></a></li>
             <li><a href="index.html" onclick="handleLogoutClick(event)"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
         </ul>
     </aside>
@@ -766,8 +1101,12 @@
         <!-- HEADER WITH BACKGROUND IMAGE -->
         <div class="dashboard-header">
             <div class="header-overlay">
-                <h1>Welcome to Hydrogem Capitals, <span id="username">User</span></h1>
+                <h1>Welcome back, <span id="username">User</span> <span class="tier-badge" id="user-tier">Silver</span></h1>
                 <p>Your current balance: <strong id="user-balance">0.00 USDT</strong></p>
+                <div class="welcome-actions">
+                    <button class="btn btn-primary" onclick="openModal('deposit-modal')">Make Deposit</button>
+                    <button class="btn btn-secondary" onclick="window.location.href='investments.html'">View Investments</button>
+                </div>
             </div>
         </div>
 
@@ -787,7 +1126,7 @@
                     <span class="notification-count">3</span>
                 </div>
                 <div class="user-profile" onclick="openModal('profile-modal')">
-                    <div class="user-avatar">
+                    <div class="user-avatar" id="user-avatar">
                         <i class="fas fa-user"></i>
                     </div>
                     <span id="profile-name">User</span>
@@ -797,6 +1136,42 @@
 
         <!-- CONTENT CONTAINER -->
         <div class="content-container">
+            <!-- WELCOME MESSAGE -->
+            <div class="welcome-message">
+                <h3><i class="fas fa-star"></i> Getting Started</h3>
+                <p>Welcome to Hydrogem Capitals! To start investing, make your first deposit and explore our investment plans.</p>
+                <div class="quick-actions">
+                    <div class="quick-action" onclick="openModal('deposit-modal')">
+                        <i class="fas fa-money-bill-wave"></i>
+                        <span>Make Deposit</span>
+                    </div>
+                    <div class="quick-action" onclick="window.location.href='investments.html'">
+                        <i class="fas fa-chart-line"></i>
+                        <span>View Plans</span>
+                    </div>
+                    <div class="quick-action" onclick="window.location.href='referrals.html'">
+                        <i class="fas fa-users"></i>
+                        <span>Invite Friends</span>
+                    </div>
+                    <div class="quick-action" onclick="window.location.href='settings.html'">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Secure Account</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ACCOUNT VERIFICATION -->
+            <div class="verification-status unverified">
+                <div class="verification-icon">
+                    <i class="fas fa-exclamation-circle"></i>
+                </div>
+                <div class="verification-content">
+                    <strong>Account Not Verified</strong>
+                    <small>Verify your identity to unlock all features</small>
+                </div>
+                <button class="verify-btn" onclick="window.location.href='settings.html'">Verify Now</button>
+            </div>
+
             <!-- DASHBOARD TITLE -->
             <div class="dashboard-title">
                 <h2>Dashboard Overview</h2>
@@ -886,6 +1261,30 @@
                 </div>
             </div>
 
+            <!-- INVESTMENT PROGRESS -->
+            <div class="investment-progress">
+                <div class="progress-container">
+                    <div class="progress-header">
+                        <h3>Investment Progress</h3>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+                    </div>
+                    <div class="progress-details">
+                        <span>Current: <strong id="current-investment">$0</strong></span>
+                        <span>Target: <strong>$10,000</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PERFORMANCE CHART -->
+            <div class="performance-chart">
+                <div class="chart-placeholder">
+                    <i class="fas fa-chart-line"></i> Performance Chart Coming Soon
+                </div>
+            </div>
+
             <!-- TRANSACTIONS SECTION -->
             <div class="transactions-section">
                 <h3><i class="fas fa-exchange-alt"></i> Recent Transactions</h3>
@@ -893,6 +1292,14 @@
                     <!-- Transactions will be loaded here -->
                 </div>
                 <button class="invest-now-btn" style="margin-top: 15px;" onclick="window.location.href='transactions.html'">View All Transactions</button>
+            </div>
+
+            <!-- ACTIVITY FEED -->
+            <div class="activity-feed">
+                <h3><i class="fas fa-bell"></i> Recent Activity</h3>
+                <div class="activity-list" id="activity-list">
+                    <!-- Activities will be loaded here -->
+                </div>
             </div>
 
             <!-- REFERRAL SECTION -->
@@ -1028,8 +1435,13 @@
                 <label>Account Status</label>
                 <input type="text" id="profile-status" placeholder="Account status" disabled>
             </div>
+            <div class="form-group">
+                <label>Member Since</label>
+                <input type="text" id="member-since" placeholder="Member since" disabled>
+            </div>
             <div class="form-actions">
                 <button type="button" class="btn btn-secondary" onclick="closeModal('profile-modal')">Close</button>
+                <button type="button" class="btn btn-primary" onclick="window.location.href='settings.html'">Edit Profile</button>
             </div>
         </div>
     </div>
@@ -1044,7 +1456,23 @@
 
     <script>
         // User data from localStorage
-        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || {};
+        let currentUser = JSON.parse(localStorage.getItem('currentUser')) || {
+            name: 'New User',
+            email: '',
+            balance: 0,
+            totalDeposits: 0,
+            totalWithdrawals: 0,
+            totalInvestments: 0,
+            referralBonus: 0,
+            depositBonus: 0,
+            investmentBonus: 0,
+            points: 0,
+            tier: 'Silver',
+            joinDate: new Date().toISOString(),
+            transactions: [],
+            activities: []
+        };
+        
         let hasDeposited = false;
         
         // Currency data
@@ -1066,12 +1494,26 @@
             { id: 3, type: 'investment', amount: -50.00, date: new Date(Date.now() - 172800000), status: 'pending' }
         ];
 
+        // Sample activities
+        const sampleActivities = [
+            { id: 1, type: 'login', message: 'You logged in from a new device', date: new Date() },
+            { id: 2, type: 'welcome', message: 'Welcome to Hydrogem Capitals!', date: new Date(Date.now() - 3600000) },
+            { id: 3, type: 'notification', message: 'Complete your profile to get started', date: new Date(Date.now() - 86400000) }
+        ];
+
         // Initialize the application
         document.addEventListener('DOMContentLoaded', function() {
             // Check if user is logged in
             if (!currentUser || !currentUser.email) {
-                window.location.href = 'index.html';
-                return;
+                // For demo purposes, we'll create a new user if none exists
+                const urlParams = new URLSearchParams(window.location.search);
+                const refCode = urlParams.get('ref');
+                
+                if (refCode) {
+                    currentUser.referredBy = refCode;
+                }
+                
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
             }
 
             // Update UI with user data
@@ -1086,11 +1528,17 @@
             // Load transactions
             loadTransactions();
             
+            // Load activities
+            loadActivities();
+            
             // Update current date
             updateCurrentDate();
             
             // Generate referral link
             generateReferralLink();
+            
+            // Update investment progress
+            updateInvestmentProgress();
         });
 
         // Update UI with user data
@@ -1100,6 +1548,32 @@
             document.getElementById('profile-fullname').value = currentUser.name || '';
             document.getElementById('profile-email').value = currentUser.email || '';
             document.getElementById('profile-status').value = 'Active';
+            document.getElementById('user-balance').textContent = `${currentUser.balance.toFixed(2)} USDT`;
+            document.getElementById('total-deposit').textContent = currentUser.totalDeposits.toFixed(2);
+            document.getElementById('total-withdraw').textContent = currentUser.totalWithdrawals.toFixed(2);
+            document.getElementById('total-investment').textContent = currentUser.totalInvestments.toFixed(2);
+            document.getElementById('referral-bonus').textContent = currentUser.referralBonus.toFixed(2);
+            document.getElementById('deposit-bonus').textContent = currentUser.depositBonus.toFixed(2);
+            document.getElementById('investment-bonus').textContent = currentUser.investmentBonus.toFixed(2);
+            document.getElementById('total-points').textContent = currentUser.points;
+            document.getElementById('user-tier').textContent = currentUser.tier || 'New';
+            
+            // Set user avatar initials
+            const avatar = document.getElementById('user-avatar');
+            if (currentUser.name) {
+                const initials = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase();
+                avatar.innerHTML = initials;
+            }
+            
+            // Set member since date
+            if (currentUser.joinDate) {
+                const joinDate = new Date(currentUser.joinDate);
+                document.getElementById('member-since').value = joinDate.toLocaleDateString('en-US', { 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+            }
             
             // Check if user has deposited (for demo, we'll check if balance > 0)
             hasDeposited = currentUser.balance > 0;
@@ -1168,8 +1642,8 @@
                     if (currency.symbol !== 'USDT') {
                         // Random price change
                         const randomChange = (Math.random() - 0.5) * 2;
-                        currency.price = parseFloat((currency.price * (1 + randomChange/100)).toFixed(2);
-                        currency.change = parseFloat((parseFloat(currency.change) + (Math.random() - 0.5) * 0.5).toFixed(1);
+                        currency.price = parseFloat((currency.price * (1 + randomChange/100)).toFixed(2));
+                        currency.change = parseFloat((parseFloat(currency.change) + (Math.random() - 0.5) * 0.5).toFixed(1));
                     }
                 });
                 
@@ -1219,7 +1693,9 @@
             const transactionsList = document.getElementById('transactions-list');
             transactionsList.innerHTML = '';
             
-            sampleTransactions.forEach(tx => {
+            const userTransactions = currentUser.transactions.length > 0 ? currentUser.transactions : sampleTransactions;
+            
+            userTransactions.forEach(tx => {
                 const item = document.createElement('div');
                 item.className = 'transaction-item';
                 item.innerHTML = `
@@ -1234,7 +1710,7 @@
                             </span>
                         </div>
                         <div class="transaction-footer">
-                            <span class="transaction-date">${tx.date.toLocaleString()}</span>
+                            <span class="transaction-date">${new Date(tx.date).toLocaleString()}</span>
                             <span class="transaction-status ${tx.status}">${tx.status}</span>
                         </div>
                     </div>
@@ -1243,7 +1719,66 @@
             });
             
             // Update transactions count
-            document.getElementById('transactions-count').textContent = sampleTransactions.length;
+            document.getElementById('transactions-count').textContent = userTransactions.length;
+        }
+
+        // Load and display activities
+        function loadActivities() {
+            const activityList = document.getElementById('activity-list');
+            activityList.innerHTML = '';
+            
+            const userActivities = currentUser.activities.length > 0 ? currentUser.activities : sampleActivities;
+            
+            userActivities.forEach(activity => {
+                const item = document.createElement('div');
+                item.className = 'activity-item';
+                item.innerHTML = `
+                    <div class="activity-icon">
+                        <i class="fas ${getActivityIcon(activity.type)}"></i>
+                    </div>
+                    <div class="activity-content">
+                        <p>${activity.message}</p>
+                        <div class="activity-time">${formatActivityTime(activity.date)}</div>
+                    </div>
+                `;
+                activityList.appendChild(item);
+            });
+        }
+
+        function formatActivityTime(date) {
+            const now = new Date();
+            const activityDate = new Date(date);
+            const diffInSeconds = Math.floor((now - activityDate) / 1000);
+            
+            if (diffInSeconds < 60) {
+                return 'Just now';
+            } else if (diffInSeconds < 3600) {
+                const minutes = Math.floor(diffInSeconds / 60);
+                return `${minutes} minute${minutes !== 1 ? 's' : ''} ago`;
+            } else if (diffInSeconds < 86400) {
+                const hours = Math.floor(diffInSeconds / 3600);
+                return `${hours} hour${hours !== 1 ? 's' : ''} ago`;
+            } else {
+                return activityDate.toLocaleDateString('en-US', { 
+                    month: 'short', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+        }
+
+        function getActivityIcon(type) {
+            const icons = {
+                'login': 'fa-sign-in-alt',
+                'welcome': 'fa-star',
+                'notification': 'fa-bell',
+                'deposit': 'fa-money-bill-wave',
+                'withdrawal': 'fa-hand-holding-usd',
+                'investment': 'fa-chart-line',
+                'default': 'fa-info-circle'
+            };
+            return icons[type.toLowerCase()] || icons.default;
         }
 
         function getTransactionIcon(type) {
@@ -1257,12 +1792,23 @@
             return icons[type.toLowerCase()] || 'fa-exchange-alt';
         }
 
+        // Update investment progress
+        function updateInvestmentProgress() {
+            const targetAmount = 10000;
+            const currentAmount = currentUser.totalInvestments || 0;
+            const progressPercent = Math.min((currentAmount / targetAmount) * 100, 100);
+            
+            document.getElementById('progress-fill').style.width = `${progressPercent}%`;
+            document.getElementById('progress-percent').textContent = `${progressPercent.toFixed(1)}%`;
+            document.getElementById('current-investment').textContent = `$${currentAmount.toFixed(2)}`;
+        }
+
         // Generate unique referral link
         function generateReferralLink() {
             if (!currentUser || !currentUser.email) return;
             
             // Create a unique referral code based on user email
-            const referralCode = btoa(currentUser.email).replace(/[^a-zA-Z0-9]/g, '').substring(0, 10);
+            const referralCode = currentUser.referralCode || btoa(currentUser.email).replace(/[^a-zA-Z0-9]/g, '').substring(0, 10);
             const referralLink = `${window.location.origin}/index.html?ref=${referralCode}`;
             
             document.getElementById('referral-link').textContent = referralLink;
@@ -1340,21 +1886,48 @@
                     // Update user balance
                     currentUser.balance = (currentUser.balance || 0) + amount;
                     currentUser.totalDeposits = (currentUser.totalDeposits || 0) + amount;
-                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
                     
-                    // Update UI
-                    document.getElementById('user-balance').textContent = `${currentUser.balance.toFixed(2)} USDT`;
-                    document.getElementById('total-deposit').textContent = currentUser.totalDeposits.toFixed(2);
+                    // Add 5% bonus for first deposit
+                    if (currentUser.totalDeposits === amount) {
+                        const bonus = amount * 0.05;
+                        currentUser.depositBonus += bonus;
+                        currentUser.balance += bonus;
+                        addNotification(`You received a $${bonus.toFixed(2)} welcome bonus!`, 'bonus');
+                    }
                     
                     // Add transaction
-                    sampleTransactions.unshift({
-                        id: sampleTransactions.length + 1,
+                    currentUser.transactions.unshift({
+                        id: currentUser.transactions.length + 1,
                         type: 'deposit',
                         amount: amount,
                         date: new Date(),
                         status: 'completed'
                     });
+                    
+                    // Add activity
+                    currentUser.activities.unshift({
+                        id: currentUser.activities.length + 1,
+                        type: 'deposit',
+                        message: `Deposit of $${amount.toFixed(2)} completed`,
+                        date: new Date()
+                    });
+                    
+                    // Update tier if applicable
+                    if (currentUser.totalDeposits >= 10000 && currentUser.tier !== 'Gold') {
+                        currentUser.tier = 'Gold';
+                        addNotification('Congratulations! You reached Gold tier', 'notification');
+                    } else if (currentUser.totalDeposits >= 5000 && currentUser.tier !== 'Silver') {
+                        currentUser.tier = 'Silver';
+                        addNotification('Congratulations! You reached Silver tier', 'notification');
+                    }
+                    
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    // Update UI
+                    updateUserData();
                     loadTransactions();
+                    loadActivities();
+                    updateInvestmentProgress();
                     
                     // Check deposit status
                     hasDeposited = true;
@@ -1394,21 +1967,30 @@
                     // Update user balance
                     currentUser.balance = (currentUser.balance || 0) - amount;
                     currentUser.totalWithdrawals = (currentUser.totalWithdrawals || 0) + amount;
-                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
-                    
-                    // Update UI
-                    document.getElementById('user-balance').textContent = `${currentUser.balance.toFixed(2)} USDT`;
-                    document.getElementById('total-withdraw').textContent = currentUser.totalWithdrawals.toFixed(2);
                     
                     // Add transaction
-                    sampleTransactions.unshift({
-                        id: sampleTransactions.length + 1,
+                    currentUser.transactions.unshift({
+                        id: currentUser.transactions.length + 1,
                         type: 'withdrawal',
                         amount: -amount,
                         date: new Date(),
                         status: 'pending'
                     });
+                    
+                    // Add activity
+                    currentUser.activities.unshift({
+                        id: currentUser.activities.length + 1,
+                        type: 'withdrawal',
+                        message: `Withdrawal request for $${amount.toFixed(2)} submitted`,
+                        date: new Date()
+                    });
+                    
+                    localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                    
+                    // Update UI
+                    updateUserData();
                     loadTransactions();
+                    loadActivities();
                     
                     // Close modal and show success
                     closeModal('withdraw-modal');
