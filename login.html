@@ -74,29 +74,7 @@
     </form>
   </div>
 
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      
-      const email = document.getElementById("email").value;
-      const password = document.getElementById("password").value;
-      const errorMessage = document.getElementById("errorMessage");
-      
-      // Admin credentials
-      const adminEmail = "hydrogemcapitals@gmail.com";
-      const adminPassword = "hydrogem123";
-      
-      if (email === adminEmail && password === adminPassword) {
-        // Redirect to admin dashboard
-        window.location.href = "adminDashboard.html";
-      } else if (email && password) {
-        // Redirect to regular user dashboard
-        window.location.href = "deshboard.html";
-      } else {
-        // Show error message
-        errorMessage.style.display = "block";
-      }
-    });
-  </script>
+  <!-- External script so it complies with the server's Content-Security-Policy (script-src 'self'). -->
+  <script src="js/loginPage.js"></script>
 </body>
 </html>

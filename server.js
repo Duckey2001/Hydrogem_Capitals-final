@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
@@ -10,9 +11,12 @@ const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 
+const userController = require('./js/userController');
+const withdrawRouter = require('./js/withdraw');
+
 const app = express();
 
-// Database connection
+// Database connection (admin accounts)
 mongoose.connect(process.env.DB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -48,14 +52,14 @@ app.use(session({
   }
 }));
 
-// CSRF protection
+// CSRF protection (token delivered to the browser via /api/csrf-token)
 const csrfProtection = csrf({ cookie: true });
 
-// Rate limiting for login attempts
+// Rate limiting for authentication attempts
 const loginLimiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5, // limit each IP to 5 login attempts per windowMs
-  message: 'Too many login attempts, please try again later'
+  max: 5, // limit each IP to 5 attempts per windowMs
+  message: 'Too many attempts, please try again later'
 });
 
 // HTTPS redirection in production
@@ -69,12 +73,59 @@ if (process.env.NODE_ENV === 'production') {
   });
 }
 
-// Routes
-app.get('/login', csrfProtection, (req, res) => {
+// Expose a CSRF token for browser clients
+app.get('/api/csrf-token', csrfProtection, (req, res) => {
   res.json({ csrfToken: req.csrfToken() });
 });
 
-app.post('/api/admin/login', 
+// ---------------------------------------------------------------------------
+// User authentication (PostgreSQL via js/userController.js)
+// ---------------------------------------------------------------------------
+const credentialsValidation = [
+  body('email').isEmail().normalizeEmail(),
+  body('password').isLength({ min: 8 })
+];
+
+const registerValidation = [
+  body('name').trim().notEmpty().withMessage('Name is required').isLength({ max: 100 }),
+  ...credentialsValidation
+];
+
+function runValidation(req, res, next) {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res.status(400).json({ errors: errors.array() });
+  }
+  next();
+}
+
+app.post(
+  '/api/users/register',
+  loginLimiter,
+  csrfProtection,
+  registerValidation,
+  runValidation,
+  userController.register
+);
+
+app.post(
+  '/api/users/login',
+  loginLimiter,
+  csrfProtection,
+  credentialsValidation,
+  runValidation,
+  userController.login
+);
+
+// ---------------------------------------------------------------------------
+// Withdrawals
+// ---------------------------------------------------------------------------
+app.use('/api', withdrawRouter);
+
+// ---------------------------------------------------------------------------
+// Admin authentication (MongoDB)
+// ---------------------------------------------------------------------------
+app.post('/api/admin/login',
   loginLimiter,
   csrfProtection,
   [
@@ -90,32 +141,32 @@ app.post('/api/admin/login',
       }
 
       const { username, password } = req.body;
-      
+
       // Find admin
       const admin = await Admin.findOne({ username });
-      
+
       if (!admin || !admin.isActive) {
         return res.status(401).json({ error: 'Invalid credentials' });
       }
-      
+
       // Verify password
       const isMatch = await bcrypt.compare(password, admin.passwordHash);
-      
+
       if (!isMatch) {
         return res.status(401).json({ error: 'Invalid credentials' });
       }
-      
+
       // Update last login
       admin.lastLogin = new Date();
       await admin.save();
-      
+
       // Create JWT token
       const token = jwt.sign(
         { adminId: admin._id },
         process.env.JWT_SECRET,
         { expiresIn: '1h' }
       );
-      
+
       // Set secure cookie
       res.cookie('adminToken', token, {
         httpOnly: true,
@@ -123,9 +174,9 @@ app.post('/api/admin/login',
         sameSite: 'strict',
         maxAge: 3600000 // 1 hour
       });
-      
+
       res.json({ success: true });
-      
+
     } catch (error) {
       console.error('Login error:', error);
       res.status(500).json({ error: 'Server error' });
@@ -133,19 +184,14 @@ app.post('/api/admin/login',
   }
 );
 
-// Protected admin route example
-app.get('/api/admin/dashboard', authenticateAdmin, (req, res) => {
-  res.json({ message: 'Welcome to the admin dashboard' });
-});
-
 // Admin authentication middleware
 function authenticateAdmin(req, res, next) {
   const token = req.cookies.adminToken;
-  
+
   if (!token) {
     return res.status(401).json({ error: 'Unauthorized' });
   }
-  
+
   try {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
     req.adminId = decoded.adminId;
@@ -155,6 +201,22 @@ function authenticateAdmin(req, res, next) {
     res.status(401).json({ error: 'Unauthorized' });
   }
 }
+
+// Protected admin route example
+app.get('/api/admin/dashboard', authenticateAdmin, (req, res) => {
+  res.json({ message: 'Welcome to the admin dashboard' });
+});
+
+// Serve the static front-end (login.html, register.html, dashboards, ...)
+app.use(express.static(path.join(__dirname)));
+
+// CSRF error handler
+app.use((err, req, res, next) => {
+  if (err.code === 'EBADCSRFTOKEN') {
+    return res.status(403).json({ error: 'Invalid CSRF token' });
+  }
+  next(err);
+});
 
 // Start server
 const PORT = process.env.PORT || 3000;
