@@ -333,23 +333,6 @@
             color: var(--danger);
         }
         
-        /* Security Protection Elements */
-        #securityOverlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.8);
-            z-index: 9999;
-            display: none;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 24px;
-            text-align: center;
-        }
-        
         /* Responsive Design */
         @media (max-width: 992px) {
             .withdrawal-container {
@@ -384,14 +367,6 @@
     </style>
 </head>
 <body>
-    <!-- Security Overlay -->
-    <div id="securityOverlay">
-        <div>
-            <h3>Security Violation Detected</h3>
-            <p>Unauthorized access attempt blocked</p>
-        </div>
-    </div>
-
     <div class="dashboard-container">
         <!-- Sidebar -->
         <div class="sidebar">
@@ -568,81 +543,57 @@
     </div>
 
     <script>
-    // Security Protection Script
     (function() {
         'use strict';
-        
-        // Security overlay element
-        const securityOverlay = document.getElementById('securityOverlay');
-        
-        // Detect developer tools
-        function detectDevTools() {
-            const widthThreshold = window.outerWidth - window.innerWidth > 160;
-            const heightThreshold = window.outerHeight - window.innerHeight > 160;
-            
-            if (widthThreshold || heightThreshold) {
-                securityOverlay.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-                return true;
-            }
-            return false;
-        }
-        
-        // Check periodically
-        setInterval(detectDevTools, 1000);
-        
-        // Block right-click
-        document.addEventListener('contextmenu', function(e) {
-            e.preventDefault();
-            securityOverlay.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        });
-        
-        // Block keyboard shortcuts
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'F12' || 
-                (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-                (e.ctrlKey && e.shiftKey && e.key === 'J') ||
-                (e.ctrlKey && e.key === 'U')) {
-                e.preventDefault();
-                securityOverlay.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
-        });
-        
+
         // Form submission handler
-        document.getElementById('withdrawalForm').addEventListener('submit', function(e) {
+        document.getElementById('withdrawalForm').addEventListener('submit', async function(e) {
             e.preventDefault();
-            
+
             // Get form values
             const method = document.getElementById('payment-method').value;
             const address = document.getElementById('wallet-address').value.trim();
             const amount = parseFloat(document.getElementById('amount').value);
             const securityCode = document.getElementById('security-code').value;
-            
+
             // Basic validation
             if (!method || !address || !amount || !securityCode) {
                 alert('Please fill in all fields');
                 return;
             }
-            
+
             if (amount < 20) {
                 alert('Minimum withdrawal amount is $20');
                 return;
             }
-            
+
             if (amount > 50000) {
                 alert('Maximum daily withdrawal limit is $50,000');
                 return;
             }
-            
-            // In a real application, you would send this data to your server
-            alert('Withdrawal request submitted for processing');
-            
-            // Reset form
-            this.reset();
+
+            try {
+                const response = await fetch('/api/withdraw', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ amount, method, address }),
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    alert(data.message || 'Withdrawal request submitted for processing');
+                    this.reset();
+                } else if (response.status === 401) {
+                    alert('Please log in to make a withdrawal.');
+                    window.location.href = 'login.html';
+                } else {
+                    alert(data.error || 'Withdrawal request failed');
+                }
+            } catch (err) {
+                alert('Server error. Please try again.');
+            }
         });
-        
+
         // Calculate received amount
         document.getElementById('amount').addEventListener('input', function() {
             const amount = parseFloat(this.value) || 0;
