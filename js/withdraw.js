@@ -1,32 +1,35 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
 
-app.use(bodyParser.json());
+const router = express.Router();
 
 // Mock user wallet balance
 let userWalletBalance = 1000; // Example: User has 1000 USDT
 
-app.post('/api/withdraw', (req, res) => {
-    const { amount } = req.body;
+router.post('/withdraw', (req, res) => {
+  const { amount } = req.body;
+  const value = Number(amount);
 
-    // Validate the amount
-    if (!amount || isNaN(amount) || amount <= 0) {
-        return res.status(400).json({ message: 'Invalid amount' });
-    }
+  // Validate the amount
+  if (!value || isNaN(value) || value <= 0) {
+    return res.status(400).json({ message: 'Invalid amount' });
+  }
 
-    // Check if the user has sufficient balance
-    if (amount > userWalletBalance) {
-        return res.status(400).json({ message: 'Insufficient balance' });
-    }
+  // Check if the user has sufficient balance
+  if (value > userWalletBalance) {
+    return res.status(400).json({ message: 'Insufficient balance' });
+  }
 
-    // Deduct the amount from the user's wallet and add it to the main wallet
-    userWalletBalance -= amount;
+  // Deduct the amount from the user's wallet
+  userWalletBalance -= value;
 
-    // Simulate a successful withdrawal
-    res.json({ message: `Withdrawal of ${amount} USDT successful. Remaining balance: ${userWalletBalance} USDT` });
+  res.json({
+    message: `Withdrawal of ${value} USDT successful. Remaining balance: ${userWalletBalance} USDT`,
+    balance: userWalletBalance,
+  });
 });
 
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+router.get('/withdraw/balance', (req, res) => {
+  res.json({ balance: userWalletBalance });
 });
+
+module.exports = router;
