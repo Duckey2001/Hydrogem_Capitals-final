@@ -5,7 +5,7 @@ const pool = require('./backenddb');
 const SALT_ROUNDS = 12;
 
 exports.register = async (req, res) => {
-  const { email, password } = req.body;
+  const { name, email, password } = req.body;
 
   try {
     // Check if the user already exists
@@ -22,8 +22,8 @@ exports.register = async (req, res) => {
     const passwordHash = await bcrypt.hash(password, SALT_ROUNDS);
 
     const newUser = await pool.query(
-      'INSERT INTO users (email, password) VALUES ($1, $2) RETURNING id, email',
-      [email, passwordHash]
+      'INSERT INTO users (name, email, password) VALUES ($1, $2, $3) RETURNING id, name, email',
+      [name, email, passwordHash]
     );
 
     res.status(201).json({ message: 'User registered', user: newUser.rows[0] });

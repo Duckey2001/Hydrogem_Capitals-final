@@ -81,9 +81,14 @@ app.get('/api/csrf-token', csrfProtection, (req, res) => {
 // ---------------------------------------------------------------------------
 // User authentication (PostgreSQL via js/userController.js)
 // ---------------------------------------------------------------------------
-const userValidation = [
+const credentialsValidation = [
   body('email').isEmail().normalizeEmail(),
   body('password').isLength({ min: 8 })
+];
+
+const registerValidation = [
+  body('name').trim().notEmpty().withMessage('Name is required').isLength({ max: 100 }),
+  ...credentialsValidation
 ];
 
 function runValidation(req, res, next) {
@@ -98,7 +103,7 @@ app.post(
   '/api/users/register',
   loginLimiter,
   csrfProtection,
-  userValidation,
+  registerValidation,
   runValidation,
   userController.register
 );
@@ -107,7 +112,7 @@ app.post(
   '/api/users/login',
   loginLimiter,
   csrfProtection,
-  userValidation,
+  credentialsValidation,
   runValidation,
   userController.login
 );
